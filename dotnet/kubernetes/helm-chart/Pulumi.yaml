@@ -1,0 +1,3 @@
+name: helm-chart-dotnet
+runtime: dotnet
+description: A helm chart in C#
