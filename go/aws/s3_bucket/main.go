@@ -25,7 +25,7 @@ func main() {
 			Content: pulumi.Sprintf("%s", superSecret),
 		})
 
-		ctx.Export("superSecret", pulumi.String(superSecret))
+		ctx.Export("superSecret", superSecret)
 		return nil
 	})
 }
