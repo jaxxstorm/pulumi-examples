@@ -1,0 +1,6 @@
+name: digitalocean-python
+runtime:
+  name: python
+  options:
+    virtualenv: venv
+description: A minimal DigitalOcean Python Pulumi program

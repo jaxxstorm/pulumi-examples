@@ -1,0 +1,3 @@
+name: vpc_with_subnets_python
+runtime: python
+description: A minimal AWS Python Pulumi program

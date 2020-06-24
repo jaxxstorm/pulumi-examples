@@ -1,0 +1,3 @@
+name: helm-traefik-python
+runtime: python
+description: A minimal Kubernetes Python Pulumi program

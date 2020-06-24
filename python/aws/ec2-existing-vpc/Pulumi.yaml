@@ -1,0 +1,3 @@
+name: ec2-existing-vpc
+runtime: python
+description: Look up a VPC and subnets then deploy an EC2 instance

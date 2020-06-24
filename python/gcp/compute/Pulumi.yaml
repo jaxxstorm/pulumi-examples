@@ -1,0 +1,3 @@
+name: gcp-compute-example
+runtime: python
+description: Create a set of instances with gcloud
