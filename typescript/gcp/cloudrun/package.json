@@ -1,0 +1,10 @@
+{
+    "name": "gcp-typescript-cloudrun",
+    "devDependencies": {
+        "@types/node": "^10.0.0"
+    },
+    "dependencies": {
+        "@pulumi/pulumi": "^2.0.0",
+        "@pulumi/gcp": "^3.0.0"
+    }
+}
