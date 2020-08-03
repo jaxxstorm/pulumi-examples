@@ -1,0 +1,13 @@
+{
+    "name": "sample-app",
+    "devDependencies": {
+        "@types/node": "^10.0.0"
+    },
+    "dependencies": {
+        "@pulumi/kubernetes": "^2.0.0",
+        "@pulumi/kubernetesx": "^0.1.1",
+        "@pulumi/pulumi": "^2.0.0",
+        "bcrypt": "^5.0.0",
+        "bcryptjs": "^2.4.3"
+    }
+}

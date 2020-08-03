@@ -1,0 +1,3 @@
+name: external-dns.ts
+runtime: nodejs
+description: Deploy external-dns to EKS with Fargate
