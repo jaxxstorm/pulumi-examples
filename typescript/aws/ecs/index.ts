@@ -102,19 +102,19 @@ new aws.iam.RolePolicyAttachment(`ecsTaskExecPolicy`, {
 
 new aws.iam.RolePolicyAttachment(`ecsEc2RolePolicy`, {
     role: ecsIAMRole.name,
-    policyArn: 'arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role',
+    policyArn: aws.iam.ManagedPolicies.AmazonEC2ContainerServiceforEC2Role
 }, { parent: ecsIAMRole })
 
 new aws.iam.RolePolicyAttachment(`ecsCloudwatchPolicy`, {
     role: ecsIAMRole.name,
-    policyArn: 'arn:aws:iam::aws:policy/CloudWatchLogsFullAccess',
+    policyArn: aws.iam.ManagedPolicies.CloudWatchFullAccess
 }, { parent: ecsIAMRole })
 
 const asg = cluster.createAutoScalingGroup("asg", {
     templateParameters: { minSize: 1 },
     subnetIds: vpc.publicSubnetIds,
     launchConfigurationArgs: { 
-        instanceType: "t2.medium", 
+        instanceType: "t2.medium"
         associatePublicIpAddress: true,
         iamInstanceProfile: instanceProfile.arn,
         userData: userData.rendered,
