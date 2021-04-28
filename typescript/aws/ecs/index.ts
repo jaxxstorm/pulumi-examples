@@ -2,7 +2,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as aws from "@pulumi/aws";
 import * as awsx from "@pulumi/awsx";
 import * as cloudinit from "@pulumi/cloudinit";
-import { AssetArchive } from "@pulumi/pulumi/asset";
 
 const ami = pulumi.output(aws.ec2.getAmi({
     filters: [
