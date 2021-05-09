@@ -20,8 +20,8 @@ clusters = [
 
 for cluster in clusters:
     chart = k8s.helm.v3.Chart(
-        "consul",
-        k8s.helm.v3.ChartOpts(
+        release_name="consul",
+        config=k8s.helm.v3.ChartOpts(
             resource_prefix=cluster,
             chart="consul",
             namespace="default",
