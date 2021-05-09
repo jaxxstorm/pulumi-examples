@@ -1,3 +1,0 @@
-name: awskms-encrypted-stack
-runtime: dotnet
-description: An example stack encrypted with AWS KMS
