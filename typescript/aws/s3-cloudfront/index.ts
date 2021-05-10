@@ -31,7 +31,7 @@ new aws.s3.BucketPolicy("apply-bucket-policy", {
             Sid: "CloudfrontAllow",
             Effect: "Allow",
             Principal: {
-              AWS: `${iamArn}`,
+              AWS: iamArn,
             },
             Action: "s3:GetObject",
             Resource: `arn:aws:s3:::${bucketName}/*`,
@@ -52,7 +52,7 @@ new aws.s3.BucketPolicy('interpolate-bucket-policy', {
                 Sid: "CloudfrontAllow",
                 Effect: "Allow",
                 Principal: {
-                    AWS: pulumi.interpolate`${originAccessIdentity.iamArn}`,
+                    AWS: originAccessIdentity.iamArn,
                 },
                 Action: "s3:GetObject",
                 Resource: pulumi.interpolate`arn:aws:s3:::${contentBucket.bucket}/*`,
