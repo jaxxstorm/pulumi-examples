@@ -1,0 +1,3 @@
+name: aks-namespace.go
+runtime: go
+description: A minimal Azure Native Go Pulumi program
