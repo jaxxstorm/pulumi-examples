@@ -1,0 +1,3 @@
+name: existing-iam-user
+runtime: nodejs
+description: A minimal TypeScript Pulumi program
