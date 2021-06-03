@@ -58,3 +58,5 @@ vpc.privateSubnetIds.then(id => id.forEach((id, index) => {
 
 export const clusterName = cluster.eksCluster.name
 export const kubeconfig = cluster.kubeconfig
+export const oidcUrl = cluster.core.oidcProvider?.url
+export const oidcArn = cluster.core.oidcProvider?.arn
