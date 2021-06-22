@@ -3,10 +3,10 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/pulumi/pulumi-aws/sdk/v3/go/aws/iam"
-	"github.com/pulumi/pulumi-aws/sdk/v3/go/aws/s3"
-	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v2/go/pulumi/config"
+	"github.com/pulumi/pulumi-aws/sdk/v4/go/aws/iam"
+	"github.com/pulumi/pulumi-aws/sdk/v4/go/aws/s3"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 )
 
 func main() {
@@ -26,14 +26,14 @@ func main() {
 		}
 
 		// notice how we're using the apply function to wrap the building of the JSON string
-		bucketPolicy := bucket.Arn.ApplyT(func (arn string) (string, error) {
+		bucketPolicy := bucket.Arn.ApplyT(func(arn string) (string, error) {
 			policyJSON, err := json.Marshal(map[string]interface{}{
 				"Version": "2012-10-17",
 				"Statement": []map[string]interface{}{
 					{
-						"Effect": "Allow",
+						"Effect":    "Allow",
 						"Principal": "*",
-						"Action": []string{"s3:GetObject"},
+						"Action":    []string{"s3:GetObject"},
 						"Resource": []string{
 							arn, // I can now pass the arn directy
 						},
@@ -50,7 +50,6 @@ func main() {
 			AssumeRolePolicy: bucketPolicy,
 		})
 
-
 		values := []string{"key", "value"}
 
 		for _, v := range values {
@@ -64,8 +63,6 @@ func main() {
 			}
 		}
 
-
 		return nil
 	})
 }
-
