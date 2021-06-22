@@ -49,9 +49,16 @@ func main() {
 			return err
 		}
 
+		ns, err := corev1.NewNamespace(ctx, "nginx-ingess", &corev1.NamespaceArgs{
+			Metadata: &metav1.ObjectMetaArgs{
+				Name: pulumi.String("nginx-ingress"),
+			},
+		})
+
 		// Helm chart
 		_, err = helm.NewChart(ctx, "test", helm.ChartArgs{
 			Chart:   pulumi.String("stable/nginx-ingress"),
+			Namespace: ns.Metadata.Name().Elem(),
 			Version: pulumi.String("1.36.3"),
 		}, pulumi.Provider(provider))
 
