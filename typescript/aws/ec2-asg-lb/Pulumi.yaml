@@ -1,0 +1,3 @@
+name: ec2-asg-lb
+runtime: nodejs
+description: A minimal AWS TypeScript Pulumi program
