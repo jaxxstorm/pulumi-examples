@@ -136,6 +136,10 @@ const launchTemplate = new aws.ec2.LaunchTemplate('example-web-launchtemplate', 
     instanceType: "t3.small",
     namePrefix: "example",
     keyName: "lbriggs",
+    networkInterfaces: [{
+        deleteOnTermination: "true",
+        securityGroups: [ instanceSecurityGroups.id ],
+    }],
     monitoring: {
         enabled: true
     },
