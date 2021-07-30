@@ -1,61 +1,122 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as aws from "@pulumi/aws";
 import * as awsx from "@pulumi/awsx";
+import * as eks from "@pulumi/eks";
+
+const name = "lbriggs-eks-example"
+const awsConfig = new pulumi.Config("aws");
+const profile = awsConfig.require("profile")
 
 // Allocate a new VPC with custom settings, and a public & private subnet per AZ.
-const vpc = new awsx.ec2.Vpc(`lbriggs`, {
-    cidrBlock: "172.16.0.0/16",
-    subnets: [{ type: "public" }, { type: "private" }],
+const vpc = new awsx.ec2.Vpc(`${name}-vpc`, {
+    cidrBlock: "172.16.0.0/24",
+    subnets: [
+        {
+            type: "private",
+            tags: {
+                "kubernetes.io/role/internal-elb": "1",
+            }
+        },
+        {
+            type: "public",
+            tags: {
+                "kubernetes.io/role/elb": "1",
+            }
+        }],
+    tags: {
+        Name: `${name}-vpc`,
+        Owner: "lbriggs",
+        owner: "lbriggs",
+    }
 });
 
-// export the VPC id in case we want to use it any other stakc
-export const vpcId = vpc.id;
+const kubeconfigOpts: eks.KubeconfigOptions = {profileName: profile};
 
-// create an IAM role for the clster
-const clusterRole = new aws.iam.Role(`lbriggs`, {
-    assumeRolePolicy: aws.iam.assumeRolePolicyForPrincipal({
-        Service: "ec2.amazonaws.com",
-    }),
+// define an EKS cluster
+const cluster = new eks.Cluster(name, {
+    providerCredentialOpts: kubeconfigOpts,
+    vpcId: vpc.id,
+    privateSubnetIds: vpc.privateSubnetIds,
+    publicSubnetIds: vpc.publicSubnetIds,
+    instanceType: "t2.medium",
+    desiredCapacity: 2,
+    minSize: 1,
+    maxSize: 2,
+    createOidcProvider: true,
+    tags: {
+        Owner: "lbriggs",
+        owner: "lbriggs",
+    }
 });
 
-// Set some polict attachments that EKS needs to work properly
-const managedPolicyArns: string[] = [
-    "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy",
-    "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy",
-    "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
-];
-let counter = 0;
-for (const policy of managedPolicyArns) {
-    // Create RolePolicyAttachment without returning it.
-    const rpa = new aws.iam.RolePolicyAttachment(`lbriggs-policy-${counter++}`,
-        { policyArn: policy, role: clusterRole },
-    );
-}
+// define an IAM role that the nodegroups can use
+const nodegroupIAMRole = new aws.iam.Role(name, {assumeRolePolicy: JSON.stringify({
+    Statement: [{
+        Action: "sts:AssumeRole",
+        Effect: "Allow",
+        Principal: {
+            Service: "ec2.amazonaws.com",
+        },
+    }],
+    Version: "2012-10-17",
+})});
 
-// Create a new EKS cluster!
-const cluster = new aws.eks.Cluster(`lbriggs`, {
-    vpcConfig: {
-        subnetIds: vpc.privateSubnetIds,
-        vpcId: vpc.id
+
+const workerNodePolicy = new aws.iam.RolePolicyAttachment("workerNodePolicy", {
+    policyArn: "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy",
+    role: nodegroupIAMRole.name,
+});
+const cniNodePolicy = new aws.iam.RolePolicyAttachment("cniPolicy", {
+    policyArn: "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy",
+    role: nodegroupIAMRole.name,
+});
+const registryNodePolicy = new aws.iam.RolePolicyAttachment("example-registryPolicy", {
+    policyArn: "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
+    role: nodegroupIAMRole.name,
+});
+
+const taintedNodeGroup = new aws.eks.NodeGroup("tainted", {
+    clusterName: cluster.eksCluster.name,
+    nodeRoleArn: nodegroupIAMRole.arn,
+    subnetIds: vpc.privateSubnetIds,
+    scalingConfig: {
+        minSize: 1,
+        desiredSize: 3,
+        maxSize: 5
     },
-    roleArn: clusterRole.id
+    taints: [{
+        effect: "NO_SCHEDULE",
+        key: "dedicated",
+        value: "example",
+    }],
+    tags: {
+        "type": "tainted",
+    }
 })
 
-/*
-// We want to modify the default security group, so add a securityGroup rule
-const defaultEgress = new aws.ec2.SecurityGroupRule(`egress-default`, {
-    description: "Outbound everything",
-    type: "egress",
-    fromPort: 0,
-    toPort: 0,
-    protocol: "-1", // all
-    // We need to use apply here to get the raw property of the output
-    securityGroupId: cluster.vpcConfig.apply(
-        sg => sg.clusterSecurityGroupId
-    ),
-    self: true,
+const spotNodeGroup = new aws.eks.NodeGroup("spot", {
+    clusterName: cluster.eksCluster.name,
+    nodeRoleArn: nodegroupIAMRole.arn,
+    subnetIds: vpc.privateSubnetIds,
+    scalingConfig: {
+        minSize: 1,
+        desiredSize: 3,
+        maxSize: 5
+    },
+    capacityType: "SPOT",
+    tags: {
+        "type": "spot",
+    }
 })
-*/
 
+vpc.privateSubnetIds.then(id => id.forEach((id, index) => {
+    new aws.ec2.Tag(`subnettag-${index}`, {
+        key: cluster.eksCluster.name.apply(name => `kubernetes.io/cluster/${name}`),
+        resourceId: id,
+        value: "owned",
+    }, { parent: cluster})
+}))
+
+export const clusterName = cluster.eksCluster.name
 
 
