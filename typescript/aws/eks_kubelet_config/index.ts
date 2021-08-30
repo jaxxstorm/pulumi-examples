@@ -3,6 +3,7 @@ import * as aws from "@pulumi/aws";
 import * as awsx from "@pulumi/awsx";
 import * as eks from "@pulumi/eks";
 import * as cloudinit from "@pulumi/cloudinit";
+import * as custom from "./reserved";
 
 const name = 'nginx-helm-helm'
 
@@ -49,45 +50,13 @@ const cluster = new eks.Cluster(name, {
     }
 });
 
-// JSON format extra configuration
-const kubeletExtraConfig = JSON.stringify({
-    kubeReserved: {
-        memory: "128Mi",
-    },
-    kubeReservedCgroup: "/kube-reserved",
-    systemReserved: {
-        memory: "25Mi",
-    },
-    evictionHard: {
-        "memory.available": "50Mi"
-    },
-    featureGates: {
-        "DynamicKubeletConfig": true
-    },
-    maxPods: 12,
-});
-
-// write out the JSON configured extra args, then splat them with jq
-// once that's done, override the existing kubelet-config and restart it
-const extraUserData = `
-echo '${kubeletExtraConfig}' > /tmp/kubeletExtraConfig
-jq -s '.[0] * .[1]' "/etc/kubernetes/kubelet/kubelet-config.json" /tmp/kubeletExtraConfig > /tmp/renderedKubeConfig
-mv /tmp/renderedKubeConfig /etc/kubernetes/kubelet/kubelet-config.json
-service kubelet restart
-`
-
-const group = new eks.NodeGroup("extra-nodegroup", {
+const group = new custom.ReservedNodeGroup("extra", {
+    nodeSubnetIds: vpc.privateSubnetIds,
+    kubeReservedMemory: "128Mi",
+    systemReservedMemory: "25Mi",
     cluster: cluster,
-    instanceType: "t3a.small",
-    desiredCapacity: 1,
-    nodeSubnetIds: vpc.publicSubnetIds,
-    nodeUserData: extraUserData,
-    autoScalingGroupTags: {
-        "k8s.io/cluster-autoscaler/enabled": "true",
-        [`k8s.io/cluster-autoscaler/${name}`]: "true",
-    },
-    keyName: "lbriggs",
-});
+})
+
 
 vpc.privateSubnetIds.then(id => id.forEach((id, index) => {
     new aws.ec2.Tag(`subnettag-${index}`, {

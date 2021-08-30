@@ -43,6 +43,13 @@ const cluster = new eks.Cluster(name, {
     minSize: 1,
     maxSize: 2,
     createOidcProvider: true,
+    userMappings: [
+        {
+            groups: ["system:masters"],
+            userArn: "arn:aws:iam::616138583583:user/vivek@pulumi.com",
+            username: "vivek@pulumi.com"
+        },
+    ],
     tags: {
         Owner: "lbriggs",
         owner: "lbriggs",
@@ -118,5 +125,6 @@ vpc.privateSubnetIds.then(id => id.forEach((id, index) => {
 }))
 
 export const clusterName = cluster.eksCluster.name
+export const kubeconfig = cluster.kubeconfig
 
 
