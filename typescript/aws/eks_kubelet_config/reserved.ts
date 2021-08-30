@@ -1,6 +1,10 @@
 import * as eks from "@pulumi/eks";
 import * as pulumi from "@pulumi/pulumi";
 
+
+/* this interface defines your input arguments
+ * it's passed to the component as `args`
+ */
 export interface ReservedNodeGroupArgs {
     kubeReservedMemory: string
     systemReservedMemory: string
@@ -16,7 +20,7 @@ export class ReservedNodeGroup extends pulumi.ComponentResource {
     // JSON format extra configuration
     const kubeletExtraConfig = JSON.stringify({
       kubeReserved: {
-        memory: args.kubeReservedMemory,
+        memory: args.kubeReservedMemory, // accessing your args interface
       },
       kubeReservedCgroup: "/kube-reserved",
       systemReserved: {
