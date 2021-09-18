@@ -1,0 +1,3 @@
+name: vbnet_s3_bucket
+runtime: dotnet
+description: A minimal VB.NET Pulumi program
