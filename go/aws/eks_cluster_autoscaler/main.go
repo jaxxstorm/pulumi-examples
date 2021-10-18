@@ -9,6 +9,7 @@ import (
 	"github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes"
 
 	corev1 "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/core/v1"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/helm/v2"
 	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/meta/v1"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -166,7 +167,6 @@ func main() {
 			return nil
 		}
 
-
 		_, err = corev1.NewNamespace(ctx, "cs-ns", &corev1.NamespaceArgs{
 			Metadata: &metav1.ObjectMetaArgs{
 				Name: pulumi.String(namespaceName),
@@ -175,6 +175,30 @@ func main() {
 		if err != nil {
 			return nil
 		}
+
+		_, err = helm.NewChart(ctx, "cluster-autoscaler", helm.ChartArgs{
+			Chart: pulumi.String("cluster-autoscaler-chart"),
+			FetchArgs: &helm.FetchArgs{
+				Repo: pulumi.String("https://kubernetes.github.io/autoscaler"),
+			},
+			Values: pulumi.Map{
+				"autoDiscovery": pulumi.Map{
+					"clusterName": cluster.Name(),
+				},
+				"awsRegion": pulumi.String(region),
+			},
+			Namespace: pulumi.String(args.Namespace),
+			Transformations: []yaml.Transformation{
+				func(state map[string]interface{}, opts ...pulumi.ResourceOption) {
+					if state["kind"] == "ServiceAccount" {
+						metadata := state["metadata"].(map[string]interface{})
+						metadata["annotations"] = map[string]interface{}{
+							"eks.amazonaws.com/role-arn": clusterAutoScalerIamRole.Arn,
+						}
+					}
+				},
+			},
+		})
 
 		return nil
 	})
