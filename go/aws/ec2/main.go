@@ -43,6 +43,8 @@ func main() {
 			return err
 		}
 
+		instance, err := ec2.NewIn
+
 		// Create a simple web server using the startup script for the instance.
 		srv, err := ec2.NewInstance(ctx, "web-server-www", &ec2.InstanceArgs{
 			Tags:                pulumi.StringMap{"Name": pulumi.String("web-server-www")},

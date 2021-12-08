@@ -4,6 +4,7 @@ import * as azure from "@pulumi/azure";
 import * as aksidentity from "./aksidentity";
 import * as k8s from "@pulumi/kubernetes";
 import * as pulumi from "@pulumi/pulumi";
+import * as yaml from "yaml"
 
 const config = new pulumi.Config();
 const adminGroupObjectId = config.require("adminGroupObjectId");
@@ -68,7 +69,8 @@ const secret = new k8s.apiextensions.CustomResource("cert", {
         parameters: {
             usePodIdentity: "true",
             keyvaultName: cert.keyvault.name,
-            objects: pulumi.interpolate`array:\n  - |\n    objectName: ${cert.certificate.name}\n    objectType: secret\n`,
+            // objects: pulumi.interpolate`array:\n  - |\n    objectName: ${cert.certificate.name}\n    objectType: secret\n`,
+            objects: cert.certificate.name.apply(name => yaml.stringify({array: [{objectName: name, objectType: "secret" }]})),
             tenantId: current.then(config => config.tenantId),
         }
     }
