@@ -43,25 +43,23 @@ func main() {
 			return err
 		}
 
-		instance, err := ec2.NewIn
+		userData := pulumi.Sprintf(`#!/bin/bash
+		echo "Hello from stack %s" > index.html
+		nohup python -m SimpleHTTPServer 80 &`, stackName)
 
-		// Create a simple web server using the startup script for the instance.
-		srv, err := ec2.NewInstance(ctx, "web-server-www", &ec2.InstanceArgs{
-			Tags:                pulumi.StringMap{"Name": pulumi.String("web-server-www")},
-			InstanceType:        pulumi.String("t2.micro"), // t2.micro is available in the AWS free tier.
-			VpcSecurityGroupIds: pulumi.StringArray{group.ID()},
-			Ami:                 pulumi.String(ami.Id),
-			UserData: pulumi.Sprintf(`#!/bin/bash
-echo "Hello from stack %s" > index.html
-nohup python -m SimpleHTTPServer 80 &`, stackName),
-		})
-		if err != nil {
-			return err
+		for i := 1; i <= 5; i++ {
+			_, err = ec2.NewInstance(ctx, fmt.Sprintf("web-server-www-%d", i), &ec2.InstanceArgs{
+				Tags:                pulumi.StringMap{"Name": pulumi.String(fmt.Sprintf("web-server-www-%d", i))},
+				InstanceType:        pulumi.String("t2.micro"),
+				VpcSecurityGroupIds: pulumi.StringArray{group.ID()},
+				Ami:                 pulumi.String(ami.Id),
+				UserData:            userData,
+			})
+			if err != nil {
+				return err
+			}
+
 		}
-
-		// Export the resulting server's IP address and DNS name.
-		ctx.Export("publicIp", srv.PublicIp)
-		ctx.Export("publicHostName", srv.PublicDns)
 
 		return nil
 	})
