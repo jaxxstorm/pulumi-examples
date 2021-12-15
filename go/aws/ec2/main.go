@@ -56,10 +56,11 @@ func main() {
 				UserData:            userData,
 			})
 			if err != nil {
-				return err
+				panic("error creating ec2 instance")
 			}
-
 		}
+
+		// ctx.Export("ipAddress", srv.PublicIp)
 
 		return nil
 	})
