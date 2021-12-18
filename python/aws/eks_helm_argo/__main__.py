@@ -1,11 +1,12 @@
 """An AWS Python Pulumi program"""
 
 import pulumi
-from pulumi.resource import ResourceOptions
 import pulumi_aws as aws
-from pulumi_aws import provider
 import pulumi_eks as eks
 import pulumi_kubernetes as k8s
+import application.pulumi_crds as app
+from application.pulumi_crds import argoproj
+from application.pulumi_crds.argoproj import v1alpha1
 
 # get the default VPCs to deploy the cl
 vpc = aws.ec2.get_vpc(default=True)
@@ -20,7 +21,9 @@ ns = k8s.core.v1.Namespace(
     metadata={
         "name": "argocd",
     },
-    opts=pulumi.ResourceOptions(provider=cluster.provider, parent=cluster, aliases=[pulumi.Alias(name='ns')]),
+    opts=pulumi.ResourceOptions(
+        provider=cluster.provider, parent=cluster, aliases=[pulumi.Alias(name="ns")]
+    ),
 )
 
 # we use helm release because the chart contains several hooks
@@ -52,29 +55,25 @@ app_ns = k8s.core.v1.Namespace(
     opts=pulumi.ResourceOptions(provider=cluster.provider, parent=cluster),
 )
 
-# deploy the argo app as a custom resource
 # FIXME: make this a component
-argo_app = k8s.apiextensions.CustomResource(
+argo_app = app.argoproj.v1alpha1.Application(
     "sock-shop",
-    api_version="argoproj.io/v1alpha1",
-    kind="Application",
-    metadata=k8s.meta.v1.ObjectMetaArgs(
-        name="sock-shop",
-        namespace=ns.metadata.name,
+    metadata=k8s.meta.v1.ObjectMetaArgs(name="sock-shop", namespace=ns.metadata.name),
+    spec=app.argoproj.v1alpha1.ApplicationSpecArgs(
+        destination=app.argoproj.v1alpha1.ApplicationSpecDestinationArgs(
+            namespace=app_ns.metadata.name,
+            server="https://kubernetes.default.svc"
+        ),
+        project="default",
+        source=app.argoproj.v1alpha1.ApplicationSpecSourceArgs(
+            path="sock-shop",
+            repo_url="https://github.com/argoproj/argocd-example-apps",
+            target_revision="HEAD",
+        ),
+        sync_policy=app.argoproj.v1alpha1.ApplicationSpecSyncPolicyArgs(
+            automated={}
+        )
     ),
-    spec={
-        "destination": {
-            "namespace": app_ns.metadata.name,
-            "server": "https://kubernetes.default.svc",
-        },
-        "project": "default",
-        "source": {
-            "path": "sock-shop",
-            "repoURL": "https://github.com/argoproj/argocd-example-apps",
-            "targetRevision": "HEAD",
-        },
-        "syncPolicy": {"automated": {}},
-    },
     opts=pulumi.ResourceOptions(provider=cluster.provider, depends_on=[argo, app_ns]),
 )
 

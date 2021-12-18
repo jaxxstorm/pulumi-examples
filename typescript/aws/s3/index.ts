@@ -3,11 +3,7 @@ import * as aws from "@pulumi/aws";
 import * as awsx from "@pulumi/awsx";
 
 
-const bucket = new aws.s3.Bucket("my-bucket", {
-  tags: {
-    Owner: "lbriggs"
-  }
-});
+const bucket = new aws.s3.Bucket("my-bucket")
 
 const bucketPolicy = new aws.s3.BucketPolicy("my-bucket-policy", {
   bucket: bucket.bucket,
