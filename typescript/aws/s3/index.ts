@@ -5,18 +5,22 @@ import * as awsx from "@pulumi/awsx";
 
 const bucket = new aws.s3.Bucket("my-bucket")
 
-const bucketPolicy = new aws.s3.BucketPolicy("my-bucket-policy", {
-  bucket: bucket.bucket,
-  policy: JSON.stringify({
-    Statement: [
-      {
+const bucketPolicy = new aws.s3.BucketPolicy("bucketPolicy", {
+  bucket: bucket.id, // refer to the bucket created earlier
+  policy: bucket.arn.apply(arn => JSON.stringify({
+      Version: "2012-10-17",
+      Statement: [{
           Effect: "Allow",
           Principal: "*",
-          Action: ["s3:GetObject"],
-      },
-  ],
-  })
-})
+          Action: [
+              "s3:GetObject",
+          ],
+          Resource: [
+              `${arn}/*`, //
+          ],
+      }],
+  })),
+});
 
 /*
  * Create a mechanism to store the object Ids
