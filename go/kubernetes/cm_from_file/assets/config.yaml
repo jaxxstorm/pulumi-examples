@@ -1,0 +1,8 @@
+---
+thresholds:
+    - name: default
+      speed: 110
+      posJump: 1
+    - name: foo
+      speed: 100
+      posJump: 1.5

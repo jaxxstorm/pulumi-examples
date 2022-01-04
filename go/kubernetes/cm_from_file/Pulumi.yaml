@@ -1,0 +1,3 @@
+name: cm_from_file
+runtime: go
+description: A minimal Kubernetes Go Pulumi program
