@@ -144,18 +144,18 @@ new ingress.IstioIngress(
 );
 
 // deploy a canary of the reviews service
-// const reviewsV3 = new i13t.IstioDeployment(
-//   "reviewsv3",
-//   {
-//     image: "docker.io/istio/examples-bookinfo-reviews-v3:1.16.2",
-//     port: 9080,
-//     namespace: ns.metadata.name,
-//     version: "v3",
-//     extraEnv: [{ name: "reviews-version", value: "v3" }],
-//     appLabel: "reviews",
-//   },
-//   { parent: ns }
-// );
+const reviewsV3 = new i13t.IstioDeployment(
+  "reviewsv3",
+  {
+    image: "docker.io/istio/examples-bookinfo-reviews-v3:1.16.2",
+    port: 9080,
+    namespace: ns.metadata.name,
+    version: "v3",
+    extraEnv: [{ name: "reviews-version", value: "v3" }],
+    appLabel: "reviews",
+  },
+  { parent: ns }
+);
 
 // const reviewsV2 = new i13t.IstioDeployment(
 //   "reviewsv2",
@@ -190,13 +190,13 @@ new canary.WeightedIstioService(
             },
             weight: 90,
           },
-          // {
-          //   destination: {
-          //     host: reviewssvc.metadata.name,
-          //     subset: "v3",
-          //   },
-          //   weight: 10,
-          // },
+          {
+            destination: {
+              host: reviewssvc.metadata.name,
+              subset: "v3",
+            },
+            weight: 10,
+          },
         ],
       },
     ],
@@ -207,12 +207,12 @@ new canary.WeightedIstioService(
           version: "v1",
         },
       },
-      // {
-      //   name: "v3",
-      //   labels: {
-      //     version: "v3",
-      //   },
-      // },
+      {
+        name: "v3",
+        labels: {
+          version: "v3",
+        },
+      },
     ],
   },
   { parent: ns }
