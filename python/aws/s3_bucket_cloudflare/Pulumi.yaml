@@ -1,0 +1,6 @@
+name: s3_bucket_cloudflare
+runtime:
+  name: python
+  options:
+    virtualenv: venv
+description: A minimal AWS Python Pulumi program
