@@ -3,6 +3,7 @@
 import json
 import mimetypes
 import os
+from xml import dom
 import pulumi
 import pulumi_aws as aws
 
@@ -18,11 +19,13 @@ content_dir = "www"
 for file in os.listdir(content_dir):
     filepath = os.path.join(content_dir, file)
     mime_type, _ = mimetypes.guess_type(filepath)
-    obj = aws.s3.BucketObject(file,
+    obj = aws.s3.BucketObject(
+        file,
         bucket=bucket.id,
         source=pulumi.FileAsset(filepath),
         content_type=mime_type,
-        opts=pulumi.ResourceOptions(parent=bucket))
+        opts=pulumi.ResourceOptions(parent=bucket),
+    )
 
 origin_access_identity = aws.cloudfront.OriginAccessIdentity(
     "cloudfront",
@@ -54,4 +57,60 @@ bucket_policy = aws.s3.BucketPolicy(
     ),
 )
 
-pulumi.export("address", )
+cloudfront_dist = aws.cloudfront.Distribution(
+    "cloudfront_example",
+    origins=[
+        aws.cloudfront.DistributionOriginArgs(
+            domain_name=bucket.bucket_regional_domain_name,
+            origin_id="cloudfrontExample",
+            s3_origin_config=aws.cloudfront.DistributionOriginS3OriginConfigArgs(
+                origin_access_identity=origin_access_identity.cloudfront_access_identity_path,
+            ),
+        )
+    ],
+    enabled=True,
+    is_ipv6_enabled=True,
+    default_root_object="index.html",
+    default_cache_behavior={
+        "allowedMethods": [
+            "DELETE",
+            "GET",
+            "HEAD",
+            "OPTIONS",
+            "PATCH",
+            "POST",
+            "PUT",
+        ],
+        "cachedMethods": [
+            "GET",
+            "HEAD",
+        ],
+        "targetOriginId": "cloudfrontExample",
+        "forwardedValues": {
+            "queryString": False,
+            "cookies": {
+                "forward": "none",
+            },
+        },
+        "viewerProtocolPolicy": "allow-all",
+        "minTtl": 0,
+        "defaultTtl": 3600,
+        "maxTtl": 86400,
+    },
+    restrictions={
+        "geoRestriction": {
+            "restrictionType": "whitelist",
+            "locations": [
+                "US",
+                "CA",
+                "GB",
+                "DE",
+            ],
+        },
+    },
+    viewer_certificate={
+        "cloudfrontDefaultCertificate": True,
+    },
+)
+
+pulumi.export("address", cloudfront_dist.domain_name)
