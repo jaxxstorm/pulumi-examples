@@ -3,7 +3,6 @@
 import json
 import mimetypes
 import os
-from xml import dom
 import pulumi
 import pulumi_aws as aws
 
@@ -55,6 +54,7 @@ bucket_policy = aws.s3.BucketPolicy(
             }
         )
     ),
+    opts=pulumi.ResourceOptions(parent=bucket)
 )
 
 cloudfront_dist = aws.cloudfront.Distribution(
@@ -113,4 +113,5 @@ cloudfront_dist = aws.cloudfront.Distribution(
     },
 )
 
+pulumi.export("bucket_address", bucket.bucket_domain_name)
 pulumi.export("address", cloudfront_dist.domain_name)

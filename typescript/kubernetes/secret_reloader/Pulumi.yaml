@@ -1,0 +1,3 @@
+name: secret_reloader
+runtime: nodejs
+description: A minimal Kubernetes TypeScript Pulumi program
