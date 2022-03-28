@@ -75,7 +75,7 @@ const targetGroupB = new aws.lb.TargetGroup("example-B", {
 // listener for port 8080
 const listenerB = new aws.lb.Listener("example-B", {
   loadBalancerArn: lb.arn,
-  port: 8080,
+  port: 80,
   defaultActions: [
     {
       type: "forward",
