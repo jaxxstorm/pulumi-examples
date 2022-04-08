@@ -18,6 +18,8 @@ const vpc = new awsx.ec2.Vpc(`example`, {
     }
 });
 
+new awsx.
+
 // create an IAM role so instances can call the EC2 api
 const iamRole = new aws.iam.Role(`example-web-role`, {
     assumeRolePolicy: aws.iam.assumeRolePolicyForPrincipal({
@@ -131,6 +133,9 @@ let userData = Buffer.from(userDataRaw).toString('base64')
 /*
   This is the launch template for the instances
 */
+
+new aws.
+
 const launchTemplate = new aws.ec2.LaunchTemplate('example-web-launchtemplate', {
     imageId: ami.id,
     instanceType: "t3.small",

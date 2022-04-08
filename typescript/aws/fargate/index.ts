@@ -45,7 +45,7 @@ const lb = new aws.lb.LoadBalancer("example", {
 });
 
 // target group for port 80
-const targetGroupA = new aws.lb.TargetGroup("example-A", {
+const targetGroupA = new aws.lb.TargetGroup("example", {
   port: 80,
   protocol: "HTTP",
   targetType: "ip",
@@ -53,7 +53,7 @@ const targetGroupA = new aws.lb.TargetGroup("example-A", {
 });
 
 // listener for port 80
-const listenerA = new aws.lb.Listener("example-A", {
+const listenerA = new aws.lb.Listener("example", {
   loadBalancerArn: lb.arn,
   port: 80,
   defaultActions: [
@@ -64,25 +64,6 @@ const listenerA = new aws.lb.Listener("example-A", {
   ],
 });
 
-// target group for port 8080
-const targetGroupB = new aws.lb.TargetGroup("example-B", {
-  port: 8080,
-  protocol: "HTTP",
-  targetType: "ip",
-  vpcId: vpc.id,
-});
-
-// listener for port 8080
-const listenerB = new aws.lb.Listener("example-B", {
-  loadBalancerArn: lb.arn,
-  port: 80,
-  defaultActions: [
-    {
-      type: "forward",
-      targetGroupArn: targetGroupB.arn,
-    },
-  ],
-});
 
 const role = new aws.iam.Role("example", {
   assumeRolePolicy: aws.iam.assumeRolePolicyForPrincipal({
@@ -118,7 +99,7 @@ const taskDefinition = new aws.ecs.TaskDefinition("example", {
   ]),
 });
 
-const svcA = new aws.ecs.Service("example-A", {
+const svcA = new aws.ecs.Service("example", {
   cluster: cluster.arn,
   desiredCount: 1,
   launchType: "FARGATE",
@@ -137,21 +118,4 @@ const svcA = new aws.ecs.Service("example-A", {
   ],
 });
 
-const svcB = new aws.ecs.Service("example-B", {
-    cluster: cluster.arn,
-    desiredCount: 1,
-    launchType: "FARGATE",
-    taskDefinition: taskDefinition.arn,
-    networkConfiguration: {
-      assignPublicIp: true,
-      subnets: subnets.ids,
-      securityGroups: [securityGroup.id],
-    },
-    loadBalancers: [
-      {
-        targetGroupArn: targetGroupB.arn,
-        containerName: "my-app",
-        containerPort: 80,
-      },
-    ],
-  });
+export const url = lb.dnsName
