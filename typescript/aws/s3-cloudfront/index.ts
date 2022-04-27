@@ -18,6 +18,10 @@ const originAccessIdentity = new aws.cloudfront.OriginAccessIdentity(
   }
 );
 
+originAccessIdentity.cloudfrontAccessIdentityPath.apply(value => {
+  console.log(value)
+})
+
 // apply method
 new aws.s3.BucketPolicy("apply-bucket-policy", {
   bucket: contentBucket.bucket,

@@ -64,7 +64,6 @@ const listenerA = new aws.lb.Listener("example", {
   ],
 });
 
-
 const role = new aws.iam.Role("example", {
   assumeRolePolicy: aws.iam.assumeRolePolicyForPrincipal({
     Service: "ecs-tasks.amazonaws.com",
@@ -84,19 +83,21 @@ const taskDefinition = new aws.ecs.TaskDefinition("example", {
   networkMode: "awsvpc",
   requiresCompatibilities: ["FARGATE"],
   executionRoleArn: role.arn,
-  containerDefinitions: JSON.stringify([
-    {
-      name: "my-app",
-      image: "nginx",
-      portMappings: [
-        {
-          containerPort: 80,
-          hostPort: 80,
-          protocol: "tcp",
-        },
-      ],
-    },
-  ]),
+  containerDefinitions: pulumi.all([securityGroup]).apply(([sg]) =>
+    JSON.stringify([
+      {
+        name: "my-app",
+        image: "nginx",
+        portMappings: [
+          {
+            containerPort: 80,
+            hostPort: 80,
+            protocol: sg.ingress[0].protocol,
+          },
+        ],
+      },
+    ])
+  ),
 });
 
 const svcA = new aws.ecs.Service("example", {
@@ -118,4 +119,4 @@ const svcA = new aws.ecs.Service("example", {
   ],
 });
 
-export const url = lb.dnsName
+export const url = lb.dnsName;
