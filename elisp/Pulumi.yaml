@@ -1,0 +1,5 @@
+name: pulumi-emacs-lisp
+runtime:
+  name: yaml
+  options:
+    compiler: emacs -batch -l ./pulumi.el --eval '(pulumi-emacs)'
