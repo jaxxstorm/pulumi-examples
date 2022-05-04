@@ -1,0 +1,6 @@
+name: hcl
+runtime:
+  name: yaml
+  options:
+    compiler: hcl2json Pulumi.hcl
+description: HCL Example

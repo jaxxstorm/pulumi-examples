@@ -1,0 +1,6 @@
+name: fortran
+runtime:
+  name: yaml
+  options:
+    compiler: ./run.sh
+description: Fortran Example

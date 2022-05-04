@@ -1,0 +1,7 @@
+name: perl
+runtime:
+  name: yaml
+  options:
+    compiler: perl Pulumi.pl
+description: WHY HAVE YOU DONE THIS
+
