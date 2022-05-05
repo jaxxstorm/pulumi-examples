@@ -1,0 +1,6 @@
+name: pascal
+runtime:
+  name: yaml
+  options:
+    compiler: ./pulumipascal.sh
+description: Pulumi Pascal Example
