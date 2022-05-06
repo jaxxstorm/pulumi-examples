@@ -1,0 +1,6 @@
+name: bf
+runtime:
+  name: yaml
+  options:
+    compiler: brainfuck Pulumi.bf
+description: Brainfuck example
