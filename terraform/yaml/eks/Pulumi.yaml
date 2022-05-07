@@ -1,0 +1,6 @@
+name: eks
+runtime:
+  name: yaml
+  options:
+    compiler: ./run.sh
+description: Terrayamlulmi
