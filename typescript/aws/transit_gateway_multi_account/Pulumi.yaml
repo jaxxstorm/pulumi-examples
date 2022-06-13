@@ -1,0 +1,3 @@
+name: transit_gateway_multi_account
+runtime: nodejs
+description: A minimal AWS TypeScript Pulumi program
