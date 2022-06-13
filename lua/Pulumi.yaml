@@ -1,0 +1,5 @@
+name: lua
+description: An EKS cluster
+runtime: yaml
+  options:
+    compiler: lua pulumi.lua
