@@ -1,6 +1,7 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as aws from "@pulumi/aws";
 import * as awsx from "@pulumi/awsx";
+import * as tgw from "./sharedTransitGateway";
 
 const config = new pulumi.Config();
 const publicKey = config.require("publicKey");
@@ -15,78 +16,12 @@ const mgmtProvider = new aws.Provider("mgmt", {
     profile: "personal-mgmt"
 })
 
-const transitGw = new aws.ec2transitgateway.TransitGateway("example", {
-    amazonSideAsn: 64512,
-    autoAcceptSharedAttachments: "enable",
-}, { provider: transitProvider, parent: transitProvider })
+const transitGw = new tgw.SharedTransitGateway("lbriggs", {
+    sharePrincipal: "arn:aws:organizations::609316800003:organization/o-fjlzoklj5f"
+})
 
-const devVpc = new awsx.ec2.Vpc(`dev-vpc`, {
-    cidrBlock: "172.16.0.0/24",
-    subnets: [
-        {
-            type: "private",
-            tags: {
-                "kubernetes.io/role/internal-elb": "1",
-            }
-        },
-        {
-            type: "public",
-            tags: {
-                "kubernetes.io/role/elb": "1",
-            }
-        }],
-    tags: {
-        Name: `dev-vpc`,
-    }
-}, { provider: devProvider, parent: devProvider });
 
-const mgmtVpc = new awsx.ec2.Vpc(`mgmt-vpc`, {
-    cidrBlock: "172.17.0.0/24",
-    subnets: [
-        {
-            type: "private",
-            tags: {
-                "kubernetes.io/role/internal-elb": "1",
-            }
-        },
-        {
-            type: "public",
-            tags: {
-                "kubernetes.io/role/elb": "1",
-            }
-        }],
-    tags: {
-        Name: `dev-vpc`,
-    }
-}, { provider: mgmtProvider, parent: mgmtProvider });
 
-// share the transit gateway to other accounts
-
-const ramShare = new aws.ram.ResourceShare("tgw", {
-    allowExternalPrincipals: false,
-}, { provider: transitProvider, parent: transitProvider })
-
-new aws.ram.ResourceAssociation("tgw", {
-    resourceArn: transitGw.arn,
-    resourceShareArn: ramShare.arn,
-}, { provider: transitProvider, parent: ramShare })
-
-new aws.ram.PrincipalAssociation("tgw", {
-    principal: "arn:aws:organizations::609316800003:organization/o-fjlzoklj5f",
-    resourceShareArn: ramShare.arn,
-}, { provider: transitProvider, parent: ramShare })
-
-const devAttachment = new aws.ec2transitgateway.VpcAttachment("dev", {
-    transitGatewayId: transitGw.id,
-    vpcId: devVpc.id,
-    subnetIds: devVpc.privateSubnetIds
-}, { provider: devProvider, parent: devProvider })
-
-const mgmtAttachment = new aws.ec2transitgateway.VpcAttachment("mgmt", {
-    transitGatewayId: transitGw.id,
-    vpcId: mgmtVpc.id,
-    subnetIds: mgmtVpc.privateSubnetIds
-}, { provider: mgmtProvider, parent: mgmtProvider })
 
 const devKey = new aws.ec2.KeyPair("dev", {
     publicKey: publicKey
