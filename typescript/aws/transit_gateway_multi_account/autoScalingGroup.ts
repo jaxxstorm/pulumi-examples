@@ -6,6 +6,7 @@ export interface AutoScalingGroupArgs {
   publicKey: pulumi.Input<string>;
   amiId: pulumi.Input<string>;
   vpcId: pulumi.Input<string>;
+  instanceType?: pulumi.Input<string>;
   subnetIds: pulumi.Input<pulumi.Input<string>[]> | undefined
 }
 
@@ -46,7 +47,7 @@ export class AutoScalingGroup extends pulumi.ComponentResource {
 
     this.launchTemplate = new aws.ec2.LaunchTemplate(name, {
       imageId: args.amiId,
-      instanceType: "t3.micro",
+      instanceType: args.instanceType || "t3.micro",
       keyName: this.keypair.keyName,
       vpcSecurityGroupIds: [this.securityGroup.id],
       tags: {

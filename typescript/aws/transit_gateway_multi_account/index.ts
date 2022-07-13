@@ -14,6 +14,7 @@ const devProvider = new aws.Provider("dev", {
 const transitProvider = new aws.Provider("transit", {
   profile: "personal-transit",
 });
+
 const prodProvider = new aws.Provider("prod", {
   profile: "personal-production",
 });
@@ -133,6 +134,7 @@ const prodInstances = new asg.AutoScalingGroup(
     publicKey: publicKey,
     amiId: prodAmi.id,
     vpcId: prodVpc.vpc.id,
+    instanceType: "t2.micro",
     subnetIds: prodVpc.vpc.publicSubnetIds,
   },
   { provider: prodProvider, parent: prodProvider }
