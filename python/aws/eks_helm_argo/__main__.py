@@ -6,6 +6,9 @@ import pulumi_eks as eks
 import pulumi_kubernetes as k8s
 
 import pulumi_crds as app
+# import application.pulumi_crds as app
+# from application.pulumi_crds import argoproj
+# from application.pulumi_crds.argoproj import v1alpha1
 
 # get the default VPCs to deploy the cl
 vpc = aws.ec2.get_vpc(default=True)
