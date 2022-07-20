@@ -9,7 +9,7 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from ... import _utilities
 from . import outputs
 from ._inputs import *
-from pulumi_kubernetes import meta_v1 as _meta_v1
+from pulumi_kubernetes import meta as _meta
 
 __all__ = ['ApplicationArgs', 'Application']
 
@@ -18,7 +18,7 @@ class ApplicationArgs:
     def __init__(__self__, *,
                  api_version: Optional[pulumi.Input[str]] = None,
                  kind: Optional[pulumi.Input[str]] = None,
-                 metadata: Optional[pulumi.Input['_meta_v1.ObjectMetaArgs']] = None,
+                 metadata: Optional[pulumi.Input['_meta.v1.ObjectMetaArgs']] = None,
                  operation: Optional[pulumi.Input['ApplicationOperationArgs']] = None,
                  spec: Optional[pulumi.Input['ApplicationSpecArgs']] = None,
                  status: Optional[pulumi.Input['ApplicationStatusArgs']] = None):
@@ -61,11 +61,11 @@ class ApplicationArgs:
 
     @property
     @pulumi.getter
-    def metadata(self) -> Optional[pulumi.Input['_meta_v1.ObjectMetaArgs']]:
+    def metadata(self) -> Optional[pulumi.Input['_meta.v1.ObjectMetaArgs']]:
         return pulumi.get(self, "metadata")
 
     @metadata.setter
-    def metadata(self, value: Optional[pulumi.Input['_meta_v1.ObjectMetaArgs']]):
+    def metadata(self, value: Optional[pulumi.Input['_meta.v1.ObjectMetaArgs']]):
         pulumi.set(self, "metadata", value)
 
     @property
@@ -112,7 +112,7 @@ class Application(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  api_version: Optional[pulumi.Input[str]] = None,
                  kind: Optional[pulumi.Input[str]] = None,
-                 metadata: Optional[pulumi.Input[pulumi.InputType['_meta_v1.ObjectMetaArgs']]] = None,
+                 metadata: Optional[pulumi.Input[pulumi.InputType['_meta.v1.ObjectMetaArgs']]] = None,
                  operation: Optional[pulumi.Input[pulumi.InputType['ApplicationOperationArgs']]] = None,
                  spec: Optional[pulumi.Input[pulumi.InputType['ApplicationSpecArgs']]] = None,
                  status: Optional[pulumi.Input[pulumi.InputType['ApplicationStatusArgs']]] = None,
@@ -152,7 +152,7 @@ class Application(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  api_version: Optional[pulumi.Input[str]] = None,
                  kind: Optional[pulumi.Input[str]] = None,
-                 metadata: Optional[pulumi.Input[pulumi.InputType['_meta_v1.ObjectMetaArgs']]] = None,
+                 metadata: Optional[pulumi.Input[pulumi.InputType['_meta.v1.ObjectMetaArgs']]] = None,
                  operation: Optional[pulumi.Input[pulumi.InputType['ApplicationOperationArgs']]] = None,
                  spec: Optional[pulumi.Input[pulumi.InputType['ApplicationSpecArgs']]] = None,
                  status: Optional[pulumi.Input[pulumi.InputType['ApplicationStatusArgs']]] = None,
@@ -216,7 +216,7 @@ class Application(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def metadata(self) -> pulumi.Output['_meta_v1.outputs.ObjectMeta']:
+    def metadata(self) -> pulumi.Output['_meta.v1.outputs.ObjectMeta']:
         return pulumi.get(self, "metadata")
 
     @property

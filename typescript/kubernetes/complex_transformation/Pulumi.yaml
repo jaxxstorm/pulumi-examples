@@ -1,0 +1,3 @@
+name: complex_transformation
+runtime: nodejs
+description: A minimal Kubernetes TypeScript Pulumi program

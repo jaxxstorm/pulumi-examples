@@ -1,2 +1,20 @@
-pulumi>=3.0.0,<4.0.0
-pulumi-aws>=4.0.0,<5.0.0
+Arpeggio==1.10.2
+attrs==21.4.0
+certifi==2022.6.15
+chardet==3.0.4
+charset-normalizer==2.1.0
+dill==0.3.5.1
+grpcio==1.47.0
+idna==2.8
+parver==0.3.1
+protobuf==4.21.2
+pulumi==3.36.0
+pulumi-aws==5.10.0
+-e git+ssh://git@github.com/jaxxstorm/pulumi-examples.git@c220309f7c40faa8deb1f487a5ec8e244adc39cf#egg=pulumi_crds&subdirectory=python/aws/eks_helm_argo/application
+pulumi-eks==0.41.2
+pulumi-kubernetes==3.20.1
+PyYAML==5.4.1
+requests==2.21.0
+semver==2.13.0
+six==1.16.0
+urllib3==1.24.3

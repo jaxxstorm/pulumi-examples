@@ -9,198 +9,126 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from ... import _utilities
 
 __all__ = [
-    'ApplicationOperationArgs',
     'ApplicationOperationInfoArgs',
     'ApplicationOperationInitiatedByArgs',
-    'ApplicationOperationRetryArgs',
     'ApplicationOperationRetryBackoffArgs',
-    'ApplicationOperationSyncArgs',
+    'ApplicationOperationRetryArgs',
     'ApplicationOperationSyncResourcesArgs',
-    'ApplicationOperationSyncSourceArgs',
-    'ApplicationOperationSyncSourceDirectoryArgs',
-    'ApplicationOperationSyncSourceDirectoryJsonnetArgs',
     'ApplicationOperationSyncSourceDirectoryJsonnetExtVarsArgs',
     'ApplicationOperationSyncSourceDirectoryJsonnetTlasArgs',
-    'ApplicationOperationSyncSourceHelmArgs',
+    'ApplicationOperationSyncSourceDirectoryJsonnetArgs',
+    'ApplicationOperationSyncSourceDirectoryArgs',
     'ApplicationOperationSyncSourceHelmFileParametersArgs',
     'ApplicationOperationSyncSourceHelmParametersArgs',
-    'ApplicationOperationSyncSourceKsonnetArgs',
+    'ApplicationOperationSyncSourceHelmArgs',
     'ApplicationOperationSyncSourceKsonnetParametersArgs',
+    'ApplicationOperationSyncSourceKsonnetArgs',
     'ApplicationOperationSyncSourceKustomizeArgs',
-    'ApplicationOperationSyncSourcePluginArgs',
     'ApplicationOperationSyncSourcePluginEnvArgs',
-    'ApplicationOperationSyncSyncStrategyArgs',
+    'ApplicationOperationSyncSourcePluginArgs',
+    'ApplicationOperationSyncSourceArgs',
     'ApplicationOperationSyncSyncStrategyApplyArgs',
     'ApplicationOperationSyncSyncStrategyHookArgs',
-    'ApplicationSpecArgs',
+    'ApplicationOperationSyncSyncStrategyArgs',
+    'ApplicationOperationSyncArgs',
+    'ApplicationOperationArgs',
     'ApplicationSpecDestinationArgs',
     'ApplicationSpecIgnoreDifferencesArgs',
     'ApplicationSpecInfoArgs',
-    'ApplicationSpecSourceArgs',
-    'ApplicationSpecSourceDirectoryArgs',
-    'ApplicationSpecSourceDirectoryJsonnetArgs',
     'ApplicationSpecSourceDirectoryJsonnetExtVarsArgs',
     'ApplicationSpecSourceDirectoryJsonnetTlasArgs',
-    'ApplicationSpecSourceHelmArgs',
+    'ApplicationSpecSourceDirectoryJsonnetArgs',
+    'ApplicationSpecSourceDirectoryArgs',
     'ApplicationSpecSourceHelmFileParametersArgs',
     'ApplicationSpecSourceHelmParametersArgs',
-    'ApplicationSpecSourceKsonnetArgs',
+    'ApplicationSpecSourceHelmArgs',
     'ApplicationSpecSourceKsonnetParametersArgs',
+    'ApplicationSpecSourceKsonnetArgs',
     'ApplicationSpecSourceKustomizeArgs',
-    'ApplicationSpecSourcePluginArgs',
     'ApplicationSpecSourcePluginEnvArgs',
-    'ApplicationSpecSyncPolicyArgs',
+    'ApplicationSpecSourcePluginArgs',
+    'ApplicationSpecSourceArgs',
     'ApplicationSpecSyncPolicyAutomatedArgs',
-    'ApplicationSpecSyncPolicyRetryArgs',
     'ApplicationSpecSyncPolicyRetryBackoffArgs',
-    'ApplicationStatusArgs',
+    'ApplicationSpecSyncPolicyRetryArgs',
+    'ApplicationSpecSyncPolicyArgs',
+    'ApplicationSpecArgs',
     'ApplicationStatusConditionsArgs',
     'ApplicationStatusHealthArgs',
-    'ApplicationStatusHistoryArgs',
-    'ApplicationStatusHistorySourceArgs',
-    'ApplicationStatusHistorySourceDirectoryArgs',
-    'ApplicationStatusHistorySourceDirectoryJsonnetArgs',
     'ApplicationStatusHistorySourceDirectoryJsonnetExtVarsArgs',
     'ApplicationStatusHistorySourceDirectoryJsonnetTlasArgs',
-    'ApplicationStatusHistorySourceHelmArgs',
+    'ApplicationStatusHistorySourceDirectoryJsonnetArgs',
+    'ApplicationStatusHistorySourceDirectoryArgs',
     'ApplicationStatusHistorySourceHelmFileParametersArgs',
     'ApplicationStatusHistorySourceHelmParametersArgs',
-    'ApplicationStatusHistorySourceKsonnetArgs',
+    'ApplicationStatusHistorySourceHelmArgs',
     'ApplicationStatusHistorySourceKsonnetParametersArgs',
+    'ApplicationStatusHistorySourceKsonnetArgs',
     'ApplicationStatusHistorySourceKustomizeArgs',
-    'ApplicationStatusHistorySourcePluginArgs',
     'ApplicationStatusHistorySourcePluginEnvArgs',
-    'ApplicationStatusOperationStateArgs',
-    'ApplicationStatusOperationStateOperationArgs',
+    'ApplicationStatusHistorySourcePluginArgs',
+    'ApplicationStatusHistorySourceArgs',
+    'ApplicationStatusHistoryArgs',
     'ApplicationStatusOperationStateOperationInfoArgs',
     'ApplicationStatusOperationStateOperationInitiatedByArgs',
-    'ApplicationStatusOperationStateOperationRetryArgs',
     'ApplicationStatusOperationStateOperationRetryBackoffArgs',
-    'ApplicationStatusOperationStateOperationSyncArgs',
+    'ApplicationStatusOperationStateOperationRetryArgs',
     'ApplicationStatusOperationStateOperationSyncResourcesArgs',
-    'ApplicationStatusOperationStateOperationSyncSourceArgs',
-    'ApplicationStatusOperationStateOperationSyncSourceDirectoryArgs',
-    'ApplicationStatusOperationStateOperationSyncSourceDirectoryJsonnetArgs',
     'ApplicationStatusOperationStateOperationSyncSourceDirectoryJsonnetExtVarsArgs',
     'ApplicationStatusOperationStateOperationSyncSourceDirectoryJsonnetTlasArgs',
-    'ApplicationStatusOperationStateOperationSyncSourceHelmArgs',
+    'ApplicationStatusOperationStateOperationSyncSourceDirectoryJsonnetArgs',
+    'ApplicationStatusOperationStateOperationSyncSourceDirectoryArgs',
     'ApplicationStatusOperationStateOperationSyncSourceHelmFileParametersArgs',
     'ApplicationStatusOperationStateOperationSyncSourceHelmParametersArgs',
-    'ApplicationStatusOperationStateOperationSyncSourceKsonnetArgs',
+    'ApplicationStatusOperationStateOperationSyncSourceHelmArgs',
     'ApplicationStatusOperationStateOperationSyncSourceKsonnetParametersArgs',
+    'ApplicationStatusOperationStateOperationSyncSourceKsonnetArgs',
     'ApplicationStatusOperationStateOperationSyncSourceKustomizeArgs',
-    'ApplicationStatusOperationStateOperationSyncSourcePluginArgs',
     'ApplicationStatusOperationStateOperationSyncSourcePluginEnvArgs',
-    'ApplicationStatusOperationStateOperationSyncSyncStrategyArgs',
+    'ApplicationStatusOperationStateOperationSyncSourcePluginArgs',
+    'ApplicationStatusOperationStateOperationSyncSourceArgs',
     'ApplicationStatusOperationStateOperationSyncSyncStrategyApplyArgs',
     'ApplicationStatusOperationStateOperationSyncSyncStrategyHookArgs',
-    'ApplicationStatusOperationStateSyncResultArgs',
+    'ApplicationStatusOperationStateOperationSyncSyncStrategyArgs',
+    'ApplicationStatusOperationStateOperationSyncArgs',
+    'ApplicationStatusOperationStateOperationArgs',
     'ApplicationStatusOperationStateSyncResultResourcesArgs',
-    'ApplicationStatusOperationStateSyncResultSourceArgs',
-    'ApplicationStatusOperationStateSyncResultSourceDirectoryArgs',
-    'ApplicationStatusOperationStateSyncResultSourceDirectoryJsonnetArgs',
     'ApplicationStatusOperationStateSyncResultSourceDirectoryJsonnetExtVarsArgs',
     'ApplicationStatusOperationStateSyncResultSourceDirectoryJsonnetTlasArgs',
-    'ApplicationStatusOperationStateSyncResultSourceHelmArgs',
+    'ApplicationStatusOperationStateSyncResultSourceDirectoryJsonnetArgs',
+    'ApplicationStatusOperationStateSyncResultSourceDirectoryArgs',
     'ApplicationStatusOperationStateSyncResultSourceHelmFileParametersArgs',
     'ApplicationStatusOperationStateSyncResultSourceHelmParametersArgs',
-    'ApplicationStatusOperationStateSyncResultSourceKsonnetArgs',
+    'ApplicationStatusOperationStateSyncResultSourceHelmArgs',
     'ApplicationStatusOperationStateSyncResultSourceKsonnetParametersArgs',
+    'ApplicationStatusOperationStateSyncResultSourceKsonnetArgs',
     'ApplicationStatusOperationStateSyncResultSourceKustomizeArgs',
-    'ApplicationStatusOperationStateSyncResultSourcePluginArgs',
     'ApplicationStatusOperationStateSyncResultSourcePluginEnvArgs',
-    'ApplicationStatusResourcesArgs',
+    'ApplicationStatusOperationStateSyncResultSourcePluginArgs',
+    'ApplicationStatusOperationStateSyncResultSourceArgs',
+    'ApplicationStatusOperationStateSyncResultArgs',
+    'ApplicationStatusOperationStateArgs',
     'ApplicationStatusResourcesHealthArgs',
+    'ApplicationStatusResourcesArgs',
     'ApplicationStatusSummaryArgs',
-    'ApplicationStatusSyncArgs',
-    'ApplicationStatusSyncComparedToArgs',
     'ApplicationStatusSyncComparedToDestinationArgs',
-    'ApplicationStatusSyncComparedToSourceArgs',
-    'ApplicationStatusSyncComparedToSourceDirectoryArgs',
-    'ApplicationStatusSyncComparedToSourceDirectoryJsonnetArgs',
     'ApplicationStatusSyncComparedToSourceDirectoryJsonnetExtVarsArgs',
     'ApplicationStatusSyncComparedToSourceDirectoryJsonnetTlasArgs',
-    'ApplicationStatusSyncComparedToSourceHelmArgs',
+    'ApplicationStatusSyncComparedToSourceDirectoryJsonnetArgs',
+    'ApplicationStatusSyncComparedToSourceDirectoryArgs',
     'ApplicationStatusSyncComparedToSourceHelmFileParametersArgs',
     'ApplicationStatusSyncComparedToSourceHelmParametersArgs',
-    'ApplicationStatusSyncComparedToSourceKsonnetArgs',
+    'ApplicationStatusSyncComparedToSourceHelmArgs',
     'ApplicationStatusSyncComparedToSourceKsonnetParametersArgs',
+    'ApplicationStatusSyncComparedToSourceKsonnetArgs',
     'ApplicationStatusSyncComparedToSourceKustomizeArgs',
-    'ApplicationStatusSyncComparedToSourcePluginArgs',
     'ApplicationStatusSyncComparedToSourcePluginEnvArgs',
+    'ApplicationStatusSyncComparedToSourcePluginArgs',
+    'ApplicationStatusSyncComparedToSourceArgs',
+    'ApplicationStatusSyncComparedToArgs',
+    'ApplicationStatusSyncArgs',
+    'ApplicationStatusArgs',
 ]
-
-@pulumi.input_type
-class ApplicationOperationArgs:
-    def __init__(__self__, *,
-                 info: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationInfoArgs']]]] = None,
-                 initiated_by: Optional[pulumi.Input['ApplicationOperationInitiatedByArgs']] = None,
-                 retry: Optional[pulumi.Input['ApplicationOperationRetryArgs']] = None,
-                 sync: Optional[pulumi.Input['ApplicationOperationSyncArgs']] = None):
-        """
-        Operation contains information about a requested or running operation
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationOperationInfoArgs']]] info: Info is a list of informational items for this operation
-        :param pulumi.Input['ApplicationOperationInitiatedByArgs'] initiated_by: InitiatedBy contains information about who initiated the operations
-        :param pulumi.Input['ApplicationOperationRetryArgs'] retry: Retry controls the strategy to apply if a sync fails
-        :param pulumi.Input['ApplicationOperationSyncArgs'] sync: Sync contains parameters for the operation
-        """
-        if info is not None:
-            pulumi.set(__self__, "info", info)
-        if initiated_by is not None:
-            pulumi.set(__self__, "initiated_by", initiated_by)
-        if retry is not None:
-            pulumi.set(__self__, "retry", retry)
-        if sync is not None:
-            pulumi.set(__self__, "sync", sync)
-
-    @property
-    @pulumi.getter
-    def info(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationInfoArgs']]]]:
-        """
-        Info is a list of informational items for this operation
-        """
-        return pulumi.get(self, "info")
-
-    @info.setter
-    def info(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationInfoArgs']]]]):
-        pulumi.set(self, "info", value)
-
-    @property
-    @pulumi.getter(name="initiatedBy")
-    def initiated_by(self) -> Optional[pulumi.Input['ApplicationOperationInitiatedByArgs']]:
-        """
-        InitiatedBy contains information about who initiated the operations
-        """
-        return pulumi.get(self, "initiated_by")
-
-    @initiated_by.setter
-    def initiated_by(self, value: Optional[pulumi.Input['ApplicationOperationInitiatedByArgs']]):
-        pulumi.set(self, "initiated_by", value)
-
-    @property
-    @pulumi.getter
-    def retry(self) -> Optional[pulumi.Input['ApplicationOperationRetryArgs']]:
-        """
-        Retry controls the strategy to apply if a sync fails
-        """
-        return pulumi.get(self, "retry")
-
-    @retry.setter
-    def retry(self, value: Optional[pulumi.Input['ApplicationOperationRetryArgs']]):
-        pulumi.set(self, "retry", value)
-
-    @property
-    @pulumi.getter
-    def sync(self) -> Optional[pulumi.Input['ApplicationOperationSyncArgs']]:
-        """
-        Sync contains parameters for the operation
-        """
-        return pulumi.get(self, "sync")
-
-    @sync.setter
-    def sync(self, value: Optional[pulumi.Input['ApplicationOperationSyncArgs']]):
-        pulumi.set(self, "sync", value)
-
 
 @pulumi.input_type
 class ApplicationOperationInfoArgs:
@@ -270,46 +198,6 @@ class ApplicationOperationInitiatedByArgs:
 
 
 @pulumi.input_type
-class ApplicationOperationRetryArgs:
-    def __init__(__self__, *,
-                 backoff: Optional[pulumi.Input['ApplicationOperationRetryBackoffArgs']] = None,
-                 limit: Optional[pulumi.Input[int]] = None):
-        """
-        Retry controls the strategy to apply if a sync fails
-        :param pulumi.Input['ApplicationOperationRetryBackoffArgs'] backoff: Backoff controls how to backoff on subsequent retries of failed syncs
-        :param pulumi.Input[int] limit: Limit is the maximum number of attempts for retrying a failed sync. If set to 0, no retries will be performed.
-        """
-        if backoff is not None:
-            pulumi.set(__self__, "backoff", backoff)
-        if limit is not None:
-            pulumi.set(__self__, "limit", limit)
-
-    @property
-    @pulumi.getter
-    def backoff(self) -> Optional[pulumi.Input['ApplicationOperationRetryBackoffArgs']]:
-        """
-        Backoff controls how to backoff on subsequent retries of failed syncs
-        """
-        return pulumi.get(self, "backoff")
-
-    @backoff.setter
-    def backoff(self, value: Optional[pulumi.Input['ApplicationOperationRetryBackoffArgs']]):
-        pulumi.set(self, "backoff", value)
-
-    @property
-    @pulumi.getter
-    def limit(self) -> Optional[pulumi.Input[int]]:
-        """
-        Limit is the maximum number of attempts for retrying a failed sync. If set to 0, no retries will be performed.
-        """
-        return pulumi.get(self, "limit")
-
-    @limit.setter
-    def limit(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "limit", value)
-
-
-@pulumi.input_type
 class ApplicationOperationRetryBackoffArgs:
     def __init__(__self__, *,
                  duration: Optional[pulumi.Input[str]] = None,
@@ -366,139 +254,43 @@ class ApplicationOperationRetryBackoffArgs:
 
 
 @pulumi.input_type
-class ApplicationOperationSyncArgs:
+class ApplicationOperationRetryArgs:
     def __init__(__self__, *,
-                 dry_run: Optional[pulumi.Input[bool]] = None,
-                 manifests: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 prune: Optional[pulumi.Input[bool]] = None,
-                 resources: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncResourcesArgs']]]] = None,
-                 revision: Optional[pulumi.Input[str]] = None,
-                 source: Optional[pulumi.Input['ApplicationOperationSyncSourceArgs']] = None,
-                 sync_options: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 sync_strategy: Optional[pulumi.Input['ApplicationOperationSyncSyncStrategyArgs']] = None):
+                 backoff: Optional[pulumi.Input['ApplicationOperationRetryBackoffArgs']] = None,
+                 limit: Optional[pulumi.Input[int]] = None):
         """
-        Sync contains parameters for the operation
-        :param pulumi.Input[bool] dry_run: DryRun specifies to perform a `kubectl apply --dry-run` without actually performing the sync
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] manifests: Manifests is an optional field that overrides sync source with a local directory for development
-        :param pulumi.Input[bool] prune: Prune specifies to delete resources from the cluster that are no longer tracked in git
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncResourcesArgs']]] resources: Resources describes which resources shall be part of the sync
-        :param pulumi.Input[str] revision: Revision is the revision (Git) or chart version (Helm) which to sync the application to If omitted, will use the revision specified in app spec.
-        :param pulumi.Input['ApplicationOperationSyncSourceArgs'] source: Source overrides the source definition set in the application. This is typically set in a Rollback operation and is nil during a Sync operation
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] sync_options: SyncOptions provide per-sync sync-options, e.g. Validate=false
-        :param pulumi.Input['ApplicationOperationSyncSyncStrategyArgs'] sync_strategy: SyncStrategy describes how to perform the sync
+        Retry controls the strategy to apply if a sync fails
+        :param pulumi.Input['ApplicationOperationRetryBackoffArgs'] backoff: Backoff controls how to backoff on subsequent retries of failed syncs
+        :param pulumi.Input[int] limit: Limit is the maximum number of attempts for retrying a failed sync. If set to 0, no retries will be performed.
         """
-        if dry_run is not None:
-            pulumi.set(__self__, "dry_run", dry_run)
-        if manifests is not None:
-            pulumi.set(__self__, "manifests", manifests)
-        if prune is not None:
-            pulumi.set(__self__, "prune", prune)
-        if resources is not None:
-            pulumi.set(__self__, "resources", resources)
-        if revision is not None:
-            pulumi.set(__self__, "revision", revision)
-        if source is not None:
-            pulumi.set(__self__, "source", source)
-        if sync_options is not None:
-            pulumi.set(__self__, "sync_options", sync_options)
-        if sync_strategy is not None:
-            pulumi.set(__self__, "sync_strategy", sync_strategy)
-
-    @property
-    @pulumi.getter(name="dryRun")
-    def dry_run(self) -> Optional[pulumi.Input[bool]]:
-        """
-        DryRun specifies to perform a `kubectl apply --dry-run` without actually performing the sync
-        """
-        return pulumi.get(self, "dry_run")
-
-    @dry_run.setter
-    def dry_run(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "dry_run", value)
+        if backoff is not None:
+            pulumi.set(__self__, "backoff", backoff)
+        if limit is not None:
+            pulumi.set(__self__, "limit", limit)
 
     @property
     @pulumi.getter
-    def manifests(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+    def backoff(self) -> Optional[pulumi.Input['ApplicationOperationRetryBackoffArgs']]:
         """
-        Manifests is an optional field that overrides sync source with a local directory for development
+        Backoff controls how to backoff on subsequent retries of failed syncs
         """
-        return pulumi.get(self, "manifests")
+        return pulumi.get(self, "backoff")
 
-    @manifests.setter
-    def manifests(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "manifests", value)
-
-    @property
-    @pulumi.getter
-    def prune(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Prune specifies to delete resources from the cluster that are no longer tracked in git
-        """
-        return pulumi.get(self, "prune")
-
-    @prune.setter
-    def prune(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "prune", value)
+    @backoff.setter
+    def backoff(self, value: Optional[pulumi.Input['ApplicationOperationRetryBackoffArgs']]):
+        pulumi.set(self, "backoff", value)
 
     @property
     @pulumi.getter
-    def resources(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncResourcesArgs']]]]:
+    def limit(self) -> Optional[pulumi.Input[int]]:
         """
-        Resources describes which resources shall be part of the sync
+        Limit is the maximum number of attempts for retrying a failed sync. If set to 0, no retries will be performed.
         """
-        return pulumi.get(self, "resources")
+        return pulumi.get(self, "limit")
 
-    @resources.setter
-    def resources(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncResourcesArgs']]]]):
-        pulumi.set(self, "resources", value)
-
-    @property
-    @pulumi.getter
-    def revision(self) -> Optional[pulumi.Input[str]]:
-        """
-        Revision is the revision (Git) or chart version (Helm) which to sync the application to If omitted, will use the revision specified in app spec.
-        """
-        return pulumi.get(self, "revision")
-
-    @revision.setter
-    def revision(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "revision", value)
-
-    @property
-    @pulumi.getter
-    def source(self) -> Optional[pulumi.Input['ApplicationOperationSyncSourceArgs']]:
-        """
-        Source overrides the source definition set in the application. This is typically set in a Rollback operation and is nil during a Sync operation
-        """
-        return pulumi.get(self, "source")
-
-    @source.setter
-    def source(self, value: Optional[pulumi.Input['ApplicationOperationSyncSourceArgs']]):
-        pulumi.set(self, "source", value)
-
-    @property
-    @pulumi.getter(name="syncOptions")
-    def sync_options(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        SyncOptions provide per-sync sync-options, e.g. Validate=false
-        """
-        return pulumi.get(self, "sync_options")
-
-    @sync_options.setter
-    def sync_options(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "sync_options", value)
-
-    @property
-    @pulumi.getter(name="syncStrategy")
-    def sync_strategy(self) -> Optional[pulumi.Input['ApplicationOperationSyncSyncStrategyArgs']]:
-        """
-        SyncStrategy describes how to perform the sync
-        """
-        return pulumi.get(self, "sync_strategy")
-
-    @sync_strategy.setter
-    def sync_strategy(self, value: Optional[pulumi.Input['ApplicationOperationSyncSyncStrategyArgs']]):
-        pulumi.set(self, "sync_strategy", value)
+    @limit.setter
+    def limit(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "limit", value)
 
 
 @pulumi.input_type
@@ -553,6 +345,726 @@ class ApplicationOperationSyncResourcesArgs:
     @namespace.setter
     def namespace(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "namespace", value)
+
+
+@pulumi.input_type
+class ApplicationOperationSyncSourceDirectoryJsonnetExtVarsArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 value: pulumi.Input[str],
+                 code: Optional[pulumi.Input[bool]] = None):
+        """
+        JsonnetVar represents a variable to be passed to jsonnet during manifest generation
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+        if code is not None:
+            pulumi.set(__self__, "code", code)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+    @property
+    @pulumi.getter
+    def code(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "code")
+
+    @code.setter
+    def code(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "code", value)
+
+
+@pulumi.input_type
+class ApplicationOperationSyncSourceDirectoryJsonnetTlasArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 value: pulumi.Input[str],
+                 code: Optional[pulumi.Input[bool]] = None):
+        """
+        JsonnetVar represents a variable to be passed to jsonnet during manifest generation
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+        if code is not None:
+            pulumi.set(__self__, "code", code)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+    @property
+    @pulumi.getter
+    def code(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "code")
+
+    @code.setter
+    def code(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "code", value)
+
+
+@pulumi.input_type
+class ApplicationOperationSyncSourceDirectoryJsonnetArgs:
+    def __init__(__self__, *,
+                 ext_vars: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceDirectoryJsonnetExtVarsArgs']]]] = None,
+                 libs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 tlas: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceDirectoryJsonnetTlasArgs']]]] = None):
+        """
+        Jsonnet holds options specific to Jsonnet
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceDirectoryJsonnetExtVarsArgs']]] ext_vars: ExtVars is a list of Jsonnet External Variables
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] libs: Additional library search dirs
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceDirectoryJsonnetTlasArgs']]] tlas: TLAS is a list of Jsonnet Top-level Arguments
+        """
+        if ext_vars is not None:
+            pulumi.set(__self__, "ext_vars", ext_vars)
+        if libs is not None:
+            pulumi.set(__self__, "libs", libs)
+        if tlas is not None:
+            pulumi.set(__self__, "tlas", tlas)
+
+    @property
+    @pulumi.getter(name="extVars")
+    def ext_vars(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceDirectoryJsonnetExtVarsArgs']]]]:
+        """
+        ExtVars is a list of Jsonnet External Variables
+        """
+        return pulumi.get(self, "ext_vars")
+
+    @ext_vars.setter
+    def ext_vars(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceDirectoryJsonnetExtVarsArgs']]]]):
+        pulumi.set(self, "ext_vars", value)
+
+    @property
+    @pulumi.getter
+    def libs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Additional library search dirs
+        """
+        return pulumi.get(self, "libs")
+
+    @libs.setter
+    def libs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "libs", value)
+
+    @property
+    @pulumi.getter
+    def tlas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceDirectoryJsonnetTlasArgs']]]]:
+        """
+        TLAS is a list of Jsonnet Top-level Arguments
+        """
+        return pulumi.get(self, "tlas")
+
+    @tlas.setter
+    def tlas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceDirectoryJsonnetTlasArgs']]]]):
+        pulumi.set(self, "tlas", value)
+
+
+@pulumi.input_type
+class ApplicationOperationSyncSourceDirectoryArgs:
+    def __init__(__self__, *,
+                 exclude: Optional[pulumi.Input[str]] = None,
+                 include: Optional[pulumi.Input[str]] = None,
+                 jsonnet: Optional[pulumi.Input['ApplicationOperationSyncSourceDirectoryJsonnetArgs']] = None,
+                 recurse: Optional[pulumi.Input[bool]] = None):
+        """
+        Directory holds path/directory specific options
+        :param pulumi.Input[str] exclude: Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation
+        :param pulumi.Input[str] include: Include contains a glob pattern to match paths against that should be explicitly included during manifest generation
+        :param pulumi.Input['ApplicationOperationSyncSourceDirectoryJsonnetArgs'] jsonnet: Jsonnet holds options specific to Jsonnet
+        :param pulumi.Input[bool] recurse: Recurse specifies whether to scan a directory recursively for manifests
+        """
+        if exclude is not None:
+            pulumi.set(__self__, "exclude", exclude)
+        if include is not None:
+            pulumi.set(__self__, "include", include)
+        if jsonnet is not None:
+            pulumi.set(__self__, "jsonnet", jsonnet)
+        if recurse is not None:
+            pulumi.set(__self__, "recurse", recurse)
+
+    @property
+    @pulumi.getter
+    def exclude(self) -> Optional[pulumi.Input[str]]:
+        """
+        Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation
+        """
+        return pulumi.get(self, "exclude")
+
+    @exclude.setter
+    def exclude(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "exclude", value)
+
+    @property
+    @pulumi.getter
+    def include(self) -> Optional[pulumi.Input[str]]:
+        """
+        Include contains a glob pattern to match paths against that should be explicitly included during manifest generation
+        """
+        return pulumi.get(self, "include")
+
+    @include.setter
+    def include(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "include", value)
+
+    @property
+    @pulumi.getter
+    def jsonnet(self) -> Optional[pulumi.Input['ApplicationOperationSyncSourceDirectoryJsonnetArgs']]:
+        """
+        Jsonnet holds options specific to Jsonnet
+        """
+        return pulumi.get(self, "jsonnet")
+
+    @jsonnet.setter
+    def jsonnet(self, value: Optional[pulumi.Input['ApplicationOperationSyncSourceDirectoryJsonnetArgs']]):
+        pulumi.set(self, "jsonnet", value)
+
+    @property
+    @pulumi.getter
+    def recurse(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Recurse specifies whether to scan a directory recursively for manifests
+        """
+        return pulumi.get(self, "recurse")
+
+    @recurse.setter
+    def recurse(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "recurse", value)
+
+
+@pulumi.input_type
+class ApplicationOperationSyncSourceHelmFileParametersArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None):
+        """
+        HelmFileParameter is a file parameter that's passed to helm template during manifest generation
+        :param pulumi.Input[str] name: Name is the name of the Helm parameter
+        :param pulumi.Input[str] path: Path is the path to the file containing the values for the Helm parameter
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name is the name of the Helm parameter
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path is the path to the file containing the values for the Helm parameter
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "path", value)
+
+
+@pulumi.input_type
+class ApplicationOperationSyncSourceHelmParametersArgs:
+    def __init__(__self__, *,
+                 force_string: Optional[pulumi.Input[bool]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        """
+        HelmParameter is a parameter that's passed to helm template during manifest generation
+        :param pulumi.Input[bool] force_string: ForceString determines whether to tell Helm to interpret booleans and numbers as strings
+        :param pulumi.Input[str] name: Name is the name of the Helm parameter
+        :param pulumi.Input[str] value: Value is the value for the Helm parameter
+        """
+        if force_string is not None:
+            pulumi.set(__self__, "force_string", force_string)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="forceString")
+    def force_string(self) -> Optional[pulumi.Input[bool]]:
+        """
+        ForceString determines whether to tell Helm to interpret booleans and numbers as strings
+        """
+        return pulumi.get(self, "force_string")
+
+    @force_string.setter
+    def force_string(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "force_string", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name is the name of the Helm parameter
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        """
+        Value is the value for the Helm parameter
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ApplicationOperationSyncSourceHelmArgs:
+    def __init__(__self__, *,
+                 file_parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceHelmFileParametersArgs']]]] = None,
+                 parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceHelmParametersArgs']]]] = None,
+                 pass_credentials: Optional[pulumi.Input[bool]] = None,
+                 release_name: Optional[pulumi.Input[str]] = None,
+                 value_files: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 values: Optional[pulumi.Input[str]] = None,
+                 version: Optional[pulumi.Input[str]] = None):
+        """
+        Helm holds helm specific options
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceHelmFileParametersArgs']]] file_parameters: FileParameters are file parameters to the helm template
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceHelmParametersArgs']]] parameters: Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation
+        :param pulumi.Input[bool] pass_credentials: PassCredentials pass credentials to all domains (Helm's --pass-credentials)
+        :param pulumi.Input[str] release_name: ReleaseName is the Helm release name to use. If omitted it will use the application name
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] value_files: ValuesFiles is a list of Helm value files to use when generating a template
+        :param pulumi.Input[str] values: Values specifies Helm values to be passed to helm template, typically defined as a block
+        :param pulumi.Input[str] version: Version is the Helm version to use for templating (either "2" or "3")
+        """
+        if file_parameters is not None:
+            pulumi.set(__self__, "file_parameters", file_parameters)
+        if parameters is not None:
+            pulumi.set(__self__, "parameters", parameters)
+        if pass_credentials is not None:
+            pulumi.set(__self__, "pass_credentials", pass_credentials)
+        if release_name is not None:
+            pulumi.set(__self__, "release_name", release_name)
+        if value_files is not None:
+            pulumi.set(__self__, "value_files", value_files)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter(name="fileParameters")
+    def file_parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceHelmFileParametersArgs']]]]:
+        """
+        FileParameters are file parameters to the helm template
+        """
+        return pulumi.get(self, "file_parameters")
+
+    @file_parameters.setter
+    def file_parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceHelmFileParametersArgs']]]]):
+        pulumi.set(self, "file_parameters", value)
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceHelmParametersArgs']]]]:
+        """
+        Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation
+        """
+        return pulumi.get(self, "parameters")
+
+    @parameters.setter
+    def parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceHelmParametersArgs']]]]):
+        pulumi.set(self, "parameters", value)
+
+    @property
+    @pulumi.getter(name="passCredentials")
+    def pass_credentials(self) -> Optional[pulumi.Input[bool]]:
+        """
+        PassCredentials pass credentials to all domains (Helm's --pass-credentials)
+        """
+        return pulumi.get(self, "pass_credentials")
+
+    @pass_credentials.setter
+    def pass_credentials(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "pass_credentials", value)
+
+    @property
+    @pulumi.getter(name="releaseName")
+    def release_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        ReleaseName is the Helm release name to use. If omitted it will use the application name
+        """
+        return pulumi.get(self, "release_name")
+
+    @release_name.setter
+    def release_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "release_name", value)
+
+    @property
+    @pulumi.getter(name="valueFiles")
+    def value_files(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        ValuesFiles is a list of Helm value files to use when generating a template
+        """
+        return pulumi.get(self, "value_files")
+
+    @value_files.setter
+    def value_files(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "value_files", value)
+
+    @property
+    @pulumi.getter
+    def values(self) -> Optional[pulumi.Input[str]]:
+        """
+        Values specifies Helm values to be passed to helm template, typically defined as a block
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "values", value)
+
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Version is the Helm version to use for templating (either "2" or "3")
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "version", value)
+
+
+@pulumi.input_type
+class ApplicationOperationSyncSourceKsonnetParametersArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 value: pulumi.Input[str],
+                 component: Optional[pulumi.Input[str]] = None):
+        """
+        KsonnetParameter is a ksonnet component parameter
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+        if component is not None:
+            pulumi.set(__self__, "component", component)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+    @property
+    @pulumi.getter
+    def component(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "component")
+
+    @component.setter
+    def component(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "component", value)
+
+
+@pulumi.input_type
+class ApplicationOperationSyncSourceKsonnetArgs:
+    def __init__(__self__, *,
+                 environment: Optional[pulumi.Input[str]] = None,
+                 parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceKsonnetParametersArgs']]]] = None):
+        """
+        Ksonnet holds ksonnet specific options
+        :param pulumi.Input[str] environment: Environment is a ksonnet application environment name
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceKsonnetParametersArgs']]] parameters: Parameters are a list of ksonnet component parameter override values
+        """
+        if environment is not None:
+            pulumi.set(__self__, "environment", environment)
+        if parameters is not None:
+            pulumi.set(__self__, "parameters", parameters)
+
+    @property
+    @pulumi.getter
+    def environment(self) -> Optional[pulumi.Input[str]]:
+        """
+        Environment is a ksonnet application environment name
+        """
+        return pulumi.get(self, "environment")
+
+    @environment.setter
+    def environment(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "environment", value)
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceKsonnetParametersArgs']]]]:
+        """
+        Parameters are a list of ksonnet component parameter override values
+        """
+        return pulumi.get(self, "parameters")
+
+    @parameters.setter
+    def parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceKsonnetParametersArgs']]]]):
+        pulumi.set(self, "parameters", value)
+
+
+@pulumi.input_type
+class ApplicationOperationSyncSourceKustomizeArgs:
+    def __init__(__self__, *,
+                 common_annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 common_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 force_common_annotations: Optional[pulumi.Input[bool]] = None,
+                 force_common_labels: Optional[pulumi.Input[bool]] = None,
+                 images: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 name_prefix: Optional[pulumi.Input[str]] = None,
+                 name_suffix: Optional[pulumi.Input[str]] = None,
+                 version: Optional[pulumi.Input[str]] = None):
+        """
+        Kustomize holds kustomize specific options
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] common_annotations: CommonAnnotations is a list of additional annotations to add to rendered manifests
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] common_labels: CommonLabels is a list of additional labels to add to rendered manifests
+        :param pulumi.Input[bool] force_common_annotations: ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps
+        :param pulumi.Input[bool] force_common_labels: ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] images: Images is a list of Kustomize image override specifications
+        :param pulumi.Input[str] name_prefix: NamePrefix is a prefix appended to resources for Kustomize apps
+        :param pulumi.Input[str] name_suffix: NameSuffix is a suffix appended to resources for Kustomize apps
+        :param pulumi.Input[str] version: Version controls which version of Kustomize to use for rendering manifests
+        """
+        if common_annotations is not None:
+            pulumi.set(__self__, "common_annotations", common_annotations)
+        if common_labels is not None:
+            pulumi.set(__self__, "common_labels", common_labels)
+        if force_common_annotations is not None:
+            pulumi.set(__self__, "force_common_annotations", force_common_annotations)
+        if force_common_labels is not None:
+            pulumi.set(__self__, "force_common_labels", force_common_labels)
+        if images is not None:
+            pulumi.set(__self__, "images", images)
+        if name_prefix is not None:
+            pulumi.set(__self__, "name_prefix", name_prefix)
+        if name_suffix is not None:
+            pulumi.set(__self__, "name_suffix", name_suffix)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter(name="commonAnnotations")
+    def common_annotations(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        CommonAnnotations is a list of additional annotations to add to rendered manifests
+        """
+        return pulumi.get(self, "common_annotations")
+
+    @common_annotations.setter
+    def common_annotations(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "common_annotations", value)
+
+    @property
+    @pulumi.getter(name="commonLabels")
+    def common_labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        CommonLabels is a list of additional labels to add to rendered manifests
+        """
+        return pulumi.get(self, "common_labels")
+
+    @common_labels.setter
+    def common_labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "common_labels", value)
+
+    @property
+    @pulumi.getter(name="forceCommonAnnotations")
+    def force_common_annotations(self) -> Optional[pulumi.Input[bool]]:
+        """
+        ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps
+        """
+        return pulumi.get(self, "force_common_annotations")
+
+    @force_common_annotations.setter
+    def force_common_annotations(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "force_common_annotations", value)
+
+    @property
+    @pulumi.getter(name="forceCommonLabels")
+    def force_common_labels(self) -> Optional[pulumi.Input[bool]]:
+        """
+        ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps
+        """
+        return pulumi.get(self, "force_common_labels")
+
+    @force_common_labels.setter
+    def force_common_labels(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "force_common_labels", value)
+
+    @property
+    @pulumi.getter
+    def images(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Images is a list of Kustomize image override specifications
+        """
+        return pulumi.get(self, "images")
+
+    @images.setter
+    def images(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "images", value)
+
+    @property
+    @pulumi.getter(name="namePrefix")
+    def name_prefix(self) -> Optional[pulumi.Input[str]]:
+        """
+        NamePrefix is a prefix appended to resources for Kustomize apps
+        """
+        return pulumi.get(self, "name_prefix")
+
+    @name_prefix.setter
+    def name_prefix(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name_prefix", value)
+
+    @property
+    @pulumi.getter(name="nameSuffix")
+    def name_suffix(self) -> Optional[pulumi.Input[str]]:
+        """
+        NameSuffix is a suffix appended to resources for Kustomize apps
+        """
+        return pulumi.get(self, "name_suffix")
+
+    @name_suffix.setter
+    def name_suffix(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name_suffix", value)
+
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Version controls which version of Kustomize to use for rendering manifests
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "version", value)
+
+
+@pulumi.input_type
+class ApplicationOperationSyncSourcePluginEnvArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        EnvEntry represents an entry in the application's environment
+        :param pulumi.Input[str] name: Name is the name of the variable, usually expressed in uppercase
+        :param pulumi.Input[str] value: Value is the value of the variable
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        Name is the name of the variable, usually expressed in uppercase
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        Value is the value of the variable
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ApplicationOperationSyncSourcePluginArgs:
+    def __init__(__self__, *,
+                 env: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourcePluginEnvArgs']]]] = None,
+                 name: Optional[pulumi.Input[str]] = None):
+        """
+        ConfigManagementPlugin holds config management plugin specific options
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourcePluginEnvArgs']]] env: Env is a list of environment variable entries
+        """
+        if env is not None:
+            pulumi.set(__self__, "env", env)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def env(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourcePluginEnvArgs']]]]:
+        """
+        Env is a list of environment variable entries
+        """
+        return pulumi.get(self, "env")
+
+    @env.setter
+    def env(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourcePluginEnvArgs']]]]):
+        pulumi.set(self, "env", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
@@ -707,766 +1219,6 @@ class ApplicationOperationSyncSourceArgs:
 
 
 @pulumi.input_type
-class ApplicationOperationSyncSourceDirectoryArgs:
-    def __init__(__self__, *,
-                 exclude: Optional[pulumi.Input[str]] = None,
-                 include: Optional[pulumi.Input[str]] = None,
-                 jsonnet: Optional[pulumi.Input['ApplicationOperationSyncSourceDirectoryJsonnetArgs']] = None,
-                 recurse: Optional[pulumi.Input[bool]] = None):
-        """
-        Directory holds path/directory specific options
-        :param pulumi.Input[str] exclude: Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation
-        :param pulumi.Input[str] include: Include contains a glob pattern to match paths against that should be explicitly included during manifest generation
-        :param pulumi.Input['ApplicationOperationSyncSourceDirectoryJsonnetArgs'] jsonnet: Jsonnet holds options specific to Jsonnet
-        :param pulumi.Input[bool] recurse: Recurse specifies whether to scan a directory recursively for manifests
-        """
-        if exclude is not None:
-            pulumi.set(__self__, "exclude", exclude)
-        if include is not None:
-            pulumi.set(__self__, "include", include)
-        if jsonnet is not None:
-            pulumi.set(__self__, "jsonnet", jsonnet)
-        if recurse is not None:
-            pulumi.set(__self__, "recurse", recurse)
-
-    @property
-    @pulumi.getter
-    def exclude(self) -> Optional[pulumi.Input[str]]:
-        """
-        Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation
-        """
-        return pulumi.get(self, "exclude")
-
-    @exclude.setter
-    def exclude(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "exclude", value)
-
-    @property
-    @pulumi.getter
-    def include(self) -> Optional[pulumi.Input[str]]:
-        """
-        Include contains a glob pattern to match paths against that should be explicitly included during manifest generation
-        """
-        return pulumi.get(self, "include")
-
-    @include.setter
-    def include(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "include", value)
-
-    @property
-    @pulumi.getter
-    def jsonnet(self) -> Optional[pulumi.Input['ApplicationOperationSyncSourceDirectoryJsonnetArgs']]:
-        """
-        Jsonnet holds options specific to Jsonnet
-        """
-        return pulumi.get(self, "jsonnet")
-
-    @jsonnet.setter
-    def jsonnet(self, value: Optional[pulumi.Input['ApplicationOperationSyncSourceDirectoryJsonnetArgs']]):
-        pulumi.set(self, "jsonnet", value)
-
-    @property
-    @pulumi.getter
-    def recurse(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Recurse specifies whether to scan a directory recursively for manifests
-        """
-        return pulumi.get(self, "recurse")
-
-    @recurse.setter
-    def recurse(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "recurse", value)
-
-
-@pulumi.input_type
-class ApplicationOperationSyncSourceDirectoryJsonnetArgs:
-    def __init__(__self__, *,
-                 ext_vars: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceDirectoryJsonnetExtVarsArgs']]]] = None,
-                 libs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 tlas: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceDirectoryJsonnetTlasArgs']]]] = None):
-        """
-        Jsonnet holds options specific to Jsonnet
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceDirectoryJsonnetExtVarsArgs']]] ext_vars: ExtVars is a list of Jsonnet External Variables
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] libs: Additional library search dirs
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceDirectoryJsonnetTlasArgs']]] tlas: TLAS is a list of Jsonnet Top-level Arguments
-        """
-        if ext_vars is not None:
-            pulumi.set(__self__, "ext_vars", ext_vars)
-        if libs is not None:
-            pulumi.set(__self__, "libs", libs)
-        if tlas is not None:
-            pulumi.set(__self__, "tlas", tlas)
-
-    @property
-    @pulumi.getter(name="extVars")
-    def ext_vars(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceDirectoryJsonnetExtVarsArgs']]]]:
-        """
-        ExtVars is a list of Jsonnet External Variables
-        """
-        return pulumi.get(self, "ext_vars")
-
-    @ext_vars.setter
-    def ext_vars(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceDirectoryJsonnetExtVarsArgs']]]]):
-        pulumi.set(self, "ext_vars", value)
-
-    @property
-    @pulumi.getter
-    def libs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        Additional library search dirs
-        """
-        return pulumi.get(self, "libs")
-
-    @libs.setter
-    def libs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "libs", value)
-
-    @property
-    @pulumi.getter
-    def tlas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceDirectoryJsonnetTlasArgs']]]]:
-        """
-        TLAS is a list of Jsonnet Top-level Arguments
-        """
-        return pulumi.get(self, "tlas")
-
-    @tlas.setter
-    def tlas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceDirectoryJsonnetTlasArgs']]]]):
-        pulumi.set(self, "tlas", value)
-
-
-@pulumi.input_type
-class ApplicationOperationSyncSourceDirectoryJsonnetExtVarsArgs:
-    def __init__(__self__, *,
-                 name: pulumi.Input[str],
-                 value: pulumi.Input[str],
-                 code: Optional[pulumi.Input[bool]] = None):
-        """
-        JsonnetVar represents a variable to be passed to jsonnet during manifest generation
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "value", value)
-        if code is not None:
-            pulumi.set(__self__, "code", code)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def value(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "value")
-
-    @value.setter
-    def value(self, value: pulumi.Input[str]):
-        pulumi.set(self, "value", value)
-
-    @property
-    @pulumi.getter
-    def code(self) -> Optional[pulumi.Input[bool]]:
-        return pulumi.get(self, "code")
-
-    @code.setter
-    def code(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "code", value)
-
-
-@pulumi.input_type
-class ApplicationOperationSyncSourceDirectoryJsonnetTlasArgs:
-    def __init__(__self__, *,
-                 name: pulumi.Input[str],
-                 value: pulumi.Input[str],
-                 code: Optional[pulumi.Input[bool]] = None):
-        """
-        JsonnetVar represents a variable to be passed to jsonnet during manifest generation
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "value", value)
-        if code is not None:
-            pulumi.set(__self__, "code", code)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def value(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "value")
-
-    @value.setter
-    def value(self, value: pulumi.Input[str]):
-        pulumi.set(self, "value", value)
-
-    @property
-    @pulumi.getter
-    def code(self) -> Optional[pulumi.Input[bool]]:
-        return pulumi.get(self, "code")
-
-    @code.setter
-    def code(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "code", value)
-
-
-@pulumi.input_type
-class ApplicationOperationSyncSourceHelmArgs:
-    def __init__(__self__, *,
-                 file_parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceHelmFileParametersArgs']]]] = None,
-                 parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceHelmParametersArgs']]]] = None,
-                 pass_credentials: Optional[pulumi.Input[bool]] = None,
-                 release_name: Optional[pulumi.Input[str]] = None,
-                 value_files: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 values: Optional[pulumi.Input[str]] = None,
-                 version: Optional[pulumi.Input[str]] = None):
-        """
-        Helm holds helm specific options
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceHelmFileParametersArgs']]] file_parameters: FileParameters are file parameters to the helm template
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceHelmParametersArgs']]] parameters: Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation
-        :param pulumi.Input[bool] pass_credentials: PassCredentials pass credentials to all domains (Helm's --pass-credentials)
-        :param pulumi.Input[str] release_name: ReleaseName is the Helm release name to use. If omitted it will use the application name
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] value_files: ValuesFiles is a list of Helm value files to use when generating a template
-        :param pulumi.Input[str] values: Values specifies Helm values to be passed to helm template, typically defined as a block
-        :param pulumi.Input[str] version: Version is the Helm version to use for templating (either "2" or "3")
-        """
-        if file_parameters is not None:
-            pulumi.set(__self__, "file_parameters", file_parameters)
-        if parameters is not None:
-            pulumi.set(__self__, "parameters", parameters)
-        if pass_credentials is not None:
-            pulumi.set(__self__, "pass_credentials", pass_credentials)
-        if release_name is not None:
-            pulumi.set(__self__, "release_name", release_name)
-        if value_files is not None:
-            pulumi.set(__self__, "value_files", value_files)
-        if values is not None:
-            pulumi.set(__self__, "values", values)
-        if version is not None:
-            pulumi.set(__self__, "version", version)
-
-    @property
-    @pulumi.getter(name="fileParameters")
-    def file_parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceHelmFileParametersArgs']]]]:
-        """
-        FileParameters are file parameters to the helm template
-        """
-        return pulumi.get(self, "file_parameters")
-
-    @file_parameters.setter
-    def file_parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceHelmFileParametersArgs']]]]):
-        pulumi.set(self, "file_parameters", value)
-
-    @property
-    @pulumi.getter
-    def parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceHelmParametersArgs']]]]:
-        """
-        Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation
-        """
-        return pulumi.get(self, "parameters")
-
-    @parameters.setter
-    def parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceHelmParametersArgs']]]]):
-        pulumi.set(self, "parameters", value)
-
-    @property
-    @pulumi.getter(name="passCredentials")
-    def pass_credentials(self) -> Optional[pulumi.Input[bool]]:
-        """
-        PassCredentials pass credentials to all domains (Helm's --pass-credentials)
-        """
-        return pulumi.get(self, "pass_credentials")
-
-    @pass_credentials.setter
-    def pass_credentials(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "pass_credentials", value)
-
-    @property
-    @pulumi.getter(name="releaseName")
-    def release_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        ReleaseName is the Helm release name to use. If omitted it will use the application name
-        """
-        return pulumi.get(self, "release_name")
-
-    @release_name.setter
-    def release_name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "release_name", value)
-
-    @property
-    @pulumi.getter(name="valueFiles")
-    def value_files(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        ValuesFiles is a list of Helm value files to use when generating a template
-        """
-        return pulumi.get(self, "value_files")
-
-    @value_files.setter
-    def value_files(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "value_files", value)
-
-    @property
-    @pulumi.getter
-    def values(self) -> Optional[pulumi.Input[str]]:
-        """
-        Values specifies Helm values to be passed to helm template, typically defined as a block
-        """
-        return pulumi.get(self, "values")
-
-    @values.setter
-    def values(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "values", value)
-
-    @property
-    @pulumi.getter
-    def version(self) -> Optional[pulumi.Input[str]]:
-        """
-        Version is the Helm version to use for templating (either "2" or "3")
-        """
-        return pulumi.get(self, "version")
-
-    @version.setter
-    def version(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "version", value)
-
-
-@pulumi.input_type
-class ApplicationOperationSyncSourceHelmFileParametersArgs:
-    def __init__(__self__, *,
-                 name: Optional[pulumi.Input[str]] = None,
-                 path: Optional[pulumi.Input[str]] = None):
-        """
-        HelmFileParameter is a file parameter that's passed to helm template during manifest generation
-        :param pulumi.Input[str] name: Name is the name of the Helm parameter
-        :param pulumi.Input[str] path: Path is the path to the file containing the values for the Helm parameter
-        """
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if path is not None:
-            pulumi.set(__self__, "path", path)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Name is the name of the Helm parameter
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[str]]:
-        """
-        Path is the path to the file containing the values for the Helm parameter
-        """
-        return pulumi.get(self, "path")
-
-    @path.setter
-    def path(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "path", value)
-
-
-@pulumi.input_type
-class ApplicationOperationSyncSourceHelmParametersArgs:
-    def __init__(__self__, *,
-                 force_string: Optional[pulumi.Input[bool]] = None,
-                 name: Optional[pulumi.Input[str]] = None,
-                 value: Optional[pulumi.Input[str]] = None):
-        """
-        HelmParameter is a parameter that's passed to helm template during manifest generation
-        :param pulumi.Input[bool] force_string: ForceString determines whether to tell Helm to interpret booleans and numbers as strings
-        :param pulumi.Input[str] name: Name is the name of the Helm parameter
-        :param pulumi.Input[str] value: Value is the value for the Helm parameter
-        """
-        if force_string is not None:
-            pulumi.set(__self__, "force_string", force_string)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if value is not None:
-            pulumi.set(__self__, "value", value)
-
-    @property
-    @pulumi.getter(name="forceString")
-    def force_string(self) -> Optional[pulumi.Input[bool]]:
-        """
-        ForceString determines whether to tell Helm to interpret booleans and numbers as strings
-        """
-        return pulumi.get(self, "force_string")
-
-    @force_string.setter
-    def force_string(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "force_string", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Name is the name of the Helm parameter
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def value(self) -> Optional[pulumi.Input[str]]:
-        """
-        Value is the value for the Helm parameter
-        """
-        return pulumi.get(self, "value")
-
-    @value.setter
-    def value(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "value", value)
-
-
-@pulumi.input_type
-class ApplicationOperationSyncSourceKsonnetArgs:
-    def __init__(__self__, *,
-                 environment: Optional[pulumi.Input[str]] = None,
-                 parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceKsonnetParametersArgs']]]] = None):
-        """
-        Ksonnet holds ksonnet specific options
-        :param pulumi.Input[str] environment: Environment is a ksonnet application environment name
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceKsonnetParametersArgs']]] parameters: Parameters are a list of ksonnet component parameter override values
-        """
-        if environment is not None:
-            pulumi.set(__self__, "environment", environment)
-        if parameters is not None:
-            pulumi.set(__self__, "parameters", parameters)
-
-    @property
-    @pulumi.getter
-    def environment(self) -> Optional[pulumi.Input[str]]:
-        """
-        Environment is a ksonnet application environment name
-        """
-        return pulumi.get(self, "environment")
-
-    @environment.setter
-    def environment(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "environment", value)
-
-    @property
-    @pulumi.getter
-    def parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceKsonnetParametersArgs']]]]:
-        """
-        Parameters are a list of ksonnet component parameter override values
-        """
-        return pulumi.get(self, "parameters")
-
-    @parameters.setter
-    def parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourceKsonnetParametersArgs']]]]):
-        pulumi.set(self, "parameters", value)
-
-
-@pulumi.input_type
-class ApplicationOperationSyncSourceKsonnetParametersArgs:
-    def __init__(__self__, *,
-                 name: pulumi.Input[str],
-                 value: pulumi.Input[str],
-                 component: Optional[pulumi.Input[str]] = None):
-        """
-        KsonnetParameter is a ksonnet component parameter
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "value", value)
-        if component is not None:
-            pulumi.set(__self__, "component", component)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def value(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "value")
-
-    @value.setter
-    def value(self, value: pulumi.Input[str]):
-        pulumi.set(self, "value", value)
-
-    @property
-    @pulumi.getter
-    def component(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "component")
-
-    @component.setter
-    def component(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "component", value)
-
-
-@pulumi.input_type
-class ApplicationOperationSyncSourceKustomizeArgs:
-    def __init__(__self__, *,
-                 common_annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 common_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 force_common_annotations: Optional[pulumi.Input[bool]] = None,
-                 force_common_labels: Optional[pulumi.Input[bool]] = None,
-                 images: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 name_prefix: Optional[pulumi.Input[str]] = None,
-                 name_suffix: Optional[pulumi.Input[str]] = None,
-                 version: Optional[pulumi.Input[str]] = None):
-        """
-        Kustomize holds kustomize specific options
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] common_annotations: CommonAnnotations is a list of additional annotations to add to rendered manifests
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] common_labels: CommonLabels is a list of additional labels to add to rendered manifests
-        :param pulumi.Input[bool] force_common_annotations: ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps
-        :param pulumi.Input[bool] force_common_labels: ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] images: Images is a list of Kustomize image override specifications
-        :param pulumi.Input[str] name_prefix: NamePrefix is a prefix appended to resources for Kustomize apps
-        :param pulumi.Input[str] name_suffix: NameSuffix is a suffix appended to resources for Kustomize apps
-        :param pulumi.Input[str] version: Version controls which version of Kustomize to use for rendering manifests
-        """
-        if common_annotations is not None:
-            pulumi.set(__self__, "common_annotations", common_annotations)
-        if common_labels is not None:
-            pulumi.set(__self__, "common_labels", common_labels)
-        if force_common_annotations is not None:
-            pulumi.set(__self__, "force_common_annotations", force_common_annotations)
-        if force_common_labels is not None:
-            pulumi.set(__self__, "force_common_labels", force_common_labels)
-        if images is not None:
-            pulumi.set(__self__, "images", images)
-        if name_prefix is not None:
-            pulumi.set(__self__, "name_prefix", name_prefix)
-        if name_suffix is not None:
-            pulumi.set(__self__, "name_suffix", name_suffix)
-        if version is not None:
-            pulumi.set(__self__, "version", version)
-
-    @property
-    @pulumi.getter(name="commonAnnotations")
-    def common_annotations(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
-        """
-        CommonAnnotations is a list of additional annotations to add to rendered manifests
-        """
-        return pulumi.get(self, "common_annotations")
-
-    @common_annotations.setter
-    def common_annotations(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        pulumi.set(self, "common_annotations", value)
-
-    @property
-    @pulumi.getter(name="commonLabels")
-    def common_labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
-        """
-        CommonLabels is a list of additional labels to add to rendered manifests
-        """
-        return pulumi.get(self, "common_labels")
-
-    @common_labels.setter
-    def common_labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        pulumi.set(self, "common_labels", value)
-
-    @property
-    @pulumi.getter(name="forceCommonAnnotations")
-    def force_common_annotations(self) -> Optional[pulumi.Input[bool]]:
-        """
-        ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps
-        """
-        return pulumi.get(self, "force_common_annotations")
-
-    @force_common_annotations.setter
-    def force_common_annotations(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "force_common_annotations", value)
-
-    @property
-    @pulumi.getter(name="forceCommonLabels")
-    def force_common_labels(self) -> Optional[pulumi.Input[bool]]:
-        """
-        ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps
-        """
-        return pulumi.get(self, "force_common_labels")
-
-    @force_common_labels.setter
-    def force_common_labels(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "force_common_labels", value)
-
-    @property
-    @pulumi.getter
-    def images(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        Images is a list of Kustomize image override specifications
-        """
-        return pulumi.get(self, "images")
-
-    @images.setter
-    def images(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "images", value)
-
-    @property
-    @pulumi.getter(name="namePrefix")
-    def name_prefix(self) -> Optional[pulumi.Input[str]]:
-        """
-        NamePrefix is a prefix appended to resources for Kustomize apps
-        """
-        return pulumi.get(self, "name_prefix")
-
-    @name_prefix.setter
-    def name_prefix(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name_prefix", value)
-
-    @property
-    @pulumi.getter(name="nameSuffix")
-    def name_suffix(self) -> Optional[pulumi.Input[str]]:
-        """
-        NameSuffix is a suffix appended to resources for Kustomize apps
-        """
-        return pulumi.get(self, "name_suffix")
-
-    @name_suffix.setter
-    def name_suffix(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name_suffix", value)
-
-    @property
-    @pulumi.getter
-    def version(self) -> Optional[pulumi.Input[str]]:
-        """
-        Version controls which version of Kustomize to use for rendering manifests
-        """
-        return pulumi.get(self, "version")
-
-    @version.setter
-    def version(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "version", value)
-
-
-@pulumi.input_type
-class ApplicationOperationSyncSourcePluginArgs:
-    def __init__(__self__, *,
-                 env: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourcePluginEnvArgs']]]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
-        """
-        ConfigManagementPlugin holds config management plugin specific options
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourcePluginEnvArgs']]] env: Env is a list of environment variable entries
-        """
-        if env is not None:
-            pulumi.set(__self__, "env", env)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-
-    @property
-    @pulumi.getter
-    def env(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourcePluginEnvArgs']]]]:
-        """
-        Env is a list of environment variable entries
-        """
-        return pulumi.get(self, "env")
-
-    @env.setter
-    def env(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncSourcePluginEnvArgs']]]]):
-        pulumi.set(self, "env", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
-
-
-@pulumi.input_type
-class ApplicationOperationSyncSourcePluginEnvArgs:
-    def __init__(__self__, *,
-                 name: pulumi.Input[str],
-                 value: pulumi.Input[str]):
-        """
-        EnvEntry represents an entry in the application's environment
-        :param pulumi.Input[str] name: Name is the name of the variable, usually expressed in uppercase
-        :param pulumi.Input[str] value: Value is the value of the variable
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "value", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        """
-        Name is the name of the variable, usually expressed in uppercase
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def value(self) -> pulumi.Input[str]:
-        """
-        Value is the value of the variable
-        """
-        return pulumi.get(self, "value")
-
-    @value.setter
-    def value(self, value: pulumi.Input[str]):
-        pulumi.set(self, "value", value)
-
-
-@pulumi.input_type
-class ApplicationOperationSyncSyncStrategyArgs:
-    def __init__(__self__, *,
-                 apply: Optional[pulumi.Input['ApplicationOperationSyncSyncStrategyApplyArgs']] = None,
-                 hook: Optional[pulumi.Input['ApplicationOperationSyncSyncStrategyHookArgs']] = None):
-        """
-        SyncStrategy describes how to perform the sync
-        :param pulumi.Input['ApplicationOperationSyncSyncStrategyApplyArgs'] apply: Apply will perform a `kubectl apply` to perform the sync.
-        :param pulumi.Input['ApplicationOperationSyncSyncStrategyHookArgs'] hook: Hook will submit any referenced resources to perform the sync. This is the default strategy
-        """
-        if apply is not None:
-            pulumi.set(__self__, "apply", apply)
-        if hook is not None:
-            pulumi.set(__self__, "hook", hook)
-
-    @property
-    @pulumi.getter
-    def apply(self) -> Optional[pulumi.Input['ApplicationOperationSyncSyncStrategyApplyArgs']]:
-        """
-        Apply will perform a `kubectl apply` to perform the sync.
-        """
-        return pulumi.get(self, "apply")
-
-    @apply.setter
-    def apply(self, value: Optional[pulumi.Input['ApplicationOperationSyncSyncStrategyApplyArgs']]):
-        pulumi.set(self, "apply", value)
-
-    @property
-    @pulumi.getter
-    def hook(self) -> Optional[pulumi.Input['ApplicationOperationSyncSyncStrategyHookArgs']]:
-        """
-        Hook will submit any referenced resources to perform the sync. This is the default strategy
-        """
-        return pulumi.get(self, "hook")
-
-    @hook.setter
-    def hook(self, value: Optional[pulumi.Input['ApplicationOperationSyncSyncStrategyHookArgs']]):
-        pulumi.set(self, "hook", value)
-
-
-@pulumi.input_type
 class ApplicationOperationSyncSyncStrategyApplyArgs:
     def __init__(__self__, *,
                  force: Optional[pulumi.Input[bool]] = None):
@@ -1515,120 +1267,251 @@ class ApplicationOperationSyncSyncStrategyHookArgs:
 
 
 @pulumi.input_type
-class ApplicationSpecArgs:
+class ApplicationOperationSyncSyncStrategyArgs:
     def __init__(__self__, *,
-                 destination: pulumi.Input['ApplicationSpecDestinationArgs'],
-                 project: pulumi.Input[str],
-                 source: pulumi.Input['ApplicationSpecSourceArgs'],
-                 ignore_differences: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecIgnoreDifferencesArgs']]]] = None,
-                 info: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecInfoArgs']]]] = None,
-                 revision_history_limit: Optional[pulumi.Input[int]] = None,
-                 sync_policy: Optional[pulumi.Input['ApplicationSpecSyncPolicyArgs']] = None):
+                 apply: Optional[pulumi.Input['ApplicationOperationSyncSyncStrategyApplyArgs']] = None,
+                 hook: Optional[pulumi.Input['ApplicationOperationSyncSyncStrategyHookArgs']] = None):
         """
-        ApplicationSpec represents desired application state. Contains link to repository with application definition and additional parameters link definition revision.
-        :param pulumi.Input['ApplicationSpecDestinationArgs'] destination: Destination is a reference to the target Kubernetes server and namespace
-        :param pulumi.Input[str] project: Project is a reference to the project this application belongs to. The empty string means that application belongs to the 'default' project.
-        :param pulumi.Input['ApplicationSpecSourceArgs'] source: Source is a reference to the location of the application's manifests or chart
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationSpecIgnoreDifferencesArgs']]] ignore_differences: IgnoreDifferences is a list of resources and their fields which should be ignored during comparison
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationSpecInfoArgs']]] info: Info contains a list of information (URLs, email addresses, and plain text) that relates to the application
-        :param pulumi.Input[int] revision_history_limit: RevisionHistoryLimit limits the number of items kept in the application's revision history, which is used for informational purposes as well as for rollbacks to previous versions. This should only be changed in exceptional circumstances. Setting to zero will store no history. This will reduce storage used. Increasing will increase the space used to store the history, so we do not recommend increasing it. Default is 10.
-        :param pulumi.Input['ApplicationSpecSyncPolicyArgs'] sync_policy: SyncPolicy controls when and how a sync will be performed
+        SyncStrategy describes how to perform the sync
+        :param pulumi.Input['ApplicationOperationSyncSyncStrategyApplyArgs'] apply: Apply will perform a `kubectl apply` to perform the sync.
+        :param pulumi.Input['ApplicationOperationSyncSyncStrategyHookArgs'] hook: Hook will submit any referenced resources to perform the sync. This is the default strategy
         """
-        pulumi.set(__self__, "destination", destination)
-        pulumi.set(__self__, "project", project)
-        pulumi.set(__self__, "source", source)
-        if ignore_differences is not None:
-            pulumi.set(__self__, "ignore_differences", ignore_differences)
-        if info is not None:
-            pulumi.set(__self__, "info", info)
-        if revision_history_limit is not None:
-            pulumi.set(__self__, "revision_history_limit", revision_history_limit)
-        if sync_policy is not None:
-            pulumi.set(__self__, "sync_policy", sync_policy)
+        if apply is not None:
+            pulumi.set(__self__, "apply", apply)
+        if hook is not None:
+            pulumi.set(__self__, "hook", hook)
 
     @property
     @pulumi.getter
-    def destination(self) -> pulumi.Input['ApplicationSpecDestinationArgs']:
+    def apply(self) -> Optional[pulumi.Input['ApplicationOperationSyncSyncStrategyApplyArgs']]:
         """
-        Destination is a reference to the target Kubernetes server and namespace
+        Apply will perform a `kubectl apply` to perform the sync.
         """
-        return pulumi.get(self, "destination")
+        return pulumi.get(self, "apply")
 
-    @destination.setter
-    def destination(self, value: pulumi.Input['ApplicationSpecDestinationArgs']):
-        pulumi.set(self, "destination", value)
-
-    @property
-    @pulumi.getter
-    def project(self) -> pulumi.Input[str]:
-        """
-        Project is a reference to the project this application belongs to. The empty string means that application belongs to the 'default' project.
-        """
-        return pulumi.get(self, "project")
-
-    @project.setter
-    def project(self, value: pulumi.Input[str]):
-        pulumi.set(self, "project", value)
+    @apply.setter
+    def apply(self, value: Optional[pulumi.Input['ApplicationOperationSyncSyncStrategyApplyArgs']]):
+        pulumi.set(self, "apply", value)
 
     @property
     @pulumi.getter
-    def source(self) -> pulumi.Input['ApplicationSpecSourceArgs']:
+    def hook(self) -> Optional[pulumi.Input['ApplicationOperationSyncSyncStrategyHookArgs']]:
         """
-        Source is a reference to the location of the application's manifests or chart
+        Hook will submit any referenced resources to perform the sync. This is the default strategy
+        """
+        return pulumi.get(self, "hook")
+
+    @hook.setter
+    def hook(self, value: Optional[pulumi.Input['ApplicationOperationSyncSyncStrategyHookArgs']]):
+        pulumi.set(self, "hook", value)
+
+
+@pulumi.input_type
+class ApplicationOperationSyncArgs:
+    def __init__(__self__, *,
+                 dry_run: Optional[pulumi.Input[bool]] = None,
+                 manifests: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 prune: Optional[pulumi.Input[bool]] = None,
+                 resources: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncResourcesArgs']]]] = None,
+                 revision: Optional[pulumi.Input[str]] = None,
+                 source: Optional[pulumi.Input['ApplicationOperationSyncSourceArgs']] = None,
+                 sync_options: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 sync_strategy: Optional[pulumi.Input['ApplicationOperationSyncSyncStrategyArgs']] = None):
+        """
+        Sync contains parameters for the operation
+        :param pulumi.Input[bool] dry_run: DryRun specifies to perform a `kubectl apply --dry-run` without actually performing the sync
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] manifests: Manifests is an optional field that overrides sync source with a local directory for development
+        :param pulumi.Input[bool] prune: Prune specifies to delete resources from the cluster that are no longer tracked in git
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncResourcesArgs']]] resources: Resources describes which resources shall be part of the sync
+        :param pulumi.Input[str] revision: Revision is the revision (Git) or chart version (Helm) which to sync the application to If omitted, will use the revision specified in app spec.
+        :param pulumi.Input['ApplicationOperationSyncSourceArgs'] source: Source overrides the source definition set in the application. This is typically set in a Rollback operation and is nil during a Sync operation
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] sync_options: SyncOptions provide per-sync sync-options, e.g. Validate=false
+        :param pulumi.Input['ApplicationOperationSyncSyncStrategyArgs'] sync_strategy: SyncStrategy describes how to perform the sync
+        """
+        if dry_run is not None:
+            pulumi.set(__self__, "dry_run", dry_run)
+        if manifests is not None:
+            pulumi.set(__self__, "manifests", manifests)
+        if prune is not None:
+            pulumi.set(__self__, "prune", prune)
+        if resources is not None:
+            pulumi.set(__self__, "resources", resources)
+        if revision is not None:
+            pulumi.set(__self__, "revision", revision)
+        if source is not None:
+            pulumi.set(__self__, "source", source)
+        if sync_options is not None:
+            pulumi.set(__self__, "sync_options", sync_options)
+        if sync_strategy is not None:
+            pulumi.set(__self__, "sync_strategy", sync_strategy)
+
+    @property
+    @pulumi.getter(name="dryRun")
+    def dry_run(self) -> Optional[pulumi.Input[bool]]:
+        """
+        DryRun specifies to perform a `kubectl apply --dry-run` without actually performing the sync
+        """
+        return pulumi.get(self, "dry_run")
+
+    @dry_run.setter
+    def dry_run(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "dry_run", value)
+
+    @property
+    @pulumi.getter
+    def manifests(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Manifests is an optional field that overrides sync source with a local directory for development
+        """
+        return pulumi.get(self, "manifests")
+
+    @manifests.setter
+    def manifests(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "manifests", value)
+
+    @property
+    @pulumi.getter
+    def prune(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Prune specifies to delete resources from the cluster that are no longer tracked in git
+        """
+        return pulumi.get(self, "prune")
+
+    @prune.setter
+    def prune(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "prune", value)
+
+    @property
+    @pulumi.getter
+    def resources(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncResourcesArgs']]]]:
+        """
+        Resources describes which resources shall be part of the sync
+        """
+        return pulumi.get(self, "resources")
+
+    @resources.setter
+    def resources(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationSyncResourcesArgs']]]]):
+        pulumi.set(self, "resources", value)
+
+    @property
+    @pulumi.getter
+    def revision(self) -> Optional[pulumi.Input[str]]:
+        """
+        Revision is the revision (Git) or chart version (Helm) which to sync the application to If omitted, will use the revision specified in app spec.
+        """
+        return pulumi.get(self, "revision")
+
+    @revision.setter
+    def revision(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "revision", value)
+
+    @property
+    @pulumi.getter
+    def source(self) -> Optional[pulumi.Input['ApplicationOperationSyncSourceArgs']]:
+        """
+        Source overrides the source definition set in the application. This is typically set in a Rollback operation and is nil during a Sync operation
         """
         return pulumi.get(self, "source")
 
     @source.setter
-    def source(self, value: pulumi.Input['ApplicationSpecSourceArgs']):
+    def source(self, value: Optional[pulumi.Input['ApplicationOperationSyncSourceArgs']]):
         pulumi.set(self, "source", value)
 
     @property
-    @pulumi.getter(name="ignoreDifferences")
-    def ignore_differences(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecIgnoreDifferencesArgs']]]]:
+    @pulumi.getter(name="syncOptions")
+    def sync_options(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        IgnoreDifferences is a list of resources and their fields which should be ignored during comparison
+        SyncOptions provide per-sync sync-options, e.g. Validate=false
         """
-        return pulumi.get(self, "ignore_differences")
+        return pulumi.get(self, "sync_options")
 
-    @ignore_differences.setter
-    def ignore_differences(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecIgnoreDifferencesArgs']]]]):
-        pulumi.set(self, "ignore_differences", value)
+    @sync_options.setter
+    def sync_options(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "sync_options", value)
+
+    @property
+    @pulumi.getter(name="syncStrategy")
+    def sync_strategy(self) -> Optional[pulumi.Input['ApplicationOperationSyncSyncStrategyArgs']]:
+        """
+        SyncStrategy describes how to perform the sync
+        """
+        return pulumi.get(self, "sync_strategy")
+
+    @sync_strategy.setter
+    def sync_strategy(self, value: Optional[pulumi.Input['ApplicationOperationSyncSyncStrategyArgs']]):
+        pulumi.set(self, "sync_strategy", value)
+
+
+@pulumi.input_type
+class ApplicationOperationArgs:
+    def __init__(__self__, *,
+                 info: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationInfoArgs']]]] = None,
+                 initiated_by: Optional[pulumi.Input['ApplicationOperationInitiatedByArgs']] = None,
+                 retry: Optional[pulumi.Input['ApplicationOperationRetryArgs']] = None,
+                 sync: Optional[pulumi.Input['ApplicationOperationSyncArgs']] = None):
+        """
+        Operation contains information about a requested or running operation
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationOperationInfoArgs']]] info: Info is a list of informational items for this operation
+        :param pulumi.Input['ApplicationOperationInitiatedByArgs'] initiated_by: InitiatedBy contains information about who initiated the operations
+        :param pulumi.Input['ApplicationOperationRetryArgs'] retry: Retry controls the strategy to apply if a sync fails
+        :param pulumi.Input['ApplicationOperationSyncArgs'] sync: Sync contains parameters for the operation
+        """
+        if info is not None:
+            pulumi.set(__self__, "info", info)
+        if initiated_by is not None:
+            pulumi.set(__self__, "initiated_by", initiated_by)
+        if retry is not None:
+            pulumi.set(__self__, "retry", retry)
+        if sync is not None:
+            pulumi.set(__self__, "sync", sync)
 
     @property
     @pulumi.getter
-    def info(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecInfoArgs']]]]:
+    def info(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationInfoArgs']]]]:
         """
-        Info contains a list of information (URLs, email addresses, and plain text) that relates to the application
+        Info is a list of informational items for this operation
         """
         return pulumi.get(self, "info")
 
     @info.setter
-    def info(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecInfoArgs']]]]):
+    def info(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationOperationInfoArgs']]]]):
         pulumi.set(self, "info", value)
 
     @property
-    @pulumi.getter(name="revisionHistoryLimit")
-    def revision_history_limit(self) -> Optional[pulumi.Input[int]]:
+    @pulumi.getter(name="initiatedBy")
+    def initiated_by(self) -> Optional[pulumi.Input['ApplicationOperationInitiatedByArgs']]:
         """
-        RevisionHistoryLimit limits the number of items kept in the application's revision history, which is used for informational purposes as well as for rollbacks to previous versions. This should only be changed in exceptional circumstances. Setting to zero will store no history. This will reduce storage used. Increasing will increase the space used to store the history, so we do not recommend increasing it. Default is 10.
+        InitiatedBy contains information about who initiated the operations
         """
-        return pulumi.get(self, "revision_history_limit")
+        return pulumi.get(self, "initiated_by")
 
-    @revision_history_limit.setter
-    def revision_history_limit(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "revision_history_limit", value)
+    @initiated_by.setter
+    def initiated_by(self, value: Optional[pulumi.Input['ApplicationOperationInitiatedByArgs']]):
+        pulumi.set(self, "initiated_by", value)
 
     @property
-    @pulumi.getter(name="syncPolicy")
-    def sync_policy(self) -> Optional[pulumi.Input['ApplicationSpecSyncPolicyArgs']]:
+    @pulumi.getter
+    def retry(self) -> Optional[pulumi.Input['ApplicationOperationRetryArgs']]:
         """
-        SyncPolicy controls when and how a sync will be performed
+        Retry controls the strategy to apply if a sync fails
         """
-        return pulumi.get(self, "sync_policy")
+        return pulumi.get(self, "retry")
 
-    @sync_policy.setter
-    def sync_policy(self, value: Optional[pulumi.Input['ApplicationSpecSyncPolicyArgs']]):
-        pulumi.set(self, "sync_policy", value)
+    @retry.setter
+    def retry(self, value: Optional[pulumi.Input['ApplicationOperationRetryArgs']]):
+        pulumi.set(self, "retry", value)
+
+    @property
+    @pulumi.getter
+    def sync(self) -> Optional[pulumi.Input['ApplicationOperationSyncArgs']]:
+        """
+        Sync contains parameters for the operation
+        """
+        return pulumi.get(self, "sync")
+
+    @sync.setter
+    def sync(self, value: Optional[pulumi.Input['ApplicationOperationSyncArgs']]):
+        pulumi.set(self, "sync", value)
 
 
 @pulumi.input_type
@@ -1810,6 +1693,726 @@ class ApplicationSpecInfoArgs:
 
 
 @pulumi.input_type
+class ApplicationSpecSourceDirectoryJsonnetExtVarsArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 value: pulumi.Input[str],
+                 code: Optional[pulumi.Input[bool]] = None):
+        """
+        JsonnetVar represents a variable to be passed to jsonnet during manifest generation
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+        if code is not None:
+            pulumi.set(__self__, "code", code)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+    @property
+    @pulumi.getter
+    def code(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "code")
+
+    @code.setter
+    def code(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "code", value)
+
+
+@pulumi.input_type
+class ApplicationSpecSourceDirectoryJsonnetTlasArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 value: pulumi.Input[str],
+                 code: Optional[pulumi.Input[bool]] = None):
+        """
+        JsonnetVar represents a variable to be passed to jsonnet during manifest generation
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+        if code is not None:
+            pulumi.set(__self__, "code", code)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+    @property
+    @pulumi.getter
+    def code(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "code")
+
+    @code.setter
+    def code(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "code", value)
+
+
+@pulumi.input_type
+class ApplicationSpecSourceDirectoryJsonnetArgs:
+    def __init__(__self__, *,
+                 ext_vars: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceDirectoryJsonnetExtVarsArgs']]]] = None,
+                 libs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 tlas: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceDirectoryJsonnetTlasArgs']]]] = None):
+        """
+        Jsonnet holds options specific to Jsonnet
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceDirectoryJsonnetExtVarsArgs']]] ext_vars: ExtVars is a list of Jsonnet External Variables
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] libs: Additional library search dirs
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceDirectoryJsonnetTlasArgs']]] tlas: TLAS is a list of Jsonnet Top-level Arguments
+        """
+        if ext_vars is not None:
+            pulumi.set(__self__, "ext_vars", ext_vars)
+        if libs is not None:
+            pulumi.set(__self__, "libs", libs)
+        if tlas is not None:
+            pulumi.set(__self__, "tlas", tlas)
+
+    @property
+    @pulumi.getter(name="extVars")
+    def ext_vars(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceDirectoryJsonnetExtVarsArgs']]]]:
+        """
+        ExtVars is a list of Jsonnet External Variables
+        """
+        return pulumi.get(self, "ext_vars")
+
+    @ext_vars.setter
+    def ext_vars(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceDirectoryJsonnetExtVarsArgs']]]]):
+        pulumi.set(self, "ext_vars", value)
+
+    @property
+    @pulumi.getter
+    def libs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Additional library search dirs
+        """
+        return pulumi.get(self, "libs")
+
+    @libs.setter
+    def libs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "libs", value)
+
+    @property
+    @pulumi.getter
+    def tlas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceDirectoryJsonnetTlasArgs']]]]:
+        """
+        TLAS is a list of Jsonnet Top-level Arguments
+        """
+        return pulumi.get(self, "tlas")
+
+    @tlas.setter
+    def tlas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceDirectoryJsonnetTlasArgs']]]]):
+        pulumi.set(self, "tlas", value)
+
+
+@pulumi.input_type
+class ApplicationSpecSourceDirectoryArgs:
+    def __init__(__self__, *,
+                 exclude: Optional[pulumi.Input[str]] = None,
+                 include: Optional[pulumi.Input[str]] = None,
+                 jsonnet: Optional[pulumi.Input['ApplicationSpecSourceDirectoryJsonnetArgs']] = None,
+                 recurse: Optional[pulumi.Input[bool]] = None):
+        """
+        Directory holds path/directory specific options
+        :param pulumi.Input[str] exclude: Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation
+        :param pulumi.Input[str] include: Include contains a glob pattern to match paths against that should be explicitly included during manifest generation
+        :param pulumi.Input['ApplicationSpecSourceDirectoryJsonnetArgs'] jsonnet: Jsonnet holds options specific to Jsonnet
+        :param pulumi.Input[bool] recurse: Recurse specifies whether to scan a directory recursively for manifests
+        """
+        if exclude is not None:
+            pulumi.set(__self__, "exclude", exclude)
+        if include is not None:
+            pulumi.set(__self__, "include", include)
+        if jsonnet is not None:
+            pulumi.set(__self__, "jsonnet", jsonnet)
+        if recurse is not None:
+            pulumi.set(__self__, "recurse", recurse)
+
+    @property
+    @pulumi.getter
+    def exclude(self) -> Optional[pulumi.Input[str]]:
+        """
+        Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation
+        """
+        return pulumi.get(self, "exclude")
+
+    @exclude.setter
+    def exclude(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "exclude", value)
+
+    @property
+    @pulumi.getter
+    def include(self) -> Optional[pulumi.Input[str]]:
+        """
+        Include contains a glob pattern to match paths against that should be explicitly included during manifest generation
+        """
+        return pulumi.get(self, "include")
+
+    @include.setter
+    def include(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "include", value)
+
+    @property
+    @pulumi.getter
+    def jsonnet(self) -> Optional[pulumi.Input['ApplicationSpecSourceDirectoryJsonnetArgs']]:
+        """
+        Jsonnet holds options specific to Jsonnet
+        """
+        return pulumi.get(self, "jsonnet")
+
+    @jsonnet.setter
+    def jsonnet(self, value: Optional[pulumi.Input['ApplicationSpecSourceDirectoryJsonnetArgs']]):
+        pulumi.set(self, "jsonnet", value)
+
+    @property
+    @pulumi.getter
+    def recurse(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Recurse specifies whether to scan a directory recursively for manifests
+        """
+        return pulumi.get(self, "recurse")
+
+    @recurse.setter
+    def recurse(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "recurse", value)
+
+
+@pulumi.input_type
+class ApplicationSpecSourceHelmFileParametersArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None):
+        """
+        HelmFileParameter is a file parameter that's passed to helm template during manifest generation
+        :param pulumi.Input[str] name: Name is the name of the Helm parameter
+        :param pulumi.Input[str] path: Path is the path to the file containing the values for the Helm parameter
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name is the name of the Helm parameter
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path is the path to the file containing the values for the Helm parameter
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "path", value)
+
+
+@pulumi.input_type
+class ApplicationSpecSourceHelmParametersArgs:
+    def __init__(__self__, *,
+                 force_string: Optional[pulumi.Input[bool]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        """
+        HelmParameter is a parameter that's passed to helm template during manifest generation
+        :param pulumi.Input[bool] force_string: ForceString determines whether to tell Helm to interpret booleans and numbers as strings
+        :param pulumi.Input[str] name: Name is the name of the Helm parameter
+        :param pulumi.Input[str] value: Value is the value for the Helm parameter
+        """
+        if force_string is not None:
+            pulumi.set(__self__, "force_string", force_string)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="forceString")
+    def force_string(self) -> Optional[pulumi.Input[bool]]:
+        """
+        ForceString determines whether to tell Helm to interpret booleans and numbers as strings
+        """
+        return pulumi.get(self, "force_string")
+
+    @force_string.setter
+    def force_string(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "force_string", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name is the name of the Helm parameter
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        """
+        Value is the value for the Helm parameter
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ApplicationSpecSourceHelmArgs:
+    def __init__(__self__, *,
+                 file_parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceHelmFileParametersArgs']]]] = None,
+                 parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceHelmParametersArgs']]]] = None,
+                 pass_credentials: Optional[pulumi.Input[bool]] = None,
+                 release_name: Optional[pulumi.Input[str]] = None,
+                 value_files: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 values: Optional[pulumi.Input[str]] = None,
+                 version: Optional[pulumi.Input[str]] = None):
+        """
+        Helm holds helm specific options
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceHelmFileParametersArgs']]] file_parameters: FileParameters are file parameters to the helm template
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceHelmParametersArgs']]] parameters: Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation
+        :param pulumi.Input[bool] pass_credentials: PassCredentials pass credentials to all domains (Helm's --pass-credentials)
+        :param pulumi.Input[str] release_name: ReleaseName is the Helm release name to use. If omitted it will use the application name
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] value_files: ValuesFiles is a list of Helm value files to use when generating a template
+        :param pulumi.Input[str] values: Values specifies Helm values to be passed to helm template, typically defined as a block
+        :param pulumi.Input[str] version: Version is the Helm version to use for templating (either "2" or "3")
+        """
+        if file_parameters is not None:
+            pulumi.set(__self__, "file_parameters", file_parameters)
+        if parameters is not None:
+            pulumi.set(__self__, "parameters", parameters)
+        if pass_credentials is not None:
+            pulumi.set(__self__, "pass_credentials", pass_credentials)
+        if release_name is not None:
+            pulumi.set(__self__, "release_name", release_name)
+        if value_files is not None:
+            pulumi.set(__self__, "value_files", value_files)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter(name="fileParameters")
+    def file_parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceHelmFileParametersArgs']]]]:
+        """
+        FileParameters are file parameters to the helm template
+        """
+        return pulumi.get(self, "file_parameters")
+
+    @file_parameters.setter
+    def file_parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceHelmFileParametersArgs']]]]):
+        pulumi.set(self, "file_parameters", value)
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceHelmParametersArgs']]]]:
+        """
+        Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation
+        """
+        return pulumi.get(self, "parameters")
+
+    @parameters.setter
+    def parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceHelmParametersArgs']]]]):
+        pulumi.set(self, "parameters", value)
+
+    @property
+    @pulumi.getter(name="passCredentials")
+    def pass_credentials(self) -> Optional[pulumi.Input[bool]]:
+        """
+        PassCredentials pass credentials to all domains (Helm's --pass-credentials)
+        """
+        return pulumi.get(self, "pass_credentials")
+
+    @pass_credentials.setter
+    def pass_credentials(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "pass_credentials", value)
+
+    @property
+    @pulumi.getter(name="releaseName")
+    def release_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        ReleaseName is the Helm release name to use. If omitted it will use the application name
+        """
+        return pulumi.get(self, "release_name")
+
+    @release_name.setter
+    def release_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "release_name", value)
+
+    @property
+    @pulumi.getter(name="valueFiles")
+    def value_files(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        ValuesFiles is a list of Helm value files to use when generating a template
+        """
+        return pulumi.get(self, "value_files")
+
+    @value_files.setter
+    def value_files(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "value_files", value)
+
+    @property
+    @pulumi.getter
+    def values(self) -> Optional[pulumi.Input[str]]:
+        """
+        Values specifies Helm values to be passed to helm template, typically defined as a block
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "values", value)
+
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Version is the Helm version to use for templating (either "2" or "3")
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "version", value)
+
+
+@pulumi.input_type
+class ApplicationSpecSourceKsonnetParametersArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 value: pulumi.Input[str],
+                 component: Optional[pulumi.Input[str]] = None):
+        """
+        KsonnetParameter is a ksonnet component parameter
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+        if component is not None:
+            pulumi.set(__self__, "component", component)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+    @property
+    @pulumi.getter
+    def component(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "component")
+
+    @component.setter
+    def component(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "component", value)
+
+
+@pulumi.input_type
+class ApplicationSpecSourceKsonnetArgs:
+    def __init__(__self__, *,
+                 environment: Optional[pulumi.Input[str]] = None,
+                 parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceKsonnetParametersArgs']]]] = None):
+        """
+        Ksonnet holds ksonnet specific options
+        :param pulumi.Input[str] environment: Environment is a ksonnet application environment name
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceKsonnetParametersArgs']]] parameters: Parameters are a list of ksonnet component parameter override values
+        """
+        if environment is not None:
+            pulumi.set(__self__, "environment", environment)
+        if parameters is not None:
+            pulumi.set(__self__, "parameters", parameters)
+
+    @property
+    @pulumi.getter
+    def environment(self) -> Optional[pulumi.Input[str]]:
+        """
+        Environment is a ksonnet application environment name
+        """
+        return pulumi.get(self, "environment")
+
+    @environment.setter
+    def environment(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "environment", value)
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceKsonnetParametersArgs']]]]:
+        """
+        Parameters are a list of ksonnet component parameter override values
+        """
+        return pulumi.get(self, "parameters")
+
+    @parameters.setter
+    def parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceKsonnetParametersArgs']]]]):
+        pulumi.set(self, "parameters", value)
+
+
+@pulumi.input_type
+class ApplicationSpecSourceKustomizeArgs:
+    def __init__(__self__, *,
+                 common_annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 common_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 force_common_annotations: Optional[pulumi.Input[bool]] = None,
+                 force_common_labels: Optional[pulumi.Input[bool]] = None,
+                 images: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 name_prefix: Optional[pulumi.Input[str]] = None,
+                 name_suffix: Optional[pulumi.Input[str]] = None,
+                 version: Optional[pulumi.Input[str]] = None):
+        """
+        Kustomize holds kustomize specific options
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] common_annotations: CommonAnnotations is a list of additional annotations to add to rendered manifests
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] common_labels: CommonLabels is a list of additional labels to add to rendered manifests
+        :param pulumi.Input[bool] force_common_annotations: ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps
+        :param pulumi.Input[bool] force_common_labels: ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] images: Images is a list of Kustomize image override specifications
+        :param pulumi.Input[str] name_prefix: NamePrefix is a prefix appended to resources for Kustomize apps
+        :param pulumi.Input[str] name_suffix: NameSuffix is a suffix appended to resources for Kustomize apps
+        :param pulumi.Input[str] version: Version controls which version of Kustomize to use for rendering manifests
+        """
+        if common_annotations is not None:
+            pulumi.set(__self__, "common_annotations", common_annotations)
+        if common_labels is not None:
+            pulumi.set(__self__, "common_labels", common_labels)
+        if force_common_annotations is not None:
+            pulumi.set(__self__, "force_common_annotations", force_common_annotations)
+        if force_common_labels is not None:
+            pulumi.set(__self__, "force_common_labels", force_common_labels)
+        if images is not None:
+            pulumi.set(__self__, "images", images)
+        if name_prefix is not None:
+            pulumi.set(__self__, "name_prefix", name_prefix)
+        if name_suffix is not None:
+            pulumi.set(__self__, "name_suffix", name_suffix)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter(name="commonAnnotations")
+    def common_annotations(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        CommonAnnotations is a list of additional annotations to add to rendered manifests
+        """
+        return pulumi.get(self, "common_annotations")
+
+    @common_annotations.setter
+    def common_annotations(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "common_annotations", value)
+
+    @property
+    @pulumi.getter(name="commonLabels")
+    def common_labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        CommonLabels is a list of additional labels to add to rendered manifests
+        """
+        return pulumi.get(self, "common_labels")
+
+    @common_labels.setter
+    def common_labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "common_labels", value)
+
+    @property
+    @pulumi.getter(name="forceCommonAnnotations")
+    def force_common_annotations(self) -> Optional[pulumi.Input[bool]]:
+        """
+        ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps
+        """
+        return pulumi.get(self, "force_common_annotations")
+
+    @force_common_annotations.setter
+    def force_common_annotations(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "force_common_annotations", value)
+
+    @property
+    @pulumi.getter(name="forceCommonLabels")
+    def force_common_labels(self) -> Optional[pulumi.Input[bool]]:
+        """
+        ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps
+        """
+        return pulumi.get(self, "force_common_labels")
+
+    @force_common_labels.setter
+    def force_common_labels(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "force_common_labels", value)
+
+    @property
+    @pulumi.getter
+    def images(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Images is a list of Kustomize image override specifications
+        """
+        return pulumi.get(self, "images")
+
+    @images.setter
+    def images(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "images", value)
+
+    @property
+    @pulumi.getter(name="namePrefix")
+    def name_prefix(self) -> Optional[pulumi.Input[str]]:
+        """
+        NamePrefix is a prefix appended to resources for Kustomize apps
+        """
+        return pulumi.get(self, "name_prefix")
+
+    @name_prefix.setter
+    def name_prefix(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name_prefix", value)
+
+    @property
+    @pulumi.getter(name="nameSuffix")
+    def name_suffix(self) -> Optional[pulumi.Input[str]]:
+        """
+        NameSuffix is a suffix appended to resources for Kustomize apps
+        """
+        return pulumi.get(self, "name_suffix")
+
+    @name_suffix.setter
+    def name_suffix(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name_suffix", value)
+
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Version controls which version of Kustomize to use for rendering manifests
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "version", value)
+
+
+@pulumi.input_type
+class ApplicationSpecSourcePluginEnvArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        EnvEntry represents an entry in the application's environment
+        :param pulumi.Input[str] name: Name is the name of the variable, usually expressed in uppercase
+        :param pulumi.Input[str] value: Value is the value of the variable
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        Name is the name of the variable, usually expressed in uppercase
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        Value is the value of the variable
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ApplicationSpecSourcePluginArgs:
+    def __init__(__self__, *,
+                 env: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourcePluginEnvArgs']]]] = None,
+                 name: Optional[pulumi.Input[str]] = None):
+        """
+        ConfigManagementPlugin holds config management plugin specific options
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourcePluginEnvArgs']]] env: Env is a list of environment variable entries
+        """
+        if env is not None:
+            pulumi.set(__self__, "env", env)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def env(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourcePluginEnvArgs']]]]:
+        """
+        Env is a list of environment variable entries
+        """
+        return pulumi.get(self, "env")
+
+    @env.setter
+    def env(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourcePluginEnvArgs']]]]):
+        pulumi.set(self, "env", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
 class ApplicationSpecSourceArgs:
     def __init__(__self__, *,
                  repo_url: pulumi.Input[str],
@@ -1961,17 +2564,576 @@ class ApplicationSpecSourceArgs:
 
 
 @pulumi.input_type
-class ApplicationSpecSourceDirectoryArgs:
+class ApplicationSpecSyncPolicyAutomatedArgs:
+    def __init__(__self__, *,
+                 allow_empty: Optional[pulumi.Input[bool]] = None,
+                 prune: Optional[pulumi.Input[bool]] = None,
+                 self_heal: Optional[pulumi.Input[bool]] = None):
+        """
+        Automated will keep an application synced to the target revision
+        :param pulumi.Input[bool] allow_empty: AllowEmpty allows apps have zero live resources (default: false)
+        :param pulumi.Input[bool] prune: Prune specifies whether to delete resources from the cluster that are not found in the sources anymore as part of automated sync (default: false)
+        :param pulumi.Input[bool] self_heal: SelfHeal specifes whether to revert resources back to their desired state upon modification in the cluster (default: false)
+        """
+        if allow_empty is not None:
+            pulumi.set(__self__, "allow_empty", allow_empty)
+        if prune is not None:
+            pulumi.set(__self__, "prune", prune)
+        if self_heal is not None:
+            pulumi.set(__self__, "self_heal", self_heal)
+
+    @property
+    @pulumi.getter(name="allowEmpty")
+    def allow_empty(self) -> Optional[pulumi.Input[bool]]:
+        """
+        AllowEmpty allows apps have zero live resources (default: false)
+        """
+        return pulumi.get(self, "allow_empty")
+
+    @allow_empty.setter
+    def allow_empty(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "allow_empty", value)
+
+    @property
+    @pulumi.getter
+    def prune(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Prune specifies whether to delete resources from the cluster that are not found in the sources anymore as part of automated sync (default: false)
+        """
+        return pulumi.get(self, "prune")
+
+    @prune.setter
+    def prune(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "prune", value)
+
+    @property
+    @pulumi.getter(name="selfHeal")
+    def self_heal(self) -> Optional[pulumi.Input[bool]]:
+        """
+        SelfHeal specifes whether to revert resources back to their desired state upon modification in the cluster (default: false)
+        """
+        return pulumi.get(self, "self_heal")
+
+    @self_heal.setter
+    def self_heal(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "self_heal", value)
+
+
+@pulumi.input_type
+class ApplicationSpecSyncPolicyRetryBackoffArgs:
+    def __init__(__self__, *,
+                 duration: Optional[pulumi.Input[str]] = None,
+                 factor: Optional[pulumi.Input[int]] = None,
+                 max_duration: Optional[pulumi.Input[str]] = None):
+        """
+        Backoff controls how to backoff on subsequent retries of failed syncs
+        :param pulumi.Input[str] duration: Duration is the amount to back off. Default unit is seconds, but could also be a duration (e.g. "2m", "1h")
+        :param pulumi.Input[int] factor: Factor is a factor to multiply the base duration after each failed retry
+        :param pulumi.Input[str] max_duration: MaxDuration is the maximum amount of time allowed for the backoff strategy
+        """
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
+        if factor is not None:
+            pulumi.set(__self__, "factor", factor)
+        if max_duration is not None:
+            pulumi.set(__self__, "max_duration", max_duration)
+
+    @property
+    @pulumi.getter
+    def duration(self) -> Optional[pulumi.Input[str]]:
+        """
+        Duration is the amount to back off. Default unit is seconds, but could also be a duration (e.g. "2m", "1h")
+        """
+        return pulumi.get(self, "duration")
+
+    @duration.setter
+    def duration(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "duration", value)
+
+    @property
+    @pulumi.getter
+    def factor(self) -> Optional[pulumi.Input[int]]:
+        """
+        Factor is a factor to multiply the base duration after each failed retry
+        """
+        return pulumi.get(self, "factor")
+
+    @factor.setter
+    def factor(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "factor", value)
+
+    @property
+    @pulumi.getter(name="maxDuration")
+    def max_duration(self) -> Optional[pulumi.Input[str]]:
+        """
+        MaxDuration is the maximum amount of time allowed for the backoff strategy
+        """
+        return pulumi.get(self, "max_duration")
+
+    @max_duration.setter
+    def max_duration(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "max_duration", value)
+
+
+@pulumi.input_type
+class ApplicationSpecSyncPolicyRetryArgs:
+    def __init__(__self__, *,
+                 backoff: Optional[pulumi.Input['ApplicationSpecSyncPolicyRetryBackoffArgs']] = None,
+                 limit: Optional[pulumi.Input[int]] = None):
+        """
+        Retry controls failed sync retry behavior
+        :param pulumi.Input['ApplicationSpecSyncPolicyRetryBackoffArgs'] backoff: Backoff controls how to backoff on subsequent retries of failed syncs
+        :param pulumi.Input[int] limit: Limit is the maximum number of attempts for retrying a failed sync. If set to 0, no retries will be performed.
+        """
+        if backoff is not None:
+            pulumi.set(__self__, "backoff", backoff)
+        if limit is not None:
+            pulumi.set(__self__, "limit", limit)
+
+    @property
+    @pulumi.getter
+    def backoff(self) -> Optional[pulumi.Input['ApplicationSpecSyncPolicyRetryBackoffArgs']]:
+        """
+        Backoff controls how to backoff on subsequent retries of failed syncs
+        """
+        return pulumi.get(self, "backoff")
+
+    @backoff.setter
+    def backoff(self, value: Optional[pulumi.Input['ApplicationSpecSyncPolicyRetryBackoffArgs']]):
+        pulumi.set(self, "backoff", value)
+
+    @property
+    @pulumi.getter
+    def limit(self) -> Optional[pulumi.Input[int]]:
+        """
+        Limit is the maximum number of attempts for retrying a failed sync. If set to 0, no retries will be performed.
+        """
+        return pulumi.get(self, "limit")
+
+    @limit.setter
+    def limit(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "limit", value)
+
+
+@pulumi.input_type
+class ApplicationSpecSyncPolicyArgs:
+    def __init__(__self__, *,
+                 automated: Optional[pulumi.Input['ApplicationSpecSyncPolicyAutomatedArgs']] = None,
+                 retry: Optional[pulumi.Input['ApplicationSpecSyncPolicyRetryArgs']] = None,
+                 sync_options: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        SyncPolicy controls when and how a sync will be performed
+        :param pulumi.Input['ApplicationSpecSyncPolicyAutomatedArgs'] automated: Automated will keep an application synced to the target revision
+        :param pulumi.Input['ApplicationSpecSyncPolicyRetryArgs'] retry: Retry controls failed sync retry behavior
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] sync_options: Options allow you to specify whole app sync-options
+        """
+        if automated is not None:
+            pulumi.set(__self__, "automated", automated)
+        if retry is not None:
+            pulumi.set(__self__, "retry", retry)
+        if sync_options is not None:
+            pulumi.set(__self__, "sync_options", sync_options)
+
+    @property
+    @pulumi.getter
+    def automated(self) -> Optional[pulumi.Input['ApplicationSpecSyncPolicyAutomatedArgs']]:
+        """
+        Automated will keep an application synced to the target revision
+        """
+        return pulumi.get(self, "automated")
+
+    @automated.setter
+    def automated(self, value: Optional[pulumi.Input['ApplicationSpecSyncPolicyAutomatedArgs']]):
+        pulumi.set(self, "automated", value)
+
+    @property
+    @pulumi.getter
+    def retry(self) -> Optional[pulumi.Input['ApplicationSpecSyncPolicyRetryArgs']]:
+        """
+        Retry controls failed sync retry behavior
+        """
+        return pulumi.get(self, "retry")
+
+    @retry.setter
+    def retry(self, value: Optional[pulumi.Input['ApplicationSpecSyncPolicyRetryArgs']]):
+        pulumi.set(self, "retry", value)
+
+    @property
+    @pulumi.getter(name="syncOptions")
+    def sync_options(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Options allow you to specify whole app sync-options
+        """
+        return pulumi.get(self, "sync_options")
+
+    @sync_options.setter
+    def sync_options(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "sync_options", value)
+
+
+@pulumi.input_type
+class ApplicationSpecArgs:
+    def __init__(__self__, *,
+                 destination: pulumi.Input['ApplicationSpecDestinationArgs'],
+                 project: pulumi.Input[str],
+                 source: pulumi.Input['ApplicationSpecSourceArgs'],
+                 ignore_differences: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecIgnoreDifferencesArgs']]]] = None,
+                 info: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecInfoArgs']]]] = None,
+                 revision_history_limit: Optional[pulumi.Input[int]] = None,
+                 sync_policy: Optional[pulumi.Input['ApplicationSpecSyncPolicyArgs']] = None):
+        """
+        ApplicationSpec represents desired application state. Contains link to repository with application definition and additional parameters link definition revision.
+        :param pulumi.Input['ApplicationSpecDestinationArgs'] destination: Destination is a reference to the target Kubernetes server and namespace
+        :param pulumi.Input[str] project: Project is a reference to the project this application belongs to. The empty string means that application belongs to the 'default' project.
+        :param pulumi.Input['ApplicationSpecSourceArgs'] source: Source is a reference to the location of the application's manifests or chart
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationSpecIgnoreDifferencesArgs']]] ignore_differences: IgnoreDifferences is a list of resources and their fields which should be ignored during comparison
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationSpecInfoArgs']]] info: Info contains a list of information (URLs, email addresses, and plain text) that relates to the application
+        :param pulumi.Input[int] revision_history_limit: RevisionHistoryLimit limits the number of items kept in the application's revision history, which is used for informational purposes as well as for rollbacks to previous versions. This should only be changed in exceptional circumstances. Setting to zero will store no history. This will reduce storage used. Increasing will increase the space used to store the history, so we do not recommend increasing it. Default is 10.
+        :param pulumi.Input['ApplicationSpecSyncPolicyArgs'] sync_policy: SyncPolicy controls when and how a sync will be performed
+        """
+        pulumi.set(__self__, "destination", destination)
+        pulumi.set(__self__, "project", project)
+        pulumi.set(__self__, "source", source)
+        if ignore_differences is not None:
+            pulumi.set(__self__, "ignore_differences", ignore_differences)
+        if info is not None:
+            pulumi.set(__self__, "info", info)
+        if revision_history_limit is not None:
+            pulumi.set(__self__, "revision_history_limit", revision_history_limit)
+        if sync_policy is not None:
+            pulumi.set(__self__, "sync_policy", sync_policy)
+
+    @property
+    @pulumi.getter
+    def destination(self) -> pulumi.Input['ApplicationSpecDestinationArgs']:
+        """
+        Destination is a reference to the target Kubernetes server and namespace
+        """
+        return pulumi.get(self, "destination")
+
+    @destination.setter
+    def destination(self, value: pulumi.Input['ApplicationSpecDestinationArgs']):
+        pulumi.set(self, "destination", value)
+
+    @property
+    @pulumi.getter
+    def project(self) -> pulumi.Input[str]:
+        """
+        Project is a reference to the project this application belongs to. The empty string means that application belongs to the 'default' project.
+        """
+        return pulumi.get(self, "project")
+
+    @project.setter
+    def project(self, value: pulumi.Input[str]):
+        pulumi.set(self, "project", value)
+
+    @property
+    @pulumi.getter
+    def source(self) -> pulumi.Input['ApplicationSpecSourceArgs']:
+        """
+        Source is a reference to the location of the application's manifests or chart
+        """
+        return pulumi.get(self, "source")
+
+    @source.setter
+    def source(self, value: pulumi.Input['ApplicationSpecSourceArgs']):
+        pulumi.set(self, "source", value)
+
+    @property
+    @pulumi.getter(name="ignoreDifferences")
+    def ignore_differences(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecIgnoreDifferencesArgs']]]]:
+        """
+        IgnoreDifferences is a list of resources and their fields which should be ignored during comparison
+        """
+        return pulumi.get(self, "ignore_differences")
+
+    @ignore_differences.setter
+    def ignore_differences(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecIgnoreDifferencesArgs']]]]):
+        pulumi.set(self, "ignore_differences", value)
+
+    @property
+    @pulumi.getter
+    def info(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecInfoArgs']]]]:
+        """
+        Info contains a list of information (URLs, email addresses, and plain text) that relates to the application
+        """
+        return pulumi.get(self, "info")
+
+    @info.setter
+    def info(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecInfoArgs']]]]):
+        pulumi.set(self, "info", value)
+
+    @property
+    @pulumi.getter(name="revisionHistoryLimit")
+    def revision_history_limit(self) -> Optional[pulumi.Input[int]]:
+        """
+        RevisionHistoryLimit limits the number of items kept in the application's revision history, which is used for informational purposes as well as for rollbacks to previous versions. This should only be changed in exceptional circumstances. Setting to zero will store no history. This will reduce storage used. Increasing will increase the space used to store the history, so we do not recommend increasing it. Default is 10.
+        """
+        return pulumi.get(self, "revision_history_limit")
+
+    @revision_history_limit.setter
+    def revision_history_limit(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "revision_history_limit", value)
+
+    @property
+    @pulumi.getter(name="syncPolicy")
+    def sync_policy(self) -> Optional[pulumi.Input['ApplicationSpecSyncPolicyArgs']]:
+        """
+        SyncPolicy controls when and how a sync will be performed
+        """
+        return pulumi.get(self, "sync_policy")
+
+    @sync_policy.setter
+    def sync_policy(self, value: Optional[pulumi.Input['ApplicationSpecSyncPolicyArgs']]):
+        pulumi.set(self, "sync_policy", value)
+
+
+@pulumi.input_type
+class ApplicationStatusConditionsArgs:
+    def __init__(__self__, *,
+                 message: pulumi.Input[str],
+                 type: pulumi.Input[str],
+                 last_transition_time: Optional[pulumi.Input[str]] = None):
+        """
+        ApplicationCondition contains details about an application condition, which is usally an error or warning
+        :param pulumi.Input[str] message: Message contains human-readable message indicating details about condition
+        :param pulumi.Input[str] type: Type is an application condition type
+        :param pulumi.Input[str] last_transition_time: LastTransitionTime is the time the condition was last observed
+        """
+        pulumi.set(__self__, "message", message)
+        pulumi.set(__self__, "type", type)
+        if last_transition_time is not None:
+            pulumi.set(__self__, "last_transition_time", last_transition_time)
+
+    @property
+    @pulumi.getter
+    def message(self) -> pulumi.Input[str]:
+        """
+        Message contains human-readable message indicating details about condition
+        """
+        return pulumi.get(self, "message")
+
+    @message.setter
+    def message(self, value: pulumi.Input[str]):
+        pulumi.set(self, "message", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[str]:
+        """
+        Type is an application condition type
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter(name="lastTransitionTime")
+    def last_transition_time(self) -> Optional[pulumi.Input[str]]:
+        """
+        LastTransitionTime is the time the condition was last observed
+        """
+        return pulumi.get(self, "last_transition_time")
+
+    @last_transition_time.setter
+    def last_transition_time(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "last_transition_time", value)
+
+
+@pulumi.input_type
+class ApplicationStatusHealthArgs:
+    def __init__(__self__, *,
+                 message: Optional[pulumi.Input[str]] = None,
+                 status: Optional[pulumi.Input[str]] = None):
+        """
+        Health contains information about the application's current health status
+        :param pulumi.Input[str] message: Message is a human-readable informational message describing the health status
+        :param pulumi.Input[str] status: Status holds the status code of the application or resource
+        """
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter
+    def message(self) -> Optional[pulumi.Input[str]]:
+        """
+        Message is a human-readable informational message describing the health status
+        """
+        return pulumi.get(self, "message")
+
+    @message.setter
+    def message(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "message", value)
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Status holds the status code of the application or resource
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "status", value)
+
+
+@pulumi.input_type
+class ApplicationStatusHistorySourceDirectoryJsonnetExtVarsArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 value: pulumi.Input[str],
+                 code: Optional[pulumi.Input[bool]] = None):
+        """
+        JsonnetVar represents a variable to be passed to jsonnet during manifest generation
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+        if code is not None:
+            pulumi.set(__self__, "code", code)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+    @property
+    @pulumi.getter
+    def code(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "code")
+
+    @code.setter
+    def code(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "code", value)
+
+
+@pulumi.input_type
+class ApplicationStatusHistorySourceDirectoryJsonnetTlasArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 value: pulumi.Input[str],
+                 code: Optional[pulumi.Input[bool]] = None):
+        """
+        JsonnetVar represents a variable to be passed to jsonnet during manifest generation
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+        if code is not None:
+            pulumi.set(__self__, "code", code)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+    @property
+    @pulumi.getter
+    def code(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "code")
+
+    @code.setter
+    def code(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "code", value)
+
+
+@pulumi.input_type
+class ApplicationStatusHistorySourceDirectoryJsonnetArgs:
+    def __init__(__self__, *,
+                 ext_vars: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceDirectoryJsonnetExtVarsArgs']]]] = None,
+                 libs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 tlas: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceDirectoryJsonnetTlasArgs']]]] = None):
+        """
+        Jsonnet holds options specific to Jsonnet
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceDirectoryJsonnetExtVarsArgs']]] ext_vars: ExtVars is a list of Jsonnet External Variables
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] libs: Additional library search dirs
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceDirectoryJsonnetTlasArgs']]] tlas: TLAS is a list of Jsonnet Top-level Arguments
+        """
+        if ext_vars is not None:
+            pulumi.set(__self__, "ext_vars", ext_vars)
+        if libs is not None:
+            pulumi.set(__self__, "libs", libs)
+        if tlas is not None:
+            pulumi.set(__self__, "tlas", tlas)
+
+    @property
+    @pulumi.getter(name="extVars")
+    def ext_vars(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceDirectoryJsonnetExtVarsArgs']]]]:
+        """
+        ExtVars is a list of Jsonnet External Variables
+        """
+        return pulumi.get(self, "ext_vars")
+
+    @ext_vars.setter
+    def ext_vars(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceDirectoryJsonnetExtVarsArgs']]]]):
+        pulumi.set(self, "ext_vars", value)
+
+    @property
+    @pulumi.getter
+    def libs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Additional library search dirs
+        """
+        return pulumi.get(self, "libs")
+
+    @libs.setter
+    def libs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "libs", value)
+
+    @property
+    @pulumi.getter
+    def tlas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceDirectoryJsonnetTlasArgs']]]]:
+        """
+        TLAS is a list of Jsonnet Top-level Arguments
+        """
+        return pulumi.get(self, "tlas")
+
+    @tlas.setter
+    def tlas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceDirectoryJsonnetTlasArgs']]]]):
+        pulumi.set(self, "tlas", value)
+
+
+@pulumi.input_type
+class ApplicationStatusHistorySourceDirectoryArgs:
     def __init__(__self__, *,
                  exclude: Optional[pulumi.Input[str]] = None,
                  include: Optional[pulumi.Input[str]] = None,
-                 jsonnet: Optional[pulumi.Input['ApplicationSpecSourceDirectoryJsonnetArgs']] = None,
+                 jsonnet: Optional[pulumi.Input['ApplicationStatusHistorySourceDirectoryJsonnetArgs']] = None,
                  recurse: Optional[pulumi.Input[bool]] = None):
         """
         Directory holds path/directory specific options
         :param pulumi.Input[str] exclude: Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation
         :param pulumi.Input[str] include: Include contains a glob pattern to match paths against that should be explicitly included during manifest generation
-        :param pulumi.Input['ApplicationSpecSourceDirectoryJsonnetArgs'] jsonnet: Jsonnet holds options specific to Jsonnet
+        :param pulumi.Input['ApplicationStatusHistorySourceDirectoryJsonnetArgs'] jsonnet: Jsonnet holds options specific to Jsonnet
         :param pulumi.Input[bool] recurse: Recurse specifies whether to scan a directory recursively for manifests
         """
         if exclude is not None:
@@ -2009,14 +3171,14 @@ class ApplicationSpecSourceDirectoryArgs:
 
     @property
     @pulumi.getter
-    def jsonnet(self) -> Optional[pulumi.Input['ApplicationSpecSourceDirectoryJsonnetArgs']]:
+    def jsonnet(self) -> Optional[pulumi.Input['ApplicationStatusHistorySourceDirectoryJsonnetArgs']]:
         """
         Jsonnet holds options specific to Jsonnet
         """
         return pulumi.get(self, "jsonnet")
 
     @jsonnet.setter
-    def jsonnet(self, value: Optional[pulumi.Input['ApplicationSpecSourceDirectoryJsonnetArgs']]):
+    def jsonnet(self, value: Optional[pulumi.Input['ApplicationStatusHistorySourceDirectoryJsonnetArgs']]):
         pulumi.set(self, "jsonnet", value)
 
     @property
@@ -2033,150 +3195,106 @@ class ApplicationSpecSourceDirectoryArgs:
 
 
 @pulumi.input_type
-class ApplicationSpecSourceDirectoryJsonnetArgs:
+class ApplicationStatusHistorySourceHelmFileParametersArgs:
     def __init__(__self__, *,
-                 ext_vars: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceDirectoryJsonnetExtVarsArgs']]]] = None,
-                 libs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 tlas: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceDirectoryJsonnetTlasArgs']]]] = None):
+                 name: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None):
         """
-        Jsonnet holds options specific to Jsonnet
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceDirectoryJsonnetExtVarsArgs']]] ext_vars: ExtVars is a list of Jsonnet External Variables
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] libs: Additional library search dirs
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceDirectoryJsonnetTlasArgs']]] tlas: TLAS is a list of Jsonnet Top-level Arguments
+        HelmFileParameter is a file parameter that's passed to helm template during manifest generation
+        :param pulumi.Input[str] name: Name is the name of the Helm parameter
+        :param pulumi.Input[str] path: Path is the path to the file containing the values for the Helm parameter
         """
-        if ext_vars is not None:
-            pulumi.set(__self__, "ext_vars", ext_vars)
-        if libs is not None:
-            pulumi.set(__self__, "libs", libs)
-        if tlas is not None:
-            pulumi.set(__self__, "tlas", tlas)
-
-    @property
-    @pulumi.getter(name="extVars")
-    def ext_vars(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceDirectoryJsonnetExtVarsArgs']]]]:
-        """
-        ExtVars is a list of Jsonnet External Variables
-        """
-        return pulumi.get(self, "ext_vars")
-
-    @ext_vars.setter
-    def ext_vars(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceDirectoryJsonnetExtVarsArgs']]]]):
-        pulumi.set(self, "ext_vars", value)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
 
     @property
     @pulumi.getter
-    def libs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+    def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Additional library search dirs
+        Name is the name of the Helm parameter
         """
-        return pulumi.get(self, "libs")
-
-    @libs.setter
-    def libs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "libs", value)
-
-    @property
-    @pulumi.getter
-    def tlas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceDirectoryJsonnetTlasArgs']]]]:
-        """
-        TLAS is a list of Jsonnet Top-level Arguments
-        """
-        return pulumi.get(self, "tlas")
-
-    @tlas.setter
-    def tlas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceDirectoryJsonnetTlasArgs']]]]):
-        pulumi.set(self, "tlas", value)
-
-
-@pulumi.input_type
-class ApplicationSpecSourceDirectoryJsonnetExtVarsArgs:
-    def __init__(__self__, *,
-                 name: pulumi.Input[str],
-                 value: pulumi.Input[str],
-                 code: Optional[pulumi.Input[bool]] = None):
-        """
-        JsonnetVar represents a variable to be passed to jsonnet during manifest generation
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "value", value)
-        if code is not None:
-            pulumi.set(__self__, "code", code)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: pulumi.Input[str]):
+    def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
-    def value(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "value")
+    def path(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path is the path to the file containing the values for the Helm parameter
+        """
+        return pulumi.get(self, "path")
 
-    @value.setter
-    def value(self, value: pulumi.Input[str]):
-        pulumi.set(self, "value", value)
-
-    @property
-    @pulumi.getter
-    def code(self) -> Optional[pulumi.Input[bool]]:
-        return pulumi.get(self, "code")
-
-    @code.setter
-    def code(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "code", value)
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "path", value)
 
 
 @pulumi.input_type
-class ApplicationSpecSourceDirectoryJsonnetTlasArgs:
+class ApplicationStatusHistorySourceHelmParametersArgs:
     def __init__(__self__, *,
-                 name: pulumi.Input[str],
-                 value: pulumi.Input[str],
-                 code: Optional[pulumi.Input[bool]] = None):
+                 force_string: Optional[pulumi.Input[bool]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
         """
-        JsonnetVar represents a variable to be passed to jsonnet during manifest generation
+        HelmParameter is a parameter that's passed to helm template during manifest generation
+        :param pulumi.Input[bool] force_string: ForceString determines whether to tell Helm to interpret booleans and numbers as strings
+        :param pulumi.Input[str] name: Name is the name of the Helm parameter
+        :param pulumi.Input[str] value: Value is the value for the Helm parameter
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "value", value)
-        if code is not None:
-            pulumi.set(__self__, "code", code)
+        if force_string is not None:
+            pulumi.set(__self__, "force_string", force_string)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="forceString")
+    def force_string(self) -> Optional[pulumi.Input[bool]]:
+        """
+        ForceString determines whether to tell Helm to interpret booleans and numbers as strings
+        """
+        return pulumi.get(self, "force_string")
+
+    @force_string.setter
+    def force_string(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "force_string", value)
 
     @property
     @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name is the name of the Helm parameter
+        """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: pulumi.Input[str]):
+    def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
-    def value(self) -> pulumi.Input[str]:
+    def value(self) -> Optional[pulumi.Input[str]]:
+        """
+        Value is the value for the Helm parameter
+        """
         return pulumi.get(self, "value")
 
     @value.setter
-    def value(self, value: pulumi.Input[str]):
+    def value(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "value", value)
-
-    @property
-    @pulumi.getter
-    def code(self) -> Optional[pulumi.Input[bool]]:
-        return pulumi.get(self, "code")
-
-    @code.setter
-    def code(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "code", value)
 
 
 @pulumi.input_type
-class ApplicationSpecSourceHelmArgs:
+class ApplicationStatusHistorySourceHelmArgs:
     def __init__(__self__, *,
-                 file_parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceHelmFileParametersArgs']]]] = None,
-                 parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceHelmParametersArgs']]]] = None,
+                 file_parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceHelmFileParametersArgs']]]] = None,
+                 parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceHelmParametersArgs']]]] = None,
                  pass_credentials: Optional[pulumi.Input[bool]] = None,
                  release_name: Optional[pulumi.Input[str]] = None,
                  value_files: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -2184,8 +3302,8 @@ class ApplicationSpecSourceHelmArgs:
                  version: Optional[pulumi.Input[str]] = None):
         """
         Helm holds helm specific options
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceHelmFileParametersArgs']]] file_parameters: FileParameters are file parameters to the helm template
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceHelmParametersArgs']]] parameters: Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceHelmFileParametersArgs']]] file_parameters: FileParameters are file parameters to the helm template
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceHelmParametersArgs']]] parameters: Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation
         :param pulumi.Input[bool] pass_credentials: PassCredentials pass credentials to all domains (Helm's --pass-credentials)
         :param pulumi.Input[str] release_name: ReleaseName is the Helm release name to use. If omitted it will use the application name
         :param pulumi.Input[Sequence[pulumi.Input[str]]] value_files: ValuesFiles is a list of Helm value files to use when generating a template
@@ -2209,26 +3327,26 @@ class ApplicationSpecSourceHelmArgs:
 
     @property
     @pulumi.getter(name="fileParameters")
-    def file_parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceHelmFileParametersArgs']]]]:
+    def file_parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceHelmFileParametersArgs']]]]:
         """
         FileParameters are file parameters to the helm template
         """
         return pulumi.get(self, "file_parameters")
 
     @file_parameters.setter
-    def file_parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceHelmFileParametersArgs']]]]):
+    def file_parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceHelmFileParametersArgs']]]]):
         pulumi.set(self, "file_parameters", value)
 
     @property
     @pulumi.getter
-    def parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceHelmParametersArgs']]]]:
+    def parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceHelmParametersArgs']]]]:
         """
         Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation
         """
         return pulumi.get(self, "parameters")
 
     @parameters.setter
-    def parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceHelmParametersArgs']]]]):
+    def parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceHelmParametersArgs']]]]):
         pulumi.set(self, "parameters", value)
 
     @property
@@ -2293,143 +3411,7 @@ class ApplicationSpecSourceHelmArgs:
 
 
 @pulumi.input_type
-class ApplicationSpecSourceHelmFileParametersArgs:
-    def __init__(__self__, *,
-                 name: Optional[pulumi.Input[str]] = None,
-                 path: Optional[pulumi.Input[str]] = None):
-        """
-        HelmFileParameter is a file parameter that's passed to helm template during manifest generation
-        :param pulumi.Input[str] name: Name is the name of the Helm parameter
-        :param pulumi.Input[str] path: Path is the path to the file containing the values for the Helm parameter
-        """
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if path is not None:
-            pulumi.set(__self__, "path", path)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Name is the name of the Helm parameter
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[str]]:
-        """
-        Path is the path to the file containing the values for the Helm parameter
-        """
-        return pulumi.get(self, "path")
-
-    @path.setter
-    def path(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "path", value)
-
-
-@pulumi.input_type
-class ApplicationSpecSourceHelmParametersArgs:
-    def __init__(__self__, *,
-                 force_string: Optional[pulumi.Input[bool]] = None,
-                 name: Optional[pulumi.Input[str]] = None,
-                 value: Optional[pulumi.Input[str]] = None):
-        """
-        HelmParameter is a parameter that's passed to helm template during manifest generation
-        :param pulumi.Input[bool] force_string: ForceString determines whether to tell Helm to interpret booleans and numbers as strings
-        :param pulumi.Input[str] name: Name is the name of the Helm parameter
-        :param pulumi.Input[str] value: Value is the value for the Helm parameter
-        """
-        if force_string is not None:
-            pulumi.set(__self__, "force_string", force_string)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if value is not None:
-            pulumi.set(__self__, "value", value)
-
-    @property
-    @pulumi.getter(name="forceString")
-    def force_string(self) -> Optional[pulumi.Input[bool]]:
-        """
-        ForceString determines whether to tell Helm to interpret booleans and numbers as strings
-        """
-        return pulumi.get(self, "force_string")
-
-    @force_string.setter
-    def force_string(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "force_string", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Name is the name of the Helm parameter
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def value(self) -> Optional[pulumi.Input[str]]:
-        """
-        Value is the value for the Helm parameter
-        """
-        return pulumi.get(self, "value")
-
-    @value.setter
-    def value(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "value", value)
-
-
-@pulumi.input_type
-class ApplicationSpecSourceKsonnetArgs:
-    def __init__(__self__, *,
-                 environment: Optional[pulumi.Input[str]] = None,
-                 parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceKsonnetParametersArgs']]]] = None):
-        """
-        Ksonnet holds ksonnet specific options
-        :param pulumi.Input[str] environment: Environment is a ksonnet application environment name
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceKsonnetParametersArgs']]] parameters: Parameters are a list of ksonnet component parameter override values
-        """
-        if environment is not None:
-            pulumi.set(__self__, "environment", environment)
-        if parameters is not None:
-            pulumi.set(__self__, "parameters", parameters)
-
-    @property
-    @pulumi.getter
-    def environment(self) -> Optional[pulumi.Input[str]]:
-        """
-        Environment is a ksonnet application environment name
-        """
-        return pulumi.get(self, "environment")
-
-    @environment.setter
-    def environment(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "environment", value)
-
-    @property
-    @pulumi.getter
-    def parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceKsonnetParametersArgs']]]]:
-        """
-        Parameters are a list of ksonnet component parameter override values
-        """
-        return pulumi.get(self, "parameters")
-
-    @parameters.setter
-    def parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourceKsonnetParametersArgs']]]]):
-        pulumi.set(self, "parameters", value)
-
-
-@pulumi.input_type
-class ApplicationSpecSourceKsonnetParametersArgs:
+class ApplicationStatusHistorySourceKsonnetParametersArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
                  value: pulumi.Input[str],
@@ -2471,7 +3453,47 @@ class ApplicationSpecSourceKsonnetParametersArgs:
 
 
 @pulumi.input_type
-class ApplicationSpecSourceKustomizeArgs:
+class ApplicationStatusHistorySourceKsonnetArgs:
+    def __init__(__self__, *,
+                 environment: Optional[pulumi.Input[str]] = None,
+                 parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceKsonnetParametersArgs']]]] = None):
+        """
+        Ksonnet holds ksonnet specific options
+        :param pulumi.Input[str] environment: Environment is a ksonnet application environment name
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceKsonnetParametersArgs']]] parameters: Parameters are a list of ksonnet component parameter override values
+        """
+        if environment is not None:
+            pulumi.set(__self__, "environment", environment)
+        if parameters is not None:
+            pulumi.set(__self__, "parameters", parameters)
+
+    @property
+    @pulumi.getter
+    def environment(self) -> Optional[pulumi.Input[str]]:
+        """
+        Environment is a ksonnet application environment name
+        """
+        return pulumi.get(self, "environment")
+
+    @environment.setter
+    def environment(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "environment", value)
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceKsonnetParametersArgs']]]]:
+        """
+        Parameters are a list of ksonnet component parameter override values
+        """
+        return pulumi.get(self, "parameters")
+
+    @parameters.setter
+    def parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceKsonnetParametersArgs']]]]):
+        pulumi.set(self, "parameters", value)
+
+
+@pulumi.input_type
+class ApplicationStatusHistorySourceKustomizeArgs:
     def __init__(__self__, *,
                  common_annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  common_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -2607,43 +3629,7 @@ class ApplicationSpecSourceKustomizeArgs:
 
 
 @pulumi.input_type
-class ApplicationSpecSourcePluginArgs:
-    def __init__(__self__, *,
-                 env: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourcePluginEnvArgs']]]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
-        """
-        ConfigManagementPlugin holds config management plugin specific options
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourcePluginEnvArgs']]] env: Env is a list of environment variable entries
-        """
-        if env is not None:
-            pulumi.set(__self__, "env", env)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-
-    @property
-    @pulumi.getter
-    def env(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourcePluginEnvArgs']]]]:
-        """
-        Env is a list of environment variable entries
-        """
-        return pulumi.get(self, "env")
-
-    @env.setter
-    def env(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationSpecSourcePluginEnvArgs']]]]):
-        pulumi.set(self, "env", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
-
-
-@pulumi.input_type
-class ApplicationSpecSourcePluginEnvArgs:
+class ApplicationStatusHistorySourcePluginEnvArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
                  value: pulumi.Input[str]):
@@ -2681,159 +3667,346 @@ class ApplicationSpecSourcePluginEnvArgs:
 
 
 @pulumi.input_type
-class ApplicationSpecSyncPolicyArgs:
+class ApplicationStatusHistorySourcePluginArgs:
     def __init__(__self__, *,
-                 automated: Optional[pulumi.Input['ApplicationSpecSyncPolicyAutomatedArgs']] = None,
-                 retry: Optional[pulumi.Input['ApplicationSpecSyncPolicyRetryArgs']] = None,
-                 sync_options: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+                 env: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourcePluginEnvArgs']]]] = None,
+                 name: Optional[pulumi.Input[str]] = None):
         """
-        SyncPolicy controls when and how a sync will be performed
-        :param pulumi.Input['ApplicationSpecSyncPolicyAutomatedArgs'] automated: Automated will keep an application synced to the target revision
-        :param pulumi.Input['ApplicationSpecSyncPolicyRetryArgs'] retry: Retry controls failed sync retry behavior
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] sync_options: Options allow you to specify whole app sync-options
+        ConfigManagementPlugin holds config management plugin specific options
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourcePluginEnvArgs']]] env: Env is a list of environment variable entries
         """
-        if automated is not None:
-            pulumi.set(__self__, "automated", automated)
-        if retry is not None:
-            pulumi.set(__self__, "retry", retry)
-        if sync_options is not None:
-            pulumi.set(__self__, "sync_options", sync_options)
+        if env is not None:
+            pulumi.set(__self__, "env", env)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
-    def automated(self) -> Optional[pulumi.Input['ApplicationSpecSyncPolicyAutomatedArgs']]:
+    def env(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourcePluginEnvArgs']]]]:
         """
-        Automated will keep an application synced to the target revision
+        Env is a list of environment variable entries
+        """
+        return pulumi.get(self, "env")
+
+    @env.setter
+    def env(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourcePluginEnvArgs']]]]):
+        pulumi.set(self, "env", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class ApplicationStatusHistorySourceArgs:
+    def __init__(__self__, *,
+                 repo_url: pulumi.Input[str],
+                 chart: Optional[pulumi.Input[str]] = None,
+                 directory: Optional[pulumi.Input['ApplicationStatusHistorySourceDirectoryArgs']] = None,
+                 helm: Optional[pulumi.Input['ApplicationStatusHistorySourceHelmArgs']] = None,
+                 ksonnet: Optional[pulumi.Input['ApplicationStatusHistorySourceKsonnetArgs']] = None,
+                 kustomize: Optional[pulumi.Input['ApplicationStatusHistorySourceKustomizeArgs']] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 plugin: Optional[pulumi.Input['ApplicationStatusHistorySourcePluginArgs']] = None,
+                 target_revision: Optional[pulumi.Input[str]] = None):
+        """
+        Source is a reference to the application source used for the sync operation
+        :param pulumi.Input[str] repo_url: RepoURL is the URL to the repository (Git or Helm) that contains the application manifests
+        :param pulumi.Input[str] chart: Chart is a Helm chart name, and must be specified for applications sourced from a Helm repo.
+        :param pulumi.Input['ApplicationStatusHistorySourceDirectoryArgs'] directory: Directory holds path/directory specific options
+        :param pulumi.Input['ApplicationStatusHistorySourceHelmArgs'] helm: Helm holds helm specific options
+        :param pulumi.Input['ApplicationStatusHistorySourceKsonnetArgs'] ksonnet: Ksonnet holds ksonnet specific options
+        :param pulumi.Input['ApplicationStatusHistorySourceKustomizeArgs'] kustomize: Kustomize holds kustomize specific options
+        :param pulumi.Input[str] path: Path is a directory path within the Git repository, and is only valid for applications sourced from Git.
+        :param pulumi.Input['ApplicationStatusHistorySourcePluginArgs'] plugin: ConfigManagementPlugin holds config management plugin specific options
+        :param pulumi.Input[str] target_revision: TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version.
+        """
+        pulumi.set(__self__, "repo_url", repo_url)
+        if chart is not None:
+            pulumi.set(__self__, "chart", chart)
+        if directory is not None:
+            pulumi.set(__self__, "directory", directory)
+        if helm is not None:
+            pulumi.set(__self__, "helm", helm)
+        if ksonnet is not None:
+            pulumi.set(__self__, "ksonnet", ksonnet)
+        if kustomize is not None:
+            pulumi.set(__self__, "kustomize", kustomize)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if plugin is not None:
+            pulumi.set(__self__, "plugin", plugin)
+        if target_revision is not None:
+            pulumi.set(__self__, "target_revision", target_revision)
+
+    @property
+    @pulumi.getter(name="repoURL")
+    def repo_url(self) -> pulumi.Input[str]:
+        """
+        RepoURL is the URL to the repository (Git or Helm) that contains the application manifests
+        """
+        return pulumi.get(self, "repo_url")
+
+    @repo_url.setter
+    def repo_url(self, value: pulumi.Input[str]):
+        pulumi.set(self, "repo_url", value)
+
+    @property
+    @pulumi.getter
+    def chart(self) -> Optional[pulumi.Input[str]]:
+        """
+        Chart is a Helm chart name, and must be specified for applications sourced from a Helm repo.
+        """
+        return pulumi.get(self, "chart")
+
+    @chart.setter
+    def chart(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "chart", value)
+
+    @property
+    @pulumi.getter
+    def directory(self) -> Optional[pulumi.Input['ApplicationStatusHistorySourceDirectoryArgs']]:
+        """
+        Directory holds path/directory specific options
+        """
+        return pulumi.get(self, "directory")
+
+    @directory.setter
+    def directory(self, value: Optional[pulumi.Input['ApplicationStatusHistorySourceDirectoryArgs']]):
+        pulumi.set(self, "directory", value)
+
+    @property
+    @pulumi.getter
+    def helm(self) -> Optional[pulumi.Input['ApplicationStatusHistorySourceHelmArgs']]:
+        """
+        Helm holds helm specific options
+        """
+        return pulumi.get(self, "helm")
+
+    @helm.setter
+    def helm(self, value: Optional[pulumi.Input['ApplicationStatusHistorySourceHelmArgs']]):
+        pulumi.set(self, "helm", value)
+
+    @property
+    @pulumi.getter
+    def ksonnet(self) -> Optional[pulumi.Input['ApplicationStatusHistorySourceKsonnetArgs']]:
+        """
+        Ksonnet holds ksonnet specific options
+        """
+        return pulumi.get(self, "ksonnet")
+
+    @ksonnet.setter
+    def ksonnet(self, value: Optional[pulumi.Input['ApplicationStatusHistorySourceKsonnetArgs']]):
+        pulumi.set(self, "ksonnet", value)
+
+    @property
+    @pulumi.getter
+    def kustomize(self) -> Optional[pulumi.Input['ApplicationStatusHistorySourceKustomizeArgs']]:
+        """
+        Kustomize holds kustomize specific options
+        """
+        return pulumi.get(self, "kustomize")
+
+    @kustomize.setter
+    def kustomize(self, value: Optional[pulumi.Input['ApplicationStatusHistorySourceKustomizeArgs']]):
+        pulumi.set(self, "kustomize", value)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path is a directory path within the Git repository, and is only valid for applications sourced from Git.
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter
+    def plugin(self) -> Optional[pulumi.Input['ApplicationStatusHistorySourcePluginArgs']]:
+        """
+        ConfigManagementPlugin holds config management plugin specific options
+        """
+        return pulumi.get(self, "plugin")
+
+    @plugin.setter
+    def plugin(self, value: Optional[pulumi.Input['ApplicationStatusHistorySourcePluginArgs']]):
+        pulumi.set(self, "plugin", value)
+
+    @property
+    @pulumi.getter(name="targetRevision")
+    def target_revision(self) -> Optional[pulumi.Input[str]]:
+        """
+        TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version.
+        """
+        return pulumi.get(self, "target_revision")
+
+    @target_revision.setter
+    def target_revision(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "target_revision", value)
+
+
+@pulumi.input_type
+class ApplicationStatusHistoryArgs:
+    def __init__(__self__, *,
+                 deployed_at: pulumi.Input[str],
+                 id: pulumi.Input[int],
+                 revision: pulumi.Input[str],
+                 deploy_started_at: Optional[pulumi.Input[str]] = None,
+                 source: Optional[pulumi.Input['ApplicationStatusHistorySourceArgs']] = None):
+        """
+        RevisionHistory contains history information about a previous sync
+        :param pulumi.Input[str] deployed_at: DeployedAt holds the time the sync operation completed
+        :param pulumi.Input[int] id: ID is an auto incrementing identifier of the RevisionHistory
+        :param pulumi.Input[str] revision: Revision holds the revision the sync was performed against
+        :param pulumi.Input[str] deploy_started_at: DeployStartedAt holds the time the sync operation started
+        :param pulumi.Input['ApplicationStatusHistorySourceArgs'] source: Source is a reference to the application source used for the sync operation
+        """
+        pulumi.set(__self__, "deployed_at", deployed_at)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "revision", revision)
+        if deploy_started_at is not None:
+            pulumi.set(__self__, "deploy_started_at", deploy_started_at)
+        if source is not None:
+            pulumi.set(__self__, "source", source)
+
+    @property
+    @pulumi.getter(name="deployedAt")
+    def deployed_at(self) -> pulumi.Input[str]:
+        """
+        DeployedAt holds the time the sync operation completed
+        """
+        return pulumi.get(self, "deployed_at")
+
+    @deployed_at.setter
+    def deployed_at(self, value: pulumi.Input[str]):
+        pulumi.set(self, "deployed_at", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> pulumi.Input[int]:
+        """
+        ID is an auto incrementing identifier of the RevisionHistory
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: pulumi.Input[int]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter
+    def revision(self) -> pulumi.Input[str]:
+        """
+        Revision holds the revision the sync was performed against
+        """
+        return pulumi.get(self, "revision")
+
+    @revision.setter
+    def revision(self, value: pulumi.Input[str]):
+        pulumi.set(self, "revision", value)
+
+    @property
+    @pulumi.getter(name="deployStartedAt")
+    def deploy_started_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        DeployStartedAt holds the time the sync operation started
+        """
+        return pulumi.get(self, "deploy_started_at")
+
+    @deploy_started_at.setter
+    def deploy_started_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "deploy_started_at", value)
+
+    @property
+    @pulumi.getter
+    def source(self) -> Optional[pulumi.Input['ApplicationStatusHistorySourceArgs']]:
+        """
+        Source is a reference to the application source used for the sync operation
+        """
+        return pulumi.get(self, "source")
+
+    @source.setter
+    def source(self, value: Optional[pulumi.Input['ApplicationStatusHistorySourceArgs']]):
+        pulumi.set(self, "source", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateOperationInfoArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateOperationInitiatedByArgs:
+    def __init__(__self__, *,
+                 automated: Optional[pulumi.Input[bool]] = None,
+                 username: Optional[pulumi.Input[str]] = None):
+        """
+        InitiatedBy contains information about who initiated the operations
+        :param pulumi.Input[bool] automated: Automated is set to true if operation was initiated automatically by the application controller.
+        :param pulumi.Input[str] username: Username contains the name of a user who started operation
+        """
+        if automated is not None:
+            pulumi.set(__self__, "automated", automated)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def automated(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Automated is set to true if operation was initiated automatically by the application controller.
         """
         return pulumi.get(self, "automated")
 
     @automated.setter
-    def automated(self, value: Optional[pulumi.Input['ApplicationSpecSyncPolicyAutomatedArgs']]):
+    def automated(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "automated", value)
 
     @property
     @pulumi.getter
-    def retry(self) -> Optional[pulumi.Input['ApplicationSpecSyncPolicyRetryArgs']]:
+    def username(self) -> Optional[pulumi.Input[str]]:
         """
-        Retry controls failed sync retry behavior
+        Username contains the name of a user who started operation
         """
-        return pulumi.get(self, "retry")
+        return pulumi.get(self, "username")
 
-    @retry.setter
-    def retry(self, value: Optional[pulumi.Input['ApplicationSpecSyncPolicyRetryArgs']]):
-        pulumi.set(self, "retry", value)
-
-    @property
-    @pulumi.getter(name="syncOptions")
-    def sync_options(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        Options allow you to specify whole app sync-options
-        """
-        return pulumi.get(self, "sync_options")
-
-    @sync_options.setter
-    def sync_options(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "sync_options", value)
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username", value)
 
 
 @pulumi.input_type
-class ApplicationSpecSyncPolicyAutomatedArgs:
-    def __init__(__self__, *,
-                 allow_empty: Optional[pulumi.Input[bool]] = None,
-                 prune: Optional[pulumi.Input[bool]] = None,
-                 self_heal: Optional[pulumi.Input[bool]] = None):
-        """
-        Automated will keep an application synced to the target revision
-        :param pulumi.Input[bool] allow_empty: AllowEmpty allows apps have zero live resources (default: false)
-        :param pulumi.Input[bool] prune: Prune specifies whether to delete resources from the cluster that are not found in the sources anymore as part of automated sync (default: false)
-        :param pulumi.Input[bool] self_heal: SelfHeal specifes whether to revert resources back to their desired state upon modification in the cluster (default: false)
-        """
-        if allow_empty is not None:
-            pulumi.set(__self__, "allow_empty", allow_empty)
-        if prune is not None:
-            pulumi.set(__self__, "prune", prune)
-        if self_heal is not None:
-            pulumi.set(__self__, "self_heal", self_heal)
-
-    @property
-    @pulumi.getter(name="allowEmpty")
-    def allow_empty(self) -> Optional[pulumi.Input[bool]]:
-        """
-        AllowEmpty allows apps have zero live resources (default: false)
-        """
-        return pulumi.get(self, "allow_empty")
-
-    @allow_empty.setter
-    def allow_empty(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "allow_empty", value)
-
-    @property
-    @pulumi.getter
-    def prune(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Prune specifies whether to delete resources from the cluster that are not found in the sources anymore as part of automated sync (default: false)
-        """
-        return pulumi.get(self, "prune")
-
-    @prune.setter
-    def prune(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "prune", value)
-
-    @property
-    @pulumi.getter(name="selfHeal")
-    def self_heal(self) -> Optional[pulumi.Input[bool]]:
-        """
-        SelfHeal specifes whether to revert resources back to their desired state upon modification in the cluster (default: false)
-        """
-        return pulumi.get(self, "self_heal")
-
-    @self_heal.setter
-    def self_heal(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "self_heal", value)
-
-
-@pulumi.input_type
-class ApplicationSpecSyncPolicyRetryArgs:
-    def __init__(__self__, *,
-                 backoff: Optional[pulumi.Input['ApplicationSpecSyncPolicyRetryBackoffArgs']] = None,
-                 limit: Optional[pulumi.Input[int]] = None):
-        """
-        Retry controls failed sync retry behavior
-        :param pulumi.Input['ApplicationSpecSyncPolicyRetryBackoffArgs'] backoff: Backoff controls how to backoff on subsequent retries of failed syncs
-        :param pulumi.Input[int] limit: Limit is the maximum number of attempts for retrying a failed sync. If set to 0, no retries will be performed.
-        """
-        if backoff is not None:
-            pulumi.set(__self__, "backoff", backoff)
-        if limit is not None:
-            pulumi.set(__self__, "limit", limit)
-
-    @property
-    @pulumi.getter
-    def backoff(self) -> Optional[pulumi.Input['ApplicationSpecSyncPolicyRetryBackoffArgs']]:
-        """
-        Backoff controls how to backoff on subsequent retries of failed syncs
-        """
-        return pulumi.get(self, "backoff")
-
-    @backoff.setter
-    def backoff(self, value: Optional[pulumi.Input['ApplicationSpecSyncPolicyRetryBackoffArgs']]):
-        pulumi.set(self, "backoff", value)
-
-    @property
-    @pulumi.getter
-    def limit(self) -> Optional[pulumi.Input[int]]:
-        """
-        Limit is the maximum number of attempts for retrying a failed sync. If set to 0, no retries will be performed.
-        """
-        return pulumi.get(self, "limit")
-
-    @limit.setter
-    def limit(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "limit", value)
-
-
-@pulumi.input_type
-class ApplicationSpecSyncPolicyRetryBackoffArgs:
+class ApplicationStatusOperationStateOperationRetryBackoffArgs:
     def __init__(__self__, *,
                  duration: Optional[pulumi.Input[str]] = None,
                  factor: Optional[pulumi.Input[int]] = None,
@@ -2886,6 +4059,3697 @@ class ApplicationSpecSyncPolicyRetryBackoffArgs:
     @max_duration.setter
     def max_duration(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "max_duration", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateOperationRetryArgs:
+    def __init__(__self__, *,
+                 backoff: Optional[pulumi.Input['ApplicationStatusOperationStateOperationRetryBackoffArgs']] = None,
+                 limit: Optional[pulumi.Input[int]] = None):
+        """
+        Retry controls the strategy to apply if a sync fails
+        :param pulumi.Input['ApplicationStatusOperationStateOperationRetryBackoffArgs'] backoff: Backoff controls how to backoff on subsequent retries of failed syncs
+        :param pulumi.Input[int] limit: Limit is the maximum number of attempts for retrying a failed sync. If set to 0, no retries will be performed.
+        """
+        if backoff is not None:
+            pulumi.set(__self__, "backoff", backoff)
+        if limit is not None:
+            pulumi.set(__self__, "limit", limit)
+
+    @property
+    @pulumi.getter
+    def backoff(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateOperationRetryBackoffArgs']]:
+        """
+        Backoff controls how to backoff on subsequent retries of failed syncs
+        """
+        return pulumi.get(self, "backoff")
+
+    @backoff.setter
+    def backoff(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateOperationRetryBackoffArgs']]):
+        pulumi.set(self, "backoff", value)
+
+    @property
+    @pulumi.getter
+    def limit(self) -> Optional[pulumi.Input[int]]:
+        """
+        Limit is the maximum number of attempts for retrying a failed sync. If set to 0, no retries will be performed.
+        """
+        return pulumi.get(self, "limit")
+
+    @limit.setter
+    def limit(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "limit", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateOperationSyncResourcesArgs:
+    def __init__(__self__, *,
+                 kind: pulumi.Input[str],
+                 name: pulumi.Input[str],
+                 group: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None):
+        """
+        SyncOperationResource contains resources to sync.
+        """
+        pulumi.set(__self__, "kind", kind)
+        pulumi.set(__self__, "name", name)
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
+
+    @property
+    @pulumi.getter
+    def kind(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "kind")
+
+    @kind.setter
+    def kind(self, value: pulumi.Input[str]):
+        pulumi.set(self, "kind", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def group(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "group")
+
+    @group.setter
+    def group(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "group", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateOperationSyncSourceDirectoryJsonnetExtVarsArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 value: pulumi.Input[str],
+                 code: Optional[pulumi.Input[bool]] = None):
+        """
+        JsonnetVar represents a variable to be passed to jsonnet during manifest generation
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+        if code is not None:
+            pulumi.set(__self__, "code", code)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+    @property
+    @pulumi.getter
+    def code(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "code")
+
+    @code.setter
+    def code(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "code", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateOperationSyncSourceDirectoryJsonnetTlasArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 value: pulumi.Input[str],
+                 code: Optional[pulumi.Input[bool]] = None):
+        """
+        JsonnetVar represents a variable to be passed to jsonnet during manifest generation
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+        if code is not None:
+            pulumi.set(__self__, "code", code)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+    @property
+    @pulumi.getter
+    def code(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "code")
+
+    @code.setter
+    def code(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "code", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateOperationSyncSourceDirectoryJsonnetArgs:
+    def __init__(__self__, *,
+                 ext_vars: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceDirectoryJsonnetExtVarsArgs']]]] = None,
+                 libs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 tlas: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceDirectoryJsonnetTlasArgs']]]] = None):
+        """
+        Jsonnet holds options specific to Jsonnet
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceDirectoryJsonnetExtVarsArgs']]] ext_vars: ExtVars is a list of Jsonnet External Variables
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] libs: Additional library search dirs
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceDirectoryJsonnetTlasArgs']]] tlas: TLAS is a list of Jsonnet Top-level Arguments
+        """
+        if ext_vars is not None:
+            pulumi.set(__self__, "ext_vars", ext_vars)
+        if libs is not None:
+            pulumi.set(__self__, "libs", libs)
+        if tlas is not None:
+            pulumi.set(__self__, "tlas", tlas)
+
+    @property
+    @pulumi.getter(name="extVars")
+    def ext_vars(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceDirectoryJsonnetExtVarsArgs']]]]:
+        """
+        ExtVars is a list of Jsonnet External Variables
+        """
+        return pulumi.get(self, "ext_vars")
+
+    @ext_vars.setter
+    def ext_vars(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceDirectoryJsonnetExtVarsArgs']]]]):
+        pulumi.set(self, "ext_vars", value)
+
+    @property
+    @pulumi.getter
+    def libs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Additional library search dirs
+        """
+        return pulumi.get(self, "libs")
+
+    @libs.setter
+    def libs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "libs", value)
+
+    @property
+    @pulumi.getter
+    def tlas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceDirectoryJsonnetTlasArgs']]]]:
+        """
+        TLAS is a list of Jsonnet Top-level Arguments
+        """
+        return pulumi.get(self, "tlas")
+
+    @tlas.setter
+    def tlas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceDirectoryJsonnetTlasArgs']]]]):
+        pulumi.set(self, "tlas", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateOperationSyncSourceDirectoryArgs:
+    def __init__(__self__, *,
+                 exclude: Optional[pulumi.Input[str]] = None,
+                 include: Optional[pulumi.Input[str]] = None,
+                 jsonnet: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceDirectoryJsonnetArgs']] = None,
+                 recurse: Optional[pulumi.Input[bool]] = None):
+        """
+        Directory holds path/directory specific options
+        :param pulumi.Input[str] exclude: Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation
+        :param pulumi.Input[str] include: Include contains a glob pattern to match paths against that should be explicitly included during manifest generation
+        :param pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceDirectoryJsonnetArgs'] jsonnet: Jsonnet holds options specific to Jsonnet
+        :param pulumi.Input[bool] recurse: Recurse specifies whether to scan a directory recursively for manifests
+        """
+        if exclude is not None:
+            pulumi.set(__self__, "exclude", exclude)
+        if include is not None:
+            pulumi.set(__self__, "include", include)
+        if jsonnet is not None:
+            pulumi.set(__self__, "jsonnet", jsonnet)
+        if recurse is not None:
+            pulumi.set(__self__, "recurse", recurse)
+
+    @property
+    @pulumi.getter
+    def exclude(self) -> Optional[pulumi.Input[str]]:
+        """
+        Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation
+        """
+        return pulumi.get(self, "exclude")
+
+    @exclude.setter
+    def exclude(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "exclude", value)
+
+    @property
+    @pulumi.getter
+    def include(self) -> Optional[pulumi.Input[str]]:
+        """
+        Include contains a glob pattern to match paths against that should be explicitly included during manifest generation
+        """
+        return pulumi.get(self, "include")
+
+    @include.setter
+    def include(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "include", value)
+
+    @property
+    @pulumi.getter
+    def jsonnet(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceDirectoryJsonnetArgs']]:
+        """
+        Jsonnet holds options specific to Jsonnet
+        """
+        return pulumi.get(self, "jsonnet")
+
+    @jsonnet.setter
+    def jsonnet(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceDirectoryJsonnetArgs']]):
+        pulumi.set(self, "jsonnet", value)
+
+    @property
+    @pulumi.getter
+    def recurse(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Recurse specifies whether to scan a directory recursively for manifests
+        """
+        return pulumi.get(self, "recurse")
+
+    @recurse.setter
+    def recurse(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "recurse", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateOperationSyncSourceHelmFileParametersArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None):
+        """
+        HelmFileParameter is a file parameter that's passed to helm template during manifest generation
+        :param pulumi.Input[str] name: Name is the name of the Helm parameter
+        :param pulumi.Input[str] path: Path is the path to the file containing the values for the Helm parameter
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name is the name of the Helm parameter
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path is the path to the file containing the values for the Helm parameter
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "path", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateOperationSyncSourceHelmParametersArgs:
+    def __init__(__self__, *,
+                 force_string: Optional[pulumi.Input[bool]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        """
+        HelmParameter is a parameter that's passed to helm template during manifest generation
+        :param pulumi.Input[bool] force_string: ForceString determines whether to tell Helm to interpret booleans and numbers as strings
+        :param pulumi.Input[str] name: Name is the name of the Helm parameter
+        :param pulumi.Input[str] value: Value is the value for the Helm parameter
+        """
+        if force_string is not None:
+            pulumi.set(__self__, "force_string", force_string)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="forceString")
+    def force_string(self) -> Optional[pulumi.Input[bool]]:
+        """
+        ForceString determines whether to tell Helm to interpret booleans and numbers as strings
+        """
+        return pulumi.get(self, "force_string")
+
+    @force_string.setter
+    def force_string(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "force_string", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name is the name of the Helm parameter
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        """
+        Value is the value for the Helm parameter
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateOperationSyncSourceHelmArgs:
+    def __init__(__self__, *,
+                 file_parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceHelmFileParametersArgs']]]] = None,
+                 parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceHelmParametersArgs']]]] = None,
+                 pass_credentials: Optional[pulumi.Input[bool]] = None,
+                 release_name: Optional[pulumi.Input[str]] = None,
+                 value_files: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 values: Optional[pulumi.Input[str]] = None,
+                 version: Optional[pulumi.Input[str]] = None):
+        """
+        Helm holds helm specific options
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceHelmFileParametersArgs']]] file_parameters: FileParameters are file parameters to the helm template
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceHelmParametersArgs']]] parameters: Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation
+        :param pulumi.Input[bool] pass_credentials: PassCredentials pass credentials to all domains (Helm's --pass-credentials)
+        :param pulumi.Input[str] release_name: ReleaseName is the Helm release name to use. If omitted it will use the application name
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] value_files: ValuesFiles is a list of Helm value files to use when generating a template
+        :param pulumi.Input[str] values: Values specifies Helm values to be passed to helm template, typically defined as a block
+        :param pulumi.Input[str] version: Version is the Helm version to use for templating (either "2" or "3")
+        """
+        if file_parameters is not None:
+            pulumi.set(__self__, "file_parameters", file_parameters)
+        if parameters is not None:
+            pulumi.set(__self__, "parameters", parameters)
+        if pass_credentials is not None:
+            pulumi.set(__self__, "pass_credentials", pass_credentials)
+        if release_name is not None:
+            pulumi.set(__self__, "release_name", release_name)
+        if value_files is not None:
+            pulumi.set(__self__, "value_files", value_files)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter(name="fileParameters")
+    def file_parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceHelmFileParametersArgs']]]]:
+        """
+        FileParameters are file parameters to the helm template
+        """
+        return pulumi.get(self, "file_parameters")
+
+    @file_parameters.setter
+    def file_parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceHelmFileParametersArgs']]]]):
+        pulumi.set(self, "file_parameters", value)
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceHelmParametersArgs']]]]:
+        """
+        Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation
+        """
+        return pulumi.get(self, "parameters")
+
+    @parameters.setter
+    def parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceHelmParametersArgs']]]]):
+        pulumi.set(self, "parameters", value)
+
+    @property
+    @pulumi.getter(name="passCredentials")
+    def pass_credentials(self) -> Optional[pulumi.Input[bool]]:
+        """
+        PassCredentials pass credentials to all domains (Helm's --pass-credentials)
+        """
+        return pulumi.get(self, "pass_credentials")
+
+    @pass_credentials.setter
+    def pass_credentials(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "pass_credentials", value)
+
+    @property
+    @pulumi.getter(name="releaseName")
+    def release_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        ReleaseName is the Helm release name to use. If omitted it will use the application name
+        """
+        return pulumi.get(self, "release_name")
+
+    @release_name.setter
+    def release_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "release_name", value)
+
+    @property
+    @pulumi.getter(name="valueFiles")
+    def value_files(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        ValuesFiles is a list of Helm value files to use when generating a template
+        """
+        return pulumi.get(self, "value_files")
+
+    @value_files.setter
+    def value_files(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "value_files", value)
+
+    @property
+    @pulumi.getter
+    def values(self) -> Optional[pulumi.Input[str]]:
+        """
+        Values specifies Helm values to be passed to helm template, typically defined as a block
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "values", value)
+
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Version is the Helm version to use for templating (either "2" or "3")
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "version", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateOperationSyncSourceKsonnetParametersArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 value: pulumi.Input[str],
+                 component: Optional[pulumi.Input[str]] = None):
+        """
+        KsonnetParameter is a ksonnet component parameter
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+        if component is not None:
+            pulumi.set(__self__, "component", component)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+    @property
+    @pulumi.getter
+    def component(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "component")
+
+    @component.setter
+    def component(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "component", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateOperationSyncSourceKsonnetArgs:
+    def __init__(__self__, *,
+                 environment: Optional[pulumi.Input[str]] = None,
+                 parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceKsonnetParametersArgs']]]] = None):
+        """
+        Ksonnet holds ksonnet specific options
+        :param pulumi.Input[str] environment: Environment is a ksonnet application environment name
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceKsonnetParametersArgs']]] parameters: Parameters are a list of ksonnet component parameter override values
+        """
+        if environment is not None:
+            pulumi.set(__self__, "environment", environment)
+        if parameters is not None:
+            pulumi.set(__self__, "parameters", parameters)
+
+    @property
+    @pulumi.getter
+    def environment(self) -> Optional[pulumi.Input[str]]:
+        """
+        Environment is a ksonnet application environment name
+        """
+        return pulumi.get(self, "environment")
+
+    @environment.setter
+    def environment(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "environment", value)
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceKsonnetParametersArgs']]]]:
+        """
+        Parameters are a list of ksonnet component parameter override values
+        """
+        return pulumi.get(self, "parameters")
+
+    @parameters.setter
+    def parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceKsonnetParametersArgs']]]]):
+        pulumi.set(self, "parameters", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateOperationSyncSourceKustomizeArgs:
+    def __init__(__self__, *,
+                 common_annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 common_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 force_common_annotations: Optional[pulumi.Input[bool]] = None,
+                 force_common_labels: Optional[pulumi.Input[bool]] = None,
+                 images: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 name_prefix: Optional[pulumi.Input[str]] = None,
+                 name_suffix: Optional[pulumi.Input[str]] = None,
+                 version: Optional[pulumi.Input[str]] = None):
+        """
+        Kustomize holds kustomize specific options
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] common_annotations: CommonAnnotations is a list of additional annotations to add to rendered manifests
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] common_labels: CommonLabels is a list of additional labels to add to rendered manifests
+        :param pulumi.Input[bool] force_common_annotations: ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps
+        :param pulumi.Input[bool] force_common_labels: ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] images: Images is a list of Kustomize image override specifications
+        :param pulumi.Input[str] name_prefix: NamePrefix is a prefix appended to resources for Kustomize apps
+        :param pulumi.Input[str] name_suffix: NameSuffix is a suffix appended to resources for Kustomize apps
+        :param pulumi.Input[str] version: Version controls which version of Kustomize to use for rendering manifests
+        """
+        if common_annotations is not None:
+            pulumi.set(__self__, "common_annotations", common_annotations)
+        if common_labels is not None:
+            pulumi.set(__self__, "common_labels", common_labels)
+        if force_common_annotations is not None:
+            pulumi.set(__self__, "force_common_annotations", force_common_annotations)
+        if force_common_labels is not None:
+            pulumi.set(__self__, "force_common_labels", force_common_labels)
+        if images is not None:
+            pulumi.set(__self__, "images", images)
+        if name_prefix is not None:
+            pulumi.set(__self__, "name_prefix", name_prefix)
+        if name_suffix is not None:
+            pulumi.set(__self__, "name_suffix", name_suffix)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter(name="commonAnnotations")
+    def common_annotations(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        CommonAnnotations is a list of additional annotations to add to rendered manifests
+        """
+        return pulumi.get(self, "common_annotations")
+
+    @common_annotations.setter
+    def common_annotations(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "common_annotations", value)
+
+    @property
+    @pulumi.getter(name="commonLabels")
+    def common_labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        CommonLabels is a list of additional labels to add to rendered manifests
+        """
+        return pulumi.get(self, "common_labels")
+
+    @common_labels.setter
+    def common_labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "common_labels", value)
+
+    @property
+    @pulumi.getter(name="forceCommonAnnotations")
+    def force_common_annotations(self) -> Optional[pulumi.Input[bool]]:
+        """
+        ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps
+        """
+        return pulumi.get(self, "force_common_annotations")
+
+    @force_common_annotations.setter
+    def force_common_annotations(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "force_common_annotations", value)
+
+    @property
+    @pulumi.getter(name="forceCommonLabels")
+    def force_common_labels(self) -> Optional[pulumi.Input[bool]]:
+        """
+        ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps
+        """
+        return pulumi.get(self, "force_common_labels")
+
+    @force_common_labels.setter
+    def force_common_labels(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "force_common_labels", value)
+
+    @property
+    @pulumi.getter
+    def images(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Images is a list of Kustomize image override specifications
+        """
+        return pulumi.get(self, "images")
+
+    @images.setter
+    def images(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "images", value)
+
+    @property
+    @pulumi.getter(name="namePrefix")
+    def name_prefix(self) -> Optional[pulumi.Input[str]]:
+        """
+        NamePrefix is a prefix appended to resources for Kustomize apps
+        """
+        return pulumi.get(self, "name_prefix")
+
+    @name_prefix.setter
+    def name_prefix(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name_prefix", value)
+
+    @property
+    @pulumi.getter(name="nameSuffix")
+    def name_suffix(self) -> Optional[pulumi.Input[str]]:
+        """
+        NameSuffix is a suffix appended to resources for Kustomize apps
+        """
+        return pulumi.get(self, "name_suffix")
+
+    @name_suffix.setter
+    def name_suffix(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name_suffix", value)
+
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Version controls which version of Kustomize to use for rendering manifests
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "version", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateOperationSyncSourcePluginEnvArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        EnvEntry represents an entry in the application's environment
+        :param pulumi.Input[str] name: Name is the name of the variable, usually expressed in uppercase
+        :param pulumi.Input[str] value: Value is the value of the variable
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        Name is the name of the variable, usually expressed in uppercase
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        Value is the value of the variable
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateOperationSyncSourcePluginArgs:
+    def __init__(__self__, *,
+                 env: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourcePluginEnvArgs']]]] = None,
+                 name: Optional[pulumi.Input[str]] = None):
+        """
+        ConfigManagementPlugin holds config management plugin specific options
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourcePluginEnvArgs']]] env: Env is a list of environment variable entries
+        """
+        if env is not None:
+            pulumi.set(__self__, "env", env)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def env(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourcePluginEnvArgs']]]]:
+        """
+        Env is a list of environment variable entries
+        """
+        return pulumi.get(self, "env")
+
+    @env.setter
+    def env(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourcePluginEnvArgs']]]]):
+        pulumi.set(self, "env", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateOperationSyncSourceArgs:
+    def __init__(__self__, *,
+                 repo_url: pulumi.Input[str],
+                 chart: Optional[pulumi.Input[str]] = None,
+                 directory: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceDirectoryArgs']] = None,
+                 helm: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceHelmArgs']] = None,
+                 ksonnet: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceKsonnetArgs']] = None,
+                 kustomize: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceKustomizeArgs']] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 plugin: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourcePluginArgs']] = None,
+                 target_revision: Optional[pulumi.Input[str]] = None):
+        """
+        Source overrides the source definition set in the application. This is typically set in a Rollback operation and is nil during a Sync operation
+        :param pulumi.Input[str] repo_url: RepoURL is the URL to the repository (Git or Helm) that contains the application manifests
+        :param pulumi.Input[str] chart: Chart is a Helm chart name, and must be specified for applications sourced from a Helm repo.
+        :param pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceDirectoryArgs'] directory: Directory holds path/directory specific options
+        :param pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceHelmArgs'] helm: Helm holds helm specific options
+        :param pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceKsonnetArgs'] ksonnet: Ksonnet holds ksonnet specific options
+        :param pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceKustomizeArgs'] kustomize: Kustomize holds kustomize specific options
+        :param pulumi.Input[str] path: Path is a directory path within the Git repository, and is only valid for applications sourced from Git.
+        :param pulumi.Input['ApplicationStatusOperationStateOperationSyncSourcePluginArgs'] plugin: ConfigManagementPlugin holds config management plugin specific options
+        :param pulumi.Input[str] target_revision: TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version.
+        """
+        pulumi.set(__self__, "repo_url", repo_url)
+        if chart is not None:
+            pulumi.set(__self__, "chart", chart)
+        if directory is not None:
+            pulumi.set(__self__, "directory", directory)
+        if helm is not None:
+            pulumi.set(__self__, "helm", helm)
+        if ksonnet is not None:
+            pulumi.set(__self__, "ksonnet", ksonnet)
+        if kustomize is not None:
+            pulumi.set(__self__, "kustomize", kustomize)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if plugin is not None:
+            pulumi.set(__self__, "plugin", plugin)
+        if target_revision is not None:
+            pulumi.set(__self__, "target_revision", target_revision)
+
+    @property
+    @pulumi.getter(name="repoURL")
+    def repo_url(self) -> pulumi.Input[str]:
+        """
+        RepoURL is the URL to the repository (Git or Helm) that contains the application manifests
+        """
+        return pulumi.get(self, "repo_url")
+
+    @repo_url.setter
+    def repo_url(self, value: pulumi.Input[str]):
+        pulumi.set(self, "repo_url", value)
+
+    @property
+    @pulumi.getter
+    def chart(self) -> Optional[pulumi.Input[str]]:
+        """
+        Chart is a Helm chart name, and must be specified for applications sourced from a Helm repo.
+        """
+        return pulumi.get(self, "chart")
+
+    @chart.setter
+    def chart(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "chart", value)
+
+    @property
+    @pulumi.getter
+    def directory(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceDirectoryArgs']]:
+        """
+        Directory holds path/directory specific options
+        """
+        return pulumi.get(self, "directory")
+
+    @directory.setter
+    def directory(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceDirectoryArgs']]):
+        pulumi.set(self, "directory", value)
+
+    @property
+    @pulumi.getter
+    def helm(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceHelmArgs']]:
+        """
+        Helm holds helm specific options
+        """
+        return pulumi.get(self, "helm")
+
+    @helm.setter
+    def helm(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceHelmArgs']]):
+        pulumi.set(self, "helm", value)
+
+    @property
+    @pulumi.getter
+    def ksonnet(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceKsonnetArgs']]:
+        """
+        Ksonnet holds ksonnet specific options
+        """
+        return pulumi.get(self, "ksonnet")
+
+    @ksonnet.setter
+    def ksonnet(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceKsonnetArgs']]):
+        pulumi.set(self, "ksonnet", value)
+
+    @property
+    @pulumi.getter
+    def kustomize(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceKustomizeArgs']]:
+        """
+        Kustomize holds kustomize specific options
+        """
+        return pulumi.get(self, "kustomize")
+
+    @kustomize.setter
+    def kustomize(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceKustomizeArgs']]):
+        pulumi.set(self, "kustomize", value)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path is a directory path within the Git repository, and is only valid for applications sourced from Git.
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter
+    def plugin(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourcePluginArgs']]:
+        """
+        ConfigManagementPlugin holds config management plugin specific options
+        """
+        return pulumi.get(self, "plugin")
+
+    @plugin.setter
+    def plugin(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourcePluginArgs']]):
+        pulumi.set(self, "plugin", value)
+
+    @property
+    @pulumi.getter(name="targetRevision")
+    def target_revision(self) -> Optional[pulumi.Input[str]]:
+        """
+        TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version.
+        """
+        return pulumi.get(self, "target_revision")
+
+    @target_revision.setter
+    def target_revision(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "target_revision", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateOperationSyncSyncStrategyApplyArgs:
+    def __init__(__self__, *,
+                 force: Optional[pulumi.Input[bool]] = None):
+        """
+        Apply will perform a `kubectl apply` to perform the sync.
+        :param pulumi.Input[bool] force: Force indicates whether or not to supply the --force flag to `kubectl apply`. The --force flag deletes and re-create the resource, when PATCH encounters conflict and has retried for 5 times.
+        """
+        if force is not None:
+            pulumi.set(__self__, "force", force)
+
+    @property
+    @pulumi.getter
+    def force(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Force indicates whether or not to supply the --force flag to `kubectl apply`. The --force flag deletes and re-create the resource, when PATCH encounters conflict and has retried for 5 times.
+        """
+        return pulumi.get(self, "force")
+
+    @force.setter
+    def force(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "force", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateOperationSyncSyncStrategyHookArgs:
+    def __init__(__self__, *,
+                 force: Optional[pulumi.Input[bool]] = None):
+        """
+        Hook will submit any referenced resources to perform the sync. This is the default strategy
+        :param pulumi.Input[bool] force: Force indicates whether or not to supply the --force flag to `kubectl apply`. The --force flag deletes and re-create the resource, when PATCH encounters conflict and has retried for 5 times.
+        """
+        if force is not None:
+            pulumi.set(__self__, "force", force)
+
+    @property
+    @pulumi.getter
+    def force(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Force indicates whether or not to supply the --force flag to `kubectl apply`. The --force flag deletes and re-create the resource, when PATCH encounters conflict and has retried for 5 times.
+        """
+        return pulumi.get(self, "force")
+
+    @force.setter
+    def force(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "force", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateOperationSyncSyncStrategyArgs:
+    def __init__(__self__, *,
+                 apply: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSyncStrategyApplyArgs']] = None,
+                 hook: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSyncStrategyHookArgs']] = None):
+        """
+        SyncStrategy describes how to perform the sync
+        :param pulumi.Input['ApplicationStatusOperationStateOperationSyncSyncStrategyApplyArgs'] apply: Apply will perform a `kubectl apply` to perform the sync.
+        :param pulumi.Input['ApplicationStatusOperationStateOperationSyncSyncStrategyHookArgs'] hook: Hook will submit any referenced resources to perform the sync. This is the default strategy
+        """
+        if apply is not None:
+            pulumi.set(__self__, "apply", apply)
+        if hook is not None:
+            pulumi.set(__self__, "hook", hook)
+
+    @property
+    @pulumi.getter
+    def apply(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSyncStrategyApplyArgs']]:
+        """
+        Apply will perform a `kubectl apply` to perform the sync.
+        """
+        return pulumi.get(self, "apply")
+
+    @apply.setter
+    def apply(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSyncStrategyApplyArgs']]):
+        pulumi.set(self, "apply", value)
+
+    @property
+    @pulumi.getter
+    def hook(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSyncStrategyHookArgs']]:
+        """
+        Hook will submit any referenced resources to perform the sync. This is the default strategy
+        """
+        return pulumi.get(self, "hook")
+
+    @hook.setter
+    def hook(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSyncStrategyHookArgs']]):
+        pulumi.set(self, "hook", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateOperationSyncArgs:
+    def __init__(__self__, *,
+                 dry_run: Optional[pulumi.Input[bool]] = None,
+                 manifests: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 prune: Optional[pulumi.Input[bool]] = None,
+                 resources: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncResourcesArgs']]]] = None,
+                 revision: Optional[pulumi.Input[str]] = None,
+                 source: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceArgs']] = None,
+                 sync_options: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 sync_strategy: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSyncStrategyArgs']] = None):
+        """
+        Sync contains parameters for the operation
+        :param pulumi.Input[bool] dry_run: DryRun specifies to perform a `kubectl apply --dry-run` without actually performing the sync
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] manifests: Manifests is an optional field that overrides sync source with a local directory for development
+        :param pulumi.Input[bool] prune: Prune specifies to delete resources from the cluster that are no longer tracked in git
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncResourcesArgs']]] resources: Resources describes which resources shall be part of the sync
+        :param pulumi.Input[str] revision: Revision is the revision (Git) or chart version (Helm) which to sync the application to If omitted, will use the revision specified in app spec.
+        :param pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceArgs'] source: Source overrides the source definition set in the application. This is typically set in a Rollback operation and is nil during a Sync operation
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] sync_options: SyncOptions provide per-sync sync-options, e.g. Validate=false
+        :param pulumi.Input['ApplicationStatusOperationStateOperationSyncSyncStrategyArgs'] sync_strategy: SyncStrategy describes how to perform the sync
+        """
+        if dry_run is not None:
+            pulumi.set(__self__, "dry_run", dry_run)
+        if manifests is not None:
+            pulumi.set(__self__, "manifests", manifests)
+        if prune is not None:
+            pulumi.set(__self__, "prune", prune)
+        if resources is not None:
+            pulumi.set(__self__, "resources", resources)
+        if revision is not None:
+            pulumi.set(__self__, "revision", revision)
+        if source is not None:
+            pulumi.set(__self__, "source", source)
+        if sync_options is not None:
+            pulumi.set(__self__, "sync_options", sync_options)
+        if sync_strategy is not None:
+            pulumi.set(__self__, "sync_strategy", sync_strategy)
+
+    @property
+    @pulumi.getter(name="dryRun")
+    def dry_run(self) -> Optional[pulumi.Input[bool]]:
+        """
+        DryRun specifies to perform a `kubectl apply --dry-run` without actually performing the sync
+        """
+        return pulumi.get(self, "dry_run")
+
+    @dry_run.setter
+    def dry_run(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "dry_run", value)
+
+    @property
+    @pulumi.getter
+    def manifests(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Manifests is an optional field that overrides sync source with a local directory for development
+        """
+        return pulumi.get(self, "manifests")
+
+    @manifests.setter
+    def manifests(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "manifests", value)
+
+    @property
+    @pulumi.getter
+    def prune(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Prune specifies to delete resources from the cluster that are no longer tracked in git
+        """
+        return pulumi.get(self, "prune")
+
+    @prune.setter
+    def prune(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "prune", value)
+
+    @property
+    @pulumi.getter
+    def resources(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncResourcesArgs']]]]:
+        """
+        Resources describes which resources shall be part of the sync
+        """
+        return pulumi.get(self, "resources")
+
+    @resources.setter
+    def resources(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncResourcesArgs']]]]):
+        pulumi.set(self, "resources", value)
+
+    @property
+    @pulumi.getter
+    def revision(self) -> Optional[pulumi.Input[str]]:
+        """
+        Revision is the revision (Git) or chart version (Helm) which to sync the application to If omitted, will use the revision specified in app spec.
+        """
+        return pulumi.get(self, "revision")
+
+    @revision.setter
+    def revision(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "revision", value)
+
+    @property
+    @pulumi.getter
+    def source(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceArgs']]:
+        """
+        Source overrides the source definition set in the application. This is typically set in a Rollback operation and is nil during a Sync operation
+        """
+        return pulumi.get(self, "source")
+
+    @source.setter
+    def source(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceArgs']]):
+        pulumi.set(self, "source", value)
+
+    @property
+    @pulumi.getter(name="syncOptions")
+    def sync_options(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        SyncOptions provide per-sync sync-options, e.g. Validate=false
+        """
+        return pulumi.get(self, "sync_options")
+
+    @sync_options.setter
+    def sync_options(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "sync_options", value)
+
+    @property
+    @pulumi.getter(name="syncStrategy")
+    def sync_strategy(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSyncStrategyArgs']]:
+        """
+        SyncStrategy describes how to perform the sync
+        """
+        return pulumi.get(self, "sync_strategy")
+
+    @sync_strategy.setter
+    def sync_strategy(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSyncStrategyArgs']]):
+        pulumi.set(self, "sync_strategy", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateOperationArgs:
+    def __init__(__self__, *,
+                 info: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationInfoArgs']]]] = None,
+                 initiated_by: Optional[pulumi.Input['ApplicationStatusOperationStateOperationInitiatedByArgs']] = None,
+                 retry: Optional[pulumi.Input['ApplicationStatusOperationStateOperationRetryArgs']] = None,
+                 sync: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncArgs']] = None):
+        """
+        Operation is the original requested operation
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationInfoArgs']]] info: Info is a list of informational items for this operation
+        :param pulumi.Input['ApplicationStatusOperationStateOperationInitiatedByArgs'] initiated_by: InitiatedBy contains information about who initiated the operations
+        :param pulumi.Input['ApplicationStatusOperationStateOperationRetryArgs'] retry: Retry controls the strategy to apply if a sync fails
+        :param pulumi.Input['ApplicationStatusOperationStateOperationSyncArgs'] sync: Sync contains parameters for the operation
+        """
+        if info is not None:
+            pulumi.set(__self__, "info", info)
+        if initiated_by is not None:
+            pulumi.set(__self__, "initiated_by", initiated_by)
+        if retry is not None:
+            pulumi.set(__self__, "retry", retry)
+        if sync is not None:
+            pulumi.set(__self__, "sync", sync)
+
+    @property
+    @pulumi.getter
+    def info(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationInfoArgs']]]]:
+        """
+        Info is a list of informational items for this operation
+        """
+        return pulumi.get(self, "info")
+
+    @info.setter
+    def info(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationInfoArgs']]]]):
+        pulumi.set(self, "info", value)
+
+    @property
+    @pulumi.getter(name="initiatedBy")
+    def initiated_by(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateOperationInitiatedByArgs']]:
+        """
+        InitiatedBy contains information about who initiated the operations
+        """
+        return pulumi.get(self, "initiated_by")
+
+    @initiated_by.setter
+    def initiated_by(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateOperationInitiatedByArgs']]):
+        pulumi.set(self, "initiated_by", value)
+
+    @property
+    @pulumi.getter
+    def retry(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateOperationRetryArgs']]:
+        """
+        Retry controls the strategy to apply if a sync fails
+        """
+        return pulumi.get(self, "retry")
+
+    @retry.setter
+    def retry(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateOperationRetryArgs']]):
+        pulumi.set(self, "retry", value)
+
+    @property
+    @pulumi.getter
+    def sync(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncArgs']]:
+        """
+        Sync contains parameters for the operation
+        """
+        return pulumi.get(self, "sync")
+
+    @sync.setter
+    def sync(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncArgs']]):
+        pulumi.set(self, "sync", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateSyncResultResourcesArgs:
+    def __init__(__self__, *,
+                 group: pulumi.Input[str],
+                 kind: pulumi.Input[str],
+                 name: pulumi.Input[str],
+                 namespace: pulumi.Input[str],
+                 version: pulumi.Input[str],
+                 hook_phase: Optional[pulumi.Input[str]] = None,
+                 hook_type: Optional[pulumi.Input[str]] = None,
+                 message: Optional[pulumi.Input[str]] = None,
+                 status: Optional[pulumi.Input[str]] = None,
+                 sync_phase: Optional[pulumi.Input[str]] = None):
+        """
+        ResourceResult holds the operation result details of a specific resource
+        :param pulumi.Input[str] group: Group specifies the API group of the resource
+        :param pulumi.Input[str] kind: Kind specifies the API kind of the resource
+        :param pulumi.Input[str] name: Name specifies the name of the resource
+        :param pulumi.Input[str] namespace: Namespace specifies the target namespace of the resource
+        :param pulumi.Input[str] version: Version specifies the API version of the resource
+        :param pulumi.Input[str] hook_phase: HookPhase contains the state of any operation associated with this resource OR hook This can also contain values for non-hook resources.
+        :param pulumi.Input[str] hook_type: HookType specifies the type of the hook. Empty for non-hook resources
+        :param pulumi.Input[str] message: Message contains an informational or error message for the last sync OR operation
+        :param pulumi.Input[str] status: Status holds the final result of the sync. Will be empty if the resources is yet to be applied/pruned and is always zero-value for hooks
+        :param pulumi.Input[str] sync_phase: SyncPhase indicates the particular phase of the sync that this result was acquired in
+        """
+        pulumi.set(__self__, "group", group)
+        pulumi.set(__self__, "kind", kind)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "namespace", namespace)
+        pulumi.set(__self__, "version", version)
+        if hook_phase is not None:
+            pulumi.set(__self__, "hook_phase", hook_phase)
+        if hook_type is not None:
+            pulumi.set(__self__, "hook_type", hook_type)
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if sync_phase is not None:
+            pulumi.set(__self__, "sync_phase", sync_phase)
+
+    @property
+    @pulumi.getter
+    def group(self) -> pulumi.Input[str]:
+        """
+        Group specifies the API group of the resource
+        """
+        return pulumi.get(self, "group")
+
+    @group.setter
+    def group(self, value: pulumi.Input[str]):
+        pulumi.set(self, "group", value)
+
+    @property
+    @pulumi.getter
+    def kind(self) -> pulumi.Input[str]:
+        """
+        Kind specifies the API kind of the resource
+        """
+        return pulumi.get(self, "kind")
+
+    @kind.setter
+    def kind(self, value: pulumi.Input[str]):
+        pulumi.set(self, "kind", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        Name specifies the name of the resource
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Input[str]:
+        """
+        Namespace specifies the target namespace of the resource
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: pulumi.Input[str]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
+    def version(self) -> pulumi.Input[str]:
+        """
+        Version specifies the API version of the resource
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: pulumi.Input[str]):
+        pulumi.set(self, "version", value)
+
+    @property
+    @pulumi.getter(name="hookPhase")
+    def hook_phase(self) -> Optional[pulumi.Input[str]]:
+        """
+        HookPhase contains the state of any operation associated with this resource OR hook This can also contain values for non-hook resources.
+        """
+        return pulumi.get(self, "hook_phase")
+
+    @hook_phase.setter
+    def hook_phase(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "hook_phase", value)
+
+    @property
+    @pulumi.getter(name="hookType")
+    def hook_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        HookType specifies the type of the hook. Empty for non-hook resources
+        """
+        return pulumi.get(self, "hook_type")
+
+    @hook_type.setter
+    def hook_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "hook_type", value)
+
+    @property
+    @pulumi.getter
+    def message(self) -> Optional[pulumi.Input[str]]:
+        """
+        Message contains an informational or error message for the last sync OR operation
+        """
+        return pulumi.get(self, "message")
+
+    @message.setter
+    def message(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "message", value)
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Status holds the final result of the sync. Will be empty if the resources is yet to be applied/pruned and is always zero-value for hooks
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "status", value)
+
+    @property
+    @pulumi.getter(name="syncPhase")
+    def sync_phase(self) -> Optional[pulumi.Input[str]]:
+        """
+        SyncPhase indicates the particular phase of the sync that this result was acquired in
+        """
+        return pulumi.get(self, "sync_phase")
+
+    @sync_phase.setter
+    def sync_phase(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sync_phase", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateSyncResultSourceDirectoryJsonnetExtVarsArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 value: pulumi.Input[str],
+                 code: Optional[pulumi.Input[bool]] = None):
+        """
+        JsonnetVar represents a variable to be passed to jsonnet during manifest generation
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+        if code is not None:
+            pulumi.set(__self__, "code", code)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+    @property
+    @pulumi.getter
+    def code(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "code")
+
+    @code.setter
+    def code(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "code", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateSyncResultSourceDirectoryJsonnetTlasArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 value: pulumi.Input[str],
+                 code: Optional[pulumi.Input[bool]] = None):
+        """
+        JsonnetVar represents a variable to be passed to jsonnet during manifest generation
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+        if code is not None:
+            pulumi.set(__self__, "code", code)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+    @property
+    @pulumi.getter
+    def code(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "code")
+
+    @code.setter
+    def code(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "code", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateSyncResultSourceDirectoryJsonnetArgs:
+    def __init__(__self__, *,
+                 ext_vars: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceDirectoryJsonnetExtVarsArgs']]]] = None,
+                 libs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 tlas: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceDirectoryJsonnetTlasArgs']]]] = None):
+        """
+        Jsonnet holds options specific to Jsonnet
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceDirectoryJsonnetExtVarsArgs']]] ext_vars: ExtVars is a list of Jsonnet External Variables
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] libs: Additional library search dirs
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceDirectoryJsonnetTlasArgs']]] tlas: TLAS is a list of Jsonnet Top-level Arguments
+        """
+        if ext_vars is not None:
+            pulumi.set(__self__, "ext_vars", ext_vars)
+        if libs is not None:
+            pulumi.set(__self__, "libs", libs)
+        if tlas is not None:
+            pulumi.set(__self__, "tlas", tlas)
+
+    @property
+    @pulumi.getter(name="extVars")
+    def ext_vars(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceDirectoryJsonnetExtVarsArgs']]]]:
+        """
+        ExtVars is a list of Jsonnet External Variables
+        """
+        return pulumi.get(self, "ext_vars")
+
+    @ext_vars.setter
+    def ext_vars(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceDirectoryJsonnetExtVarsArgs']]]]):
+        pulumi.set(self, "ext_vars", value)
+
+    @property
+    @pulumi.getter
+    def libs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Additional library search dirs
+        """
+        return pulumi.get(self, "libs")
+
+    @libs.setter
+    def libs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "libs", value)
+
+    @property
+    @pulumi.getter
+    def tlas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceDirectoryJsonnetTlasArgs']]]]:
+        """
+        TLAS is a list of Jsonnet Top-level Arguments
+        """
+        return pulumi.get(self, "tlas")
+
+    @tlas.setter
+    def tlas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceDirectoryJsonnetTlasArgs']]]]):
+        pulumi.set(self, "tlas", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateSyncResultSourceDirectoryArgs:
+    def __init__(__self__, *,
+                 exclude: Optional[pulumi.Input[str]] = None,
+                 include: Optional[pulumi.Input[str]] = None,
+                 jsonnet: Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceDirectoryJsonnetArgs']] = None,
+                 recurse: Optional[pulumi.Input[bool]] = None):
+        """
+        Directory holds path/directory specific options
+        :param pulumi.Input[str] exclude: Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation
+        :param pulumi.Input[str] include: Include contains a glob pattern to match paths against that should be explicitly included during manifest generation
+        :param pulumi.Input['ApplicationStatusOperationStateSyncResultSourceDirectoryJsonnetArgs'] jsonnet: Jsonnet holds options specific to Jsonnet
+        :param pulumi.Input[bool] recurse: Recurse specifies whether to scan a directory recursively for manifests
+        """
+        if exclude is not None:
+            pulumi.set(__self__, "exclude", exclude)
+        if include is not None:
+            pulumi.set(__self__, "include", include)
+        if jsonnet is not None:
+            pulumi.set(__self__, "jsonnet", jsonnet)
+        if recurse is not None:
+            pulumi.set(__self__, "recurse", recurse)
+
+    @property
+    @pulumi.getter
+    def exclude(self) -> Optional[pulumi.Input[str]]:
+        """
+        Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation
+        """
+        return pulumi.get(self, "exclude")
+
+    @exclude.setter
+    def exclude(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "exclude", value)
+
+    @property
+    @pulumi.getter
+    def include(self) -> Optional[pulumi.Input[str]]:
+        """
+        Include contains a glob pattern to match paths against that should be explicitly included during manifest generation
+        """
+        return pulumi.get(self, "include")
+
+    @include.setter
+    def include(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "include", value)
+
+    @property
+    @pulumi.getter
+    def jsonnet(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceDirectoryJsonnetArgs']]:
+        """
+        Jsonnet holds options specific to Jsonnet
+        """
+        return pulumi.get(self, "jsonnet")
+
+    @jsonnet.setter
+    def jsonnet(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceDirectoryJsonnetArgs']]):
+        pulumi.set(self, "jsonnet", value)
+
+    @property
+    @pulumi.getter
+    def recurse(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Recurse specifies whether to scan a directory recursively for manifests
+        """
+        return pulumi.get(self, "recurse")
+
+    @recurse.setter
+    def recurse(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "recurse", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateSyncResultSourceHelmFileParametersArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None):
+        """
+        HelmFileParameter is a file parameter that's passed to helm template during manifest generation
+        :param pulumi.Input[str] name: Name is the name of the Helm parameter
+        :param pulumi.Input[str] path: Path is the path to the file containing the values for the Helm parameter
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name is the name of the Helm parameter
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path is the path to the file containing the values for the Helm parameter
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "path", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateSyncResultSourceHelmParametersArgs:
+    def __init__(__self__, *,
+                 force_string: Optional[pulumi.Input[bool]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        """
+        HelmParameter is a parameter that's passed to helm template during manifest generation
+        :param pulumi.Input[bool] force_string: ForceString determines whether to tell Helm to interpret booleans and numbers as strings
+        :param pulumi.Input[str] name: Name is the name of the Helm parameter
+        :param pulumi.Input[str] value: Value is the value for the Helm parameter
+        """
+        if force_string is not None:
+            pulumi.set(__self__, "force_string", force_string)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="forceString")
+    def force_string(self) -> Optional[pulumi.Input[bool]]:
+        """
+        ForceString determines whether to tell Helm to interpret booleans and numbers as strings
+        """
+        return pulumi.get(self, "force_string")
+
+    @force_string.setter
+    def force_string(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "force_string", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name is the name of the Helm parameter
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        """
+        Value is the value for the Helm parameter
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateSyncResultSourceHelmArgs:
+    def __init__(__self__, *,
+                 file_parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceHelmFileParametersArgs']]]] = None,
+                 parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceHelmParametersArgs']]]] = None,
+                 pass_credentials: Optional[pulumi.Input[bool]] = None,
+                 release_name: Optional[pulumi.Input[str]] = None,
+                 value_files: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 values: Optional[pulumi.Input[str]] = None,
+                 version: Optional[pulumi.Input[str]] = None):
+        """
+        Helm holds helm specific options
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceHelmFileParametersArgs']]] file_parameters: FileParameters are file parameters to the helm template
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceHelmParametersArgs']]] parameters: Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation
+        :param pulumi.Input[bool] pass_credentials: PassCredentials pass credentials to all domains (Helm's --pass-credentials)
+        :param pulumi.Input[str] release_name: ReleaseName is the Helm release name to use. If omitted it will use the application name
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] value_files: ValuesFiles is a list of Helm value files to use when generating a template
+        :param pulumi.Input[str] values: Values specifies Helm values to be passed to helm template, typically defined as a block
+        :param pulumi.Input[str] version: Version is the Helm version to use for templating (either "2" or "3")
+        """
+        if file_parameters is not None:
+            pulumi.set(__self__, "file_parameters", file_parameters)
+        if parameters is not None:
+            pulumi.set(__self__, "parameters", parameters)
+        if pass_credentials is not None:
+            pulumi.set(__self__, "pass_credentials", pass_credentials)
+        if release_name is not None:
+            pulumi.set(__self__, "release_name", release_name)
+        if value_files is not None:
+            pulumi.set(__self__, "value_files", value_files)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter(name="fileParameters")
+    def file_parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceHelmFileParametersArgs']]]]:
+        """
+        FileParameters are file parameters to the helm template
+        """
+        return pulumi.get(self, "file_parameters")
+
+    @file_parameters.setter
+    def file_parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceHelmFileParametersArgs']]]]):
+        pulumi.set(self, "file_parameters", value)
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceHelmParametersArgs']]]]:
+        """
+        Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation
+        """
+        return pulumi.get(self, "parameters")
+
+    @parameters.setter
+    def parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceHelmParametersArgs']]]]):
+        pulumi.set(self, "parameters", value)
+
+    @property
+    @pulumi.getter(name="passCredentials")
+    def pass_credentials(self) -> Optional[pulumi.Input[bool]]:
+        """
+        PassCredentials pass credentials to all domains (Helm's --pass-credentials)
+        """
+        return pulumi.get(self, "pass_credentials")
+
+    @pass_credentials.setter
+    def pass_credentials(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "pass_credentials", value)
+
+    @property
+    @pulumi.getter(name="releaseName")
+    def release_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        ReleaseName is the Helm release name to use. If omitted it will use the application name
+        """
+        return pulumi.get(self, "release_name")
+
+    @release_name.setter
+    def release_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "release_name", value)
+
+    @property
+    @pulumi.getter(name="valueFiles")
+    def value_files(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        ValuesFiles is a list of Helm value files to use when generating a template
+        """
+        return pulumi.get(self, "value_files")
+
+    @value_files.setter
+    def value_files(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "value_files", value)
+
+    @property
+    @pulumi.getter
+    def values(self) -> Optional[pulumi.Input[str]]:
+        """
+        Values specifies Helm values to be passed to helm template, typically defined as a block
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "values", value)
+
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Version is the Helm version to use for templating (either "2" or "3")
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "version", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateSyncResultSourceKsonnetParametersArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 value: pulumi.Input[str],
+                 component: Optional[pulumi.Input[str]] = None):
+        """
+        KsonnetParameter is a ksonnet component parameter
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+        if component is not None:
+            pulumi.set(__self__, "component", component)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+    @property
+    @pulumi.getter
+    def component(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "component")
+
+    @component.setter
+    def component(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "component", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateSyncResultSourceKsonnetArgs:
+    def __init__(__self__, *,
+                 environment: Optional[pulumi.Input[str]] = None,
+                 parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceKsonnetParametersArgs']]]] = None):
+        """
+        Ksonnet holds ksonnet specific options
+        :param pulumi.Input[str] environment: Environment is a ksonnet application environment name
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceKsonnetParametersArgs']]] parameters: Parameters are a list of ksonnet component parameter override values
+        """
+        if environment is not None:
+            pulumi.set(__self__, "environment", environment)
+        if parameters is not None:
+            pulumi.set(__self__, "parameters", parameters)
+
+    @property
+    @pulumi.getter
+    def environment(self) -> Optional[pulumi.Input[str]]:
+        """
+        Environment is a ksonnet application environment name
+        """
+        return pulumi.get(self, "environment")
+
+    @environment.setter
+    def environment(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "environment", value)
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceKsonnetParametersArgs']]]]:
+        """
+        Parameters are a list of ksonnet component parameter override values
+        """
+        return pulumi.get(self, "parameters")
+
+    @parameters.setter
+    def parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceKsonnetParametersArgs']]]]):
+        pulumi.set(self, "parameters", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateSyncResultSourceKustomizeArgs:
+    def __init__(__self__, *,
+                 common_annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 common_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 force_common_annotations: Optional[pulumi.Input[bool]] = None,
+                 force_common_labels: Optional[pulumi.Input[bool]] = None,
+                 images: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 name_prefix: Optional[pulumi.Input[str]] = None,
+                 name_suffix: Optional[pulumi.Input[str]] = None,
+                 version: Optional[pulumi.Input[str]] = None):
+        """
+        Kustomize holds kustomize specific options
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] common_annotations: CommonAnnotations is a list of additional annotations to add to rendered manifests
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] common_labels: CommonLabels is a list of additional labels to add to rendered manifests
+        :param pulumi.Input[bool] force_common_annotations: ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps
+        :param pulumi.Input[bool] force_common_labels: ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] images: Images is a list of Kustomize image override specifications
+        :param pulumi.Input[str] name_prefix: NamePrefix is a prefix appended to resources for Kustomize apps
+        :param pulumi.Input[str] name_suffix: NameSuffix is a suffix appended to resources for Kustomize apps
+        :param pulumi.Input[str] version: Version controls which version of Kustomize to use for rendering manifests
+        """
+        if common_annotations is not None:
+            pulumi.set(__self__, "common_annotations", common_annotations)
+        if common_labels is not None:
+            pulumi.set(__self__, "common_labels", common_labels)
+        if force_common_annotations is not None:
+            pulumi.set(__self__, "force_common_annotations", force_common_annotations)
+        if force_common_labels is not None:
+            pulumi.set(__self__, "force_common_labels", force_common_labels)
+        if images is not None:
+            pulumi.set(__self__, "images", images)
+        if name_prefix is not None:
+            pulumi.set(__self__, "name_prefix", name_prefix)
+        if name_suffix is not None:
+            pulumi.set(__self__, "name_suffix", name_suffix)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter(name="commonAnnotations")
+    def common_annotations(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        CommonAnnotations is a list of additional annotations to add to rendered manifests
+        """
+        return pulumi.get(self, "common_annotations")
+
+    @common_annotations.setter
+    def common_annotations(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "common_annotations", value)
+
+    @property
+    @pulumi.getter(name="commonLabels")
+    def common_labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        CommonLabels is a list of additional labels to add to rendered manifests
+        """
+        return pulumi.get(self, "common_labels")
+
+    @common_labels.setter
+    def common_labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "common_labels", value)
+
+    @property
+    @pulumi.getter(name="forceCommonAnnotations")
+    def force_common_annotations(self) -> Optional[pulumi.Input[bool]]:
+        """
+        ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps
+        """
+        return pulumi.get(self, "force_common_annotations")
+
+    @force_common_annotations.setter
+    def force_common_annotations(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "force_common_annotations", value)
+
+    @property
+    @pulumi.getter(name="forceCommonLabels")
+    def force_common_labels(self) -> Optional[pulumi.Input[bool]]:
+        """
+        ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps
+        """
+        return pulumi.get(self, "force_common_labels")
+
+    @force_common_labels.setter
+    def force_common_labels(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "force_common_labels", value)
+
+    @property
+    @pulumi.getter
+    def images(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Images is a list of Kustomize image override specifications
+        """
+        return pulumi.get(self, "images")
+
+    @images.setter
+    def images(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "images", value)
+
+    @property
+    @pulumi.getter(name="namePrefix")
+    def name_prefix(self) -> Optional[pulumi.Input[str]]:
+        """
+        NamePrefix is a prefix appended to resources for Kustomize apps
+        """
+        return pulumi.get(self, "name_prefix")
+
+    @name_prefix.setter
+    def name_prefix(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name_prefix", value)
+
+    @property
+    @pulumi.getter(name="nameSuffix")
+    def name_suffix(self) -> Optional[pulumi.Input[str]]:
+        """
+        NameSuffix is a suffix appended to resources for Kustomize apps
+        """
+        return pulumi.get(self, "name_suffix")
+
+    @name_suffix.setter
+    def name_suffix(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name_suffix", value)
+
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Version controls which version of Kustomize to use for rendering manifests
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "version", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateSyncResultSourcePluginEnvArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        EnvEntry represents an entry in the application's environment
+        :param pulumi.Input[str] name: Name is the name of the variable, usually expressed in uppercase
+        :param pulumi.Input[str] value: Value is the value of the variable
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        Name is the name of the variable, usually expressed in uppercase
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        Value is the value of the variable
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateSyncResultSourcePluginArgs:
+    def __init__(__self__, *,
+                 env: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourcePluginEnvArgs']]]] = None,
+                 name: Optional[pulumi.Input[str]] = None):
+        """
+        ConfigManagementPlugin holds config management plugin specific options
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourcePluginEnvArgs']]] env: Env is a list of environment variable entries
+        """
+        if env is not None:
+            pulumi.set(__self__, "env", env)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def env(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourcePluginEnvArgs']]]]:
+        """
+        Env is a list of environment variable entries
+        """
+        return pulumi.get(self, "env")
+
+    @env.setter
+    def env(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourcePluginEnvArgs']]]]):
+        pulumi.set(self, "env", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateSyncResultSourceArgs:
+    def __init__(__self__, *,
+                 repo_url: pulumi.Input[str],
+                 chart: Optional[pulumi.Input[str]] = None,
+                 directory: Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceDirectoryArgs']] = None,
+                 helm: Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceHelmArgs']] = None,
+                 ksonnet: Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceKsonnetArgs']] = None,
+                 kustomize: Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceKustomizeArgs']] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 plugin: Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourcePluginArgs']] = None,
+                 target_revision: Optional[pulumi.Input[str]] = None):
+        """
+        Source records the application source information of the sync, used for comparing auto-sync
+        :param pulumi.Input[str] repo_url: RepoURL is the URL to the repository (Git or Helm) that contains the application manifests
+        :param pulumi.Input[str] chart: Chart is a Helm chart name, and must be specified for applications sourced from a Helm repo.
+        :param pulumi.Input['ApplicationStatusOperationStateSyncResultSourceDirectoryArgs'] directory: Directory holds path/directory specific options
+        :param pulumi.Input['ApplicationStatusOperationStateSyncResultSourceHelmArgs'] helm: Helm holds helm specific options
+        :param pulumi.Input['ApplicationStatusOperationStateSyncResultSourceKsonnetArgs'] ksonnet: Ksonnet holds ksonnet specific options
+        :param pulumi.Input['ApplicationStatusOperationStateSyncResultSourceKustomizeArgs'] kustomize: Kustomize holds kustomize specific options
+        :param pulumi.Input[str] path: Path is a directory path within the Git repository, and is only valid for applications sourced from Git.
+        :param pulumi.Input['ApplicationStatusOperationStateSyncResultSourcePluginArgs'] plugin: ConfigManagementPlugin holds config management plugin specific options
+        :param pulumi.Input[str] target_revision: TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version.
+        """
+        pulumi.set(__self__, "repo_url", repo_url)
+        if chart is not None:
+            pulumi.set(__self__, "chart", chart)
+        if directory is not None:
+            pulumi.set(__self__, "directory", directory)
+        if helm is not None:
+            pulumi.set(__self__, "helm", helm)
+        if ksonnet is not None:
+            pulumi.set(__self__, "ksonnet", ksonnet)
+        if kustomize is not None:
+            pulumi.set(__self__, "kustomize", kustomize)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if plugin is not None:
+            pulumi.set(__self__, "plugin", plugin)
+        if target_revision is not None:
+            pulumi.set(__self__, "target_revision", target_revision)
+
+    @property
+    @pulumi.getter(name="repoURL")
+    def repo_url(self) -> pulumi.Input[str]:
+        """
+        RepoURL is the URL to the repository (Git or Helm) that contains the application manifests
+        """
+        return pulumi.get(self, "repo_url")
+
+    @repo_url.setter
+    def repo_url(self, value: pulumi.Input[str]):
+        pulumi.set(self, "repo_url", value)
+
+    @property
+    @pulumi.getter
+    def chart(self) -> Optional[pulumi.Input[str]]:
+        """
+        Chart is a Helm chart name, and must be specified for applications sourced from a Helm repo.
+        """
+        return pulumi.get(self, "chart")
+
+    @chart.setter
+    def chart(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "chart", value)
+
+    @property
+    @pulumi.getter
+    def directory(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceDirectoryArgs']]:
+        """
+        Directory holds path/directory specific options
+        """
+        return pulumi.get(self, "directory")
+
+    @directory.setter
+    def directory(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceDirectoryArgs']]):
+        pulumi.set(self, "directory", value)
+
+    @property
+    @pulumi.getter
+    def helm(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceHelmArgs']]:
+        """
+        Helm holds helm specific options
+        """
+        return pulumi.get(self, "helm")
+
+    @helm.setter
+    def helm(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceHelmArgs']]):
+        pulumi.set(self, "helm", value)
+
+    @property
+    @pulumi.getter
+    def ksonnet(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceKsonnetArgs']]:
+        """
+        Ksonnet holds ksonnet specific options
+        """
+        return pulumi.get(self, "ksonnet")
+
+    @ksonnet.setter
+    def ksonnet(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceKsonnetArgs']]):
+        pulumi.set(self, "ksonnet", value)
+
+    @property
+    @pulumi.getter
+    def kustomize(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceKustomizeArgs']]:
+        """
+        Kustomize holds kustomize specific options
+        """
+        return pulumi.get(self, "kustomize")
+
+    @kustomize.setter
+    def kustomize(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceKustomizeArgs']]):
+        pulumi.set(self, "kustomize", value)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path is a directory path within the Git repository, and is only valid for applications sourced from Git.
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter
+    def plugin(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourcePluginArgs']]:
+        """
+        ConfigManagementPlugin holds config management plugin specific options
+        """
+        return pulumi.get(self, "plugin")
+
+    @plugin.setter
+    def plugin(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourcePluginArgs']]):
+        pulumi.set(self, "plugin", value)
+
+    @property
+    @pulumi.getter(name="targetRevision")
+    def target_revision(self) -> Optional[pulumi.Input[str]]:
+        """
+        TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version.
+        """
+        return pulumi.get(self, "target_revision")
+
+    @target_revision.setter
+    def target_revision(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "target_revision", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateSyncResultArgs:
+    def __init__(__self__, *,
+                 revision: pulumi.Input[str],
+                 resources: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultResourcesArgs']]]] = None,
+                 source: Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceArgs']] = None):
+        """
+        SyncResult is the result of a Sync operation
+        :param pulumi.Input[str] revision: Revision holds the revision this sync operation was performed to
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultResourcesArgs']]] resources: Resources contains a list of sync result items for each individual resource in a sync operation
+        :param pulumi.Input['ApplicationStatusOperationStateSyncResultSourceArgs'] source: Source records the application source information of the sync, used for comparing auto-sync
+        """
+        pulumi.set(__self__, "revision", revision)
+        if resources is not None:
+            pulumi.set(__self__, "resources", resources)
+        if source is not None:
+            pulumi.set(__self__, "source", source)
+
+    @property
+    @pulumi.getter
+    def revision(self) -> pulumi.Input[str]:
+        """
+        Revision holds the revision this sync operation was performed to
+        """
+        return pulumi.get(self, "revision")
+
+    @revision.setter
+    def revision(self, value: pulumi.Input[str]):
+        pulumi.set(self, "revision", value)
+
+    @property
+    @pulumi.getter
+    def resources(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultResourcesArgs']]]]:
+        """
+        Resources contains a list of sync result items for each individual resource in a sync operation
+        """
+        return pulumi.get(self, "resources")
+
+    @resources.setter
+    def resources(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultResourcesArgs']]]]):
+        pulumi.set(self, "resources", value)
+
+    @property
+    @pulumi.getter
+    def source(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceArgs']]:
+        """
+        Source records the application source information of the sync, used for comparing auto-sync
+        """
+        return pulumi.get(self, "source")
+
+    @source.setter
+    def source(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceArgs']]):
+        pulumi.set(self, "source", value)
+
+
+@pulumi.input_type
+class ApplicationStatusOperationStateArgs:
+    def __init__(__self__, *,
+                 operation: pulumi.Input['ApplicationStatusOperationStateOperationArgs'],
+                 phase: pulumi.Input[str],
+                 started_at: pulumi.Input[str],
+                 finished_at: Optional[pulumi.Input[str]] = None,
+                 message: Optional[pulumi.Input[str]] = None,
+                 retry_count: Optional[pulumi.Input[int]] = None,
+                 sync_result: Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultArgs']] = None):
+        """
+        OperationState contains information about any ongoing operations, such as a sync
+        :param pulumi.Input['ApplicationStatusOperationStateOperationArgs'] operation: Operation is the original requested operation
+        :param pulumi.Input[str] phase: Phase is the current phase of the operation
+        :param pulumi.Input[str] started_at: StartedAt contains time of operation start
+        :param pulumi.Input[str] finished_at: FinishedAt contains time of operation completion
+        :param pulumi.Input[str] message: Message holds any pertinent messages when attempting to perform operation (typically errors).
+        :param pulumi.Input[int] retry_count: RetryCount contains time of operation retries
+        :param pulumi.Input['ApplicationStatusOperationStateSyncResultArgs'] sync_result: SyncResult is the result of a Sync operation
+        """
+        pulumi.set(__self__, "operation", operation)
+        pulumi.set(__self__, "phase", phase)
+        pulumi.set(__self__, "started_at", started_at)
+        if finished_at is not None:
+            pulumi.set(__self__, "finished_at", finished_at)
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if retry_count is not None:
+            pulumi.set(__self__, "retry_count", retry_count)
+        if sync_result is not None:
+            pulumi.set(__self__, "sync_result", sync_result)
+
+    @property
+    @pulumi.getter
+    def operation(self) -> pulumi.Input['ApplicationStatusOperationStateOperationArgs']:
+        """
+        Operation is the original requested operation
+        """
+        return pulumi.get(self, "operation")
+
+    @operation.setter
+    def operation(self, value: pulumi.Input['ApplicationStatusOperationStateOperationArgs']):
+        pulumi.set(self, "operation", value)
+
+    @property
+    @pulumi.getter
+    def phase(self) -> pulumi.Input[str]:
+        """
+        Phase is the current phase of the operation
+        """
+        return pulumi.get(self, "phase")
+
+    @phase.setter
+    def phase(self, value: pulumi.Input[str]):
+        pulumi.set(self, "phase", value)
+
+    @property
+    @pulumi.getter(name="startedAt")
+    def started_at(self) -> pulumi.Input[str]:
+        """
+        StartedAt contains time of operation start
+        """
+        return pulumi.get(self, "started_at")
+
+    @started_at.setter
+    def started_at(self, value: pulumi.Input[str]):
+        pulumi.set(self, "started_at", value)
+
+    @property
+    @pulumi.getter(name="finishedAt")
+    def finished_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        FinishedAt contains time of operation completion
+        """
+        return pulumi.get(self, "finished_at")
+
+    @finished_at.setter
+    def finished_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "finished_at", value)
+
+    @property
+    @pulumi.getter
+    def message(self) -> Optional[pulumi.Input[str]]:
+        """
+        Message holds any pertinent messages when attempting to perform operation (typically errors).
+        """
+        return pulumi.get(self, "message")
+
+    @message.setter
+    def message(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "message", value)
+
+    @property
+    @pulumi.getter(name="retryCount")
+    def retry_count(self) -> Optional[pulumi.Input[int]]:
+        """
+        RetryCount contains time of operation retries
+        """
+        return pulumi.get(self, "retry_count")
+
+    @retry_count.setter
+    def retry_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "retry_count", value)
+
+    @property
+    @pulumi.getter(name="syncResult")
+    def sync_result(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultArgs']]:
+        """
+        SyncResult is the result of a Sync operation
+        """
+        return pulumi.get(self, "sync_result")
+
+    @sync_result.setter
+    def sync_result(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultArgs']]):
+        pulumi.set(self, "sync_result", value)
+
+
+@pulumi.input_type
+class ApplicationStatusResourcesHealthArgs:
+    def __init__(__self__, *,
+                 message: Optional[pulumi.Input[str]] = None,
+                 status: Optional[pulumi.Input[str]] = None):
+        """
+        HealthStatus contains information about the currently observed health state of an application or resource
+        :param pulumi.Input[str] message: Message is a human-readable informational message describing the health status
+        :param pulumi.Input[str] status: Status holds the status code of the application or resource
+        """
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter
+    def message(self) -> Optional[pulumi.Input[str]]:
+        """
+        Message is a human-readable informational message describing the health status
+        """
+        return pulumi.get(self, "message")
+
+    @message.setter
+    def message(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "message", value)
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Status holds the status code of the application or resource
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "status", value)
+
+
+@pulumi.input_type
+class ApplicationStatusResourcesArgs:
+    def __init__(__self__, *,
+                 group: Optional[pulumi.Input[str]] = None,
+                 health: Optional[pulumi.Input['ApplicationStatusResourcesHealthArgs']] = None,
+                 hook: Optional[pulumi.Input[bool]] = None,
+                 kind: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
+                 requires_pruning: Optional[pulumi.Input[bool]] = None,
+                 status: Optional[pulumi.Input[str]] = None,
+                 version: Optional[pulumi.Input[str]] = None):
+        """
+        ResourceStatus holds the current sync and health status of a resource TODO: describe members of this type
+        :param pulumi.Input['ApplicationStatusResourcesHealthArgs'] health: HealthStatus contains information about the currently observed health state of an application or resource
+        :param pulumi.Input[str] status: SyncStatusCode is a type which represents possible comparison results
+        """
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if health is not None:
+            pulumi.set(__self__, "health", health)
+        if hook is not None:
+            pulumi.set(__self__, "hook", hook)
+        if kind is not None:
+            pulumi.set(__self__, "kind", kind)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
+        if requires_pruning is not None:
+            pulumi.set(__self__, "requires_pruning", requires_pruning)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def group(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "group")
+
+    @group.setter
+    def group(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "group", value)
+
+    @property
+    @pulumi.getter
+    def health(self) -> Optional[pulumi.Input['ApplicationStatusResourcesHealthArgs']]:
+        """
+        HealthStatus contains information about the currently observed health state of an application or resource
+        """
+        return pulumi.get(self, "health")
+
+    @health.setter
+    def health(self, value: Optional[pulumi.Input['ApplicationStatusResourcesHealthArgs']]):
+        pulumi.set(self, "health", value)
+
+    @property
+    @pulumi.getter
+    def hook(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "hook")
+
+    @hook.setter
+    def hook(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "hook", value)
+
+    @property
+    @pulumi.getter
+    def kind(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "kind")
+
+    @kind.setter
+    def kind(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "kind", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter(name="requiresPruning")
+    def requires_pruning(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "requires_pruning")
+
+    @requires_pruning.setter
+    def requires_pruning(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "requires_pruning", value)
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        SyncStatusCode is a type which represents possible comparison results
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "status", value)
+
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "version", value)
+
+
+@pulumi.input_type
+class ApplicationStatusSummaryArgs:
+    def __init__(__self__, *,
+                 external_urls: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 images: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        Summary contains a list of URLs and container images used by this application
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] external_urls: ExternalURLs holds all external URLs of application child resources.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] images: Images holds all images of application child resources.
+        """
+        if external_urls is not None:
+            pulumi.set(__self__, "external_urls", external_urls)
+        if images is not None:
+            pulumi.set(__self__, "images", images)
+
+    @property
+    @pulumi.getter(name="externalURLs")
+    def external_urls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        ExternalURLs holds all external URLs of application child resources.
+        """
+        return pulumi.get(self, "external_urls")
+
+    @external_urls.setter
+    def external_urls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "external_urls", value)
+
+    @property
+    @pulumi.getter
+    def images(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Images holds all images of application child resources.
+        """
+        return pulumi.get(self, "images")
+
+    @images.setter
+    def images(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "images", value)
+
+
+@pulumi.input_type
+class ApplicationStatusSyncComparedToDestinationArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
+                 server: Optional[pulumi.Input[str]] = None):
+        """
+        Destination is a reference to the application's destination used for comparison
+        :param pulumi.Input[str] name: Name is an alternate way of specifying the target cluster by its symbolic name
+        :param pulumi.Input[str] namespace: Namespace specifies the target namespace for the application's resources. The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace
+        :param pulumi.Input[str] server: Server specifies the URL of the target cluster and must be set to the Kubernetes control plane API
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
+        if server is not None:
+            pulumi.set(__self__, "server", server)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name is an alternate way of specifying the target cluster by its symbolic name
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        Namespace specifies the target namespace for the application's resources. The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
+    def server(self) -> Optional[pulumi.Input[str]]:
+        """
+        Server specifies the URL of the target cluster and must be set to the Kubernetes control plane API
+        """
+        return pulumi.get(self, "server")
+
+    @server.setter
+    def server(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "server", value)
+
+
+@pulumi.input_type
+class ApplicationStatusSyncComparedToSourceDirectoryJsonnetExtVarsArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 value: pulumi.Input[str],
+                 code: Optional[pulumi.Input[bool]] = None):
+        """
+        JsonnetVar represents a variable to be passed to jsonnet during manifest generation
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+        if code is not None:
+            pulumi.set(__self__, "code", code)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+    @property
+    @pulumi.getter
+    def code(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "code")
+
+    @code.setter
+    def code(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "code", value)
+
+
+@pulumi.input_type
+class ApplicationStatusSyncComparedToSourceDirectoryJsonnetTlasArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 value: pulumi.Input[str],
+                 code: Optional[pulumi.Input[bool]] = None):
+        """
+        JsonnetVar represents a variable to be passed to jsonnet during manifest generation
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+        if code is not None:
+            pulumi.set(__self__, "code", code)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+    @property
+    @pulumi.getter
+    def code(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "code")
+
+    @code.setter
+    def code(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "code", value)
+
+
+@pulumi.input_type
+class ApplicationStatusSyncComparedToSourceDirectoryJsonnetArgs:
+    def __init__(__self__, *,
+                 ext_vars: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceDirectoryJsonnetExtVarsArgs']]]] = None,
+                 libs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 tlas: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceDirectoryJsonnetTlasArgs']]]] = None):
+        """
+        Jsonnet holds options specific to Jsonnet
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceDirectoryJsonnetExtVarsArgs']]] ext_vars: ExtVars is a list of Jsonnet External Variables
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] libs: Additional library search dirs
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceDirectoryJsonnetTlasArgs']]] tlas: TLAS is a list of Jsonnet Top-level Arguments
+        """
+        if ext_vars is not None:
+            pulumi.set(__self__, "ext_vars", ext_vars)
+        if libs is not None:
+            pulumi.set(__self__, "libs", libs)
+        if tlas is not None:
+            pulumi.set(__self__, "tlas", tlas)
+
+    @property
+    @pulumi.getter(name="extVars")
+    def ext_vars(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceDirectoryJsonnetExtVarsArgs']]]]:
+        """
+        ExtVars is a list of Jsonnet External Variables
+        """
+        return pulumi.get(self, "ext_vars")
+
+    @ext_vars.setter
+    def ext_vars(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceDirectoryJsonnetExtVarsArgs']]]]):
+        pulumi.set(self, "ext_vars", value)
+
+    @property
+    @pulumi.getter
+    def libs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Additional library search dirs
+        """
+        return pulumi.get(self, "libs")
+
+    @libs.setter
+    def libs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "libs", value)
+
+    @property
+    @pulumi.getter
+    def tlas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceDirectoryJsonnetTlasArgs']]]]:
+        """
+        TLAS is a list of Jsonnet Top-level Arguments
+        """
+        return pulumi.get(self, "tlas")
+
+    @tlas.setter
+    def tlas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceDirectoryJsonnetTlasArgs']]]]):
+        pulumi.set(self, "tlas", value)
+
+
+@pulumi.input_type
+class ApplicationStatusSyncComparedToSourceDirectoryArgs:
+    def __init__(__self__, *,
+                 exclude: Optional[pulumi.Input[str]] = None,
+                 include: Optional[pulumi.Input[str]] = None,
+                 jsonnet: Optional[pulumi.Input['ApplicationStatusSyncComparedToSourceDirectoryJsonnetArgs']] = None,
+                 recurse: Optional[pulumi.Input[bool]] = None):
+        """
+        Directory holds path/directory specific options
+        :param pulumi.Input[str] exclude: Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation
+        :param pulumi.Input[str] include: Include contains a glob pattern to match paths against that should be explicitly included during manifest generation
+        :param pulumi.Input['ApplicationStatusSyncComparedToSourceDirectoryJsonnetArgs'] jsonnet: Jsonnet holds options specific to Jsonnet
+        :param pulumi.Input[bool] recurse: Recurse specifies whether to scan a directory recursively for manifests
+        """
+        if exclude is not None:
+            pulumi.set(__self__, "exclude", exclude)
+        if include is not None:
+            pulumi.set(__self__, "include", include)
+        if jsonnet is not None:
+            pulumi.set(__self__, "jsonnet", jsonnet)
+        if recurse is not None:
+            pulumi.set(__self__, "recurse", recurse)
+
+    @property
+    @pulumi.getter
+    def exclude(self) -> Optional[pulumi.Input[str]]:
+        """
+        Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation
+        """
+        return pulumi.get(self, "exclude")
+
+    @exclude.setter
+    def exclude(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "exclude", value)
+
+    @property
+    @pulumi.getter
+    def include(self) -> Optional[pulumi.Input[str]]:
+        """
+        Include contains a glob pattern to match paths against that should be explicitly included during manifest generation
+        """
+        return pulumi.get(self, "include")
+
+    @include.setter
+    def include(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "include", value)
+
+    @property
+    @pulumi.getter
+    def jsonnet(self) -> Optional[pulumi.Input['ApplicationStatusSyncComparedToSourceDirectoryJsonnetArgs']]:
+        """
+        Jsonnet holds options specific to Jsonnet
+        """
+        return pulumi.get(self, "jsonnet")
+
+    @jsonnet.setter
+    def jsonnet(self, value: Optional[pulumi.Input['ApplicationStatusSyncComparedToSourceDirectoryJsonnetArgs']]):
+        pulumi.set(self, "jsonnet", value)
+
+    @property
+    @pulumi.getter
+    def recurse(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Recurse specifies whether to scan a directory recursively for manifests
+        """
+        return pulumi.get(self, "recurse")
+
+    @recurse.setter
+    def recurse(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "recurse", value)
+
+
+@pulumi.input_type
+class ApplicationStatusSyncComparedToSourceHelmFileParametersArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None):
+        """
+        HelmFileParameter is a file parameter that's passed to helm template during manifest generation
+        :param pulumi.Input[str] name: Name is the name of the Helm parameter
+        :param pulumi.Input[str] path: Path is the path to the file containing the values for the Helm parameter
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name is the name of the Helm parameter
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path is the path to the file containing the values for the Helm parameter
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "path", value)
+
+
+@pulumi.input_type
+class ApplicationStatusSyncComparedToSourceHelmParametersArgs:
+    def __init__(__self__, *,
+                 force_string: Optional[pulumi.Input[bool]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        """
+        HelmParameter is a parameter that's passed to helm template during manifest generation
+        :param pulumi.Input[bool] force_string: ForceString determines whether to tell Helm to interpret booleans and numbers as strings
+        :param pulumi.Input[str] name: Name is the name of the Helm parameter
+        :param pulumi.Input[str] value: Value is the value for the Helm parameter
+        """
+        if force_string is not None:
+            pulumi.set(__self__, "force_string", force_string)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="forceString")
+    def force_string(self) -> Optional[pulumi.Input[bool]]:
+        """
+        ForceString determines whether to tell Helm to interpret booleans and numbers as strings
+        """
+        return pulumi.get(self, "force_string")
+
+    @force_string.setter
+    def force_string(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "force_string", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name is the name of the Helm parameter
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        """
+        Value is the value for the Helm parameter
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ApplicationStatusSyncComparedToSourceHelmArgs:
+    def __init__(__self__, *,
+                 file_parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceHelmFileParametersArgs']]]] = None,
+                 parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceHelmParametersArgs']]]] = None,
+                 pass_credentials: Optional[pulumi.Input[bool]] = None,
+                 release_name: Optional[pulumi.Input[str]] = None,
+                 value_files: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 values: Optional[pulumi.Input[str]] = None,
+                 version: Optional[pulumi.Input[str]] = None):
+        """
+        Helm holds helm specific options
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceHelmFileParametersArgs']]] file_parameters: FileParameters are file parameters to the helm template
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceHelmParametersArgs']]] parameters: Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation
+        :param pulumi.Input[bool] pass_credentials: PassCredentials pass credentials to all domains (Helm's --pass-credentials)
+        :param pulumi.Input[str] release_name: ReleaseName is the Helm release name to use. If omitted it will use the application name
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] value_files: ValuesFiles is a list of Helm value files to use when generating a template
+        :param pulumi.Input[str] values: Values specifies Helm values to be passed to helm template, typically defined as a block
+        :param pulumi.Input[str] version: Version is the Helm version to use for templating (either "2" or "3")
+        """
+        if file_parameters is not None:
+            pulumi.set(__self__, "file_parameters", file_parameters)
+        if parameters is not None:
+            pulumi.set(__self__, "parameters", parameters)
+        if pass_credentials is not None:
+            pulumi.set(__self__, "pass_credentials", pass_credentials)
+        if release_name is not None:
+            pulumi.set(__self__, "release_name", release_name)
+        if value_files is not None:
+            pulumi.set(__self__, "value_files", value_files)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter(name="fileParameters")
+    def file_parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceHelmFileParametersArgs']]]]:
+        """
+        FileParameters are file parameters to the helm template
+        """
+        return pulumi.get(self, "file_parameters")
+
+    @file_parameters.setter
+    def file_parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceHelmFileParametersArgs']]]]):
+        pulumi.set(self, "file_parameters", value)
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceHelmParametersArgs']]]]:
+        """
+        Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation
+        """
+        return pulumi.get(self, "parameters")
+
+    @parameters.setter
+    def parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceHelmParametersArgs']]]]):
+        pulumi.set(self, "parameters", value)
+
+    @property
+    @pulumi.getter(name="passCredentials")
+    def pass_credentials(self) -> Optional[pulumi.Input[bool]]:
+        """
+        PassCredentials pass credentials to all domains (Helm's --pass-credentials)
+        """
+        return pulumi.get(self, "pass_credentials")
+
+    @pass_credentials.setter
+    def pass_credentials(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "pass_credentials", value)
+
+    @property
+    @pulumi.getter(name="releaseName")
+    def release_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        ReleaseName is the Helm release name to use. If omitted it will use the application name
+        """
+        return pulumi.get(self, "release_name")
+
+    @release_name.setter
+    def release_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "release_name", value)
+
+    @property
+    @pulumi.getter(name="valueFiles")
+    def value_files(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        ValuesFiles is a list of Helm value files to use when generating a template
+        """
+        return pulumi.get(self, "value_files")
+
+    @value_files.setter
+    def value_files(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "value_files", value)
+
+    @property
+    @pulumi.getter
+    def values(self) -> Optional[pulumi.Input[str]]:
+        """
+        Values specifies Helm values to be passed to helm template, typically defined as a block
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "values", value)
+
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Version is the Helm version to use for templating (either "2" or "3")
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "version", value)
+
+
+@pulumi.input_type
+class ApplicationStatusSyncComparedToSourceKsonnetParametersArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 value: pulumi.Input[str],
+                 component: Optional[pulumi.Input[str]] = None):
+        """
+        KsonnetParameter is a ksonnet component parameter
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+        if component is not None:
+            pulumi.set(__self__, "component", component)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+    @property
+    @pulumi.getter
+    def component(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "component")
+
+    @component.setter
+    def component(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "component", value)
+
+
+@pulumi.input_type
+class ApplicationStatusSyncComparedToSourceKsonnetArgs:
+    def __init__(__self__, *,
+                 environment: Optional[pulumi.Input[str]] = None,
+                 parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceKsonnetParametersArgs']]]] = None):
+        """
+        Ksonnet holds ksonnet specific options
+        :param pulumi.Input[str] environment: Environment is a ksonnet application environment name
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceKsonnetParametersArgs']]] parameters: Parameters are a list of ksonnet component parameter override values
+        """
+        if environment is not None:
+            pulumi.set(__self__, "environment", environment)
+        if parameters is not None:
+            pulumi.set(__self__, "parameters", parameters)
+
+    @property
+    @pulumi.getter
+    def environment(self) -> Optional[pulumi.Input[str]]:
+        """
+        Environment is a ksonnet application environment name
+        """
+        return pulumi.get(self, "environment")
+
+    @environment.setter
+    def environment(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "environment", value)
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceKsonnetParametersArgs']]]]:
+        """
+        Parameters are a list of ksonnet component parameter override values
+        """
+        return pulumi.get(self, "parameters")
+
+    @parameters.setter
+    def parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceKsonnetParametersArgs']]]]):
+        pulumi.set(self, "parameters", value)
+
+
+@pulumi.input_type
+class ApplicationStatusSyncComparedToSourceKustomizeArgs:
+    def __init__(__self__, *,
+                 common_annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 common_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 force_common_annotations: Optional[pulumi.Input[bool]] = None,
+                 force_common_labels: Optional[pulumi.Input[bool]] = None,
+                 images: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 name_prefix: Optional[pulumi.Input[str]] = None,
+                 name_suffix: Optional[pulumi.Input[str]] = None,
+                 version: Optional[pulumi.Input[str]] = None):
+        """
+        Kustomize holds kustomize specific options
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] common_annotations: CommonAnnotations is a list of additional annotations to add to rendered manifests
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] common_labels: CommonLabels is a list of additional labels to add to rendered manifests
+        :param pulumi.Input[bool] force_common_annotations: ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps
+        :param pulumi.Input[bool] force_common_labels: ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] images: Images is a list of Kustomize image override specifications
+        :param pulumi.Input[str] name_prefix: NamePrefix is a prefix appended to resources for Kustomize apps
+        :param pulumi.Input[str] name_suffix: NameSuffix is a suffix appended to resources for Kustomize apps
+        :param pulumi.Input[str] version: Version controls which version of Kustomize to use for rendering manifests
+        """
+        if common_annotations is not None:
+            pulumi.set(__self__, "common_annotations", common_annotations)
+        if common_labels is not None:
+            pulumi.set(__self__, "common_labels", common_labels)
+        if force_common_annotations is not None:
+            pulumi.set(__self__, "force_common_annotations", force_common_annotations)
+        if force_common_labels is not None:
+            pulumi.set(__self__, "force_common_labels", force_common_labels)
+        if images is not None:
+            pulumi.set(__self__, "images", images)
+        if name_prefix is not None:
+            pulumi.set(__self__, "name_prefix", name_prefix)
+        if name_suffix is not None:
+            pulumi.set(__self__, "name_suffix", name_suffix)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter(name="commonAnnotations")
+    def common_annotations(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        CommonAnnotations is a list of additional annotations to add to rendered manifests
+        """
+        return pulumi.get(self, "common_annotations")
+
+    @common_annotations.setter
+    def common_annotations(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "common_annotations", value)
+
+    @property
+    @pulumi.getter(name="commonLabels")
+    def common_labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        CommonLabels is a list of additional labels to add to rendered manifests
+        """
+        return pulumi.get(self, "common_labels")
+
+    @common_labels.setter
+    def common_labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "common_labels", value)
+
+    @property
+    @pulumi.getter(name="forceCommonAnnotations")
+    def force_common_annotations(self) -> Optional[pulumi.Input[bool]]:
+        """
+        ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps
+        """
+        return pulumi.get(self, "force_common_annotations")
+
+    @force_common_annotations.setter
+    def force_common_annotations(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "force_common_annotations", value)
+
+    @property
+    @pulumi.getter(name="forceCommonLabels")
+    def force_common_labels(self) -> Optional[pulumi.Input[bool]]:
+        """
+        ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps
+        """
+        return pulumi.get(self, "force_common_labels")
+
+    @force_common_labels.setter
+    def force_common_labels(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "force_common_labels", value)
+
+    @property
+    @pulumi.getter
+    def images(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Images is a list of Kustomize image override specifications
+        """
+        return pulumi.get(self, "images")
+
+    @images.setter
+    def images(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "images", value)
+
+    @property
+    @pulumi.getter(name="namePrefix")
+    def name_prefix(self) -> Optional[pulumi.Input[str]]:
+        """
+        NamePrefix is a prefix appended to resources for Kustomize apps
+        """
+        return pulumi.get(self, "name_prefix")
+
+    @name_prefix.setter
+    def name_prefix(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name_prefix", value)
+
+    @property
+    @pulumi.getter(name="nameSuffix")
+    def name_suffix(self) -> Optional[pulumi.Input[str]]:
+        """
+        NameSuffix is a suffix appended to resources for Kustomize apps
+        """
+        return pulumi.get(self, "name_suffix")
+
+    @name_suffix.setter
+    def name_suffix(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name_suffix", value)
+
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Version controls which version of Kustomize to use for rendering manifests
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "version", value)
+
+
+@pulumi.input_type
+class ApplicationStatusSyncComparedToSourcePluginEnvArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        EnvEntry represents an entry in the application's environment
+        :param pulumi.Input[str] name: Name is the name of the variable, usually expressed in uppercase
+        :param pulumi.Input[str] value: Value is the value of the variable
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        Name is the name of the variable, usually expressed in uppercase
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        Value is the value of the variable
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ApplicationStatusSyncComparedToSourcePluginArgs:
+    def __init__(__self__, *,
+                 env: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourcePluginEnvArgs']]]] = None,
+                 name: Optional[pulumi.Input[str]] = None):
+        """
+        ConfigManagementPlugin holds config management plugin specific options
+        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourcePluginEnvArgs']]] env: Env is a list of environment variable entries
+        """
+        if env is not None:
+            pulumi.set(__self__, "env", env)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def env(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourcePluginEnvArgs']]]]:
+        """
+        Env is a list of environment variable entries
+        """
+        return pulumi.get(self, "env")
+
+    @env.setter
+    def env(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourcePluginEnvArgs']]]]):
+        pulumi.set(self, "env", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class ApplicationStatusSyncComparedToSourceArgs:
+    def __init__(__self__, *,
+                 repo_url: pulumi.Input[str],
+                 chart: Optional[pulumi.Input[str]] = None,
+                 directory: Optional[pulumi.Input['ApplicationStatusSyncComparedToSourceDirectoryArgs']] = None,
+                 helm: Optional[pulumi.Input['ApplicationStatusSyncComparedToSourceHelmArgs']] = None,
+                 ksonnet: Optional[pulumi.Input['ApplicationStatusSyncComparedToSourceKsonnetArgs']] = None,
+                 kustomize: Optional[pulumi.Input['ApplicationStatusSyncComparedToSourceKustomizeArgs']] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 plugin: Optional[pulumi.Input['ApplicationStatusSyncComparedToSourcePluginArgs']] = None,
+                 target_revision: Optional[pulumi.Input[str]] = None):
+        """
+        Source is a reference to the application's source used for comparison
+        :param pulumi.Input[str] repo_url: RepoURL is the URL to the repository (Git or Helm) that contains the application manifests
+        :param pulumi.Input[str] chart: Chart is a Helm chart name, and must be specified for applications sourced from a Helm repo.
+        :param pulumi.Input['ApplicationStatusSyncComparedToSourceDirectoryArgs'] directory: Directory holds path/directory specific options
+        :param pulumi.Input['ApplicationStatusSyncComparedToSourceHelmArgs'] helm: Helm holds helm specific options
+        :param pulumi.Input['ApplicationStatusSyncComparedToSourceKsonnetArgs'] ksonnet: Ksonnet holds ksonnet specific options
+        :param pulumi.Input['ApplicationStatusSyncComparedToSourceKustomizeArgs'] kustomize: Kustomize holds kustomize specific options
+        :param pulumi.Input[str] path: Path is a directory path within the Git repository, and is only valid for applications sourced from Git.
+        :param pulumi.Input['ApplicationStatusSyncComparedToSourcePluginArgs'] plugin: ConfigManagementPlugin holds config management plugin specific options
+        :param pulumi.Input[str] target_revision: TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version.
+        """
+        pulumi.set(__self__, "repo_url", repo_url)
+        if chart is not None:
+            pulumi.set(__self__, "chart", chart)
+        if directory is not None:
+            pulumi.set(__self__, "directory", directory)
+        if helm is not None:
+            pulumi.set(__self__, "helm", helm)
+        if ksonnet is not None:
+            pulumi.set(__self__, "ksonnet", ksonnet)
+        if kustomize is not None:
+            pulumi.set(__self__, "kustomize", kustomize)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if plugin is not None:
+            pulumi.set(__self__, "plugin", plugin)
+        if target_revision is not None:
+            pulumi.set(__self__, "target_revision", target_revision)
+
+    @property
+    @pulumi.getter(name="repoURL")
+    def repo_url(self) -> pulumi.Input[str]:
+        """
+        RepoURL is the URL to the repository (Git or Helm) that contains the application manifests
+        """
+        return pulumi.get(self, "repo_url")
+
+    @repo_url.setter
+    def repo_url(self, value: pulumi.Input[str]):
+        pulumi.set(self, "repo_url", value)
+
+    @property
+    @pulumi.getter
+    def chart(self) -> Optional[pulumi.Input[str]]:
+        """
+        Chart is a Helm chart name, and must be specified for applications sourced from a Helm repo.
+        """
+        return pulumi.get(self, "chart")
+
+    @chart.setter
+    def chart(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "chart", value)
+
+    @property
+    @pulumi.getter
+    def directory(self) -> Optional[pulumi.Input['ApplicationStatusSyncComparedToSourceDirectoryArgs']]:
+        """
+        Directory holds path/directory specific options
+        """
+        return pulumi.get(self, "directory")
+
+    @directory.setter
+    def directory(self, value: Optional[pulumi.Input['ApplicationStatusSyncComparedToSourceDirectoryArgs']]):
+        pulumi.set(self, "directory", value)
+
+    @property
+    @pulumi.getter
+    def helm(self) -> Optional[pulumi.Input['ApplicationStatusSyncComparedToSourceHelmArgs']]:
+        """
+        Helm holds helm specific options
+        """
+        return pulumi.get(self, "helm")
+
+    @helm.setter
+    def helm(self, value: Optional[pulumi.Input['ApplicationStatusSyncComparedToSourceHelmArgs']]):
+        pulumi.set(self, "helm", value)
+
+    @property
+    @pulumi.getter
+    def ksonnet(self) -> Optional[pulumi.Input['ApplicationStatusSyncComparedToSourceKsonnetArgs']]:
+        """
+        Ksonnet holds ksonnet specific options
+        """
+        return pulumi.get(self, "ksonnet")
+
+    @ksonnet.setter
+    def ksonnet(self, value: Optional[pulumi.Input['ApplicationStatusSyncComparedToSourceKsonnetArgs']]):
+        pulumi.set(self, "ksonnet", value)
+
+    @property
+    @pulumi.getter
+    def kustomize(self) -> Optional[pulumi.Input['ApplicationStatusSyncComparedToSourceKustomizeArgs']]:
+        """
+        Kustomize holds kustomize specific options
+        """
+        return pulumi.get(self, "kustomize")
+
+    @kustomize.setter
+    def kustomize(self, value: Optional[pulumi.Input['ApplicationStatusSyncComparedToSourceKustomizeArgs']]):
+        pulumi.set(self, "kustomize", value)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path is a directory path within the Git repository, and is only valid for applications sourced from Git.
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter
+    def plugin(self) -> Optional[pulumi.Input['ApplicationStatusSyncComparedToSourcePluginArgs']]:
+        """
+        ConfigManagementPlugin holds config management plugin specific options
+        """
+        return pulumi.get(self, "plugin")
+
+    @plugin.setter
+    def plugin(self, value: Optional[pulumi.Input['ApplicationStatusSyncComparedToSourcePluginArgs']]):
+        pulumi.set(self, "plugin", value)
+
+    @property
+    @pulumi.getter(name="targetRevision")
+    def target_revision(self) -> Optional[pulumi.Input[str]]:
+        """
+        TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version.
+        """
+        return pulumi.get(self, "target_revision")
+
+    @target_revision.setter
+    def target_revision(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "target_revision", value)
+
+
+@pulumi.input_type
+class ApplicationStatusSyncComparedToArgs:
+    def __init__(__self__, *,
+                 destination: pulumi.Input['ApplicationStatusSyncComparedToDestinationArgs'],
+                 source: pulumi.Input['ApplicationStatusSyncComparedToSourceArgs']):
+        """
+        ComparedTo contains information about what has been compared
+        :param pulumi.Input['ApplicationStatusSyncComparedToDestinationArgs'] destination: Destination is a reference to the application's destination used for comparison
+        :param pulumi.Input['ApplicationStatusSyncComparedToSourceArgs'] source: Source is a reference to the application's source used for comparison
+        """
+        pulumi.set(__self__, "destination", destination)
+        pulumi.set(__self__, "source", source)
+
+    @property
+    @pulumi.getter
+    def destination(self) -> pulumi.Input['ApplicationStatusSyncComparedToDestinationArgs']:
+        """
+        Destination is a reference to the application's destination used for comparison
+        """
+        return pulumi.get(self, "destination")
+
+    @destination.setter
+    def destination(self, value: pulumi.Input['ApplicationStatusSyncComparedToDestinationArgs']):
+        pulumi.set(self, "destination", value)
+
+    @property
+    @pulumi.getter
+    def source(self) -> pulumi.Input['ApplicationStatusSyncComparedToSourceArgs']:
+        """
+        Source is a reference to the application's source used for comparison
+        """
+        return pulumi.get(self, "source")
+
+    @source.setter
+    def source(self, value: pulumi.Input['ApplicationStatusSyncComparedToSourceArgs']):
+        pulumi.set(self, "source", value)
+
+
+@pulumi.input_type
+class ApplicationStatusSyncArgs:
+    def __init__(__self__, *,
+                 status: pulumi.Input[str],
+                 compared_to: Optional[pulumi.Input['ApplicationStatusSyncComparedToArgs']] = None,
+                 revision: Optional[pulumi.Input[str]] = None):
+        """
+        Sync contains information about the application's current sync status
+        :param pulumi.Input[str] status: Status is the sync state of the comparison
+        :param pulumi.Input['ApplicationStatusSyncComparedToArgs'] compared_to: ComparedTo contains information about what has been compared
+        :param pulumi.Input[str] revision: Revision contains information about the revision the comparison has been performed to
+        """
+        pulumi.set(__self__, "status", status)
+        if compared_to is not None:
+            pulumi.set(__self__, "compared_to", compared_to)
+        if revision is not None:
+            pulumi.set(__self__, "revision", revision)
+
+    @property
+    @pulumi.getter
+    def status(self) -> pulumi.Input[str]:
+        """
+        Status is the sync state of the comparison
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: pulumi.Input[str]):
+        pulumi.set(self, "status", value)
+
+    @property
+    @pulumi.getter(name="comparedTo")
+    def compared_to(self) -> Optional[pulumi.Input['ApplicationStatusSyncComparedToArgs']]:
+        """
+        ComparedTo contains information about what has been compared
+        """
+        return pulumi.get(self, "compared_to")
+
+    @compared_to.setter
+    def compared_to(self, value: Optional[pulumi.Input['ApplicationStatusSyncComparedToArgs']]):
+        pulumi.set(self, "compared_to", value)
+
+    @property
+    @pulumi.getter
+    def revision(self) -> Optional[pulumi.Input[str]]:
+        """
+        Revision contains information about the revision the comparison has been performed to
+        """
+        return pulumi.get(self, "revision")
+
+    @revision.setter
+    def revision(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "revision", value)
 
 
 @pulumi.input_type
@@ -3054,4869 +7918,5 @@ class ApplicationStatusArgs:
     @sync.setter
     def sync(self, value: Optional[pulumi.Input['ApplicationStatusSyncArgs']]):
         pulumi.set(self, "sync", value)
-
-
-@pulumi.input_type
-class ApplicationStatusConditionsArgs:
-    def __init__(__self__, *,
-                 message: pulumi.Input[str],
-                 type: pulumi.Input[str],
-                 last_transition_time: Optional[pulumi.Input[str]] = None):
-        """
-        ApplicationCondition contains details about an application condition, which is usally an error or warning
-        :param pulumi.Input[str] message: Message contains human-readable message indicating details about condition
-        :param pulumi.Input[str] type: Type is an application condition type
-        :param pulumi.Input[str] last_transition_time: LastTransitionTime is the time the condition was last observed
-        """
-        pulumi.set(__self__, "message", message)
-        pulumi.set(__self__, "type", type)
-        if last_transition_time is not None:
-            pulumi.set(__self__, "last_transition_time", last_transition_time)
-
-    @property
-    @pulumi.getter
-    def message(self) -> pulumi.Input[str]:
-        """
-        Message contains human-readable message indicating details about condition
-        """
-        return pulumi.get(self, "message")
-
-    @message.setter
-    def message(self, value: pulumi.Input[str]):
-        pulumi.set(self, "message", value)
-
-    @property
-    @pulumi.getter
-    def type(self) -> pulumi.Input[str]:
-        """
-        Type is an application condition type
-        """
-        return pulumi.get(self, "type")
-
-    @type.setter
-    def type(self, value: pulumi.Input[str]):
-        pulumi.set(self, "type", value)
-
-    @property
-    @pulumi.getter(name="lastTransitionTime")
-    def last_transition_time(self) -> Optional[pulumi.Input[str]]:
-        """
-        LastTransitionTime is the time the condition was last observed
-        """
-        return pulumi.get(self, "last_transition_time")
-
-    @last_transition_time.setter
-    def last_transition_time(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "last_transition_time", value)
-
-
-@pulumi.input_type
-class ApplicationStatusHealthArgs:
-    def __init__(__self__, *,
-                 message: Optional[pulumi.Input[str]] = None,
-                 status: Optional[pulumi.Input[str]] = None):
-        """
-        Health contains information about the application's current health status
-        :param pulumi.Input[str] message: Message is a human-readable informational message describing the health status
-        :param pulumi.Input[str] status: Status holds the status code of the application or resource
-        """
-        if message is not None:
-            pulumi.set(__self__, "message", message)
-        if status is not None:
-            pulumi.set(__self__, "status", status)
-
-    @property
-    @pulumi.getter
-    def message(self) -> Optional[pulumi.Input[str]]:
-        """
-        Message is a human-readable informational message describing the health status
-        """
-        return pulumi.get(self, "message")
-
-    @message.setter
-    def message(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "message", value)
-
-    @property
-    @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[str]]:
-        """
-        Status holds the status code of the application or resource
-        """
-        return pulumi.get(self, "status")
-
-    @status.setter
-    def status(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "status", value)
-
-
-@pulumi.input_type
-class ApplicationStatusHistoryArgs:
-    def __init__(__self__, *,
-                 deployed_at: pulumi.Input[str],
-                 id: pulumi.Input[int],
-                 revision: pulumi.Input[str],
-                 deploy_started_at: Optional[pulumi.Input[str]] = None,
-                 source: Optional[pulumi.Input['ApplicationStatusHistorySourceArgs']] = None):
-        """
-        RevisionHistory contains history information about a previous sync
-        :param pulumi.Input[str] deployed_at: DeployedAt holds the time the sync operation completed
-        :param pulumi.Input[int] id: ID is an auto incrementing identifier of the RevisionHistory
-        :param pulumi.Input[str] revision: Revision holds the revision the sync was performed against
-        :param pulumi.Input[str] deploy_started_at: DeployStartedAt holds the time the sync operation started
-        :param pulumi.Input['ApplicationStatusHistorySourceArgs'] source: Source is a reference to the application source used for the sync operation
-        """
-        pulumi.set(__self__, "deployed_at", deployed_at)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "revision", revision)
-        if deploy_started_at is not None:
-            pulumi.set(__self__, "deploy_started_at", deploy_started_at)
-        if source is not None:
-            pulumi.set(__self__, "source", source)
-
-    @property
-    @pulumi.getter(name="deployedAt")
-    def deployed_at(self) -> pulumi.Input[str]:
-        """
-        DeployedAt holds the time the sync operation completed
-        """
-        return pulumi.get(self, "deployed_at")
-
-    @deployed_at.setter
-    def deployed_at(self, value: pulumi.Input[str]):
-        pulumi.set(self, "deployed_at", value)
-
-    @property
-    @pulumi.getter
-    def id(self) -> pulumi.Input[int]:
-        """
-        ID is an auto incrementing identifier of the RevisionHistory
-        """
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: pulumi.Input[int]):
-        pulumi.set(self, "id", value)
-
-    @property
-    @pulumi.getter
-    def revision(self) -> pulumi.Input[str]:
-        """
-        Revision holds the revision the sync was performed against
-        """
-        return pulumi.get(self, "revision")
-
-    @revision.setter
-    def revision(self, value: pulumi.Input[str]):
-        pulumi.set(self, "revision", value)
-
-    @property
-    @pulumi.getter(name="deployStartedAt")
-    def deploy_started_at(self) -> Optional[pulumi.Input[str]]:
-        """
-        DeployStartedAt holds the time the sync operation started
-        """
-        return pulumi.get(self, "deploy_started_at")
-
-    @deploy_started_at.setter
-    def deploy_started_at(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "deploy_started_at", value)
-
-    @property
-    @pulumi.getter
-    def source(self) -> Optional[pulumi.Input['ApplicationStatusHistorySourceArgs']]:
-        """
-        Source is a reference to the application source used for the sync operation
-        """
-        return pulumi.get(self, "source")
-
-    @source.setter
-    def source(self, value: Optional[pulumi.Input['ApplicationStatusHistorySourceArgs']]):
-        pulumi.set(self, "source", value)
-
-
-@pulumi.input_type
-class ApplicationStatusHistorySourceArgs:
-    def __init__(__self__, *,
-                 repo_url: pulumi.Input[str],
-                 chart: Optional[pulumi.Input[str]] = None,
-                 directory: Optional[pulumi.Input['ApplicationStatusHistorySourceDirectoryArgs']] = None,
-                 helm: Optional[pulumi.Input['ApplicationStatusHistorySourceHelmArgs']] = None,
-                 ksonnet: Optional[pulumi.Input['ApplicationStatusHistorySourceKsonnetArgs']] = None,
-                 kustomize: Optional[pulumi.Input['ApplicationStatusHistorySourceKustomizeArgs']] = None,
-                 path: Optional[pulumi.Input[str]] = None,
-                 plugin: Optional[pulumi.Input['ApplicationStatusHistorySourcePluginArgs']] = None,
-                 target_revision: Optional[pulumi.Input[str]] = None):
-        """
-        Source is a reference to the application source used for the sync operation
-        :param pulumi.Input[str] repo_url: RepoURL is the URL to the repository (Git or Helm) that contains the application manifests
-        :param pulumi.Input[str] chart: Chart is a Helm chart name, and must be specified for applications sourced from a Helm repo.
-        :param pulumi.Input['ApplicationStatusHistorySourceDirectoryArgs'] directory: Directory holds path/directory specific options
-        :param pulumi.Input['ApplicationStatusHistorySourceHelmArgs'] helm: Helm holds helm specific options
-        :param pulumi.Input['ApplicationStatusHistorySourceKsonnetArgs'] ksonnet: Ksonnet holds ksonnet specific options
-        :param pulumi.Input['ApplicationStatusHistorySourceKustomizeArgs'] kustomize: Kustomize holds kustomize specific options
-        :param pulumi.Input[str] path: Path is a directory path within the Git repository, and is only valid for applications sourced from Git.
-        :param pulumi.Input['ApplicationStatusHistorySourcePluginArgs'] plugin: ConfigManagementPlugin holds config management plugin specific options
-        :param pulumi.Input[str] target_revision: TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version.
-        """
-        pulumi.set(__self__, "repo_url", repo_url)
-        if chart is not None:
-            pulumi.set(__self__, "chart", chart)
-        if directory is not None:
-            pulumi.set(__self__, "directory", directory)
-        if helm is not None:
-            pulumi.set(__self__, "helm", helm)
-        if ksonnet is not None:
-            pulumi.set(__self__, "ksonnet", ksonnet)
-        if kustomize is not None:
-            pulumi.set(__self__, "kustomize", kustomize)
-        if path is not None:
-            pulumi.set(__self__, "path", path)
-        if plugin is not None:
-            pulumi.set(__self__, "plugin", plugin)
-        if target_revision is not None:
-            pulumi.set(__self__, "target_revision", target_revision)
-
-    @property
-    @pulumi.getter(name="repoURL")
-    def repo_url(self) -> pulumi.Input[str]:
-        """
-        RepoURL is the URL to the repository (Git or Helm) that contains the application manifests
-        """
-        return pulumi.get(self, "repo_url")
-
-    @repo_url.setter
-    def repo_url(self, value: pulumi.Input[str]):
-        pulumi.set(self, "repo_url", value)
-
-    @property
-    @pulumi.getter
-    def chart(self) -> Optional[pulumi.Input[str]]:
-        """
-        Chart is a Helm chart name, and must be specified for applications sourced from a Helm repo.
-        """
-        return pulumi.get(self, "chart")
-
-    @chart.setter
-    def chart(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "chart", value)
-
-    @property
-    @pulumi.getter
-    def directory(self) -> Optional[pulumi.Input['ApplicationStatusHistorySourceDirectoryArgs']]:
-        """
-        Directory holds path/directory specific options
-        """
-        return pulumi.get(self, "directory")
-
-    @directory.setter
-    def directory(self, value: Optional[pulumi.Input['ApplicationStatusHistorySourceDirectoryArgs']]):
-        pulumi.set(self, "directory", value)
-
-    @property
-    @pulumi.getter
-    def helm(self) -> Optional[pulumi.Input['ApplicationStatusHistorySourceHelmArgs']]:
-        """
-        Helm holds helm specific options
-        """
-        return pulumi.get(self, "helm")
-
-    @helm.setter
-    def helm(self, value: Optional[pulumi.Input['ApplicationStatusHistorySourceHelmArgs']]):
-        pulumi.set(self, "helm", value)
-
-    @property
-    @pulumi.getter
-    def ksonnet(self) -> Optional[pulumi.Input['ApplicationStatusHistorySourceKsonnetArgs']]:
-        """
-        Ksonnet holds ksonnet specific options
-        """
-        return pulumi.get(self, "ksonnet")
-
-    @ksonnet.setter
-    def ksonnet(self, value: Optional[pulumi.Input['ApplicationStatusHistorySourceKsonnetArgs']]):
-        pulumi.set(self, "ksonnet", value)
-
-    @property
-    @pulumi.getter
-    def kustomize(self) -> Optional[pulumi.Input['ApplicationStatusHistorySourceKustomizeArgs']]:
-        """
-        Kustomize holds kustomize specific options
-        """
-        return pulumi.get(self, "kustomize")
-
-    @kustomize.setter
-    def kustomize(self, value: Optional[pulumi.Input['ApplicationStatusHistorySourceKustomizeArgs']]):
-        pulumi.set(self, "kustomize", value)
-
-    @property
-    @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[str]]:
-        """
-        Path is a directory path within the Git repository, and is only valid for applications sourced from Git.
-        """
-        return pulumi.get(self, "path")
-
-    @path.setter
-    def path(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "path", value)
-
-    @property
-    @pulumi.getter
-    def plugin(self) -> Optional[pulumi.Input['ApplicationStatusHistorySourcePluginArgs']]:
-        """
-        ConfigManagementPlugin holds config management plugin specific options
-        """
-        return pulumi.get(self, "plugin")
-
-    @plugin.setter
-    def plugin(self, value: Optional[pulumi.Input['ApplicationStatusHistorySourcePluginArgs']]):
-        pulumi.set(self, "plugin", value)
-
-    @property
-    @pulumi.getter(name="targetRevision")
-    def target_revision(self) -> Optional[pulumi.Input[str]]:
-        """
-        TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version.
-        """
-        return pulumi.get(self, "target_revision")
-
-    @target_revision.setter
-    def target_revision(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "target_revision", value)
-
-
-@pulumi.input_type
-class ApplicationStatusHistorySourceDirectoryArgs:
-    def __init__(__self__, *,
-                 exclude: Optional[pulumi.Input[str]] = None,
-                 include: Optional[pulumi.Input[str]] = None,
-                 jsonnet: Optional[pulumi.Input['ApplicationStatusHistorySourceDirectoryJsonnetArgs']] = None,
-                 recurse: Optional[pulumi.Input[bool]] = None):
-        """
-        Directory holds path/directory specific options
-        :param pulumi.Input[str] exclude: Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation
-        :param pulumi.Input[str] include: Include contains a glob pattern to match paths against that should be explicitly included during manifest generation
-        :param pulumi.Input['ApplicationStatusHistorySourceDirectoryJsonnetArgs'] jsonnet: Jsonnet holds options specific to Jsonnet
-        :param pulumi.Input[bool] recurse: Recurse specifies whether to scan a directory recursively for manifests
-        """
-        if exclude is not None:
-            pulumi.set(__self__, "exclude", exclude)
-        if include is not None:
-            pulumi.set(__self__, "include", include)
-        if jsonnet is not None:
-            pulumi.set(__self__, "jsonnet", jsonnet)
-        if recurse is not None:
-            pulumi.set(__self__, "recurse", recurse)
-
-    @property
-    @pulumi.getter
-    def exclude(self) -> Optional[pulumi.Input[str]]:
-        """
-        Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation
-        """
-        return pulumi.get(self, "exclude")
-
-    @exclude.setter
-    def exclude(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "exclude", value)
-
-    @property
-    @pulumi.getter
-    def include(self) -> Optional[pulumi.Input[str]]:
-        """
-        Include contains a glob pattern to match paths against that should be explicitly included during manifest generation
-        """
-        return pulumi.get(self, "include")
-
-    @include.setter
-    def include(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "include", value)
-
-    @property
-    @pulumi.getter
-    def jsonnet(self) -> Optional[pulumi.Input['ApplicationStatusHistorySourceDirectoryJsonnetArgs']]:
-        """
-        Jsonnet holds options specific to Jsonnet
-        """
-        return pulumi.get(self, "jsonnet")
-
-    @jsonnet.setter
-    def jsonnet(self, value: Optional[pulumi.Input['ApplicationStatusHistorySourceDirectoryJsonnetArgs']]):
-        pulumi.set(self, "jsonnet", value)
-
-    @property
-    @pulumi.getter
-    def recurse(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Recurse specifies whether to scan a directory recursively for manifests
-        """
-        return pulumi.get(self, "recurse")
-
-    @recurse.setter
-    def recurse(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "recurse", value)
-
-
-@pulumi.input_type
-class ApplicationStatusHistorySourceDirectoryJsonnetArgs:
-    def __init__(__self__, *,
-                 ext_vars: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceDirectoryJsonnetExtVarsArgs']]]] = None,
-                 libs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 tlas: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceDirectoryJsonnetTlasArgs']]]] = None):
-        """
-        Jsonnet holds options specific to Jsonnet
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceDirectoryJsonnetExtVarsArgs']]] ext_vars: ExtVars is a list of Jsonnet External Variables
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] libs: Additional library search dirs
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceDirectoryJsonnetTlasArgs']]] tlas: TLAS is a list of Jsonnet Top-level Arguments
-        """
-        if ext_vars is not None:
-            pulumi.set(__self__, "ext_vars", ext_vars)
-        if libs is not None:
-            pulumi.set(__self__, "libs", libs)
-        if tlas is not None:
-            pulumi.set(__self__, "tlas", tlas)
-
-    @property
-    @pulumi.getter(name="extVars")
-    def ext_vars(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceDirectoryJsonnetExtVarsArgs']]]]:
-        """
-        ExtVars is a list of Jsonnet External Variables
-        """
-        return pulumi.get(self, "ext_vars")
-
-    @ext_vars.setter
-    def ext_vars(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceDirectoryJsonnetExtVarsArgs']]]]):
-        pulumi.set(self, "ext_vars", value)
-
-    @property
-    @pulumi.getter
-    def libs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        Additional library search dirs
-        """
-        return pulumi.get(self, "libs")
-
-    @libs.setter
-    def libs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "libs", value)
-
-    @property
-    @pulumi.getter
-    def tlas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceDirectoryJsonnetTlasArgs']]]]:
-        """
-        TLAS is a list of Jsonnet Top-level Arguments
-        """
-        return pulumi.get(self, "tlas")
-
-    @tlas.setter
-    def tlas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceDirectoryJsonnetTlasArgs']]]]):
-        pulumi.set(self, "tlas", value)
-
-
-@pulumi.input_type
-class ApplicationStatusHistorySourceDirectoryJsonnetExtVarsArgs:
-    def __init__(__self__, *,
-                 name: pulumi.Input[str],
-                 value: pulumi.Input[str],
-                 code: Optional[pulumi.Input[bool]] = None):
-        """
-        JsonnetVar represents a variable to be passed to jsonnet during manifest generation
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "value", value)
-        if code is not None:
-            pulumi.set(__self__, "code", code)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def value(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "value")
-
-    @value.setter
-    def value(self, value: pulumi.Input[str]):
-        pulumi.set(self, "value", value)
-
-    @property
-    @pulumi.getter
-    def code(self) -> Optional[pulumi.Input[bool]]:
-        return pulumi.get(self, "code")
-
-    @code.setter
-    def code(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "code", value)
-
-
-@pulumi.input_type
-class ApplicationStatusHistorySourceDirectoryJsonnetTlasArgs:
-    def __init__(__self__, *,
-                 name: pulumi.Input[str],
-                 value: pulumi.Input[str],
-                 code: Optional[pulumi.Input[bool]] = None):
-        """
-        JsonnetVar represents a variable to be passed to jsonnet during manifest generation
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "value", value)
-        if code is not None:
-            pulumi.set(__self__, "code", code)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def value(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "value")
-
-    @value.setter
-    def value(self, value: pulumi.Input[str]):
-        pulumi.set(self, "value", value)
-
-    @property
-    @pulumi.getter
-    def code(self) -> Optional[pulumi.Input[bool]]:
-        return pulumi.get(self, "code")
-
-    @code.setter
-    def code(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "code", value)
-
-
-@pulumi.input_type
-class ApplicationStatusHistorySourceHelmArgs:
-    def __init__(__self__, *,
-                 file_parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceHelmFileParametersArgs']]]] = None,
-                 parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceHelmParametersArgs']]]] = None,
-                 pass_credentials: Optional[pulumi.Input[bool]] = None,
-                 release_name: Optional[pulumi.Input[str]] = None,
-                 value_files: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 values: Optional[pulumi.Input[str]] = None,
-                 version: Optional[pulumi.Input[str]] = None):
-        """
-        Helm holds helm specific options
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceHelmFileParametersArgs']]] file_parameters: FileParameters are file parameters to the helm template
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceHelmParametersArgs']]] parameters: Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation
-        :param pulumi.Input[bool] pass_credentials: PassCredentials pass credentials to all domains (Helm's --pass-credentials)
-        :param pulumi.Input[str] release_name: ReleaseName is the Helm release name to use. If omitted it will use the application name
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] value_files: ValuesFiles is a list of Helm value files to use when generating a template
-        :param pulumi.Input[str] values: Values specifies Helm values to be passed to helm template, typically defined as a block
-        :param pulumi.Input[str] version: Version is the Helm version to use for templating (either "2" or "3")
-        """
-        if file_parameters is not None:
-            pulumi.set(__self__, "file_parameters", file_parameters)
-        if parameters is not None:
-            pulumi.set(__self__, "parameters", parameters)
-        if pass_credentials is not None:
-            pulumi.set(__self__, "pass_credentials", pass_credentials)
-        if release_name is not None:
-            pulumi.set(__self__, "release_name", release_name)
-        if value_files is not None:
-            pulumi.set(__self__, "value_files", value_files)
-        if values is not None:
-            pulumi.set(__self__, "values", values)
-        if version is not None:
-            pulumi.set(__self__, "version", version)
-
-    @property
-    @pulumi.getter(name="fileParameters")
-    def file_parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceHelmFileParametersArgs']]]]:
-        """
-        FileParameters are file parameters to the helm template
-        """
-        return pulumi.get(self, "file_parameters")
-
-    @file_parameters.setter
-    def file_parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceHelmFileParametersArgs']]]]):
-        pulumi.set(self, "file_parameters", value)
-
-    @property
-    @pulumi.getter
-    def parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceHelmParametersArgs']]]]:
-        """
-        Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation
-        """
-        return pulumi.get(self, "parameters")
-
-    @parameters.setter
-    def parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceHelmParametersArgs']]]]):
-        pulumi.set(self, "parameters", value)
-
-    @property
-    @pulumi.getter(name="passCredentials")
-    def pass_credentials(self) -> Optional[pulumi.Input[bool]]:
-        """
-        PassCredentials pass credentials to all domains (Helm's --pass-credentials)
-        """
-        return pulumi.get(self, "pass_credentials")
-
-    @pass_credentials.setter
-    def pass_credentials(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "pass_credentials", value)
-
-    @property
-    @pulumi.getter(name="releaseName")
-    def release_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        ReleaseName is the Helm release name to use. If omitted it will use the application name
-        """
-        return pulumi.get(self, "release_name")
-
-    @release_name.setter
-    def release_name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "release_name", value)
-
-    @property
-    @pulumi.getter(name="valueFiles")
-    def value_files(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        ValuesFiles is a list of Helm value files to use when generating a template
-        """
-        return pulumi.get(self, "value_files")
-
-    @value_files.setter
-    def value_files(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "value_files", value)
-
-    @property
-    @pulumi.getter
-    def values(self) -> Optional[pulumi.Input[str]]:
-        """
-        Values specifies Helm values to be passed to helm template, typically defined as a block
-        """
-        return pulumi.get(self, "values")
-
-    @values.setter
-    def values(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "values", value)
-
-    @property
-    @pulumi.getter
-    def version(self) -> Optional[pulumi.Input[str]]:
-        """
-        Version is the Helm version to use for templating (either "2" or "3")
-        """
-        return pulumi.get(self, "version")
-
-    @version.setter
-    def version(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "version", value)
-
-
-@pulumi.input_type
-class ApplicationStatusHistorySourceHelmFileParametersArgs:
-    def __init__(__self__, *,
-                 name: Optional[pulumi.Input[str]] = None,
-                 path: Optional[pulumi.Input[str]] = None):
-        """
-        HelmFileParameter is a file parameter that's passed to helm template during manifest generation
-        :param pulumi.Input[str] name: Name is the name of the Helm parameter
-        :param pulumi.Input[str] path: Path is the path to the file containing the values for the Helm parameter
-        """
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if path is not None:
-            pulumi.set(__self__, "path", path)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Name is the name of the Helm parameter
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[str]]:
-        """
-        Path is the path to the file containing the values for the Helm parameter
-        """
-        return pulumi.get(self, "path")
-
-    @path.setter
-    def path(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "path", value)
-
-
-@pulumi.input_type
-class ApplicationStatusHistorySourceHelmParametersArgs:
-    def __init__(__self__, *,
-                 force_string: Optional[pulumi.Input[bool]] = None,
-                 name: Optional[pulumi.Input[str]] = None,
-                 value: Optional[pulumi.Input[str]] = None):
-        """
-        HelmParameter is a parameter that's passed to helm template during manifest generation
-        :param pulumi.Input[bool] force_string: ForceString determines whether to tell Helm to interpret booleans and numbers as strings
-        :param pulumi.Input[str] name: Name is the name of the Helm parameter
-        :param pulumi.Input[str] value: Value is the value for the Helm parameter
-        """
-        if force_string is not None:
-            pulumi.set(__self__, "force_string", force_string)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if value is not None:
-            pulumi.set(__self__, "value", value)
-
-    @property
-    @pulumi.getter(name="forceString")
-    def force_string(self) -> Optional[pulumi.Input[bool]]:
-        """
-        ForceString determines whether to tell Helm to interpret booleans and numbers as strings
-        """
-        return pulumi.get(self, "force_string")
-
-    @force_string.setter
-    def force_string(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "force_string", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Name is the name of the Helm parameter
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def value(self) -> Optional[pulumi.Input[str]]:
-        """
-        Value is the value for the Helm parameter
-        """
-        return pulumi.get(self, "value")
-
-    @value.setter
-    def value(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "value", value)
-
-
-@pulumi.input_type
-class ApplicationStatusHistorySourceKsonnetArgs:
-    def __init__(__self__, *,
-                 environment: Optional[pulumi.Input[str]] = None,
-                 parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceKsonnetParametersArgs']]]] = None):
-        """
-        Ksonnet holds ksonnet specific options
-        :param pulumi.Input[str] environment: Environment is a ksonnet application environment name
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceKsonnetParametersArgs']]] parameters: Parameters are a list of ksonnet component parameter override values
-        """
-        if environment is not None:
-            pulumi.set(__self__, "environment", environment)
-        if parameters is not None:
-            pulumi.set(__self__, "parameters", parameters)
-
-    @property
-    @pulumi.getter
-    def environment(self) -> Optional[pulumi.Input[str]]:
-        """
-        Environment is a ksonnet application environment name
-        """
-        return pulumi.get(self, "environment")
-
-    @environment.setter
-    def environment(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "environment", value)
-
-    @property
-    @pulumi.getter
-    def parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceKsonnetParametersArgs']]]]:
-        """
-        Parameters are a list of ksonnet component parameter override values
-        """
-        return pulumi.get(self, "parameters")
-
-    @parameters.setter
-    def parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourceKsonnetParametersArgs']]]]):
-        pulumi.set(self, "parameters", value)
-
-
-@pulumi.input_type
-class ApplicationStatusHistorySourceKsonnetParametersArgs:
-    def __init__(__self__, *,
-                 name: pulumi.Input[str],
-                 value: pulumi.Input[str],
-                 component: Optional[pulumi.Input[str]] = None):
-        """
-        KsonnetParameter is a ksonnet component parameter
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "value", value)
-        if component is not None:
-            pulumi.set(__self__, "component", component)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def value(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "value")
-
-    @value.setter
-    def value(self, value: pulumi.Input[str]):
-        pulumi.set(self, "value", value)
-
-    @property
-    @pulumi.getter
-    def component(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "component")
-
-    @component.setter
-    def component(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "component", value)
-
-
-@pulumi.input_type
-class ApplicationStatusHistorySourceKustomizeArgs:
-    def __init__(__self__, *,
-                 common_annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 common_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 force_common_annotations: Optional[pulumi.Input[bool]] = None,
-                 force_common_labels: Optional[pulumi.Input[bool]] = None,
-                 images: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 name_prefix: Optional[pulumi.Input[str]] = None,
-                 name_suffix: Optional[pulumi.Input[str]] = None,
-                 version: Optional[pulumi.Input[str]] = None):
-        """
-        Kustomize holds kustomize specific options
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] common_annotations: CommonAnnotations is a list of additional annotations to add to rendered manifests
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] common_labels: CommonLabels is a list of additional labels to add to rendered manifests
-        :param pulumi.Input[bool] force_common_annotations: ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps
-        :param pulumi.Input[bool] force_common_labels: ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] images: Images is a list of Kustomize image override specifications
-        :param pulumi.Input[str] name_prefix: NamePrefix is a prefix appended to resources for Kustomize apps
-        :param pulumi.Input[str] name_suffix: NameSuffix is a suffix appended to resources for Kustomize apps
-        :param pulumi.Input[str] version: Version controls which version of Kustomize to use for rendering manifests
-        """
-        if common_annotations is not None:
-            pulumi.set(__self__, "common_annotations", common_annotations)
-        if common_labels is not None:
-            pulumi.set(__self__, "common_labels", common_labels)
-        if force_common_annotations is not None:
-            pulumi.set(__self__, "force_common_annotations", force_common_annotations)
-        if force_common_labels is not None:
-            pulumi.set(__self__, "force_common_labels", force_common_labels)
-        if images is not None:
-            pulumi.set(__self__, "images", images)
-        if name_prefix is not None:
-            pulumi.set(__self__, "name_prefix", name_prefix)
-        if name_suffix is not None:
-            pulumi.set(__self__, "name_suffix", name_suffix)
-        if version is not None:
-            pulumi.set(__self__, "version", version)
-
-    @property
-    @pulumi.getter(name="commonAnnotations")
-    def common_annotations(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
-        """
-        CommonAnnotations is a list of additional annotations to add to rendered manifests
-        """
-        return pulumi.get(self, "common_annotations")
-
-    @common_annotations.setter
-    def common_annotations(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        pulumi.set(self, "common_annotations", value)
-
-    @property
-    @pulumi.getter(name="commonLabels")
-    def common_labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
-        """
-        CommonLabels is a list of additional labels to add to rendered manifests
-        """
-        return pulumi.get(self, "common_labels")
-
-    @common_labels.setter
-    def common_labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        pulumi.set(self, "common_labels", value)
-
-    @property
-    @pulumi.getter(name="forceCommonAnnotations")
-    def force_common_annotations(self) -> Optional[pulumi.Input[bool]]:
-        """
-        ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps
-        """
-        return pulumi.get(self, "force_common_annotations")
-
-    @force_common_annotations.setter
-    def force_common_annotations(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "force_common_annotations", value)
-
-    @property
-    @pulumi.getter(name="forceCommonLabels")
-    def force_common_labels(self) -> Optional[pulumi.Input[bool]]:
-        """
-        ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps
-        """
-        return pulumi.get(self, "force_common_labels")
-
-    @force_common_labels.setter
-    def force_common_labels(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "force_common_labels", value)
-
-    @property
-    @pulumi.getter
-    def images(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        Images is a list of Kustomize image override specifications
-        """
-        return pulumi.get(self, "images")
-
-    @images.setter
-    def images(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "images", value)
-
-    @property
-    @pulumi.getter(name="namePrefix")
-    def name_prefix(self) -> Optional[pulumi.Input[str]]:
-        """
-        NamePrefix is a prefix appended to resources for Kustomize apps
-        """
-        return pulumi.get(self, "name_prefix")
-
-    @name_prefix.setter
-    def name_prefix(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name_prefix", value)
-
-    @property
-    @pulumi.getter(name="nameSuffix")
-    def name_suffix(self) -> Optional[pulumi.Input[str]]:
-        """
-        NameSuffix is a suffix appended to resources for Kustomize apps
-        """
-        return pulumi.get(self, "name_suffix")
-
-    @name_suffix.setter
-    def name_suffix(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name_suffix", value)
-
-    @property
-    @pulumi.getter
-    def version(self) -> Optional[pulumi.Input[str]]:
-        """
-        Version controls which version of Kustomize to use for rendering manifests
-        """
-        return pulumi.get(self, "version")
-
-    @version.setter
-    def version(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "version", value)
-
-
-@pulumi.input_type
-class ApplicationStatusHistorySourcePluginArgs:
-    def __init__(__self__, *,
-                 env: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourcePluginEnvArgs']]]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
-        """
-        ConfigManagementPlugin holds config management plugin specific options
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourcePluginEnvArgs']]] env: Env is a list of environment variable entries
-        """
-        if env is not None:
-            pulumi.set(__self__, "env", env)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-
-    @property
-    @pulumi.getter
-    def env(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourcePluginEnvArgs']]]]:
-        """
-        Env is a list of environment variable entries
-        """
-        return pulumi.get(self, "env")
-
-    @env.setter
-    def env(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusHistorySourcePluginEnvArgs']]]]):
-        pulumi.set(self, "env", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
-
-
-@pulumi.input_type
-class ApplicationStatusHistorySourcePluginEnvArgs:
-    def __init__(__self__, *,
-                 name: pulumi.Input[str],
-                 value: pulumi.Input[str]):
-        """
-        EnvEntry represents an entry in the application's environment
-        :param pulumi.Input[str] name: Name is the name of the variable, usually expressed in uppercase
-        :param pulumi.Input[str] value: Value is the value of the variable
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "value", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        """
-        Name is the name of the variable, usually expressed in uppercase
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def value(self) -> pulumi.Input[str]:
-        """
-        Value is the value of the variable
-        """
-        return pulumi.get(self, "value")
-
-    @value.setter
-    def value(self, value: pulumi.Input[str]):
-        pulumi.set(self, "value", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateArgs:
-    def __init__(__self__, *,
-                 operation: pulumi.Input['ApplicationStatusOperationStateOperationArgs'],
-                 phase: pulumi.Input[str],
-                 started_at: pulumi.Input[str],
-                 finished_at: Optional[pulumi.Input[str]] = None,
-                 message: Optional[pulumi.Input[str]] = None,
-                 retry_count: Optional[pulumi.Input[int]] = None,
-                 sync_result: Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultArgs']] = None):
-        """
-        OperationState contains information about any ongoing operations, such as a sync
-        :param pulumi.Input['ApplicationStatusOperationStateOperationArgs'] operation: Operation is the original requested operation
-        :param pulumi.Input[str] phase: Phase is the current phase of the operation
-        :param pulumi.Input[str] started_at: StartedAt contains time of operation start
-        :param pulumi.Input[str] finished_at: FinishedAt contains time of operation completion
-        :param pulumi.Input[str] message: Message holds any pertinent messages when attempting to perform operation (typically errors).
-        :param pulumi.Input[int] retry_count: RetryCount contains time of operation retries
-        :param pulumi.Input['ApplicationStatusOperationStateSyncResultArgs'] sync_result: SyncResult is the result of a Sync operation
-        """
-        pulumi.set(__self__, "operation", operation)
-        pulumi.set(__self__, "phase", phase)
-        pulumi.set(__self__, "started_at", started_at)
-        if finished_at is not None:
-            pulumi.set(__self__, "finished_at", finished_at)
-        if message is not None:
-            pulumi.set(__self__, "message", message)
-        if retry_count is not None:
-            pulumi.set(__self__, "retry_count", retry_count)
-        if sync_result is not None:
-            pulumi.set(__self__, "sync_result", sync_result)
-
-    @property
-    @pulumi.getter
-    def operation(self) -> pulumi.Input['ApplicationStatusOperationStateOperationArgs']:
-        """
-        Operation is the original requested operation
-        """
-        return pulumi.get(self, "operation")
-
-    @operation.setter
-    def operation(self, value: pulumi.Input['ApplicationStatusOperationStateOperationArgs']):
-        pulumi.set(self, "operation", value)
-
-    @property
-    @pulumi.getter
-    def phase(self) -> pulumi.Input[str]:
-        """
-        Phase is the current phase of the operation
-        """
-        return pulumi.get(self, "phase")
-
-    @phase.setter
-    def phase(self, value: pulumi.Input[str]):
-        pulumi.set(self, "phase", value)
-
-    @property
-    @pulumi.getter(name="startedAt")
-    def started_at(self) -> pulumi.Input[str]:
-        """
-        StartedAt contains time of operation start
-        """
-        return pulumi.get(self, "started_at")
-
-    @started_at.setter
-    def started_at(self, value: pulumi.Input[str]):
-        pulumi.set(self, "started_at", value)
-
-    @property
-    @pulumi.getter(name="finishedAt")
-    def finished_at(self) -> Optional[pulumi.Input[str]]:
-        """
-        FinishedAt contains time of operation completion
-        """
-        return pulumi.get(self, "finished_at")
-
-    @finished_at.setter
-    def finished_at(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "finished_at", value)
-
-    @property
-    @pulumi.getter
-    def message(self) -> Optional[pulumi.Input[str]]:
-        """
-        Message holds any pertinent messages when attempting to perform operation (typically errors).
-        """
-        return pulumi.get(self, "message")
-
-    @message.setter
-    def message(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "message", value)
-
-    @property
-    @pulumi.getter(name="retryCount")
-    def retry_count(self) -> Optional[pulumi.Input[int]]:
-        """
-        RetryCount contains time of operation retries
-        """
-        return pulumi.get(self, "retry_count")
-
-    @retry_count.setter
-    def retry_count(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "retry_count", value)
-
-    @property
-    @pulumi.getter(name="syncResult")
-    def sync_result(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultArgs']]:
-        """
-        SyncResult is the result of a Sync operation
-        """
-        return pulumi.get(self, "sync_result")
-
-    @sync_result.setter
-    def sync_result(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultArgs']]):
-        pulumi.set(self, "sync_result", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateOperationArgs:
-    def __init__(__self__, *,
-                 info: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationInfoArgs']]]] = None,
-                 initiated_by: Optional[pulumi.Input['ApplicationStatusOperationStateOperationInitiatedByArgs']] = None,
-                 retry: Optional[pulumi.Input['ApplicationStatusOperationStateOperationRetryArgs']] = None,
-                 sync: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncArgs']] = None):
-        """
-        Operation is the original requested operation
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationInfoArgs']]] info: Info is a list of informational items for this operation
-        :param pulumi.Input['ApplicationStatusOperationStateOperationInitiatedByArgs'] initiated_by: InitiatedBy contains information about who initiated the operations
-        :param pulumi.Input['ApplicationStatusOperationStateOperationRetryArgs'] retry: Retry controls the strategy to apply if a sync fails
-        :param pulumi.Input['ApplicationStatusOperationStateOperationSyncArgs'] sync: Sync contains parameters for the operation
-        """
-        if info is not None:
-            pulumi.set(__self__, "info", info)
-        if initiated_by is not None:
-            pulumi.set(__self__, "initiated_by", initiated_by)
-        if retry is not None:
-            pulumi.set(__self__, "retry", retry)
-        if sync is not None:
-            pulumi.set(__self__, "sync", sync)
-
-    @property
-    @pulumi.getter
-    def info(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationInfoArgs']]]]:
-        """
-        Info is a list of informational items for this operation
-        """
-        return pulumi.get(self, "info")
-
-    @info.setter
-    def info(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationInfoArgs']]]]):
-        pulumi.set(self, "info", value)
-
-    @property
-    @pulumi.getter(name="initiatedBy")
-    def initiated_by(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateOperationInitiatedByArgs']]:
-        """
-        InitiatedBy contains information about who initiated the operations
-        """
-        return pulumi.get(self, "initiated_by")
-
-    @initiated_by.setter
-    def initiated_by(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateOperationInitiatedByArgs']]):
-        pulumi.set(self, "initiated_by", value)
-
-    @property
-    @pulumi.getter
-    def retry(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateOperationRetryArgs']]:
-        """
-        Retry controls the strategy to apply if a sync fails
-        """
-        return pulumi.get(self, "retry")
-
-    @retry.setter
-    def retry(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateOperationRetryArgs']]):
-        pulumi.set(self, "retry", value)
-
-    @property
-    @pulumi.getter
-    def sync(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncArgs']]:
-        """
-        Sync contains parameters for the operation
-        """
-        return pulumi.get(self, "sync")
-
-    @sync.setter
-    def sync(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncArgs']]):
-        pulumi.set(self, "sync", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateOperationInfoArgs:
-    def __init__(__self__, *,
-                 name: pulumi.Input[str],
-                 value: pulumi.Input[str]):
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "value", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def value(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "value")
-
-    @value.setter
-    def value(self, value: pulumi.Input[str]):
-        pulumi.set(self, "value", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateOperationInitiatedByArgs:
-    def __init__(__self__, *,
-                 automated: Optional[pulumi.Input[bool]] = None,
-                 username: Optional[pulumi.Input[str]] = None):
-        """
-        InitiatedBy contains information about who initiated the operations
-        :param pulumi.Input[bool] automated: Automated is set to true if operation was initiated automatically by the application controller.
-        :param pulumi.Input[str] username: Username contains the name of a user who started operation
-        """
-        if automated is not None:
-            pulumi.set(__self__, "automated", automated)
-        if username is not None:
-            pulumi.set(__self__, "username", username)
-
-    @property
-    @pulumi.getter
-    def automated(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Automated is set to true if operation was initiated automatically by the application controller.
-        """
-        return pulumi.get(self, "automated")
-
-    @automated.setter
-    def automated(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "automated", value)
-
-    @property
-    @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[str]]:
-        """
-        Username contains the name of a user who started operation
-        """
-        return pulumi.get(self, "username")
-
-    @username.setter
-    def username(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "username", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateOperationRetryArgs:
-    def __init__(__self__, *,
-                 backoff: Optional[pulumi.Input['ApplicationStatusOperationStateOperationRetryBackoffArgs']] = None,
-                 limit: Optional[pulumi.Input[int]] = None):
-        """
-        Retry controls the strategy to apply if a sync fails
-        :param pulumi.Input['ApplicationStatusOperationStateOperationRetryBackoffArgs'] backoff: Backoff controls how to backoff on subsequent retries of failed syncs
-        :param pulumi.Input[int] limit: Limit is the maximum number of attempts for retrying a failed sync. If set to 0, no retries will be performed.
-        """
-        if backoff is not None:
-            pulumi.set(__self__, "backoff", backoff)
-        if limit is not None:
-            pulumi.set(__self__, "limit", limit)
-
-    @property
-    @pulumi.getter
-    def backoff(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateOperationRetryBackoffArgs']]:
-        """
-        Backoff controls how to backoff on subsequent retries of failed syncs
-        """
-        return pulumi.get(self, "backoff")
-
-    @backoff.setter
-    def backoff(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateOperationRetryBackoffArgs']]):
-        pulumi.set(self, "backoff", value)
-
-    @property
-    @pulumi.getter
-    def limit(self) -> Optional[pulumi.Input[int]]:
-        """
-        Limit is the maximum number of attempts for retrying a failed sync. If set to 0, no retries will be performed.
-        """
-        return pulumi.get(self, "limit")
-
-    @limit.setter
-    def limit(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "limit", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateOperationRetryBackoffArgs:
-    def __init__(__self__, *,
-                 duration: Optional[pulumi.Input[str]] = None,
-                 factor: Optional[pulumi.Input[int]] = None,
-                 max_duration: Optional[pulumi.Input[str]] = None):
-        """
-        Backoff controls how to backoff on subsequent retries of failed syncs
-        :param pulumi.Input[str] duration: Duration is the amount to back off. Default unit is seconds, but could also be a duration (e.g. "2m", "1h")
-        :param pulumi.Input[int] factor: Factor is a factor to multiply the base duration after each failed retry
-        :param pulumi.Input[str] max_duration: MaxDuration is the maximum amount of time allowed for the backoff strategy
-        """
-        if duration is not None:
-            pulumi.set(__self__, "duration", duration)
-        if factor is not None:
-            pulumi.set(__self__, "factor", factor)
-        if max_duration is not None:
-            pulumi.set(__self__, "max_duration", max_duration)
-
-    @property
-    @pulumi.getter
-    def duration(self) -> Optional[pulumi.Input[str]]:
-        """
-        Duration is the amount to back off. Default unit is seconds, but could also be a duration (e.g. "2m", "1h")
-        """
-        return pulumi.get(self, "duration")
-
-    @duration.setter
-    def duration(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "duration", value)
-
-    @property
-    @pulumi.getter
-    def factor(self) -> Optional[pulumi.Input[int]]:
-        """
-        Factor is a factor to multiply the base duration after each failed retry
-        """
-        return pulumi.get(self, "factor")
-
-    @factor.setter
-    def factor(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "factor", value)
-
-    @property
-    @pulumi.getter(name="maxDuration")
-    def max_duration(self) -> Optional[pulumi.Input[str]]:
-        """
-        MaxDuration is the maximum amount of time allowed for the backoff strategy
-        """
-        return pulumi.get(self, "max_duration")
-
-    @max_duration.setter
-    def max_duration(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "max_duration", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateOperationSyncArgs:
-    def __init__(__self__, *,
-                 dry_run: Optional[pulumi.Input[bool]] = None,
-                 manifests: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 prune: Optional[pulumi.Input[bool]] = None,
-                 resources: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncResourcesArgs']]]] = None,
-                 revision: Optional[pulumi.Input[str]] = None,
-                 source: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceArgs']] = None,
-                 sync_options: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 sync_strategy: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSyncStrategyArgs']] = None):
-        """
-        Sync contains parameters for the operation
-        :param pulumi.Input[bool] dry_run: DryRun specifies to perform a `kubectl apply --dry-run` without actually performing the sync
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] manifests: Manifests is an optional field that overrides sync source with a local directory for development
-        :param pulumi.Input[bool] prune: Prune specifies to delete resources from the cluster that are no longer tracked in git
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncResourcesArgs']]] resources: Resources describes which resources shall be part of the sync
-        :param pulumi.Input[str] revision: Revision is the revision (Git) or chart version (Helm) which to sync the application to If omitted, will use the revision specified in app spec.
-        :param pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceArgs'] source: Source overrides the source definition set in the application. This is typically set in a Rollback operation and is nil during a Sync operation
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] sync_options: SyncOptions provide per-sync sync-options, e.g. Validate=false
-        :param pulumi.Input['ApplicationStatusOperationStateOperationSyncSyncStrategyArgs'] sync_strategy: SyncStrategy describes how to perform the sync
-        """
-        if dry_run is not None:
-            pulumi.set(__self__, "dry_run", dry_run)
-        if manifests is not None:
-            pulumi.set(__self__, "manifests", manifests)
-        if prune is not None:
-            pulumi.set(__self__, "prune", prune)
-        if resources is not None:
-            pulumi.set(__self__, "resources", resources)
-        if revision is not None:
-            pulumi.set(__self__, "revision", revision)
-        if source is not None:
-            pulumi.set(__self__, "source", source)
-        if sync_options is not None:
-            pulumi.set(__self__, "sync_options", sync_options)
-        if sync_strategy is not None:
-            pulumi.set(__self__, "sync_strategy", sync_strategy)
-
-    @property
-    @pulumi.getter(name="dryRun")
-    def dry_run(self) -> Optional[pulumi.Input[bool]]:
-        """
-        DryRun specifies to perform a `kubectl apply --dry-run` without actually performing the sync
-        """
-        return pulumi.get(self, "dry_run")
-
-    @dry_run.setter
-    def dry_run(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "dry_run", value)
-
-    @property
-    @pulumi.getter
-    def manifests(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        Manifests is an optional field that overrides sync source with a local directory for development
-        """
-        return pulumi.get(self, "manifests")
-
-    @manifests.setter
-    def manifests(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "manifests", value)
-
-    @property
-    @pulumi.getter
-    def prune(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Prune specifies to delete resources from the cluster that are no longer tracked in git
-        """
-        return pulumi.get(self, "prune")
-
-    @prune.setter
-    def prune(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "prune", value)
-
-    @property
-    @pulumi.getter
-    def resources(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncResourcesArgs']]]]:
-        """
-        Resources describes which resources shall be part of the sync
-        """
-        return pulumi.get(self, "resources")
-
-    @resources.setter
-    def resources(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncResourcesArgs']]]]):
-        pulumi.set(self, "resources", value)
-
-    @property
-    @pulumi.getter
-    def revision(self) -> Optional[pulumi.Input[str]]:
-        """
-        Revision is the revision (Git) or chart version (Helm) which to sync the application to If omitted, will use the revision specified in app spec.
-        """
-        return pulumi.get(self, "revision")
-
-    @revision.setter
-    def revision(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "revision", value)
-
-    @property
-    @pulumi.getter
-    def source(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceArgs']]:
-        """
-        Source overrides the source definition set in the application. This is typically set in a Rollback operation and is nil during a Sync operation
-        """
-        return pulumi.get(self, "source")
-
-    @source.setter
-    def source(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceArgs']]):
-        pulumi.set(self, "source", value)
-
-    @property
-    @pulumi.getter(name="syncOptions")
-    def sync_options(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        SyncOptions provide per-sync sync-options, e.g. Validate=false
-        """
-        return pulumi.get(self, "sync_options")
-
-    @sync_options.setter
-    def sync_options(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "sync_options", value)
-
-    @property
-    @pulumi.getter(name="syncStrategy")
-    def sync_strategy(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSyncStrategyArgs']]:
-        """
-        SyncStrategy describes how to perform the sync
-        """
-        return pulumi.get(self, "sync_strategy")
-
-    @sync_strategy.setter
-    def sync_strategy(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSyncStrategyArgs']]):
-        pulumi.set(self, "sync_strategy", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateOperationSyncResourcesArgs:
-    def __init__(__self__, *,
-                 kind: pulumi.Input[str],
-                 name: pulumi.Input[str],
-                 group: Optional[pulumi.Input[str]] = None,
-                 namespace: Optional[pulumi.Input[str]] = None):
-        """
-        SyncOperationResource contains resources to sync.
-        """
-        pulumi.set(__self__, "kind", kind)
-        pulumi.set(__self__, "name", name)
-        if group is not None:
-            pulumi.set(__self__, "group", group)
-        if namespace is not None:
-            pulumi.set(__self__, "namespace", namespace)
-
-    @property
-    @pulumi.getter
-    def kind(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "kind")
-
-    @kind.setter
-    def kind(self, value: pulumi.Input[str]):
-        pulumi.set(self, "kind", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def group(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "group")
-
-    @group.setter
-    def group(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "group", value)
-
-    @property
-    @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "namespace")
-
-    @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "namespace", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateOperationSyncSourceArgs:
-    def __init__(__self__, *,
-                 repo_url: pulumi.Input[str],
-                 chart: Optional[pulumi.Input[str]] = None,
-                 directory: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceDirectoryArgs']] = None,
-                 helm: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceHelmArgs']] = None,
-                 ksonnet: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceKsonnetArgs']] = None,
-                 kustomize: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceKustomizeArgs']] = None,
-                 path: Optional[pulumi.Input[str]] = None,
-                 plugin: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourcePluginArgs']] = None,
-                 target_revision: Optional[pulumi.Input[str]] = None):
-        """
-        Source overrides the source definition set in the application. This is typically set in a Rollback operation and is nil during a Sync operation
-        :param pulumi.Input[str] repo_url: RepoURL is the URL to the repository (Git or Helm) that contains the application manifests
-        :param pulumi.Input[str] chart: Chart is a Helm chart name, and must be specified for applications sourced from a Helm repo.
-        :param pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceDirectoryArgs'] directory: Directory holds path/directory specific options
-        :param pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceHelmArgs'] helm: Helm holds helm specific options
-        :param pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceKsonnetArgs'] ksonnet: Ksonnet holds ksonnet specific options
-        :param pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceKustomizeArgs'] kustomize: Kustomize holds kustomize specific options
-        :param pulumi.Input[str] path: Path is a directory path within the Git repository, and is only valid for applications sourced from Git.
-        :param pulumi.Input['ApplicationStatusOperationStateOperationSyncSourcePluginArgs'] plugin: ConfigManagementPlugin holds config management plugin specific options
-        :param pulumi.Input[str] target_revision: TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version.
-        """
-        pulumi.set(__self__, "repo_url", repo_url)
-        if chart is not None:
-            pulumi.set(__self__, "chart", chart)
-        if directory is not None:
-            pulumi.set(__self__, "directory", directory)
-        if helm is not None:
-            pulumi.set(__self__, "helm", helm)
-        if ksonnet is not None:
-            pulumi.set(__self__, "ksonnet", ksonnet)
-        if kustomize is not None:
-            pulumi.set(__self__, "kustomize", kustomize)
-        if path is not None:
-            pulumi.set(__self__, "path", path)
-        if plugin is not None:
-            pulumi.set(__self__, "plugin", plugin)
-        if target_revision is not None:
-            pulumi.set(__self__, "target_revision", target_revision)
-
-    @property
-    @pulumi.getter(name="repoURL")
-    def repo_url(self) -> pulumi.Input[str]:
-        """
-        RepoURL is the URL to the repository (Git or Helm) that contains the application manifests
-        """
-        return pulumi.get(self, "repo_url")
-
-    @repo_url.setter
-    def repo_url(self, value: pulumi.Input[str]):
-        pulumi.set(self, "repo_url", value)
-
-    @property
-    @pulumi.getter
-    def chart(self) -> Optional[pulumi.Input[str]]:
-        """
-        Chart is a Helm chart name, and must be specified for applications sourced from a Helm repo.
-        """
-        return pulumi.get(self, "chart")
-
-    @chart.setter
-    def chart(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "chart", value)
-
-    @property
-    @pulumi.getter
-    def directory(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceDirectoryArgs']]:
-        """
-        Directory holds path/directory specific options
-        """
-        return pulumi.get(self, "directory")
-
-    @directory.setter
-    def directory(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceDirectoryArgs']]):
-        pulumi.set(self, "directory", value)
-
-    @property
-    @pulumi.getter
-    def helm(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceHelmArgs']]:
-        """
-        Helm holds helm specific options
-        """
-        return pulumi.get(self, "helm")
-
-    @helm.setter
-    def helm(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceHelmArgs']]):
-        pulumi.set(self, "helm", value)
-
-    @property
-    @pulumi.getter
-    def ksonnet(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceKsonnetArgs']]:
-        """
-        Ksonnet holds ksonnet specific options
-        """
-        return pulumi.get(self, "ksonnet")
-
-    @ksonnet.setter
-    def ksonnet(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceKsonnetArgs']]):
-        pulumi.set(self, "ksonnet", value)
-
-    @property
-    @pulumi.getter
-    def kustomize(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceKustomizeArgs']]:
-        """
-        Kustomize holds kustomize specific options
-        """
-        return pulumi.get(self, "kustomize")
-
-    @kustomize.setter
-    def kustomize(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceKustomizeArgs']]):
-        pulumi.set(self, "kustomize", value)
-
-    @property
-    @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[str]]:
-        """
-        Path is a directory path within the Git repository, and is only valid for applications sourced from Git.
-        """
-        return pulumi.get(self, "path")
-
-    @path.setter
-    def path(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "path", value)
-
-    @property
-    @pulumi.getter
-    def plugin(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourcePluginArgs']]:
-        """
-        ConfigManagementPlugin holds config management plugin specific options
-        """
-        return pulumi.get(self, "plugin")
-
-    @plugin.setter
-    def plugin(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourcePluginArgs']]):
-        pulumi.set(self, "plugin", value)
-
-    @property
-    @pulumi.getter(name="targetRevision")
-    def target_revision(self) -> Optional[pulumi.Input[str]]:
-        """
-        TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version.
-        """
-        return pulumi.get(self, "target_revision")
-
-    @target_revision.setter
-    def target_revision(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "target_revision", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateOperationSyncSourceDirectoryArgs:
-    def __init__(__self__, *,
-                 exclude: Optional[pulumi.Input[str]] = None,
-                 include: Optional[pulumi.Input[str]] = None,
-                 jsonnet: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceDirectoryJsonnetArgs']] = None,
-                 recurse: Optional[pulumi.Input[bool]] = None):
-        """
-        Directory holds path/directory specific options
-        :param pulumi.Input[str] exclude: Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation
-        :param pulumi.Input[str] include: Include contains a glob pattern to match paths against that should be explicitly included during manifest generation
-        :param pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceDirectoryJsonnetArgs'] jsonnet: Jsonnet holds options specific to Jsonnet
-        :param pulumi.Input[bool] recurse: Recurse specifies whether to scan a directory recursively for manifests
-        """
-        if exclude is not None:
-            pulumi.set(__self__, "exclude", exclude)
-        if include is not None:
-            pulumi.set(__self__, "include", include)
-        if jsonnet is not None:
-            pulumi.set(__self__, "jsonnet", jsonnet)
-        if recurse is not None:
-            pulumi.set(__self__, "recurse", recurse)
-
-    @property
-    @pulumi.getter
-    def exclude(self) -> Optional[pulumi.Input[str]]:
-        """
-        Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation
-        """
-        return pulumi.get(self, "exclude")
-
-    @exclude.setter
-    def exclude(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "exclude", value)
-
-    @property
-    @pulumi.getter
-    def include(self) -> Optional[pulumi.Input[str]]:
-        """
-        Include contains a glob pattern to match paths against that should be explicitly included during manifest generation
-        """
-        return pulumi.get(self, "include")
-
-    @include.setter
-    def include(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "include", value)
-
-    @property
-    @pulumi.getter
-    def jsonnet(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceDirectoryJsonnetArgs']]:
-        """
-        Jsonnet holds options specific to Jsonnet
-        """
-        return pulumi.get(self, "jsonnet")
-
-    @jsonnet.setter
-    def jsonnet(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceDirectoryJsonnetArgs']]):
-        pulumi.set(self, "jsonnet", value)
-
-    @property
-    @pulumi.getter
-    def recurse(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Recurse specifies whether to scan a directory recursively for manifests
-        """
-        return pulumi.get(self, "recurse")
-
-    @recurse.setter
-    def recurse(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "recurse", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateOperationSyncSourceDirectoryJsonnetArgs:
-    def __init__(__self__, *,
-                 ext_vars: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceDirectoryJsonnetExtVarsArgs']]]] = None,
-                 libs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 tlas: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceDirectoryJsonnetTlasArgs']]]] = None):
-        """
-        Jsonnet holds options specific to Jsonnet
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceDirectoryJsonnetExtVarsArgs']]] ext_vars: ExtVars is a list of Jsonnet External Variables
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] libs: Additional library search dirs
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceDirectoryJsonnetTlasArgs']]] tlas: TLAS is a list of Jsonnet Top-level Arguments
-        """
-        if ext_vars is not None:
-            pulumi.set(__self__, "ext_vars", ext_vars)
-        if libs is not None:
-            pulumi.set(__self__, "libs", libs)
-        if tlas is not None:
-            pulumi.set(__self__, "tlas", tlas)
-
-    @property
-    @pulumi.getter(name="extVars")
-    def ext_vars(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceDirectoryJsonnetExtVarsArgs']]]]:
-        """
-        ExtVars is a list of Jsonnet External Variables
-        """
-        return pulumi.get(self, "ext_vars")
-
-    @ext_vars.setter
-    def ext_vars(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceDirectoryJsonnetExtVarsArgs']]]]):
-        pulumi.set(self, "ext_vars", value)
-
-    @property
-    @pulumi.getter
-    def libs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        Additional library search dirs
-        """
-        return pulumi.get(self, "libs")
-
-    @libs.setter
-    def libs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "libs", value)
-
-    @property
-    @pulumi.getter
-    def tlas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceDirectoryJsonnetTlasArgs']]]]:
-        """
-        TLAS is a list of Jsonnet Top-level Arguments
-        """
-        return pulumi.get(self, "tlas")
-
-    @tlas.setter
-    def tlas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceDirectoryJsonnetTlasArgs']]]]):
-        pulumi.set(self, "tlas", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateOperationSyncSourceDirectoryJsonnetExtVarsArgs:
-    def __init__(__self__, *,
-                 name: pulumi.Input[str],
-                 value: pulumi.Input[str],
-                 code: Optional[pulumi.Input[bool]] = None):
-        """
-        JsonnetVar represents a variable to be passed to jsonnet during manifest generation
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "value", value)
-        if code is not None:
-            pulumi.set(__self__, "code", code)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def value(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "value")
-
-    @value.setter
-    def value(self, value: pulumi.Input[str]):
-        pulumi.set(self, "value", value)
-
-    @property
-    @pulumi.getter
-    def code(self) -> Optional[pulumi.Input[bool]]:
-        return pulumi.get(self, "code")
-
-    @code.setter
-    def code(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "code", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateOperationSyncSourceDirectoryJsonnetTlasArgs:
-    def __init__(__self__, *,
-                 name: pulumi.Input[str],
-                 value: pulumi.Input[str],
-                 code: Optional[pulumi.Input[bool]] = None):
-        """
-        JsonnetVar represents a variable to be passed to jsonnet during manifest generation
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "value", value)
-        if code is not None:
-            pulumi.set(__self__, "code", code)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def value(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "value")
-
-    @value.setter
-    def value(self, value: pulumi.Input[str]):
-        pulumi.set(self, "value", value)
-
-    @property
-    @pulumi.getter
-    def code(self) -> Optional[pulumi.Input[bool]]:
-        return pulumi.get(self, "code")
-
-    @code.setter
-    def code(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "code", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateOperationSyncSourceHelmArgs:
-    def __init__(__self__, *,
-                 file_parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceHelmFileParametersArgs']]]] = None,
-                 parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceHelmParametersArgs']]]] = None,
-                 pass_credentials: Optional[pulumi.Input[bool]] = None,
-                 release_name: Optional[pulumi.Input[str]] = None,
-                 value_files: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 values: Optional[pulumi.Input[str]] = None,
-                 version: Optional[pulumi.Input[str]] = None):
-        """
-        Helm holds helm specific options
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceHelmFileParametersArgs']]] file_parameters: FileParameters are file parameters to the helm template
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceHelmParametersArgs']]] parameters: Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation
-        :param pulumi.Input[bool] pass_credentials: PassCredentials pass credentials to all domains (Helm's --pass-credentials)
-        :param pulumi.Input[str] release_name: ReleaseName is the Helm release name to use. If omitted it will use the application name
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] value_files: ValuesFiles is a list of Helm value files to use when generating a template
-        :param pulumi.Input[str] values: Values specifies Helm values to be passed to helm template, typically defined as a block
-        :param pulumi.Input[str] version: Version is the Helm version to use for templating (either "2" or "3")
-        """
-        if file_parameters is not None:
-            pulumi.set(__self__, "file_parameters", file_parameters)
-        if parameters is not None:
-            pulumi.set(__self__, "parameters", parameters)
-        if pass_credentials is not None:
-            pulumi.set(__self__, "pass_credentials", pass_credentials)
-        if release_name is not None:
-            pulumi.set(__self__, "release_name", release_name)
-        if value_files is not None:
-            pulumi.set(__self__, "value_files", value_files)
-        if values is not None:
-            pulumi.set(__self__, "values", values)
-        if version is not None:
-            pulumi.set(__self__, "version", version)
-
-    @property
-    @pulumi.getter(name="fileParameters")
-    def file_parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceHelmFileParametersArgs']]]]:
-        """
-        FileParameters are file parameters to the helm template
-        """
-        return pulumi.get(self, "file_parameters")
-
-    @file_parameters.setter
-    def file_parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceHelmFileParametersArgs']]]]):
-        pulumi.set(self, "file_parameters", value)
-
-    @property
-    @pulumi.getter
-    def parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceHelmParametersArgs']]]]:
-        """
-        Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation
-        """
-        return pulumi.get(self, "parameters")
-
-    @parameters.setter
-    def parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceHelmParametersArgs']]]]):
-        pulumi.set(self, "parameters", value)
-
-    @property
-    @pulumi.getter(name="passCredentials")
-    def pass_credentials(self) -> Optional[pulumi.Input[bool]]:
-        """
-        PassCredentials pass credentials to all domains (Helm's --pass-credentials)
-        """
-        return pulumi.get(self, "pass_credentials")
-
-    @pass_credentials.setter
-    def pass_credentials(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "pass_credentials", value)
-
-    @property
-    @pulumi.getter(name="releaseName")
-    def release_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        ReleaseName is the Helm release name to use. If omitted it will use the application name
-        """
-        return pulumi.get(self, "release_name")
-
-    @release_name.setter
-    def release_name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "release_name", value)
-
-    @property
-    @pulumi.getter(name="valueFiles")
-    def value_files(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        ValuesFiles is a list of Helm value files to use when generating a template
-        """
-        return pulumi.get(self, "value_files")
-
-    @value_files.setter
-    def value_files(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "value_files", value)
-
-    @property
-    @pulumi.getter
-    def values(self) -> Optional[pulumi.Input[str]]:
-        """
-        Values specifies Helm values to be passed to helm template, typically defined as a block
-        """
-        return pulumi.get(self, "values")
-
-    @values.setter
-    def values(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "values", value)
-
-    @property
-    @pulumi.getter
-    def version(self) -> Optional[pulumi.Input[str]]:
-        """
-        Version is the Helm version to use for templating (either "2" or "3")
-        """
-        return pulumi.get(self, "version")
-
-    @version.setter
-    def version(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "version", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateOperationSyncSourceHelmFileParametersArgs:
-    def __init__(__self__, *,
-                 name: Optional[pulumi.Input[str]] = None,
-                 path: Optional[pulumi.Input[str]] = None):
-        """
-        HelmFileParameter is a file parameter that's passed to helm template during manifest generation
-        :param pulumi.Input[str] name: Name is the name of the Helm parameter
-        :param pulumi.Input[str] path: Path is the path to the file containing the values for the Helm parameter
-        """
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if path is not None:
-            pulumi.set(__self__, "path", path)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Name is the name of the Helm parameter
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[str]]:
-        """
-        Path is the path to the file containing the values for the Helm parameter
-        """
-        return pulumi.get(self, "path")
-
-    @path.setter
-    def path(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "path", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateOperationSyncSourceHelmParametersArgs:
-    def __init__(__self__, *,
-                 force_string: Optional[pulumi.Input[bool]] = None,
-                 name: Optional[pulumi.Input[str]] = None,
-                 value: Optional[pulumi.Input[str]] = None):
-        """
-        HelmParameter is a parameter that's passed to helm template during manifest generation
-        :param pulumi.Input[bool] force_string: ForceString determines whether to tell Helm to interpret booleans and numbers as strings
-        :param pulumi.Input[str] name: Name is the name of the Helm parameter
-        :param pulumi.Input[str] value: Value is the value for the Helm parameter
-        """
-        if force_string is not None:
-            pulumi.set(__self__, "force_string", force_string)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if value is not None:
-            pulumi.set(__self__, "value", value)
-
-    @property
-    @pulumi.getter(name="forceString")
-    def force_string(self) -> Optional[pulumi.Input[bool]]:
-        """
-        ForceString determines whether to tell Helm to interpret booleans and numbers as strings
-        """
-        return pulumi.get(self, "force_string")
-
-    @force_string.setter
-    def force_string(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "force_string", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Name is the name of the Helm parameter
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def value(self) -> Optional[pulumi.Input[str]]:
-        """
-        Value is the value for the Helm parameter
-        """
-        return pulumi.get(self, "value")
-
-    @value.setter
-    def value(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "value", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateOperationSyncSourceKsonnetArgs:
-    def __init__(__self__, *,
-                 environment: Optional[pulumi.Input[str]] = None,
-                 parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceKsonnetParametersArgs']]]] = None):
-        """
-        Ksonnet holds ksonnet specific options
-        :param pulumi.Input[str] environment: Environment is a ksonnet application environment name
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceKsonnetParametersArgs']]] parameters: Parameters are a list of ksonnet component parameter override values
-        """
-        if environment is not None:
-            pulumi.set(__self__, "environment", environment)
-        if parameters is not None:
-            pulumi.set(__self__, "parameters", parameters)
-
-    @property
-    @pulumi.getter
-    def environment(self) -> Optional[pulumi.Input[str]]:
-        """
-        Environment is a ksonnet application environment name
-        """
-        return pulumi.get(self, "environment")
-
-    @environment.setter
-    def environment(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "environment", value)
-
-    @property
-    @pulumi.getter
-    def parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceKsonnetParametersArgs']]]]:
-        """
-        Parameters are a list of ksonnet component parameter override values
-        """
-        return pulumi.get(self, "parameters")
-
-    @parameters.setter
-    def parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourceKsonnetParametersArgs']]]]):
-        pulumi.set(self, "parameters", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateOperationSyncSourceKsonnetParametersArgs:
-    def __init__(__self__, *,
-                 name: pulumi.Input[str],
-                 value: pulumi.Input[str],
-                 component: Optional[pulumi.Input[str]] = None):
-        """
-        KsonnetParameter is a ksonnet component parameter
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "value", value)
-        if component is not None:
-            pulumi.set(__self__, "component", component)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def value(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "value")
-
-    @value.setter
-    def value(self, value: pulumi.Input[str]):
-        pulumi.set(self, "value", value)
-
-    @property
-    @pulumi.getter
-    def component(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "component")
-
-    @component.setter
-    def component(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "component", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateOperationSyncSourceKustomizeArgs:
-    def __init__(__self__, *,
-                 common_annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 common_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 force_common_annotations: Optional[pulumi.Input[bool]] = None,
-                 force_common_labels: Optional[pulumi.Input[bool]] = None,
-                 images: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 name_prefix: Optional[pulumi.Input[str]] = None,
-                 name_suffix: Optional[pulumi.Input[str]] = None,
-                 version: Optional[pulumi.Input[str]] = None):
-        """
-        Kustomize holds kustomize specific options
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] common_annotations: CommonAnnotations is a list of additional annotations to add to rendered manifests
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] common_labels: CommonLabels is a list of additional labels to add to rendered manifests
-        :param pulumi.Input[bool] force_common_annotations: ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps
-        :param pulumi.Input[bool] force_common_labels: ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] images: Images is a list of Kustomize image override specifications
-        :param pulumi.Input[str] name_prefix: NamePrefix is a prefix appended to resources for Kustomize apps
-        :param pulumi.Input[str] name_suffix: NameSuffix is a suffix appended to resources for Kustomize apps
-        :param pulumi.Input[str] version: Version controls which version of Kustomize to use for rendering manifests
-        """
-        if common_annotations is not None:
-            pulumi.set(__self__, "common_annotations", common_annotations)
-        if common_labels is not None:
-            pulumi.set(__self__, "common_labels", common_labels)
-        if force_common_annotations is not None:
-            pulumi.set(__self__, "force_common_annotations", force_common_annotations)
-        if force_common_labels is not None:
-            pulumi.set(__self__, "force_common_labels", force_common_labels)
-        if images is not None:
-            pulumi.set(__self__, "images", images)
-        if name_prefix is not None:
-            pulumi.set(__self__, "name_prefix", name_prefix)
-        if name_suffix is not None:
-            pulumi.set(__self__, "name_suffix", name_suffix)
-        if version is not None:
-            pulumi.set(__self__, "version", version)
-
-    @property
-    @pulumi.getter(name="commonAnnotations")
-    def common_annotations(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
-        """
-        CommonAnnotations is a list of additional annotations to add to rendered manifests
-        """
-        return pulumi.get(self, "common_annotations")
-
-    @common_annotations.setter
-    def common_annotations(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        pulumi.set(self, "common_annotations", value)
-
-    @property
-    @pulumi.getter(name="commonLabels")
-    def common_labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
-        """
-        CommonLabels is a list of additional labels to add to rendered manifests
-        """
-        return pulumi.get(self, "common_labels")
-
-    @common_labels.setter
-    def common_labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        pulumi.set(self, "common_labels", value)
-
-    @property
-    @pulumi.getter(name="forceCommonAnnotations")
-    def force_common_annotations(self) -> Optional[pulumi.Input[bool]]:
-        """
-        ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps
-        """
-        return pulumi.get(self, "force_common_annotations")
-
-    @force_common_annotations.setter
-    def force_common_annotations(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "force_common_annotations", value)
-
-    @property
-    @pulumi.getter(name="forceCommonLabels")
-    def force_common_labels(self) -> Optional[pulumi.Input[bool]]:
-        """
-        ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps
-        """
-        return pulumi.get(self, "force_common_labels")
-
-    @force_common_labels.setter
-    def force_common_labels(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "force_common_labels", value)
-
-    @property
-    @pulumi.getter
-    def images(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        Images is a list of Kustomize image override specifications
-        """
-        return pulumi.get(self, "images")
-
-    @images.setter
-    def images(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "images", value)
-
-    @property
-    @pulumi.getter(name="namePrefix")
-    def name_prefix(self) -> Optional[pulumi.Input[str]]:
-        """
-        NamePrefix is a prefix appended to resources for Kustomize apps
-        """
-        return pulumi.get(self, "name_prefix")
-
-    @name_prefix.setter
-    def name_prefix(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name_prefix", value)
-
-    @property
-    @pulumi.getter(name="nameSuffix")
-    def name_suffix(self) -> Optional[pulumi.Input[str]]:
-        """
-        NameSuffix is a suffix appended to resources for Kustomize apps
-        """
-        return pulumi.get(self, "name_suffix")
-
-    @name_suffix.setter
-    def name_suffix(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name_suffix", value)
-
-    @property
-    @pulumi.getter
-    def version(self) -> Optional[pulumi.Input[str]]:
-        """
-        Version controls which version of Kustomize to use for rendering manifests
-        """
-        return pulumi.get(self, "version")
-
-    @version.setter
-    def version(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "version", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateOperationSyncSourcePluginArgs:
-    def __init__(__self__, *,
-                 env: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourcePluginEnvArgs']]]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
-        """
-        ConfigManagementPlugin holds config management plugin specific options
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourcePluginEnvArgs']]] env: Env is a list of environment variable entries
-        """
-        if env is not None:
-            pulumi.set(__self__, "env", env)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-
-    @property
-    @pulumi.getter
-    def env(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourcePluginEnvArgs']]]]:
-        """
-        Env is a list of environment variable entries
-        """
-        return pulumi.get(self, "env")
-
-    @env.setter
-    def env(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateOperationSyncSourcePluginEnvArgs']]]]):
-        pulumi.set(self, "env", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateOperationSyncSourcePluginEnvArgs:
-    def __init__(__self__, *,
-                 name: pulumi.Input[str],
-                 value: pulumi.Input[str]):
-        """
-        EnvEntry represents an entry in the application's environment
-        :param pulumi.Input[str] name: Name is the name of the variable, usually expressed in uppercase
-        :param pulumi.Input[str] value: Value is the value of the variable
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "value", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        """
-        Name is the name of the variable, usually expressed in uppercase
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def value(self) -> pulumi.Input[str]:
-        """
-        Value is the value of the variable
-        """
-        return pulumi.get(self, "value")
-
-    @value.setter
-    def value(self, value: pulumi.Input[str]):
-        pulumi.set(self, "value", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateOperationSyncSyncStrategyArgs:
-    def __init__(__self__, *,
-                 apply: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSyncStrategyApplyArgs']] = None,
-                 hook: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSyncStrategyHookArgs']] = None):
-        """
-        SyncStrategy describes how to perform the sync
-        :param pulumi.Input['ApplicationStatusOperationStateOperationSyncSyncStrategyApplyArgs'] apply: Apply will perform a `kubectl apply` to perform the sync.
-        :param pulumi.Input['ApplicationStatusOperationStateOperationSyncSyncStrategyHookArgs'] hook: Hook will submit any referenced resources to perform the sync. This is the default strategy
-        """
-        if apply is not None:
-            pulumi.set(__self__, "apply", apply)
-        if hook is not None:
-            pulumi.set(__self__, "hook", hook)
-
-    @property
-    @pulumi.getter
-    def apply(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSyncStrategyApplyArgs']]:
-        """
-        Apply will perform a `kubectl apply` to perform the sync.
-        """
-        return pulumi.get(self, "apply")
-
-    @apply.setter
-    def apply(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSyncStrategyApplyArgs']]):
-        pulumi.set(self, "apply", value)
-
-    @property
-    @pulumi.getter
-    def hook(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSyncStrategyHookArgs']]:
-        """
-        Hook will submit any referenced resources to perform the sync. This is the default strategy
-        """
-        return pulumi.get(self, "hook")
-
-    @hook.setter
-    def hook(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateOperationSyncSyncStrategyHookArgs']]):
-        pulumi.set(self, "hook", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateOperationSyncSyncStrategyApplyArgs:
-    def __init__(__self__, *,
-                 force: Optional[pulumi.Input[bool]] = None):
-        """
-        Apply will perform a `kubectl apply` to perform the sync.
-        :param pulumi.Input[bool] force: Force indicates whether or not to supply the --force flag to `kubectl apply`. The --force flag deletes and re-create the resource, when PATCH encounters conflict and has retried for 5 times.
-        """
-        if force is not None:
-            pulumi.set(__self__, "force", force)
-
-    @property
-    @pulumi.getter
-    def force(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Force indicates whether or not to supply the --force flag to `kubectl apply`. The --force flag deletes and re-create the resource, when PATCH encounters conflict and has retried for 5 times.
-        """
-        return pulumi.get(self, "force")
-
-    @force.setter
-    def force(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "force", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateOperationSyncSyncStrategyHookArgs:
-    def __init__(__self__, *,
-                 force: Optional[pulumi.Input[bool]] = None):
-        """
-        Hook will submit any referenced resources to perform the sync. This is the default strategy
-        :param pulumi.Input[bool] force: Force indicates whether or not to supply the --force flag to `kubectl apply`. The --force flag deletes and re-create the resource, when PATCH encounters conflict and has retried for 5 times.
-        """
-        if force is not None:
-            pulumi.set(__self__, "force", force)
-
-    @property
-    @pulumi.getter
-    def force(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Force indicates whether or not to supply the --force flag to `kubectl apply`. The --force flag deletes and re-create the resource, when PATCH encounters conflict and has retried for 5 times.
-        """
-        return pulumi.get(self, "force")
-
-    @force.setter
-    def force(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "force", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateSyncResultArgs:
-    def __init__(__self__, *,
-                 revision: pulumi.Input[str],
-                 resources: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultResourcesArgs']]]] = None,
-                 source: Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceArgs']] = None):
-        """
-        SyncResult is the result of a Sync operation
-        :param pulumi.Input[str] revision: Revision holds the revision this sync operation was performed to
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultResourcesArgs']]] resources: Resources contains a list of sync result items for each individual resource in a sync operation
-        :param pulumi.Input['ApplicationStatusOperationStateSyncResultSourceArgs'] source: Source records the application source information of the sync, used for comparing auto-sync
-        """
-        pulumi.set(__self__, "revision", revision)
-        if resources is not None:
-            pulumi.set(__self__, "resources", resources)
-        if source is not None:
-            pulumi.set(__self__, "source", source)
-
-    @property
-    @pulumi.getter
-    def revision(self) -> pulumi.Input[str]:
-        """
-        Revision holds the revision this sync operation was performed to
-        """
-        return pulumi.get(self, "revision")
-
-    @revision.setter
-    def revision(self, value: pulumi.Input[str]):
-        pulumi.set(self, "revision", value)
-
-    @property
-    @pulumi.getter
-    def resources(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultResourcesArgs']]]]:
-        """
-        Resources contains a list of sync result items for each individual resource in a sync operation
-        """
-        return pulumi.get(self, "resources")
-
-    @resources.setter
-    def resources(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultResourcesArgs']]]]):
-        pulumi.set(self, "resources", value)
-
-    @property
-    @pulumi.getter
-    def source(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceArgs']]:
-        """
-        Source records the application source information of the sync, used for comparing auto-sync
-        """
-        return pulumi.get(self, "source")
-
-    @source.setter
-    def source(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceArgs']]):
-        pulumi.set(self, "source", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateSyncResultResourcesArgs:
-    def __init__(__self__, *,
-                 group: pulumi.Input[str],
-                 kind: pulumi.Input[str],
-                 name: pulumi.Input[str],
-                 namespace: pulumi.Input[str],
-                 version: pulumi.Input[str],
-                 hook_phase: Optional[pulumi.Input[str]] = None,
-                 hook_type: Optional[pulumi.Input[str]] = None,
-                 message: Optional[pulumi.Input[str]] = None,
-                 status: Optional[pulumi.Input[str]] = None,
-                 sync_phase: Optional[pulumi.Input[str]] = None):
-        """
-        ResourceResult holds the operation result details of a specific resource
-        :param pulumi.Input[str] group: Group specifies the API group of the resource
-        :param pulumi.Input[str] kind: Kind specifies the API kind of the resource
-        :param pulumi.Input[str] name: Name specifies the name of the resource
-        :param pulumi.Input[str] namespace: Namespace specifies the target namespace of the resource
-        :param pulumi.Input[str] version: Version specifies the API version of the resource
-        :param pulumi.Input[str] hook_phase: HookPhase contains the state of any operation associated with this resource OR hook This can also contain values for non-hook resources.
-        :param pulumi.Input[str] hook_type: HookType specifies the type of the hook. Empty for non-hook resources
-        :param pulumi.Input[str] message: Message contains an informational or error message for the last sync OR operation
-        :param pulumi.Input[str] status: Status holds the final result of the sync. Will be empty if the resources is yet to be applied/pruned and is always zero-value for hooks
-        :param pulumi.Input[str] sync_phase: SyncPhase indicates the particular phase of the sync that this result was acquired in
-        """
-        pulumi.set(__self__, "group", group)
-        pulumi.set(__self__, "kind", kind)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "namespace", namespace)
-        pulumi.set(__self__, "version", version)
-        if hook_phase is not None:
-            pulumi.set(__self__, "hook_phase", hook_phase)
-        if hook_type is not None:
-            pulumi.set(__self__, "hook_type", hook_type)
-        if message is not None:
-            pulumi.set(__self__, "message", message)
-        if status is not None:
-            pulumi.set(__self__, "status", status)
-        if sync_phase is not None:
-            pulumi.set(__self__, "sync_phase", sync_phase)
-
-    @property
-    @pulumi.getter
-    def group(self) -> pulumi.Input[str]:
-        """
-        Group specifies the API group of the resource
-        """
-        return pulumi.get(self, "group")
-
-    @group.setter
-    def group(self, value: pulumi.Input[str]):
-        pulumi.set(self, "group", value)
-
-    @property
-    @pulumi.getter
-    def kind(self) -> pulumi.Input[str]:
-        """
-        Kind specifies the API kind of the resource
-        """
-        return pulumi.get(self, "kind")
-
-    @kind.setter
-    def kind(self, value: pulumi.Input[str]):
-        pulumi.set(self, "kind", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        """
-        Name specifies the name of the resource
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def namespace(self) -> pulumi.Input[str]:
-        """
-        Namespace specifies the target namespace of the resource
-        """
-        return pulumi.get(self, "namespace")
-
-    @namespace.setter
-    def namespace(self, value: pulumi.Input[str]):
-        pulumi.set(self, "namespace", value)
-
-    @property
-    @pulumi.getter
-    def version(self) -> pulumi.Input[str]:
-        """
-        Version specifies the API version of the resource
-        """
-        return pulumi.get(self, "version")
-
-    @version.setter
-    def version(self, value: pulumi.Input[str]):
-        pulumi.set(self, "version", value)
-
-    @property
-    @pulumi.getter(name="hookPhase")
-    def hook_phase(self) -> Optional[pulumi.Input[str]]:
-        """
-        HookPhase contains the state of any operation associated with this resource OR hook This can also contain values for non-hook resources.
-        """
-        return pulumi.get(self, "hook_phase")
-
-    @hook_phase.setter
-    def hook_phase(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "hook_phase", value)
-
-    @property
-    @pulumi.getter(name="hookType")
-    def hook_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        HookType specifies the type of the hook. Empty for non-hook resources
-        """
-        return pulumi.get(self, "hook_type")
-
-    @hook_type.setter
-    def hook_type(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "hook_type", value)
-
-    @property
-    @pulumi.getter
-    def message(self) -> Optional[pulumi.Input[str]]:
-        """
-        Message contains an informational or error message for the last sync OR operation
-        """
-        return pulumi.get(self, "message")
-
-    @message.setter
-    def message(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "message", value)
-
-    @property
-    @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[str]]:
-        """
-        Status holds the final result of the sync. Will be empty if the resources is yet to be applied/pruned and is always zero-value for hooks
-        """
-        return pulumi.get(self, "status")
-
-    @status.setter
-    def status(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "status", value)
-
-    @property
-    @pulumi.getter(name="syncPhase")
-    def sync_phase(self) -> Optional[pulumi.Input[str]]:
-        """
-        SyncPhase indicates the particular phase of the sync that this result was acquired in
-        """
-        return pulumi.get(self, "sync_phase")
-
-    @sync_phase.setter
-    def sync_phase(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "sync_phase", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateSyncResultSourceArgs:
-    def __init__(__self__, *,
-                 repo_url: pulumi.Input[str],
-                 chart: Optional[pulumi.Input[str]] = None,
-                 directory: Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceDirectoryArgs']] = None,
-                 helm: Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceHelmArgs']] = None,
-                 ksonnet: Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceKsonnetArgs']] = None,
-                 kustomize: Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceKustomizeArgs']] = None,
-                 path: Optional[pulumi.Input[str]] = None,
-                 plugin: Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourcePluginArgs']] = None,
-                 target_revision: Optional[pulumi.Input[str]] = None):
-        """
-        Source records the application source information of the sync, used for comparing auto-sync
-        :param pulumi.Input[str] repo_url: RepoURL is the URL to the repository (Git or Helm) that contains the application manifests
-        :param pulumi.Input[str] chart: Chart is a Helm chart name, and must be specified for applications sourced from a Helm repo.
-        :param pulumi.Input['ApplicationStatusOperationStateSyncResultSourceDirectoryArgs'] directory: Directory holds path/directory specific options
-        :param pulumi.Input['ApplicationStatusOperationStateSyncResultSourceHelmArgs'] helm: Helm holds helm specific options
-        :param pulumi.Input['ApplicationStatusOperationStateSyncResultSourceKsonnetArgs'] ksonnet: Ksonnet holds ksonnet specific options
-        :param pulumi.Input['ApplicationStatusOperationStateSyncResultSourceKustomizeArgs'] kustomize: Kustomize holds kustomize specific options
-        :param pulumi.Input[str] path: Path is a directory path within the Git repository, and is only valid for applications sourced from Git.
-        :param pulumi.Input['ApplicationStatusOperationStateSyncResultSourcePluginArgs'] plugin: ConfigManagementPlugin holds config management plugin specific options
-        :param pulumi.Input[str] target_revision: TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version.
-        """
-        pulumi.set(__self__, "repo_url", repo_url)
-        if chart is not None:
-            pulumi.set(__self__, "chart", chart)
-        if directory is not None:
-            pulumi.set(__self__, "directory", directory)
-        if helm is not None:
-            pulumi.set(__self__, "helm", helm)
-        if ksonnet is not None:
-            pulumi.set(__self__, "ksonnet", ksonnet)
-        if kustomize is not None:
-            pulumi.set(__self__, "kustomize", kustomize)
-        if path is not None:
-            pulumi.set(__self__, "path", path)
-        if plugin is not None:
-            pulumi.set(__self__, "plugin", plugin)
-        if target_revision is not None:
-            pulumi.set(__self__, "target_revision", target_revision)
-
-    @property
-    @pulumi.getter(name="repoURL")
-    def repo_url(self) -> pulumi.Input[str]:
-        """
-        RepoURL is the URL to the repository (Git or Helm) that contains the application manifests
-        """
-        return pulumi.get(self, "repo_url")
-
-    @repo_url.setter
-    def repo_url(self, value: pulumi.Input[str]):
-        pulumi.set(self, "repo_url", value)
-
-    @property
-    @pulumi.getter
-    def chart(self) -> Optional[pulumi.Input[str]]:
-        """
-        Chart is a Helm chart name, and must be specified for applications sourced from a Helm repo.
-        """
-        return pulumi.get(self, "chart")
-
-    @chart.setter
-    def chart(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "chart", value)
-
-    @property
-    @pulumi.getter
-    def directory(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceDirectoryArgs']]:
-        """
-        Directory holds path/directory specific options
-        """
-        return pulumi.get(self, "directory")
-
-    @directory.setter
-    def directory(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceDirectoryArgs']]):
-        pulumi.set(self, "directory", value)
-
-    @property
-    @pulumi.getter
-    def helm(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceHelmArgs']]:
-        """
-        Helm holds helm specific options
-        """
-        return pulumi.get(self, "helm")
-
-    @helm.setter
-    def helm(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceHelmArgs']]):
-        pulumi.set(self, "helm", value)
-
-    @property
-    @pulumi.getter
-    def ksonnet(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceKsonnetArgs']]:
-        """
-        Ksonnet holds ksonnet specific options
-        """
-        return pulumi.get(self, "ksonnet")
-
-    @ksonnet.setter
-    def ksonnet(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceKsonnetArgs']]):
-        pulumi.set(self, "ksonnet", value)
-
-    @property
-    @pulumi.getter
-    def kustomize(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceKustomizeArgs']]:
-        """
-        Kustomize holds kustomize specific options
-        """
-        return pulumi.get(self, "kustomize")
-
-    @kustomize.setter
-    def kustomize(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceKustomizeArgs']]):
-        pulumi.set(self, "kustomize", value)
-
-    @property
-    @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[str]]:
-        """
-        Path is a directory path within the Git repository, and is only valid for applications sourced from Git.
-        """
-        return pulumi.get(self, "path")
-
-    @path.setter
-    def path(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "path", value)
-
-    @property
-    @pulumi.getter
-    def plugin(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourcePluginArgs']]:
-        """
-        ConfigManagementPlugin holds config management plugin specific options
-        """
-        return pulumi.get(self, "plugin")
-
-    @plugin.setter
-    def plugin(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourcePluginArgs']]):
-        pulumi.set(self, "plugin", value)
-
-    @property
-    @pulumi.getter(name="targetRevision")
-    def target_revision(self) -> Optional[pulumi.Input[str]]:
-        """
-        TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version.
-        """
-        return pulumi.get(self, "target_revision")
-
-    @target_revision.setter
-    def target_revision(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "target_revision", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateSyncResultSourceDirectoryArgs:
-    def __init__(__self__, *,
-                 exclude: Optional[pulumi.Input[str]] = None,
-                 include: Optional[pulumi.Input[str]] = None,
-                 jsonnet: Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceDirectoryJsonnetArgs']] = None,
-                 recurse: Optional[pulumi.Input[bool]] = None):
-        """
-        Directory holds path/directory specific options
-        :param pulumi.Input[str] exclude: Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation
-        :param pulumi.Input[str] include: Include contains a glob pattern to match paths against that should be explicitly included during manifest generation
-        :param pulumi.Input['ApplicationStatusOperationStateSyncResultSourceDirectoryJsonnetArgs'] jsonnet: Jsonnet holds options specific to Jsonnet
-        :param pulumi.Input[bool] recurse: Recurse specifies whether to scan a directory recursively for manifests
-        """
-        if exclude is not None:
-            pulumi.set(__self__, "exclude", exclude)
-        if include is not None:
-            pulumi.set(__self__, "include", include)
-        if jsonnet is not None:
-            pulumi.set(__self__, "jsonnet", jsonnet)
-        if recurse is not None:
-            pulumi.set(__self__, "recurse", recurse)
-
-    @property
-    @pulumi.getter
-    def exclude(self) -> Optional[pulumi.Input[str]]:
-        """
-        Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation
-        """
-        return pulumi.get(self, "exclude")
-
-    @exclude.setter
-    def exclude(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "exclude", value)
-
-    @property
-    @pulumi.getter
-    def include(self) -> Optional[pulumi.Input[str]]:
-        """
-        Include contains a glob pattern to match paths against that should be explicitly included during manifest generation
-        """
-        return pulumi.get(self, "include")
-
-    @include.setter
-    def include(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "include", value)
-
-    @property
-    @pulumi.getter
-    def jsonnet(self) -> Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceDirectoryJsonnetArgs']]:
-        """
-        Jsonnet holds options specific to Jsonnet
-        """
-        return pulumi.get(self, "jsonnet")
-
-    @jsonnet.setter
-    def jsonnet(self, value: Optional[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceDirectoryJsonnetArgs']]):
-        pulumi.set(self, "jsonnet", value)
-
-    @property
-    @pulumi.getter
-    def recurse(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Recurse specifies whether to scan a directory recursively for manifests
-        """
-        return pulumi.get(self, "recurse")
-
-    @recurse.setter
-    def recurse(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "recurse", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateSyncResultSourceDirectoryJsonnetArgs:
-    def __init__(__self__, *,
-                 ext_vars: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceDirectoryJsonnetExtVarsArgs']]]] = None,
-                 libs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 tlas: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceDirectoryJsonnetTlasArgs']]]] = None):
-        """
-        Jsonnet holds options specific to Jsonnet
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceDirectoryJsonnetExtVarsArgs']]] ext_vars: ExtVars is a list of Jsonnet External Variables
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] libs: Additional library search dirs
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceDirectoryJsonnetTlasArgs']]] tlas: TLAS is a list of Jsonnet Top-level Arguments
-        """
-        if ext_vars is not None:
-            pulumi.set(__self__, "ext_vars", ext_vars)
-        if libs is not None:
-            pulumi.set(__self__, "libs", libs)
-        if tlas is not None:
-            pulumi.set(__self__, "tlas", tlas)
-
-    @property
-    @pulumi.getter(name="extVars")
-    def ext_vars(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceDirectoryJsonnetExtVarsArgs']]]]:
-        """
-        ExtVars is a list of Jsonnet External Variables
-        """
-        return pulumi.get(self, "ext_vars")
-
-    @ext_vars.setter
-    def ext_vars(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceDirectoryJsonnetExtVarsArgs']]]]):
-        pulumi.set(self, "ext_vars", value)
-
-    @property
-    @pulumi.getter
-    def libs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        Additional library search dirs
-        """
-        return pulumi.get(self, "libs")
-
-    @libs.setter
-    def libs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "libs", value)
-
-    @property
-    @pulumi.getter
-    def tlas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceDirectoryJsonnetTlasArgs']]]]:
-        """
-        TLAS is a list of Jsonnet Top-level Arguments
-        """
-        return pulumi.get(self, "tlas")
-
-    @tlas.setter
-    def tlas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceDirectoryJsonnetTlasArgs']]]]):
-        pulumi.set(self, "tlas", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateSyncResultSourceDirectoryJsonnetExtVarsArgs:
-    def __init__(__self__, *,
-                 name: pulumi.Input[str],
-                 value: pulumi.Input[str],
-                 code: Optional[pulumi.Input[bool]] = None):
-        """
-        JsonnetVar represents a variable to be passed to jsonnet during manifest generation
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "value", value)
-        if code is not None:
-            pulumi.set(__self__, "code", code)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def value(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "value")
-
-    @value.setter
-    def value(self, value: pulumi.Input[str]):
-        pulumi.set(self, "value", value)
-
-    @property
-    @pulumi.getter
-    def code(self) -> Optional[pulumi.Input[bool]]:
-        return pulumi.get(self, "code")
-
-    @code.setter
-    def code(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "code", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateSyncResultSourceDirectoryJsonnetTlasArgs:
-    def __init__(__self__, *,
-                 name: pulumi.Input[str],
-                 value: pulumi.Input[str],
-                 code: Optional[pulumi.Input[bool]] = None):
-        """
-        JsonnetVar represents a variable to be passed to jsonnet during manifest generation
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "value", value)
-        if code is not None:
-            pulumi.set(__self__, "code", code)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def value(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "value")
-
-    @value.setter
-    def value(self, value: pulumi.Input[str]):
-        pulumi.set(self, "value", value)
-
-    @property
-    @pulumi.getter
-    def code(self) -> Optional[pulumi.Input[bool]]:
-        return pulumi.get(self, "code")
-
-    @code.setter
-    def code(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "code", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateSyncResultSourceHelmArgs:
-    def __init__(__self__, *,
-                 file_parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceHelmFileParametersArgs']]]] = None,
-                 parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceHelmParametersArgs']]]] = None,
-                 pass_credentials: Optional[pulumi.Input[bool]] = None,
-                 release_name: Optional[pulumi.Input[str]] = None,
-                 value_files: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 values: Optional[pulumi.Input[str]] = None,
-                 version: Optional[pulumi.Input[str]] = None):
-        """
-        Helm holds helm specific options
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceHelmFileParametersArgs']]] file_parameters: FileParameters are file parameters to the helm template
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceHelmParametersArgs']]] parameters: Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation
-        :param pulumi.Input[bool] pass_credentials: PassCredentials pass credentials to all domains (Helm's --pass-credentials)
-        :param pulumi.Input[str] release_name: ReleaseName is the Helm release name to use. If omitted it will use the application name
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] value_files: ValuesFiles is a list of Helm value files to use when generating a template
-        :param pulumi.Input[str] values: Values specifies Helm values to be passed to helm template, typically defined as a block
-        :param pulumi.Input[str] version: Version is the Helm version to use for templating (either "2" or "3")
-        """
-        if file_parameters is not None:
-            pulumi.set(__self__, "file_parameters", file_parameters)
-        if parameters is not None:
-            pulumi.set(__self__, "parameters", parameters)
-        if pass_credentials is not None:
-            pulumi.set(__self__, "pass_credentials", pass_credentials)
-        if release_name is not None:
-            pulumi.set(__self__, "release_name", release_name)
-        if value_files is not None:
-            pulumi.set(__self__, "value_files", value_files)
-        if values is not None:
-            pulumi.set(__self__, "values", values)
-        if version is not None:
-            pulumi.set(__self__, "version", version)
-
-    @property
-    @pulumi.getter(name="fileParameters")
-    def file_parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceHelmFileParametersArgs']]]]:
-        """
-        FileParameters are file parameters to the helm template
-        """
-        return pulumi.get(self, "file_parameters")
-
-    @file_parameters.setter
-    def file_parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceHelmFileParametersArgs']]]]):
-        pulumi.set(self, "file_parameters", value)
-
-    @property
-    @pulumi.getter
-    def parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceHelmParametersArgs']]]]:
-        """
-        Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation
-        """
-        return pulumi.get(self, "parameters")
-
-    @parameters.setter
-    def parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceHelmParametersArgs']]]]):
-        pulumi.set(self, "parameters", value)
-
-    @property
-    @pulumi.getter(name="passCredentials")
-    def pass_credentials(self) -> Optional[pulumi.Input[bool]]:
-        """
-        PassCredentials pass credentials to all domains (Helm's --pass-credentials)
-        """
-        return pulumi.get(self, "pass_credentials")
-
-    @pass_credentials.setter
-    def pass_credentials(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "pass_credentials", value)
-
-    @property
-    @pulumi.getter(name="releaseName")
-    def release_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        ReleaseName is the Helm release name to use. If omitted it will use the application name
-        """
-        return pulumi.get(self, "release_name")
-
-    @release_name.setter
-    def release_name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "release_name", value)
-
-    @property
-    @pulumi.getter(name="valueFiles")
-    def value_files(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        ValuesFiles is a list of Helm value files to use when generating a template
-        """
-        return pulumi.get(self, "value_files")
-
-    @value_files.setter
-    def value_files(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "value_files", value)
-
-    @property
-    @pulumi.getter
-    def values(self) -> Optional[pulumi.Input[str]]:
-        """
-        Values specifies Helm values to be passed to helm template, typically defined as a block
-        """
-        return pulumi.get(self, "values")
-
-    @values.setter
-    def values(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "values", value)
-
-    @property
-    @pulumi.getter
-    def version(self) -> Optional[pulumi.Input[str]]:
-        """
-        Version is the Helm version to use for templating (either "2" or "3")
-        """
-        return pulumi.get(self, "version")
-
-    @version.setter
-    def version(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "version", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateSyncResultSourceHelmFileParametersArgs:
-    def __init__(__self__, *,
-                 name: Optional[pulumi.Input[str]] = None,
-                 path: Optional[pulumi.Input[str]] = None):
-        """
-        HelmFileParameter is a file parameter that's passed to helm template during manifest generation
-        :param pulumi.Input[str] name: Name is the name of the Helm parameter
-        :param pulumi.Input[str] path: Path is the path to the file containing the values for the Helm parameter
-        """
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if path is not None:
-            pulumi.set(__self__, "path", path)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Name is the name of the Helm parameter
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[str]]:
-        """
-        Path is the path to the file containing the values for the Helm parameter
-        """
-        return pulumi.get(self, "path")
-
-    @path.setter
-    def path(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "path", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateSyncResultSourceHelmParametersArgs:
-    def __init__(__self__, *,
-                 force_string: Optional[pulumi.Input[bool]] = None,
-                 name: Optional[pulumi.Input[str]] = None,
-                 value: Optional[pulumi.Input[str]] = None):
-        """
-        HelmParameter is a parameter that's passed to helm template during manifest generation
-        :param pulumi.Input[bool] force_string: ForceString determines whether to tell Helm to interpret booleans and numbers as strings
-        :param pulumi.Input[str] name: Name is the name of the Helm parameter
-        :param pulumi.Input[str] value: Value is the value for the Helm parameter
-        """
-        if force_string is not None:
-            pulumi.set(__self__, "force_string", force_string)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if value is not None:
-            pulumi.set(__self__, "value", value)
-
-    @property
-    @pulumi.getter(name="forceString")
-    def force_string(self) -> Optional[pulumi.Input[bool]]:
-        """
-        ForceString determines whether to tell Helm to interpret booleans and numbers as strings
-        """
-        return pulumi.get(self, "force_string")
-
-    @force_string.setter
-    def force_string(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "force_string", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Name is the name of the Helm parameter
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def value(self) -> Optional[pulumi.Input[str]]:
-        """
-        Value is the value for the Helm parameter
-        """
-        return pulumi.get(self, "value")
-
-    @value.setter
-    def value(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "value", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateSyncResultSourceKsonnetArgs:
-    def __init__(__self__, *,
-                 environment: Optional[pulumi.Input[str]] = None,
-                 parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceKsonnetParametersArgs']]]] = None):
-        """
-        Ksonnet holds ksonnet specific options
-        :param pulumi.Input[str] environment: Environment is a ksonnet application environment name
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceKsonnetParametersArgs']]] parameters: Parameters are a list of ksonnet component parameter override values
-        """
-        if environment is not None:
-            pulumi.set(__self__, "environment", environment)
-        if parameters is not None:
-            pulumi.set(__self__, "parameters", parameters)
-
-    @property
-    @pulumi.getter
-    def environment(self) -> Optional[pulumi.Input[str]]:
-        """
-        Environment is a ksonnet application environment name
-        """
-        return pulumi.get(self, "environment")
-
-    @environment.setter
-    def environment(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "environment", value)
-
-    @property
-    @pulumi.getter
-    def parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceKsonnetParametersArgs']]]]:
-        """
-        Parameters are a list of ksonnet component parameter override values
-        """
-        return pulumi.get(self, "parameters")
-
-    @parameters.setter
-    def parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourceKsonnetParametersArgs']]]]):
-        pulumi.set(self, "parameters", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateSyncResultSourceKsonnetParametersArgs:
-    def __init__(__self__, *,
-                 name: pulumi.Input[str],
-                 value: pulumi.Input[str],
-                 component: Optional[pulumi.Input[str]] = None):
-        """
-        KsonnetParameter is a ksonnet component parameter
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "value", value)
-        if component is not None:
-            pulumi.set(__self__, "component", component)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def value(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "value")
-
-    @value.setter
-    def value(self, value: pulumi.Input[str]):
-        pulumi.set(self, "value", value)
-
-    @property
-    @pulumi.getter
-    def component(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "component")
-
-    @component.setter
-    def component(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "component", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateSyncResultSourceKustomizeArgs:
-    def __init__(__self__, *,
-                 common_annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 common_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 force_common_annotations: Optional[pulumi.Input[bool]] = None,
-                 force_common_labels: Optional[pulumi.Input[bool]] = None,
-                 images: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 name_prefix: Optional[pulumi.Input[str]] = None,
-                 name_suffix: Optional[pulumi.Input[str]] = None,
-                 version: Optional[pulumi.Input[str]] = None):
-        """
-        Kustomize holds kustomize specific options
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] common_annotations: CommonAnnotations is a list of additional annotations to add to rendered manifests
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] common_labels: CommonLabels is a list of additional labels to add to rendered manifests
-        :param pulumi.Input[bool] force_common_annotations: ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps
-        :param pulumi.Input[bool] force_common_labels: ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] images: Images is a list of Kustomize image override specifications
-        :param pulumi.Input[str] name_prefix: NamePrefix is a prefix appended to resources for Kustomize apps
-        :param pulumi.Input[str] name_suffix: NameSuffix is a suffix appended to resources for Kustomize apps
-        :param pulumi.Input[str] version: Version controls which version of Kustomize to use for rendering manifests
-        """
-        if common_annotations is not None:
-            pulumi.set(__self__, "common_annotations", common_annotations)
-        if common_labels is not None:
-            pulumi.set(__self__, "common_labels", common_labels)
-        if force_common_annotations is not None:
-            pulumi.set(__self__, "force_common_annotations", force_common_annotations)
-        if force_common_labels is not None:
-            pulumi.set(__self__, "force_common_labels", force_common_labels)
-        if images is not None:
-            pulumi.set(__self__, "images", images)
-        if name_prefix is not None:
-            pulumi.set(__self__, "name_prefix", name_prefix)
-        if name_suffix is not None:
-            pulumi.set(__self__, "name_suffix", name_suffix)
-        if version is not None:
-            pulumi.set(__self__, "version", version)
-
-    @property
-    @pulumi.getter(name="commonAnnotations")
-    def common_annotations(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
-        """
-        CommonAnnotations is a list of additional annotations to add to rendered manifests
-        """
-        return pulumi.get(self, "common_annotations")
-
-    @common_annotations.setter
-    def common_annotations(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        pulumi.set(self, "common_annotations", value)
-
-    @property
-    @pulumi.getter(name="commonLabels")
-    def common_labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
-        """
-        CommonLabels is a list of additional labels to add to rendered manifests
-        """
-        return pulumi.get(self, "common_labels")
-
-    @common_labels.setter
-    def common_labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        pulumi.set(self, "common_labels", value)
-
-    @property
-    @pulumi.getter(name="forceCommonAnnotations")
-    def force_common_annotations(self) -> Optional[pulumi.Input[bool]]:
-        """
-        ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps
-        """
-        return pulumi.get(self, "force_common_annotations")
-
-    @force_common_annotations.setter
-    def force_common_annotations(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "force_common_annotations", value)
-
-    @property
-    @pulumi.getter(name="forceCommonLabels")
-    def force_common_labels(self) -> Optional[pulumi.Input[bool]]:
-        """
-        ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps
-        """
-        return pulumi.get(self, "force_common_labels")
-
-    @force_common_labels.setter
-    def force_common_labels(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "force_common_labels", value)
-
-    @property
-    @pulumi.getter
-    def images(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        Images is a list of Kustomize image override specifications
-        """
-        return pulumi.get(self, "images")
-
-    @images.setter
-    def images(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "images", value)
-
-    @property
-    @pulumi.getter(name="namePrefix")
-    def name_prefix(self) -> Optional[pulumi.Input[str]]:
-        """
-        NamePrefix is a prefix appended to resources for Kustomize apps
-        """
-        return pulumi.get(self, "name_prefix")
-
-    @name_prefix.setter
-    def name_prefix(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name_prefix", value)
-
-    @property
-    @pulumi.getter(name="nameSuffix")
-    def name_suffix(self) -> Optional[pulumi.Input[str]]:
-        """
-        NameSuffix is a suffix appended to resources for Kustomize apps
-        """
-        return pulumi.get(self, "name_suffix")
-
-    @name_suffix.setter
-    def name_suffix(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name_suffix", value)
-
-    @property
-    @pulumi.getter
-    def version(self) -> Optional[pulumi.Input[str]]:
-        """
-        Version controls which version of Kustomize to use for rendering manifests
-        """
-        return pulumi.get(self, "version")
-
-    @version.setter
-    def version(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "version", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateSyncResultSourcePluginArgs:
-    def __init__(__self__, *,
-                 env: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourcePluginEnvArgs']]]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
-        """
-        ConfigManagementPlugin holds config management plugin specific options
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourcePluginEnvArgs']]] env: Env is a list of environment variable entries
-        """
-        if env is not None:
-            pulumi.set(__self__, "env", env)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-
-    @property
-    @pulumi.getter
-    def env(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourcePluginEnvArgs']]]]:
-        """
-        Env is a list of environment variable entries
-        """
-        return pulumi.get(self, "env")
-
-    @env.setter
-    def env(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusOperationStateSyncResultSourcePluginEnvArgs']]]]):
-        pulumi.set(self, "env", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
-
-
-@pulumi.input_type
-class ApplicationStatusOperationStateSyncResultSourcePluginEnvArgs:
-    def __init__(__self__, *,
-                 name: pulumi.Input[str],
-                 value: pulumi.Input[str]):
-        """
-        EnvEntry represents an entry in the application's environment
-        :param pulumi.Input[str] name: Name is the name of the variable, usually expressed in uppercase
-        :param pulumi.Input[str] value: Value is the value of the variable
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "value", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        """
-        Name is the name of the variable, usually expressed in uppercase
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def value(self) -> pulumi.Input[str]:
-        """
-        Value is the value of the variable
-        """
-        return pulumi.get(self, "value")
-
-    @value.setter
-    def value(self, value: pulumi.Input[str]):
-        pulumi.set(self, "value", value)
-
-
-@pulumi.input_type
-class ApplicationStatusResourcesArgs:
-    def __init__(__self__, *,
-                 group: Optional[pulumi.Input[str]] = None,
-                 health: Optional[pulumi.Input['ApplicationStatusResourcesHealthArgs']] = None,
-                 hook: Optional[pulumi.Input[bool]] = None,
-                 kind: Optional[pulumi.Input[str]] = None,
-                 name: Optional[pulumi.Input[str]] = None,
-                 namespace: Optional[pulumi.Input[str]] = None,
-                 requires_pruning: Optional[pulumi.Input[bool]] = None,
-                 status: Optional[pulumi.Input[str]] = None,
-                 version: Optional[pulumi.Input[str]] = None):
-        """
-        ResourceStatus holds the current sync and health status of a resource TODO: describe members of this type
-        :param pulumi.Input['ApplicationStatusResourcesHealthArgs'] health: HealthStatus contains information about the currently observed health state of an application or resource
-        :param pulumi.Input[str] status: SyncStatusCode is a type which represents possible comparison results
-        """
-        if group is not None:
-            pulumi.set(__self__, "group", group)
-        if health is not None:
-            pulumi.set(__self__, "health", health)
-        if hook is not None:
-            pulumi.set(__self__, "hook", hook)
-        if kind is not None:
-            pulumi.set(__self__, "kind", kind)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if namespace is not None:
-            pulumi.set(__self__, "namespace", namespace)
-        if requires_pruning is not None:
-            pulumi.set(__self__, "requires_pruning", requires_pruning)
-        if status is not None:
-            pulumi.set(__self__, "status", status)
-        if version is not None:
-            pulumi.set(__self__, "version", version)
-
-    @property
-    @pulumi.getter
-    def group(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "group")
-
-    @group.setter
-    def group(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "group", value)
-
-    @property
-    @pulumi.getter
-    def health(self) -> Optional[pulumi.Input['ApplicationStatusResourcesHealthArgs']]:
-        """
-        HealthStatus contains information about the currently observed health state of an application or resource
-        """
-        return pulumi.get(self, "health")
-
-    @health.setter
-    def health(self, value: Optional[pulumi.Input['ApplicationStatusResourcesHealthArgs']]):
-        pulumi.set(self, "health", value)
-
-    @property
-    @pulumi.getter
-    def hook(self) -> Optional[pulumi.Input[bool]]:
-        return pulumi.get(self, "hook")
-
-    @hook.setter
-    def hook(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "hook", value)
-
-    @property
-    @pulumi.getter
-    def kind(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "kind")
-
-    @kind.setter
-    def kind(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "kind", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "namespace")
-
-    @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "namespace", value)
-
-    @property
-    @pulumi.getter(name="requiresPruning")
-    def requires_pruning(self) -> Optional[pulumi.Input[bool]]:
-        return pulumi.get(self, "requires_pruning")
-
-    @requires_pruning.setter
-    def requires_pruning(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "requires_pruning", value)
-
-    @property
-    @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[str]]:
-        """
-        SyncStatusCode is a type which represents possible comparison results
-        """
-        return pulumi.get(self, "status")
-
-    @status.setter
-    def status(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "status", value)
-
-    @property
-    @pulumi.getter
-    def version(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "version")
-
-    @version.setter
-    def version(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "version", value)
-
-
-@pulumi.input_type
-class ApplicationStatusResourcesHealthArgs:
-    def __init__(__self__, *,
-                 message: Optional[pulumi.Input[str]] = None,
-                 status: Optional[pulumi.Input[str]] = None):
-        """
-        HealthStatus contains information about the currently observed health state of an application or resource
-        :param pulumi.Input[str] message: Message is a human-readable informational message describing the health status
-        :param pulumi.Input[str] status: Status holds the status code of the application or resource
-        """
-        if message is not None:
-            pulumi.set(__self__, "message", message)
-        if status is not None:
-            pulumi.set(__self__, "status", status)
-
-    @property
-    @pulumi.getter
-    def message(self) -> Optional[pulumi.Input[str]]:
-        """
-        Message is a human-readable informational message describing the health status
-        """
-        return pulumi.get(self, "message")
-
-    @message.setter
-    def message(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "message", value)
-
-    @property
-    @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[str]]:
-        """
-        Status holds the status code of the application or resource
-        """
-        return pulumi.get(self, "status")
-
-    @status.setter
-    def status(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "status", value)
-
-
-@pulumi.input_type
-class ApplicationStatusSummaryArgs:
-    def __init__(__self__, *,
-                 external_urls: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 images: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
-        """
-        Summary contains a list of URLs and container images used by this application
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] external_urls: ExternalURLs holds all external URLs of application child resources.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] images: Images holds all images of application child resources.
-        """
-        if external_urls is not None:
-            pulumi.set(__self__, "external_urls", external_urls)
-        if images is not None:
-            pulumi.set(__self__, "images", images)
-
-    @property
-    @pulumi.getter(name="externalURLs")
-    def external_urls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        ExternalURLs holds all external URLs of application child resources.
-        """
-        return pulumi.get(self, "external_urls")
-
-    @external_urls.setter
-    def external_urls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "external_urls", value)
-
-    @property
-    @pulumi.getter
-    def images(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        Images holds all images of application child resources.
-        """
-        return pulumi.get(self, "images")
-
-    @images.setter
-    def images(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "images", value)
-
-
-@pulumi.input_type
-class ApplicationStatusSyncArgs:
-    def __init__(__self__, *,
-                 status: pulumi.Input[str],
-                 compared_to: Optional[pulumi.Input['ApplicationStatusSyncComparedToArgs']] = None,
-                 revision: Optional[pulumi.Input[str]] = None):
-        """
-        Sync contains information about the application's current sync status
-        :param pulumi.Input[str] status: Status is the sync state of the comparison
-        :param pulumi.Input['ApplicationStatusSyncComparedToArgs'] compared_to: ComparedTo contains information about what has been compared
-        :param pulumi.Input[str] revision: Revision contains information about the revision the comparison has been performed to
-        """
-        pulumi.set(__self__, "status", status)
-        if compared_to is not None:
-            pulumi.set(__self__, "compared_to", compared_to)
-        if revision is not None:
-            pulumi.set(__self__, "revision", revision)
-
-    @property
-    @pulumi.getter
-    def status(self) -> pulumi.Input[str]:
-        """
-        Status is the sync state of the comparison
-        """
-        return pulumi.get(self, "status")
-
-    @status.setter
-    def status(self, value: pulumi.Input[str]):
-        pulumi.set(self, "status", value)
-
-    @property
-    @pulumi.getter(name="comparedTo")
-    def compared_to(self) -> Optional[pulumi.Input['ApplicationStatusSyncComparedToArgs']]:
-        """
-        ComparedTo contains information about what has been compared
-        """
-        return pulumi.get(self, "compared_to")
-
-    @compared_to.setter
-    def compared_to(self, value: Optional[pulumi.Input['ApplicationStatusSyncComparedToArgs']]):
-        pulumi.set(self, "compared_to", value)
-
-    @property
-    @pulumi.getter
-    def revision(self) -> Optional[pulumi.Input[str]]:
-        """
-        Revision contains information about the revision the comparison has been performed to
-        """
-        return pulumi.get(self, "revision")
-
-    @revision.setter
-    def revision(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "revision", value)
-
-
-@pulumi.input_type
-class ApplicationStatusSyncComparedToArgs:
-    def __init__(__self__, *,
-                 destination: pulumi.Input['ApplicationStatusSyncComparedToDestinationArgs'],
-                 source: pulumi.Input['ApplicationStatusSyncComparedToSourceArgs']):
-        """
-        ComparedTo contains information about what has been compared
-        :param pulumi.Input['ApplicationStatusSyncComparedToDestinationArgs'] destination: Destination is a reference to the application's destination used for comparison
-        :param pulumi.Input['ApplicationStatusSyncComparedToSourceArgs'] source: Source is a reference to the application's source used for comparison
-        """
-        pulumi.set(__self__, "destination", destination)
-        pulumi.set(__self__, "source", source)
-
-    @property
-    @pulumi.getter
-    def destination(self) -> pulumi.Input['ApplicationStatusSyncComparedToDestinationArgs']:
-        """
-        Destination is a reference to the application's destination used for comparison
-        """
-        return pulumi.get(self, "destination")
-
-    @destination.setter
-    def destination(self, value: pulumi.Input['ApplicationStatusSyncComparedToDestinationArgs']):
-        pulumi.set(self, "destination", value)
-
-    @property
-    @pulumi.getter
-    def source(self) -> pulumi.Input['ApplicationStatusSyncComparedToSourceArgs']:
-        """
-        Source is a reference to the application's source used for comparison
-        """
-        return pulumi.get(self, "source")
-
-    @source.setter
-    def source(self, value: pulumi.Input['ApplicationStatusSyncComparedToSourceArgs']):
-        pulumi.set(self, "source", value)
-
-
-@pulumi.input_type
-class ApplicationStatusSyncComparedToDestinationArgs:
-    def __init__(__self__, *,
-                 name: Optional[pulumi.Input[str]] = None,
-                 namespace: Optional[pulumi.Input[str]] = None,
-                 server: Optional[pulumi.Input[str]] = None):
-        """
-        Destination is a reference to the application's destination used for comparison
-        :param pulumi.Input[str] name: Name is an alternate way of specifying the target cluster by its symbolic name
-        :param pulumi.Input[str] namespace: Namespace specifies the target namespace for the application's resources. The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace
-        :param pulumi.Input[str] server: Server specifies the URL of the target cluster and must be set to the Kubernetes control plane API
-        """
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if namespace is not None:
-            pulumi.set(__self__, "namespace", namespace)
-        if server is not None:
-            pulumi.set(__self__, "server", server)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Name is an alternate way of specifying the target cluster by its symbolic name
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[str]]:
-        """
-        Namespace specifies the target namespace for the application's resources. The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace
-        """
-        return pulumi.get(self, "namespace")
-
-    @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "namespace", value)
-
-    @property
-    @pulumi.getter
-    def server(self) -> Optional[pulumi.Input[str]]:
-        """
-        Server specifies the URL of the target cluster and must be set to the Kubernetes control plane API
-        """
-        return pulumi.get(self, "server")
-
-    @server.setter
-    def server(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "server", value)
-
-
-@pulumi.input_type
-class ApplicationStatusSyncComparedToSourceArgs:
-    def __init__(__self__, *,
-                 repo_url: pulumi.Input[str],
-                 chart: Optional[pulumi.Input[str]] = None,
-                 directory: Optional[pulumi.Input['ApplicationStatusSyncComparedToSourceDirectoryArgs']] = None,
-                 helm: Optional[pulumi.Input['ApplicationStatusSyncComparedToSourceHelmArgs']] = None,
-                 ksonnet: Optional[pulumi.Input['ApplicationStatusSyncComparedToSourceKsonnetArgs']] = None,
-                 kustomize: Optional[pulumi.Input['ApplicationStatusSyncComparedToSourceKustomizeArgs']] = None,
-                 path: Optional[pulumi.Input[str]] = None,
-                 plugin: Optional[pulumi.Input['ApplicationStatusSyncComparedToSourcePluginArgs']] = None,
-                 target_revision: Optional[pulumi.Input[str]] = None):
-        """
-        Source is a reference to the application's source used for comparison
-        :param pulumi.Input[str] repo_url: RepoURL is the URL to the repository (Git or Helm) that contains the application manifests
-        :param pulumi.Input[str] chart: Chart is a Helm chart name, and must be specified for applications sourced from a Helm repo.
-        :param pulumi.Input['ApplicationStatusSyncComparedToSourceDirectoryArgs'] directory: Directory holds path/directory specific options
-        :param pulumi.Input['ApplicationStatusSyncComparedToSourceHelmArgs'] helm: Helm holds helm specific options
-        :param pulumi.Input['ApplicationStatusSyncComparedToSourceKsonnetArgs'] ksonnet: Ksonnet holds ksonnet specific options
-        :param pulumi.Input['ApplicationStatusSyncComparedToSourceKustomizeArgs'] kustomize: Kustomize holds kustomize specific options
-        :param pulumi.Input[str] path: Path is a directory path within the Git repository, and is only valid for applications sourced from Git.
-        :param pulumi.Input['ApplicationStatusSyncComparedToSourcePluginArgs'] plugin: ConfigManagementPlugin holds config management plugin specific options
-        :param pulumi.Input[str] target_revision: TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version.
-        """
-        pulumi.set(__self__, "repo_url", repo_url)
-        if chart is not None:
-            pulumi.set(__self__, "chart", chart)
-        if directory is not None:
-            pulumi.set(__self__, "directory", directory)
-        if helm is not None:
-            pulumi.set(__self__, "helm", helm)
-        if ksonnet is not None:
-            pulumi.set(__self__, "ksonnet", ksonnet)
-        if kustomize is not None:
-            pulumi.set(__self__, "kustomize", kustomize)
-        if path is not None:
-            pulumi.set(__self__, "path", path)
-        if plugin is not None:
-            pulumi.set(__self__, "plugin", plugin)
-        if target_revision is not None:
-            pulumi.set(__self__, "target_revision", target_revision)
-
-    @property
-    @pulumi.getter(name="repoURL")
-    def repo_url(self) -> pulumi.Input[str]:
-        """
-        RepoURL is the URL to the repository (Git or Helm) that contains the application manifests
-        """
-        return pulumi.get(self, "repo_url")
-
-    @repo_url.setter
-    def repo_url(self, value: pulumi.Input[str]):
-        pulumi.set(self, "repo_url", value)
-
-    @property
-    @pulumi.getter
-    def chart(self) -> Optional[pulumi.Input[str]]:
-        """
-        Chart is a Helm chart name, and must be specified for applications sourced from a Helm repo.
-        """
-        return pulumi.get(self, "chart")
-
-    @chart.setter
-    def chart(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "chart", value)
-
-    @property
-    @pulumi.getter
-    def directory(self) -> Optional[pulumi.Input['ApplicationStatusSyncComparedToSourceDirectoryArgs']]:
-        """
-        Directory holds path/directory specific options
-        """
-        return pulumi.get(self, "directory")
-
-    @directory.setter
-    def directory(self, value: Optional[pulumi.Input['ApplicationStatusSyncComparedToSourceDirectoryArgs']]):
-        pulumi.set(self, "directory", value)
-
-    @property
-    @pulumi.getter
-    def helm(self) -> Optional[pulumi.Input['ApplicationStatusSyncComparedToSourceHelmArgs']]:
-        """
-        Helm holds helm specific options
-        """
-        return pulumi.get(self, "helm")
-
-    @helm.setter
-    def helm(self, value: Optional[pulumi.Input['ApplicationStatusSyncComparedToSourceHelmArgs']]):
-        pulumi.set(self, "helm", value)
-
-    @property
-    @pulumi.getter
-    def ksonnet(self) -> Optional[pulumi.Input['ApplicationStatusSyncComparedToSourceKsonnetArgs']]:
-        """
-        Ksonnet holds ksonnet specific options
-        """
-        return pulumi.get(self, "ksonnet")
-
-    @ksonnet.setter
-    def ksonnet(self, value: Optional[pulumi.Input['ApplicationStatusSyncComparedToSourceKsonnetArgs']]):
-        pulumi.set(self, "ksonnet", value)
-
-    @property
-    @pulumi.getter
-    def kustomize(self) -> Optional[pulumi.Input['ApplicationStatusSyncComparedToSourceKustomizeArgs']]:
-        """
-        Kustomize holds kustomize specific options
-        """
-        return pulumi.get(self, "kustomize")
-
-    @kustomize.setter
-    def kustomize(self, value: Optional[pulumi.Input['ApplicationStatusSyncComparedToSourceKustomizeArgs']]):
-        pulumi.set(self, "kustomize", value)
-
-    @property
-    @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[str]]:
-        """
-        Path is a directory path within the Git repository, and is only valid for applications sourced from Git.
-        """
-        return pulumi.get(self, "path")
-
-    @path.setter
-    def path(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "path", value)
-
-    @property
-    @pulumi.getter
-    def plugin(self) -> Optional[pulumi.Input['ApplicationStatusSyncComparedToSourcePluginArgs']]:
-        """
-        ConfigManagementPlugin holds config management plugin specific options
-        """
-        return pulumi.get(self, "plugin")
-
-    @plugin.setter
-    def plugin(self, value: Optional[pulumi.Input['ApplicationStatusSyncComparedToSourcePluginArgs']]):
-        pulumi.set(self, "plugin", value)
-
-    @property
-    @pulumi.getter(name="targetRevision")
-    def target_revision(self) -> Optional[pulumi.Input[str]]:
-        """
-        TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version.
-        """
-        return pulumi.get(self, "target_revision")
-
-    @target_revision.setter
-    def target_revision(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "target_revision", value)
-
-
-@pulumi.input_type
-class ApplicationStatusSyncComparedToSourceDirectoryArgs:
-    def __init__(__self__, *,
-                 exclude: Optional[pulumi.Input[str]] = None,
-                 include: Optional[pulumi.Input[str]] = None,
-                 jsonnet: Optional[pulumi.Input['ApplicationStatusSyncComparedToSourceDirectoryJsonnetArgs']] = None,
-                 recurse: Optional[pulumi.Input[bool]] = None):
-        """
-        Directory holds path/directory specific options
-        :param pulumi.Input[str] exclude: Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation
-        :param pulumi.Input[str] include: Include contains a glob pattern to match paths against that should be explicitly included during manifest generation
-        :param pulumi.Input['ApplicationStatusSyncComparedToSourceDirectoryJsonnetArgs'] jsonnet: Jsonnet holds options specific to Jsonnet
-        :param pulumi.Input[bool] recurse: Recurse specifies whether to scan a directory recursively for manifests
-        """
-        if exclude is not None:
-            pulumi.set(__self__, "exclude", exclude)
-        if include is not None:
-            pulumi.set(__self__, "include", include)
-        if jsonnet is not None:
-            pulumi.set(__self__, "jsonnet", jsonnet)
-        if recurse is not None:
-            pulumi.set(__self__, "recurse", recurse)
-
-    @property
-    @pulumi.getter
-    def exclude(self) -> Optional[pulumi.Input[str]]:
-        """
-        Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation
-        """
-        return pulumi.get(self, "exclude")
-
-    @exclude.setter
-    def exclude(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "exclude", value)
-
-    @property
-    @pulumi.getter
-    def include(self) -> Optional[pulumi.Input[str]]:
-        """
-        Include contains a glob pattern to match paths against that should be explicitly included during manifest generation
-        """
-        return pulumi.get(self, "include")
-
-    @include.setter
-    def include(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "include", value)
-
-    @property
-    @pulumi.getter
-    def jsonnet(self) -> Optional[pulumi.Input['ApplicationStatusSyncComparedToSourceDirectoryJsonnetArgs']]:
-        """
-        Jsonnet holds options specific to Jsonnet
-        """
-        return pulumi.get(self, "jsonnet")
-
-    @jsonnet.setter
-    def jsonnet(self, value: Optional[pulumi.Input['ApplicationStatusSyncComparedToSourceDirectoryJsonnetArgs']]):
-        pulumi.set(self, "jsonnet", value)
-
-    @property
-    @pulumi.getter
-    def recurse(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Recurse specifies whether to scan a directory recursively for manifests
-        """
-        return pulumi.get(self, "recurse")
-
-    @recurse.setter
-    def recurse(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "recurse", value)
-
-
-@pulumi.input_type
-class ApplicationStatusSyncComparedToSourceDirectoryJsonnetArgs:
-    def __init__(__self__, *,
-                 ext_vars: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceDirectoryJsonnetExtVarsArgs']]]] = None,
-                 libs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 tlas: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceDirectoryJsonnetTlasArgs']]]] = None):
-        """
-        Jsonnet holds options specific to Jsonnet
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceDirectoryJsonnetExtVarsArgs']]] ext_vars: ExtVars is a list of Jsonnet External Variables
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] libs: Additional library search dirs
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceDirectoryJsonnetTlasArgs']]] tlas: TLAS is a list of Jsonnet Top-level Arguments
-        """
-        if ext_vars is not None:
-            pulumi.set(__self__, "ext_vars", ext_vars)
-        if libs is not None:
-            pulumi.set(__self__, "libs", libs)
-        if tlas is not None:
-            pulumi.set(__self__, "tlas", tlas)
-
-    @property
-    @pulumi.getter(name="extVars")
-    def ext_vars(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceDirectoryJsonnetExtVarsArgs']]]]:
-        """
-        ExtVars is a list of Jsonnet External Variables
-        """
-        return pulumi.get(self, "ext_vars")
-
-    @ext_vars.setter
-    def ext_vars(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceDirectoryJsonnetExtVarsArgs']]]]):
-        pulumi.set(self, "ext_vars", value)
-
-    @property
-    @pulumi.getter
-    def libs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        Additional library search dirs
-        """
-        return pulumi.get(self, "libs")
-
-    @libs.setter
-    def libs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "libs", value)
-
-    @property
-    @pulumi.getter
-    def tlas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceDirectoryJsonnetTlasArgs']]]]:
-        """
-        TLAS is a list of Jsonnet Top-level Arguments
-        """
-        return pulumi.get(self, "tlas")
-
-    @tlas.setter
-    def tlas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceDirectoryJsonnetTlasArgs']]]]):
-        pulumi.set(self, "tlas", value)
-
-
-@pulumi.input_type
-class ApplicationStatusSyncComparedToSourceDirectoryJsonnetExtVarsArgs:
-    def __init__(__self__, *,
-                 name: pulumi.Input[str],
-                 value: pulumi.Input[str],
-                 code: Optional[pulumi.Input[bool]] = None):
-        """
-        JsonnetVar represents a variable to be passed to jsonnet during manifest generation
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "value", value)
-        if code is not None:
-            pulumi.set(__self__, "code", code)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def value(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "value")
-
-    @value.setter
-    def value(self, value: pulumi.Input[str]):
-        pulumi.set(self, "value", value)
-
-    @property
-    @pulumi.getter
-    def code(self) -> Optional[pulumi.Input[bool]]:
-        return pulumi.get(self, "code")
-
-    @code.setter
-    def code(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "code", value)
-
-
-@pulumi.input_type
-class ApplicationStatusSyncComparedToSourceDirectoryJsonnetTlasArgs:
-    def __init__(__self__, *,
-                 name: pulumi.Input[str],
-                 value: pulumi.Input[str],
-                 code: Optional[pulumi.Input[bool]] = None):
-        """
-        JsonnetVar represents a variable to be passed to jsonnet during manifest generation
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "value", value)
-        if code is not None:
-            pulumi.set(__self__, "code", code)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def value(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "value")
-
-    @value.setter
-    def value(self, value: pulumi.Input[str]):
-        pulumi.set(self, "value", value)
-
-    @property
-    @pulumi.getter
-    def code(self) -> Optional[pulumi.Input[bool]]:
-        return pulumi.get(self, "code")
-
-    @code.setter
-    def code(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "code", value)
-
-
-@pulumi.input_type
-class ApplicationStatusSyncComparedToSourceHelmArgs:
-    def __init__(__self__, *,
-                 file_parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceHelmFileParametersArgs']]]] = None,
-                 parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceHelmParametersArgs']]]] = None,
-                 pass_credentials: Optional[pulumi.Input[bool]] = None,
-                 release_name: Optional[pulumi.Input[str]] = None,
-                 value_files: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 values: Optional[pulumi.Input[str]] = None,
-                 version: Optional[pulumi.Input[str]] = None):
-        """
-        Helm holds helm specific options
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceHelmFileParametersArgs']]] file_parameters: FileParameters are file parameters to the helm template
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceHelmParametersArgs']]] parameters: Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation
-        :param pulumi.Input[bool] pass_credentials: PassCredentials pass credentials to all domains (Helm's --pass-credentials)
-        :param pulumi.Input[str] release_name: ReleaseName is the Helm release name to use. If omitted it will use the application name
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] value_files: ValuesFiles is a list of Helm value files to use when generating a template
-        :param pulumi.Input[str] values: Values specifies Helm values to be passed to helm template, typically defined as a block
-        :param pulumi.Input[str] version: Version is the Helm version to use for templating (either "2" or "3")
-        """
-        if file_parameters is not None:
-            pulumi.set(__self__, "file_parameters", file_parameters)
-        if parameters is not None:
-            pulumi.set(__self__, "parameters", parameters)
-        if pass_credentials is not None:
-            pulumi.set(__self__, "pass_credentials", pass_credentials)
-        if release_name is not None:
-            pulumi.set(__self__, "release_name", release_name)
-        if value_files is not None:
-            pulumi.set(__self__, "value_files", value_files)
-        if values is not None:
-            pulumi.set(__self__, "values", values)
-        if version is not None:
-            pulumi.set(__self__, "version", version)
-
-    @property
-    @pulumi.getter(name="fileParameters")
-    def file_parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceHelmFileParametersArgs']]]]:
-        """
-        FileParameters are file parameters to the helm template
-        """
-        return pulumi.get(self, "file_parameters")
-
-    @file_parameters.setter
-    def file_parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceHelmFileParametersArgs']]]]):
-        pulumi.set(self, "file_parameters", value)
-
-    @property
-    @pulumi.getter
-    def parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceHelmParametersArgs']]]]:
-        """
-        Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation
-        """
-        return pulumi.get(self, "parameters")
-
-    @parameters.setter
-    def parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceHelmParametersArgs']]]]):
-        pulumi.set(self, "parameters", value)
-
-    @property
-    @pulumi.getter(name="passCredentials")
-    def pass_credentials(self) -> Optional[pulumi.Input[bool]]:
-        """
-        PassCredentials pass credentials to all domains (Helm's --pass-credentials)
-        """
-        return pulumi.get(self, "pass_credentials")
-
-    @pass_credentials.setter
-    def pass_credentials(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "pass_credentials", value)
-
-    @property
-    @pulumi.getter(name="releaseName")
-    def release_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        ReleaseName is the Helm release name to use. If omitted it will use the application name
-        """
-        return pulumi.get(self, "release_name")
-
-    @release_name.setter
-    def release_name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "release_name", value)
-
-    @property
-    @pulumi.getter(name="valueFiles")
-    def value_files(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        ValuesFiles is a list of Helm value files to use when generating a template
-        """
-        return pulumi.get(self, "value_files")
-
-    @value_files.setter
-    def value_files(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "value_files", value)
-
-    @property
-    @pulumi.getter
-    def values(self) -> Optional[pulumi.Input[str]]:
-        """
-        Values specifies Helm values to be passed to helm template, typically defined as a block
-        """
-        return pulumi.get(self, "values")
-
-    @values.setter
-    def values(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "values", value)
-
-    @property
-    @pulumi.getter
-    def version(self) -> Optional[pulumi.Input[str]]:
-        """
-        Version is the Helm version to use for templating (either "2" or "3")
-        """
-        return pulumi.get(self, "version")
-
-    @version.setter
-    def version(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "version", value)
-
-
-@pulumi.input_type
-class ApplicationStatusSyncComparedToSourceHelmFileParametersArgs:
-    def __init__(__self__, *,
-                 name: Optional[pulumi.Input[str]] = None,
-                 path: Optional[pulumi.Input[str]] = None):
-        """
-        HelmFileParameter is a file parameter that's passed to helm template during manifest generation
-        :param pulumi.Input[str] name: Name is the name of the Helm parameter
-        :param pulumi.Input[str] path: Path is the path to the file containing the values for the Helm parameter
-        """
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if path is not None:
-            pulumi.set(__self__, "path", path)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Name is the name of the Helm parameter
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[str]]:
-        """
-        Path is the path to the file containing the values for the Helm parameter
-        """
-        return pulumi.get(self, "path")
-
-    @path.setter
-    def path(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "path", value)
-
-
-@pulumi.input_type
-class ApplicationStatusSyncComparedToSourceHelmParametersArgs:
-    def __init__(__self__, *,
-                 force_string: Optional[pulumi.Input[bool]] = None,
-                 name: Optional[pulumi.Input[str]] = None,
-                 value: Optional[pulumi.Input[str]] = None):
-        """
-        HelmParameter is a parameter that's passed to helm template during manifest generation
-        :param pulumi.Input[bool] force_string: ForceString determines whether to tell Helm to interpret booleans and numbers as strings
-        :param pulumi.Input[str] name: Name is the name of the Helm parameter
-        :param pulumi.Input[str] value: Value is the value for the Helm parameter
-        """
-        if force_string is not None:
-            pulumi.set(__self__, "force_string", force_string)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if value is not None:
-            pulumi.set(__self__, "value", value)
-
-    @property
-    @pulumi.getter(name="forceString")
-    def force_string(self) -> Optional[pulumi.Input[bool]]:
-        """
-        ForceString determines whether to tell Helm to interpret booleans and numbers as strings
-        """
-        return pulumi.get(self, "force_string")
-
-    @force_string.setter
-    def force_string(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "force_string", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Name is the name of the Helm parameter
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def value(self) -> Optional[pulumi.Input[str]]:
-        """
-        Value is the value for the Helm parameter
-        """
-        return pulumi.get(self, "value")
-
-    @value.setter
-    def value(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "value", value)
-
-
-@pulumi.input_type
-class ApplicationStatusSyncComparedToSourceKsonnetArgs:
-    def __init__(__self__, *,
-                 environment: Optional[pulumi.Input[str]] = None,
-                 parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceKsonnetParametersArgs']]]] = None):
-        """
-        Ksonnet holds ksonnet specific options
-        :param pulumi.Input[str] environment: Environment is a ksonnet application environment name
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceKsonnetParametersArgs']]] parameters: Parameters are a list of ksonnet component parameter override values
-        """
-        if environment is not None:
-            pulumi.set(__self__, "environment", environment)
-        if parameters is not None:
-            pulumi.set(__self__, "parameters", parameters)
-
-    @property
-    @pulumi.getter
-    def environment(self) -> Optional[pulumi.Input[str]]:
-        """
-        Environment is a ksonnet application environment name
-        """
-        return pulumi.get(self, "environment")
-
-    @environment.setter
-    def environment(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "environment", value)
-
-    @property
-    @pulumi.getter
-    def parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceKsonnetParametersArgs']]]]:
-        """
-        Parameters are a list of ksonnet component parameter override values
-        """
-        return pulumi.get(self, "parameters")
-
-    @parameters.setter
-    def parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourceKsonnetParametersArgs']]]]):
-        pulumi.set(self, "parameters", value)
-
-
-@pulumi.input_type
-class ApplicationStatusSyncComparedToSourceKsonnetParametersArgs:
-    def __init__(__self__, *,
-                 name: pulumi.Input[str],
-                 value: pulumi.Input[str],
-                 component: Optional[pulumi.Input[str]] = None):
-        """
-        KsonnetParameter is a ksonnet component parameter
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "value", value)
-        if component is not None:
-            pulumi.set(__self__, "component", component)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def value(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "value")
-
-    @value.setter
-    def value(self, value: pulumi.Input[str]):
-        pulumi.set(self, "value", value)
-
-    @property
-    @pulumi.getter
-    def component(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "component")
-
-    @component.setter
-    def component(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "component", value)
-
-
-@pulumi.input_type
-class ApplicationStatusSyncComparedToSourceKustomizeArgs:
-    def __init__(__self__, *,
-                 common_annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 common_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 force_common_annotations: Optional[pulumi.Input[bool]] = None,
-                 force_common_labels: Optional[pulumi.Input[bool]] = None,
-                 images: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 name_prefix: Optional[pulumi.Input[str]] = None,
-                 name_suffix: Optional[pulumi.Input[str]] = None,
-                 version: Optional[pulumi.Input[str]] = None):
-        """
-        Kustomize holds kustomize specific options
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] common_annotations: CommonAnnotations is a list of additional annotations to add to rendered manifests
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] common_labels: CommonLabels is a list of additional labels to add to rendered manifests
-        :param pulumi.Input[bool] force_common_annotations: ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps
-        :param pulumi.Input[bool] force_common_labels: ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] images: Images is a list of Kustomize image override specifications
-        :param pulumi.Input[str] name_prefix: NamePrefix is a prefix appended to resources for Kustomize apps
-        :param pulumi.Input[str] name_suffix: NameSuffix is a suffix appended to resources for Kustomize apps
-        :param pulumi.Input[str] version: Version controls which version of Kustomize to use for rendering manifests
-        """
-        if common_annotations is not None:
-            pulumi.set(__self__, "common_annotations", common_annotations)
-        if common_labels is not None:
-            pulumi.set(__self__, "common_labels", common_labels)
-        if force_common_annotations is not None:
-            pulumi.set(__self__, "force_common_annotations", force_common_annotations)
-        if force_common_labels is not None:
-            pulumi.set(__self__, "force_common_labels", force_common_labels)
-        if images is not None:
-            pulumi.set(__self__, "images", images)
-        if name_prefix is not None:
-            pulumi.set(__self__, "name_prefix", name_prefix)
-        if name_suffix is not None:
-            pulumi.set(__self__, "name_suffix", name_suffix)
-        if version is not None:
-            pulumi.set(__self__, "version", version)
-
-    @property
-    @pulumi.getter(name="commonAnnotations")
-    def common_annotations(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
-        """
-        CommonAnnotations is a list of additional annotations to add to rendered manifests
-        """
-        return pulumi.get(self, "common_annotations")
-
-    @common_annotations.setter
-    def common_annotations(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        pulumi.set(self, "common_annotations", value)
-
-    @property
-    @pulumi.getter(name="commonLabels")
-    def common_labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
-        """
-        CommonLabels is a list of additional labels to add to rendered manifests
-        """
-        return pulumi.get(self, "common_labels")
-
-    @common_labels.setter
-    def common_labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        pulumi.set(self, "common_labels", value)
-
-    @property
-    @pulumi.getter(name="forceCommonAnnotations")
-    def force_common_annotations(self) -> Optional[pulumi.Input[bool]]:
-        """
-        ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps
-        """
-        return pulumi.get(self, "force_common_annotations")
-
-    @force_common_annotations.setter
-    def force_common_annotations(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "force_common_annotations", value)
-
-    @property
-    @pulumi.getter(name="forceCommonLabels")
-    def force_common_labels(self) -> Optional[pulumi.Input[bool]]:
-        """
-        ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps
-        """
-        return pulumi.get(self, "force_common_labels")
-
-    @force_common_labels.setter
-    def force_common_labels(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "force_common_labels", value)
-
-    @property
-    @pulumi.getter
-    def images(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        Images is a list of Kustomize image override specifications
-        """
-        return pulumi.get(self, "images")
-
-    @images.setter
-    def images(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "images", value)
-
-    @property
-    @pulumi.getter(name="namePrefix")
-    def name_prefix(self) -> Optional[pulumi.Input[str]]:
-        """
-        NamePrefix is a prefix appended to resources for Kustomize apps
-        """
-        return pulumi.get(self, "name_prefix")
-
-    @name_prefix.setter
-    def name_prefix(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name_prefix", value)
-
-    @property
-    @pulumi.getter(name="nameSuffix")
-    def name_suffix(self) -> Optional[pulumi.Input[str]]:
-        """
-        NameSuffix is a suffix appended to resources for Kustomize apps
-        """
-        return pulumi.get(self, "name_suffix")
-
-    @name_suffix.setter
-    def name_suffix(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name_suffix", value)
-
-    @property
-    @pulumi.getter
-    def version(self) -> Optional[pulumi.Input[str]]:
-        """
-        Version controls which version of Kustomize to use for rendering manifests
-        """
-        return pulumi.get(self, "version")
-
-    @version.setter
-    def version(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "version", value)
-
-
-@pulumi.input_type
-class ApplicationStatusSyncComparedToSourcePluginArgs:
-    def __init__(__self__, *,
-                 env: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourcePluginEnvArgs']]]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
-        """
-        ConfigManagementPlugin holds config management plugin specific options
-        :param pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourcePluginEnvArgs']]] env: Env is a list of environment variable entries
-        """
-        if env is not None:
-            pulumi.set(__self__, "env", env)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-
-    @property
-    @pulumi.getter
-    def env(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourcePluginEnvArgs']]]]:
-        """
-        Env is a list of environment variable entries
-        """
-        return pulumi.get(self, "env")
-
-    @env.setter
-    def env(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApplicationStatusSyncComparedToSourcePluginEnvArgs']]]]):
-        pulumi.set(self, "env", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
-
-
-@pulumi.input_type
-class ApplicationStatusSyncComparedToSourcePluginEnvArgs:
-    def __init__(__self__, *,
-                 name: pulumi.Input[str],
-                 value: pulumi.Input[str]):
-        """
-        EnvEntry represents an entry in the application's environment
-        :param pulumi.Input[str] name: Name is the name of the variable, usually expressed in uppercase
-        :param pulumi.Input[str] value: Value is the value of the variable
-        """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "value", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        """
-        Name is the name of the variable, usually expressed in uppercase
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def value(self) -> pulumi.Input[str]:
-        """
-        Value is the value of the variable
-        """
-        return pulumi.get(self, "value")
-
-    @value.setter
-    def value(self, value: pulumi.Input[str]):
-        pulumi.set(self, "value", value)
 
 

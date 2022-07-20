@@ -6,14 +6,14 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from .. import _utilities
+from ... import _utilities
 
 __all__ = [
-    'ObjectMetaArgs',
+    'ObjectMeta',
 ]
 
-@pulumi.input_type
-class ObjectMetaArgs:
+@pulumi.output_type
+class ObjectMeta(dict):
     def __init__(__self__):
         pass
 
