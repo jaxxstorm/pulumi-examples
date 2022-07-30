@@ -62,7 +62,7 @@ devRoutes.ids.apply((routeIds) => {
         destinationCidrBlock: "172.18.0.0/22",
         transitGatewayId: transitGw.transitGateway.id,
       },
-      { provider: devProvider, parent: prodProvider }
+      { provider: devProvider, parent: prodProvider, dependsOn: transitGw }
     );
   });
 });
