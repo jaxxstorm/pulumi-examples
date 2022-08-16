@@ -1,0 +1,1 @@
+[{"package": "pulumi", "version": "3.36.0", "deps": [{"package": "dill", "version": "0.3.5.1"}, {"package": "protobuf", "version": "4.21.2"}, {"package": "pyyaml", "version": "5.4.1"}, {"package": "grpcio", "version": "1.47.0"}, {"package": "semver", "version": "2.13.0"}, {"package": "six", "version": "1.16.0"}]}]

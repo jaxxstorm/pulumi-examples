@@ -1,0 +1,6 @@
+name: openstack_cluster
+runtime:
+  name: python
+  options:
+    virtualenv: venv
+description: A minimal Python Pulumi program
