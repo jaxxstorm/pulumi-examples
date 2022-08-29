@@ -1,11 +1,11 @@
 {
     "name": "digitalocean-kubernetes",
     "devDependencies": {
-        "@types/node": "^10.0.0"
+        "@types/node": "^12.0.0"
     },
     "dependencies": {
-        "@pulumi/digitalocean": "^2.0.0",
-        "@pulumi/kubernetes": "^2.3.1",
-        "@pulumi/pulumi": "^2.0.0"
+        "@pulumi/digitalocean": "^3.0.0",
+        "@pulumi/kubernetes": "^3.3.1",
+        "@pulumi/pulumi": "^3.0.0"
     }
 }

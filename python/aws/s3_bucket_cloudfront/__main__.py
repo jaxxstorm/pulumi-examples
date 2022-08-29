@@ -28,14 +28,15 @@ for file in os.listdir(content_dir):
 
 origin_access_identity = aws.cloudfront.OriginAccessIdentity(
     "cloudfront",
-    comment=pulumi.Output.concat(f"OAI-{bucket.bucket_domain_name}"),
+    comment=pulumi.Output.concat("OAI-", bucket.id),
 )
 
 bucket_policy = aws.s3.BucketPolicy(
     "cloudfrontAccess",
     bucket=bucket.bucket,
     policy=pulumi.Output.all(
-        cloudfront_iam_arn=origin_access_identity.iam_arn, bucket_arn=bucket.arn
+        cloudfront_iam_arn=origin_access_identity.iam_arn,
+        bucket_arn=bucket.arn
     ).apply(
         lambda args: json.dumps(
             {
@@ -63,8 +64,8 @@ cloudfront_dist = aws.cloudfront.Distribution(
         aws.cloudfront.DistributionOriginArgs(
             domain_name=bucket.bucket_regional_domain_name,
             origin_id="cloudfrontExample",
-            s3_origin_config=aws.cloudfront.DistributionOriginS3OriginConfigArgs(
-                origin_access_identity=origin_access_identity.cloudfront_access_identity_path,
+            s3_origin_config=aws.cloudfront.DistributionOriginS3OriginConfigArgs( # noqa
+                origin_access_identity=origin_access_identity.cloudfront_access_identity_path, # noqa
             ),
         )
     ],
