@@ -97,7 +97,7 @@ system_nodes = eks.NodeGroup(
 pulumi.export("kubeconfig", cluster.kubeconfig)
 
 # now let's patch CoreDNS to run on our special nodes
-coredns = k8s.apps.v1.Deployment(
+coredns = k8s.apps.v1.DeploymentPatch(
     "coredns",
     metadata=k8s.meta.v1.ObjectMetaPatchArgs(
         name="coredns",
