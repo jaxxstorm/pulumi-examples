@@ -30,7 +30,7 @@ export class SpinnakerOperator extends pulumi.ComponentResource {
           labels: {
             name: "spinnaker-operator",
             instance: name,
-          }
+          },
         },
       },
       { parent: this }
@@ -44,77 +44,90 @@ export class SpinnakerOperator extends pulumi.ComponentResource {
           labels: {
             name: "spinnaker-operator",
             instance: name,
-          }
+          },
         },
       },
       { parent: this.namespace }
     );
 
-    this.role = new kubernetes.rbac.v1.Role(
-      name,
-      {
-        metadata: {
+    this.role = new kubernetes.rbac.v1.Role(name, {
+      metadata: {
+          name: name,
           namespace: this.namespace.metadata.name,
-          labels: {
-            name: "spinnaker-operator",
-            instance: name,
-          }
-        },
-        rules: [
-          {
-            apiGroups: [""],
-            resources: [
-              "pods",
-              "services",
-              "endpoints",
-              "persistentvolumeclaims",
-              "events",
-              "configmaps",
-              "secrets",
-              "namespaces",
-            ],
-            verbs: ["*"],
-          },
-          {
-            apiGroups: ["batch", "extensions"],
-            resources: ["jobs"],
-            verbs: ["*"],
-          },
-          {
-            apiGroups: ["apps", "extensions"],
-            resources: [
-              "deployments",
-              "daemonsets",
-              "replicasets",
-              "statefulsets",
-            ],
-            verbs: ["*"],
-          },
-          {
-            apiGroups: ["monitoring.coreos.com"],
-            resources: ["servicemonitors"],
-            verbs: ["get", "create"],
-          },
-          {
-            apiGroups: ["apps"],
-            resourceNames: ["spinnaker-operator"],
-            resources: ["deployments/finalizers"],
-            verbs: ["update"],
-          },
-          {
-            apiGroups: ["spinnaker.io"],
-            resources: ["*", "spinnakerservices"],
-            verbs: ["*"],
-          },
-          {
-            apiGroups: ["networking.k8s.io", "extensions"],
-            resources: ["ingresses"],
-            verbs: ["get", "list", "watch"],
-          },
-        ],
       },
-      { parent: this.namespace }
-    );
+      rules: [
+          {
+              apiGroups: [""],
+              resources: [
+                  "pods",
+                  "services",
+                  "endpoints",
+                  "persistentvolumeclaims",
+                  "events",
+                  "configmaps",
+                  "secrets",
+                  "namespaces",
+              ],
+              verbs: ["*"],
+          },
+          {
+              apiGroups: [
+                  "batch",
+                  "extensions",
+              ],
+              resources: ["jobs"],
+              verbs: ["*"],
+          },
+          {
+              apiGroups: [
+                  "apps",
+                  "extensions",
+              ],
+              resources: [
+                  "deployments",
+                  "daemonsets",
+                  "replicasets",
+                  "statefulsets",
+              ],
+              verbs: ["*"],
+          },
+          {
+              apiGroups: ["monitoring.coreos.com"],
+              resources: ["servicemonitors"],
+              verbs: [
+                  "get",
+                  "create",
+              ],
+          },
+          {
+              apiGroups: ["apps"],
+              resourceNames: ["spinnaker-operator"],
+              resources: ["deployments/finalizers"],
+              verbs: ["update"],
+          },
+          {
+              apiGroups: ["spinnaker.io"],
+              resources: [
+                  "*",
+                  "spinnakerservices",
+              ],
+              verbs: ["*"],
+          },
+          {
+              apiGroups: [
+                  "networking.k8s.io",
+                  "extensions",
+              ],
+              resources: ["ingresses"],
+              verbs: [
+                  "get",
+                  "list",
+                  "watch",
+              ],
+          },
+      ],
+  }, { parent: this.namespace });
+
 
     this.roleBinding = new kubernetes.rbac.v1.RoleBinding(
       name,
@@ -124,7 +137,7 @@ export class SpinnakerOperator extends pulumi.ComponentResource {
           labels: {
             name: "spinnaker-operator",
             instance: name,
-          }
+          },
         },
         subjects: [
           {
@@ -142,93 +155,98 @@ export class SpinnakerOperator extends pulumi.ComponentResource {
       { parent: this.namespace }
     );
 
-    this.deployment = new kubernetes.apps.v1.Deployment(name, {
+    this.deployment = new kubernetes.apps.v1.Deployment(
+      name,
+      {
         metadata: {
-            namespace: this.namespace.metadata.name,
-            labels: {
-              name: "spinnaker-operator",
-              instance: name,
-            }
+          namespace: this.namespace.metadata.name,
+          labels: {
+            name: "spinnaker-operator",
+            instance: name,
+          },
         },
         spec: {
-            replicas: 1,
-            selector: {
-                matchLabels: {
+          replicas: 1,
+          selector: {
+            matchLabels: {
+              name: "spinnaker-operator",
+              instance: name,
+            },
+          },
+          template: {
+            metadata: {
+              labels: {
+                name: "spinnaker-operator",
+                instance: name,
+              },
+            },
+            spec: {
+              serviceAccountName: this.serviceAccount.metadata.name,
+              containers: [
+                {
                   name: "spinnaker-operator",
-                  instance: name,
-                },
-            },
-            template: {
-                metadata: {
-                    labels: {
-                      name: "spinnaker-operator",
-                      instance: name,
+                  image: "armory/spinnaker-operator:dev",
+                  command: ["spinnaker-operator"],
+                  args: ["--disable-admission-controller"],
+                  imagePullPolicy: "Always",
+                  env: [
+                    {
+                      name: "WATCH_NAMESPACE",
+                      valueFrom: {
+                        fieldRef: {
+                          fieldPath: "metadata.namespace",
+                        },
+                      },
                     },
-                },
-                spec: {
-                    serviceAccountName: this.serviceAccount.metadata.name,
-                    containers: [
-                        {
-                            name: "spinnaker-operator",
-                            image: "armory/spinnaker-operator:1.2.5",
-                            command: ["spinnaker-operator"],
-                            args: ["--disable-admission-controller"],
-                            imagePullPolicy: "IfNotPresent",
-                            env: [
-                                {
-                                    name: "WATCH_NAMESPACE",
-                                    valueFrom: {
-                                        fieldRef: {
-                                            fieldPath: "metadata.namespace",
-                                        },
-                                    },
-                                },
-                                {
-                                    name: "POD_NAME",
-                                    valueFrom: {
-                                        fieldRef: {
-                                            fieldPath: "metadata.name",
-                                        },
-                                    },
-                                },
-                                {
-                                    name: "OPERATOR_NAME",
-                                    value: "spinnaker-operator",
-                                },
-                            ],
+                    {
+                      name: "POD_NAME",
+                      valueFrom: {
+                        fieldRef: {
+                          fieldPath: "metadata.name",
                         },
-                        {
-                            name: "halyard",
-                            image: "armory/halyard:operator-ccae06e",
-                            imagePullPolicy: "IfNotPresent",
-                            ports: [{
-                                containerPort: 8064,
-                                protocol: "TCP",
-                            }],
-                            readinessProbe: {
-                                httpGet: {
-                                    path: "/health",
-                                    port: 8064,
-                                },
-                                failureThreshold: 20,
-                                periodSeconds: 5,
-                                initialDelaySeconds: 20,
-                            },
-                            livenessProbe: {
-                                tcpSocket: {
-                                    port: 8064,
-                                },
-                                initialDelaySeconds: 30,
-                                periodSeconds: 20,
-                            },
-                        },
-                    ],
+                      },
+                    },
+                    {
+                      name: "OPERATOR_NAME",
+                      value: "spinnaker-operator",
+                    },
+                  ],
                 },
+                {
+                  name: "halyard",
+                  image: "armory/halyard:operator-dev",
+                  imagePullPolicy: "Always",
+                  ports: [
+                    {
+                      containerPort: 8064,
+                      protocol: "TCP",
+                    },
+                  ],
+                  readinessProbe: {
+                    httpGet: {
+                      path: "/health",
+                      port: 8064,
+                    },
+                    failureThreshold: 20,
+                    periodSeconds: 5,
+                    initialDelaySeconds: 20,
+                  },
+                  livenessProbe: {
+                    tcpSocket: {
+                      port: 8064,
+                    },
+                    initialDelaySeconds: 30,
+                    periodSeconds: 20,
+                  },
+                },
+              ],
             },
+          },
         },
-    }, { parent: this.namespace });
+      },
+      { parent: this.namespace }
+    );
 
-    this.registerOutputs({
-    });
+    this.registerOutputs({});
   }
 }

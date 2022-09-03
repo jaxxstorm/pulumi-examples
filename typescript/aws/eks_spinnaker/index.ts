@@ -4,13 +4,38 @@ import * as k8s from "@pulumi/kubernetes";
 import * as operator from "./operator";
 import * as aws from "@pulumi/aws";
 
+const config = new pulumi.Config()
+const pubKey = config.require("publicKey")
+
+const role = new aws.iam.Role("spinnaker", {
+    assumeRolePolicy: aws.iam.assumeRolePolicyForPrincipal({
+        Service: "ec2.amazonaws.com"
+    })
+})
+
+
+const managedPolicyArns: string[] = [
+    "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy",
+    "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy",
+    "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
+];
+
+managedPolicyArns.forEach((policy, index) => {
+    new aws.iam.RolePolicyAttachment(`spinnaker-workernode-policy-${index}`, {
+        policyArn: policy,
+        role: role
+    })
+})
+
 // create an EKS cluster
 const cluster = new eks.Cluster("spinnaker", {
   minSize: 1,
-  desiredCapacity: 2,
+  desiredCapacity: 3,
   maxSize: 5,
-  instanceType: "t3.medium",
+  instanceType: "t3.xlarge",
   version: "1.21", // FIXME: need to transform CRDs if using a newer eks version
+  instanceRole: role,
+  nodePublicKey: pubKey,
 });
 
 const k8sProvider = new k8s.Provider("spinnaker", {
@@ -22,19 +47,23 @@ const crds = new k8s.yaml.ConfigGroup(
   "spinnaker",
   {
     files: [
-      "https://raw.githubusercontent.com/armory/spinnaker-operator/0eb9030d113e0090b2a39f36462fcfa32dd02e27/deploy/crds/spinnaker.io_spinnakeraccounts_crd.yaml",
-      "https://raw.githubusercontent.com/armory/spinnaker-operator/0eb9030d113e0090b2a39f36462fcfa32dd02e27/deploy/crds/spinnaker.io_spinnakerservices_crd.yaml",
+      "https://raw.githubusercontent.com/armory/spinnaker-operator/master/deploy/crds/spinnaker.io_spinnakeraccounts.yaml",
+      "https://raw.githubusercontent.com/armory/spinnaker-operator/master/deploy/crds/spinnaker.io_spinnakerservices.yaml",
     ],
   },
   { provider: k8sProvider }
 );
 
-const bucket = new aws.s3.Bucket("spinnaker", {});
+const operatorDeployment = new operator.SpinnakerOperator(
+  "spinnaker-operator",
+  {},
+  { provider: k8sProvider }
+);
 
-const iamUser = new aws.iam.User("spinnaker", {});
+const bucket = new aws.s3.BucketV2("spinnaker", {})
 
-const iamUserPolicy = new aws.iam.UserPolicy("spinnaker", {
-    user: iamUser.name,
+const bucketAllowPolicy = new aws.iam.RolePolicy("spinnaker-s3", {
+    role: role,
     policy: {
         Version: "2012-10-17",
         Statement: [
@@ -42,87 +71,42 @@ const iamUserPolicy = new aws.iam.UserPolicy("spinnaker", {
                 Sid: "Spinnaker",
                 Effect: "Allow",
                 Action: "s3:*",
-                Resource: [
+                Resource:[
                     bucket.arn,
-                    pulumi.interpolate`${bucket.arn}/*`,
-                ]
+                    pulumi.interpolate`${bucket.arn}/*`
+                  ]
             },
         ],
       } as aws.iam.PolicyDocument
-})
+}, { parent: role })
 
-const ns = new k8s.core.v1.Namespace("spinnaker-system", {
-    metadata: {
-        name: "spinnaker-system"
-    }
-})
 
-const sa = new k8s.core.v1.ServiceAccount("spinnaker", {
-    metadata: {
-        namespace: ns.metadata.name
-    }
-})
-
-export const serviceAccountName = sa.metadata.name
 export const bucketName = bucket.bucket
 
-// const operatorDeployment = new operator.SpinnakerOperator(
-//   "spinnaker-operator",
-//   {},
-//   { provider: k8sProvider }
-// );
-
-
-// const deployment = new spinnaker.spinnaker.v1alpha2.SpinnakerService("spinnaker", {
-//     metadata: {
-//         namespace: operatorDeployment.namespace.metadata.name
-//     },
-//     spec: {
-//         expose: {
-//             type: "service",
-//             service: {
-//                 type: "LoadBalancer"
-//             }
-//         },
-//         spinnakerConfig: {
-//             config: {
-//                 version: "1.26.6",
-//                 persistentStorage: {
-//                     persistentStoreType: "s3",
-//                     s3: {
-//                         bucket: bucket.bucket,
-//                         rootFolder: "root50",
-//                     },
-//                 }
-//             }
-//         }
-//     }
-// }, { provider: k8sProvider})
-
-// const customResource = new k8s.apiextensions.CustomResource("spinnaker", {
-//   apiVersion: "spinnaker.io/v1alpha2",
-//   kind: "SpinnakerService",
-//   metadata: {
-//     namespace: operatorDeployment.namespace.metadata.name,
-//   },
-//   expose: {
-//     type: "service",
-//     service: {
-//       type: "LoadBalancer",
-//     },
-//   },
-//   spinnakerConfig: {
-//     config: {
-//       version: "1.17.1",
-//       persistentStorage: {
-//         persistentStoreType: "s3",
-//         s3: {
-//           bucket: bucket.bucket,
-//           rootFolder: "root50",
-//         },
-//       },
-//     },
-//   },
-// }, { provider: k8sProvider });
+const customResource = new k8s.apiextensions.CustomResource("spinnaker", {
+  apiVersion: "spinnaker.io/v1alpha2",
+  kind: "SpinnakerService",
+  metadata: {
+    namespace: operatorDeployment.namespace.metadata.name,
+  },
+  expose: {
+    type: "service",
+    service: {
+      type: "LoadBalancer",
+    },
+  },
+  spinnakerConfig: {
+    config: {
+      version: "1.17.1",
+      persistentStorage: {
+        persistentStoreType: "s3",
+        s3: {
+          bucket: bucket.bucket,
+          rootFolder: "root50",
+        },
+      },
+    },
+  },
+}, { provider: k8sProvider });
 
 export const kubeconfig = cluster.kubeconfig;
