@@ -9,8 +9,8 @@ export class SpinnakerOperator extends pulumi.ComponentResource {
   namespace: kubernetes.core.v1.Namespace;
   deployment: kubernetes.apps.v1.Deployment;
   serviceAccount: kubernetes.core.v1.ServiceAccount;
-  role: kubernetes.rbac.v1.Role;
-  roleBinding: kubernetes.rbac.v1.RoleBinding;
+  role: kubernetes.rbac.v1.ClusterRole;
+  roleBinding: kubernetes.rbac.v1.ClusterRoleBinding;
 
   constructor(
     name: string,
@@ -50,86 +50,66 @@ export class SpinnakerOperator extends pulumi.ComponentResource {
       { parent: this.namespace }
     );
 
-    this.role = new kubernetes.rbac.v1.Role(name, {
-      metadata: {
+    this.role = new kubernetes.rbac.v1.ClusterRole(
+      name,
+      {
+        metadata: {
           name: name,
-          namespace: this.namespace.metadata.name,
+        },
+        rules: [
+          {
+            apiGroups: [""],
+            resources: ["pods", "ingresses/status", "endpoints"],
+            verbs: ["get", "list", "watch"],
+          },
+          {
+            apiGroups: [""],
+            resources: [
+              "services",
+              "events",
+              "configmaps",
+              "secrets",
+              "namespaces",
+              "ingresses",
+            ],
+            verbs: ["create", "get", "list", "update", "watch", "patch"],
+          },
+          {
+            apiGroups: ["apps", "extensions"],
+            resources: [
+              "deployments",
+              "daemonsets",
+              "replicasets",
+              "statefulsets",
+            ],
+            verbs: ["create", "get", "list", "update", "watch", "patch"],
+          },
+          {
+            apiGroups: ["monitoring.coreos.com"],
+            resources: ["servicemonitors"],
+            verbs: ["get", "create"],
+          },
+          {
+            apiGroups: ["spinnaker.io"],
+            resources: ["*", "spinnakerservices"],
+            verbs: ["create", "get", "list", "update", "watch", "patch"],
+          },
+          {
+            apiGroups: ["admissionregistration.k8s.io"],
+            resources: ["validatingwebhookconfigurations"],
+            verbs: ["*"],
+          },
+          {
+            apiGroups: ["networking.k8s.io", "extensions"],
+            resources: ["ingresses"],
+            verbs: ["get", "list", "watch"],
+          },
+        ],
       },
-      rules: [
-          {
-              apiGroups: [""],
-              resources: [
-                  "pods",
-                  "services",
-                  "endpoints",
-                  "persistentvolumeclaims",
-                  "events",
-                  "configmaps",
-                  "secrets",
-                  "namespaces",
-              ],
-              verbs: ["*"],
-          },
-          {
-              apiGroups: [
-                  "batch",
-                  "extensions",
-              ],
-              resources: ["jobs"],
-              verbs: ["*"],
-          },
-          {
-              apiGroups: [
-                  "apps",
-                  "extensions",
-              ],
-              resources: [
-                  "deployments",
-                  "daemonsets",
-                  "replicasets",
-                  "statefulsets",
-              ],
-              verbs: ["*"],
-          },
-          {
-              apiGroups: ["monitoring.coreos.com"],
-              resources: ["servicemonitors"],
-              verbs: [
-                  "get",
-                  "create",
-              ],
-          },
-          {
-              apiGroups: ["apps"],
-              resourceNames: ["spinnaker-operator"],
-              resources: ["deployments/finalizers"],
-              verbs: ["update"],
-          },
-          {
-              apiGroups: ["spinnaker.io"],
-              resources: [
-                  "*",
-                  "spinnakerservices",
-              ],
-              verbs: ["*"],
-          },
-          {
-              apiGroups: [
-                  "networking.k8s.io",
-                  "extensions",
-              ],
-              resources: ["ingresses"],
-              verbs: [
-                  "get",
-                  "list",
-                  "watch",
-              ],
-          },
-      ],
-  }, { parent: this.namespace });
+      { parent: this }
+    );
 
-
-    this.roleBinding = new kubernetes.rbac.v1.RoleBinding(
+    this.roleBinding = new kubernetes.rbac.v1.ClusterRoleBinding(
       name,
       {
         metadata: {
@@ -147,7 +127,7 @@ export class SpinnakerOperator extends pulumi.ComponentResource {
           },
         ],
         roleRef: {
-          kind: "Role",
+          kind: "ClusterRole",
           name: this.role.metadata.name,
           apiGroup: "rbac.authorization.k8s.io",
         },
@@ -159,11 +139,8 @@ export class SpinnakerOperator extends pulumi.ComponentResource {
       name,
       {
         metadata: {
+          name: name,
           namespace: this.namespace.metadata.name,
-          labels: {
-            name: "spinnaker-operator",
-            instance: name,
-          },
         },
         spec: {
           replicas: 1,
@@ -185,19 +162,10 @@ export class SpinnakerOperator extends pulumi.ComponentResource {
               containers: [
                 {
                   name: "spinnaker-operator",
-                  image: "armory/spinnaker-operator:dev",
+                  image: "armory/spinnaker-operator:1.2.5",
                   command: ["spinnaker-operator"],
-                  args: ["--disable-admission-controller"],
-                  imagePullPolicy: "Always",
+                  imagePullPolicy: "IfNotPresent",
                   env: [
-                    {
-                      name: "WATCH_NAMESPACE",
-                      valueFrom: {
-                        fieldRef: {
-                          fieldPath: "metadata.namespace",
-                        },
-                      },
-                    },
                     {
                       name: "POD_NAME",
                       valueFrom: {
@@ -211,15 +179,23 @@ export class SpinnakerOperator extends pulumi.ComponentResource {
                       value: "spinnaker-operator",
                     },
                   ],
+                  ports: [
+                    {
+                      containerPort: 9876,
+                      protocol: "TCP",
+                      name: "http",
+                    },
+                  ],
                 },
                 {
                   name: "halyard",
-                  image: "armory/halyard:operator-dev",
-                  imagePullPolicy: "Always",
+                  image: "armory/halyard:operator-ccae06e",
+                  imagePullPolicy: "IfNotPresent",
                   ports: [
                     {
                       containerPort: 8064,
                       protocol: "TCP",
+                      name: "http",
                     },
                   ],
                   readinessProbe: {

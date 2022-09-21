@@ -1,0 +1,3 @@
+name: eks_harness
+description: A minimal AWS TypeScript Pulumi program
+runtime: nodejs

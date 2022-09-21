@@ -1,0 +1,13 @@
+{
+    "name": "doks_teleport",
+    "main": "index.ts",
+    "devDependencies": {
+        "@types/node": "^14"
+    },
+    "dependencies": {
+        "@pulumi/cloudflare": "^4.10.0",
+        "@pulumi/digitalocean": "^4.15.2",
+        "@pulumi/kubernetes": "^3.21.2",
+        "@pulumi/pulumi": "^3.0.0"
+    }
+}

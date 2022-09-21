@@ -1,0 +1,14 @@
+{
+    "name": "eks_teleport",
+    "main": "index.ts",
+    "devDependencies": {
+        "@types/node": "^14"
+    },
+    "dependencies": {
+        "@pulumi/aws": "^5.0.0",
+        "@pulumi/awsx": "^1.0.0-beta.10",
+        "@pulumi/eks": "^0.41.2",
+        "@pulumi/kubernetes": "^3.21.2",
+        "@pulumi/pulumi": "^3.0.0"
+    }
+}

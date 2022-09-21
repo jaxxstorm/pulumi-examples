@@ -1,0 +1,3 @@
+name: doks_teleport
+description: A minimal TypeScript Pulumi program
+runtime: nodejs

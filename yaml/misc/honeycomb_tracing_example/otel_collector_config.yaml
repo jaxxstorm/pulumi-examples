@@ -1,0 +1,17 @@
+receivers:
+  zipkin:
+    endpoint: :9411
+
+exporters:
+  otlp:
+    endpoint: "api.honeycomb.io:443"
+    headers:
+      "x-honeycomb-team": "fUb4yJ0akYp3XsCygwuSzA"
+      
+service:
+  extensions: [health_check, pprof, zpages]
+  pipelines:
+    traces:
+      receivers: [zipkin]
+      processors: []
+      exporters: [otlp]

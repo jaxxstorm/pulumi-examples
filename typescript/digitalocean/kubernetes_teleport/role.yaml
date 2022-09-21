@@ -1,0 +1,9 @@
+kind: role
+version: v5
+metadata:
+  name: member
+spec:
+  allow:
+    kubernetes_groups: ["system:masters"]
+    kubernetes_labels:
+      '*': '*'

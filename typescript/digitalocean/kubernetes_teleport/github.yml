@@ -1,0 +1,18 @@
+kind: github
+version: v3
+metadata:
+  name: github
+spec:
+  # client ID of your GitHub OAuth app
+  client_id: 47e42320b823af681482 
+  # client secret of your GitHub OAuth app
+  client_secret: fde506004c10acc171256c924b052409b041f1e8
+  # This name will be shown on UI login screen
+  display: GitHub
+  # Change tele.example.com to your domain name
+  redirect_url: https://teleport.lbrlabs.com.com:443/v1/webapi/github/callback
+  # Map github teams to teleport roles
+  teams_to_roles:
+    - organization: lbrlabs
+      team: owners
+      roles: ["admin"]

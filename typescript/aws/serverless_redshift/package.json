@@ -1,0 +1,14 @@
+{
+    "name": "serverless_redshift",
+    "main": "index.ts",
+    "devDependencies": {
+        "@types/node": "^14"
+    },
+    "dependencies": {
+        "@pulumi/aws": "^5.0.0",
+        "@pulumi/awsx": "^0.40.0",
+        "@pulumi/cdk": "^0.4.0",
+        "@pulumi/pulumi": "^3.0.0",
+        "aws-cdk-lib": "^2.38.1"
+    }
+}

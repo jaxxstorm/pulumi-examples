@@ -1,0 +1,3 @@
+name: go_cloudflare_zone
+description: A minimal Go Pulumi program
+runtime: go

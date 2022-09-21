@@ -1,0 +1,5 @@
+roles: kube
+authToken: 0d411379d68368dfeffbcdaef440c976
+proxyAddr: teleport.lbrlabs.net:443
+kubeClusterName: do
+teleportVersionOverride: 10.2.0
