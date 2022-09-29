@@ -4,6 +4,7 @@ import * as awsx from "@pulumi/awsx";
 import * as tailscale from "@pulumi/tailscale";
 import * as fs from "fs";
 import * as path from "path";
+import * as tls from "@pulumi/tls";
 
 // const config = new pulumi.Config("tailscale")
 
@@ -16,24 +17,29 @@ const authKey = new tailscale.TailnetKey("bastion", {
   tags: ["tag:bastion"],
 });
 
-const tailscaleAcl = new tailscale.Acl("bastion", {
-  acl: JSON.stringify({
-    acls: [
-      {
-        autoApprovers: {
-          routes: {
-            "172.20.0.0/22": ["tag:bastion"],
-          },
-          exitNode: ["tag:bastion"],
-        },
-      },
-    ],
-  }),
-});
+// const tailscaleAcl = new tailscale.Acl("bastion", {
+//   acl: JSON.stringify({
+//     acls: [
+//       {
+//         autoApprovers: {
+//           routes: {
+//             "172.20.0.0/22": ["tag:bastion"],
+//           },
+//           exitNode: ["tag:bastion"],
+//         },
+//       },
+//     ],
+//   }),
+// });
 
 // create a VPC!
 const vpc = new awsx.ec2.Vpc("tailscale", {
   cidrBlock: "172.20.0.0/22",
+  tags: {
+      Owner: "lbriggs",
+      owner: "lbriggs",
+      purpose: "infra",
+  }
 });
 
 // retrieve an existing keypair
@@ -142,6 +148,12 @@ const sg = new aws.ec2.SecurityGroup(
         toPort: 0,
         cidrBlocks: ["0.0.0.0/0"],
       },
+      {
+        protocol: "tcp",
+        fromPort: 22,
+        toPort: 22,
+        cidrBlocks: ["0.0.0.0/0"],
+      },
     ],
     egress: [
       {
@@ -155,11 +167,21 @@ const sg = new aws.ec2.SecurityGroup(
   { parent: vpc }
 );
 
+const sshKey = new tls.PrivateKey("bastion", {
+  algorithm: "RSA",
+})
+
+export const privateKey = sshKey.privateKeyOpenssh
+
+const awsKey = new aws.ec2.KeyPair("bastion", {
+  publicKey: sshKey.publicKeyOpenssh
+})
+
 const launchConfiguration = new aws.ec2.LaunchConfiguration("bastion", {
   instanceType: "t3.micro",
   associatePublicIpAddress: false,
   imageId: ami.id,
-  keyName: key.keyName as pulumi.Output<string>,
+  keyName: awsKey.keyName,
   securityGroups: [sg.id],
   iamInstanceProfile: profile.id,
   userDataBase64: fs.readFileSync(path.resolve(__dirname, "./userdata.init"), {
@@ -179,4 +201,8 @@ const asg = new aws.autoscaling.Group(
   },
   { parent: launchConfiguration }
 );
+
+export const vpcId = vpc.vpcId
+export const privateSubnetIds = vpc.privateSubnetIds
+export const publicSubnetIds = vpc.publicSubnetIds
 

@@ -8,6 +8,7 @@
         "@pulumi/aws": "^5.0.0",
         "@pulumi/awsx": "^1.0.0-beta.10",
         "@pulumi/pulumi": "^3.0.0",
-        "@pulumi/tailscale": "^0.10.2"
+        "@pulumi/tailscale": "^0.10.2",
+        "@pulumi/tls": "^4.6.1"
     }
 }

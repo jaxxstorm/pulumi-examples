@@ -1,0 +1,3 @@
+name: msk_go
+description: A minimal AWS Go Pulumi program
+runtime: go
