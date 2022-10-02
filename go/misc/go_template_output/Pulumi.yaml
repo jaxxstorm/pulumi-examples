@@ -1,0 +1,3 @@
+name: go_template_output
+description: A minimal Go Pulumi program
+runtime: go
