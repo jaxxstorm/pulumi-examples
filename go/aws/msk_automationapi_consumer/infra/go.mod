@@ -3,10 +3,11 @@ module msk_go
 go 1.17
 
 require (
+	github.com/lbrlabs/pulumi-aws-tailscalebastion/sdk v0.0.2
 	github.com/pulumi/pulumi-aws/sdk/v5 v5.13.0
 	github.com/pulumi/pulumi-awsx/sdk v1.0.0-beta.10
 	github.com/pulumi/pulumi-kafka/sdk/v3 v3.3.0
-	github.com/pulumi/pulumi/sdk/v3 v3.39.1
+	github.com/pulumi/pulumi/sdk/v3 v3.40.2
 )
 
 require (
@@ -33,6 +34,7 @@ require (
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 // indirect
 	github.com/kevinburke/ssh_config v0.0.0-20201106050909-4977a11b4351 // indirect
+	github.com/lbrlabs/pulumi-aws-tailscalebastion v0.0.2 // indirect
 	github.com/mattn/go-runewidth v0.0.8 // indirect
 	github.com/mitchellh/go-homedir v1.1.0 // indirect
 	github.com/mitchellh/go-ps v1.0.0 // indirect
