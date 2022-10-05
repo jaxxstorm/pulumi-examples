@@ -50,6 +50,7 @@ func main() {
 		connectionString = *brokerUrls
 	}
 
+	// if we specify a name, great. If not, randomly generate one
 	var name string
 	if *instanceName == "" {
 		name = GenerateName()
@@ -57,14 +58,17 @@ func main() {
 		name = *instanceName
 	}
 
+	// create a kafka writer
 	writer := NewKafkaWriter(connectionString, *topic)
 	defer writer.Close()
 
+	// define a message with the randomly generated name we created
 	msg := kafka.Message{
 		Key:   []byte("name"),
 		Value: []byte(name),
 	}
 
+	// write the message to the Kafka topic
 	err := writer.WriteMessages(context.Background(), msg)
 	if err != nil {
 		fmt.Println(err)

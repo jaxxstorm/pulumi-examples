@@ -15,6 +15,8 @@ import (
 func main() {
 	pulumi.Run(func(ctx *pulumi.Context) error {
 
+		// create a VPC with private and public subnets
+		// kafka needs to be in a private subnet
 		cidr := "172.20.0.0/22"
 		vpc, err := xec2.NewVpc(ctx, "msk", &xec2.VpcArgs{
 			CidrBlock: &cidr,
@@ -27,6 +29,8 @@ func main() {
 			return fmt.Errorf("error creating vpc: %v", err)
 		}
 
+		// with kafka being in a private subnet, automatically create a tailscale
+		// VPN between the private subnets
 		_, err = awstailscale.NewBastion(ctx, "msk", &awstailscale.BastionArgs{
 			VpcId: vpc.VpcId,
 			SubnetIds: vpc.PrivateSubnetIds,
@@ -37,6 +41,7 @@ func main() {
 			return fmt.Errorf("error creating bastion host: %v", err)
 		}
 
+		// allow access to MSK
 		sg, err := ec2.NewSecurityGroup(ctx, "msk-security-group", &ec2.SecurityGroupArgs{
 			VpcId: vpc.VpcId,
 			Ingress: ec2.SecurityGroupIngressArray{
@@ -52,6 +57,7 @@ func main() {
 			return fmt.Errorf("error creating security group: %v", err)
 		}
 
+		// create an MSK cluster. This takes around 35 minutes :(
 		cluster, err := msk.NewCluster(ctx, "msk", &msk.ClusterArgs{
 			KafkaVersion:        pulumi.String("3.2.0"),
 			NumberOfBrokerNodes: pulumi.Int(3),
@@ -81,9 +87,10 @@ func main() {
 			return fmt.Errorf("error creating MSK cluster: %v", err)
 		}
 
-		// ctx.Export("zookeeperConnectString", cluster.ZookeeperConnectString)
+		// show the broker addresses
 		ctx.Export("bootstrapBrokers", cluster.BootstrapBrokers)
 
+		// create a kafka provider that we can use to manage kafka
 		kafkaProvider, err := kafka.NewProvider(ctx, "msk", &kafka.ProviderArgs{
 			BootstrapServers: cluster.BootstrapBrokersTls.ApplyT(func(csv string) []string {
 				v := strings.Split(csv, ",")
@@ -96,6 +103,7 @@ func main() {
 			return fmt.Errorf("error creating Kafka provider: %v", err)
 		}
 
+		// create a topic we can use declaratively
 		topic, err := kafka.NewTopic(ctx, "msk", &kafka.TopicArgs{
 			Partitions:        pulumi.Int(3),
 			ReplicationFactor: pulumi.Int(3),

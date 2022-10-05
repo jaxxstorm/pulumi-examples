@@ -1,7 +1,7 @@
 go 1.19
 
 use (
+	./consumer
 	./infra
 	./producer
-    ./consumer
 )

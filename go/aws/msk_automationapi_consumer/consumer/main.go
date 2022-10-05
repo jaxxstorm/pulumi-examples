@@ -50,32 +50,28 @@ func main() {
 		connectionString = *brokerUrls
 	}
 
+	// create a kafka reader
 	reader := NewKafkaReader(connectionString, *topic, "cli")
 	defer reader.Close()
 
-	fmt.Println("retrieving kafka messages")
+	// okay we're waiting for new message
+	fmt.Println("waiting for kafka messages")
 
+	// start a continous loop and extract messages from the kafka queue
 	for {
 		m, err := reader.ReadMessage(context.Background())
 		if err != nil {
 			log.Fatalln(err)
 		}
-		fmt.Printf("request for EC2 instance named: %s found at partition: %v\n", string(m.Key), m.Partition)
+		fmt.Printf("request for EC2 instance named: %s found at partition: %v\n", string(m.Value), m.Partition)
+		// if we get a message, create an EC2 instance with the name we randomly generated
+		// from the producer
 		err = CreateInstance(string(m.Value))
 		if err != nil {
 			log.Fatalf("error creating instance: %v", err)
 		}
 	}
 
-}
-
-func NewKafkaWriter(brokerUrls []string, topic string) *kafka.Writer {
-	kafkaConfig := kafka.WriterConfig{
-		Brokers:  brokerUrls,
-		Topic:    topic,
-		Balancer: &kafka.Hash{},
-	}
-	return kafka.NewWriter(kafkaConfig)
 }
 
 func NewKafkaReader(brokerUrls []string, topic, groupID string) *kafka.Reader {
@@ -88,6 +84,7 @@ func NewKafkaReader(brokerUrls []string, topic, groupID string) *kafka.Reader {
 	})
 }
 
+// the Pulumi automation API program
 func pulumiProgram(name string) pulumi.RunFunc {
 	return func(ctx *pulumi.Context) error {
 		ami, err := ec2.LookupAmi(ctx, &ec2.LookupAmiArgs{
@@ -121,11 +118,11 @@ func pulumiProgram(name string) pulumi.RunFunc {
 		}
 
 		ctx.Export("instanceId", instance.ID())
-
 		return nil
 	}
 }
 
+// the actual pulumi instantiator
 func CreateInstance(name string) error {
 	ctx := context.Background()
 
@@ -137,7 +134,6 @@ func CreateInstance(name string) error {
 	if err != nil {
 		return err
 	}
-
 	w := s.Workspace()
 
 	err = w.InstallPlugin(ctx, "aws", "v5.16.0")
@@ -146,7 +142,6 @@ func CreateInstance(name string) error {
 	}
 
 	s.SetConfig(ctx, "aws:region", auto.ConfigValue{Value: "us-west-2"})
-
 	stdoutStreamer := optup.ProgressStreams(os.Stdout)
 
 	res, err := s.Up(ctx, stdoutStreamer)
@@ -156,7 +151,6 @@ func CreateInstance(name string) error {
 	}
 
 	id, _ := res.Outputs["instanceId"].Value.(string)
-
 	fmt.Printf("Created Instance: %s\n", id)
 
 	return nil
