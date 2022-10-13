@@ -1,0 +1,3 @@
+name: ts_oke
+description: A minimal TypeScript Pulumi program
+runtime: nodejs
