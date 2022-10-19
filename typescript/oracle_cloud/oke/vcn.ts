@@ -24,6 +24,8 @@ export class OciVcn extends pulumi.ComponentResource {
   services?: Promise<oci.core.GetServicesResult>;
   publicSubnetIds: any[] = [];
   privateSubnetIds: any[] = [];
+  publicRouteTable: oci.core.RouteTable;
+  privateRouteTable: oci.core.RouteTable;
 
   constructor(
     name: string,
@@ -39,16 +41,21 @@ export class OciVcn extends pulumi.ComponentResource {
         cidrBlocks: [args.cidrBlock],
         dnsLabel: args.dnsLabel,
         isIpv6enabled: args.isIpv6enabled,
-        
       },
       { parent: this }
     );
+
+    const publicRouteTableRules: pulumi.Input<
+      pulumi.Input<oci.types.input.Core.RouteTableRouteRule>[]
+    > = [];
+    const privateRouteTableRules: pulumi.Input<
+      pulumi.Input<oci.types.input.Core.RouteTableRouteRule>[]
+    > = [];
 
     // define some subnets
     const distributor = new SubnetDistributor(args.cidrBlock, 1); // oracle cloud subnets are regional, so only create 1
 
     this.publicSubnets = distributor.publicSubnets().map((cidr, index) => {
-
       let subnet = new oci.core.Subnet(
         `${name}-public-${index + 1}`,
         {
@@ -60,15 +67,12 @@ export class OciVcn extends pulumi.ComponentResource {
         { parent: this.vcn }
       );
 
-      this.publicSubnetIds.push(subnet.id)
+      this.publicSubnetIds.push(subnet.id);
 
-      return subnet
-
-
+      return subnet;
     });
 
     this.privateSubnets = distributor.privateSubnets().map((cidr, index) => {
-
       let subnet = new oci.core.Subnet(
         `${name}-private-${index + 1}`,
         {
@@ -80,10 +84,9 @@ export class OciVcn extends pulumi.ComponentResource {
         { parent: this.vcn }
       );
 
-      this.privateSubnetIds.push(subnet.id)
+      this.privateSubnetIds.push(subnet.id);
 
-      return subnet
-      
+      return subnet;
     });
 
     // we're asking for an internet gateway
@@ -97,20 +100,11 @@ export class OciVcn extends pulumi.ComponentResource {
         { parent: this.vcn }
       );
 
-      this.igwRoute = new oci.core.RouteTable(
-        name,
-        {
-          vcnId: this.vcn.id,
-          compartmentId: args.compartmentId,
-          routeRules: [
-            {
-              destination: "0.0.0.0/0",
-              networkEntityId: this.igw.id,
-            },
-          ],
-        },
-        { parent: this.igw }
-      );
+      privateRouteTableRules.push({
+        destination: "0.0.0.0/0",
+        networkEntityId: this.igw.id,
+        description: "Pulumi: Traffic to/from the internet",
+      });
     }
 
     if (args.createServiceGateway) {
@@ -124,15 +118,19 @@ export class OciVcn extends pulumi.ComponentResource {
         ],
       });
 
-      this.serviceGateway = new oci.core.ServiceGateway(name, {
-        vcnId: this.vcn.id,
-        compartmentId: args.compartmentId,
-        services: [
-          {
-            serviceId: this.services.then(svc => svc.services[0].id),
-          },
-        ],
-      }, { parent: this.vcn, deleteBeforeReplace: true });
+      this.serviceGateway = new oci.core.ServiceGateway(
+        name,
+        {
+          vcnId: this.vcn.id,
+          compartmentId: args.compartmentId,
+          services: [
+            {
+              serviceId: this.services.then((svc) => svc.services[0].id),
+            },
+          ],
+        },
+        { parent: this.vcn, deleteBeforeReplace: true }
+      );
     }
 
     // we want a nat gateway
@@ -146,37 +144,35 @@ export class OciVcn extends pulumi.ComponentResource {
         { parent: this.vcn }
       );
 
-      const routeRules: pulumi.Input<
-        pulumi.Input<oci.types.input.Core.RouteTableRouteRule>[]
-      > = [];
-
       const defaultRouteRules = {
         networkEntityId: this.natGateway.id,
         destination: "0.0.0.0/0",
         destinationType: "CIDR_BLOCK",
-        description: "Created by Pulumi",
+        description: "Pulumi: Traffic to the internet",
       };
 
-      routeRules.push(defaultRouteRules);
+      publicRouteTableRules.push(defaultRouteRules);
 
       if (args.createServiceGateway) {
-        routeRules.push({
+        publicRouteTableRules.push({
           destinationType: "SERVICE_CIDR_BLOCK",
           destination: this.services?.then((s) => s.services[0].cidrBlock),
           networkEntityId: this.serviceGateway!.id,
-          description: "Created by Pulumi",
+          description: "Pulumi: Traffic to Oracle services",
         });
       }
-
-      this.natGatewayRoute = new oci.core.RouteTable(
-        name,
-        {
-          vcnId: this.vcn.id,
-          compartmentId: args.compartmentId,
-          routeRules: routeRules,
-        },
-        { parent: this.natGateway }
-      );
     }
+
+    this.publicRouteTable = new oci.core.RouteTable(`${name}-public`, {
+      compartmentId: args.compartmentId,
+      vcnId: this.vcn.id,
+      routeRules: publicRouteTableRules,
+    });
+
+    this.privateRouteTable = new oci.core.RouteTable(`${name}-private`, {
+      compartmentId: args.compartmentId,
+      vcnId: this.vcn.id,
+      routeRules: privateRouteTableRules,
+    });
   }
 }

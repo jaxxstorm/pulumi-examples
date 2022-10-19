@@ -93,38 +93,33 @@ touch /var/log/oke.done`
     }]
 })
 
-// const pool1 = new oci.containerengine.NodePool("pool1", {
-//     clusterId: cluster.id,
-//     compartmentId: compartment.id,
-//     initialNodeLabels: [{
-//         key: "name",
-//         value: "pool1",
-//     }],
-//     kubernetesVersion: kubeVersion,
-//     name: "pool1",
-//     nodeConfigDetails: {
-//         nodePoolPodNetworkOptionDetails: {
-//             cniType: "FLANNEL_OVERLAY",
-//         },
-//         placementConfigs: [{
-//             availabilityDomain: availabilityDomains[0].name,
-//             subnetId: okeVcn.privateSubnetIds[0],
-//         }],
-//         size: 1,
-//     },
-//     nodeEvictionNodePoolSettings: {
-//         evictionGraceDuration: "PT1H",
-//     },
-//     nodeShape: "VM.Standard.E3.Flex",
-//     nodeShapeConfig: {
-//         memoryInGbs: 16,
-//         ocpus: 1,
-//     },
-//     nodeSourceDetails: {
-//         imageId: imageId,
-//         sourceType: "IMAGE",
-//     },
-//     nodeMetadata: {
-//         user_data: workerUserData.rendered,
-//     }
-// });
+const pool = new oci.containerengine.NodePool("example", {
+    clusterId: cluster.id,
+    compartmentId: compartment.id,
+    kubernetesVersion: kubeVersion,
+    nodeConfigDetails: {
+        nodePoolPodNetworkOptionDetails: {
+            cniType: "FLANNEL_OVERLAY",
+        },
+        placementConfigs: [{
+            availabilityDomain: availabilityDomains[0].name,
+            subnetId: okeVcn.privateSubnetIds[0],
+        }],
+        size: 1,
+    },
+    nodeEvictionNodePoolSettings: {
+        evictionGraceDuration: "PT1H",
+    },
+    nodeShape: "VM.Standard.E3.Flex",
+    nodeShapeConfig: {
+        memoryInGbs: 16,
+        ocpus: 1,
+    },
+    nodeSourceDetails: {
+        imageId: imageId,
+        sourceType: "IMAGE",
+    },
+    nodeMetadata: {
+        user_data: workerUserData.rendered,
+    }
+}, { parent: cluster });

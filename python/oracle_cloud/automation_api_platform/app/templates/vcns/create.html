@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block nav %}
+  <ul class="nav nav-pills">
+    <li class="nav-item fs-6"><a href="{{ url_for("vcns.list_vcns") }}" class="nav-link">Back to VCN directory</a></li>
+  </ul>
+{% endblock %}
+
+{% block header %}
+  {% block title %}Create new VCN{% endblock %}
+{% endblock %}
+
+{% block content %}
+<section class="p-2">
+  <form method="post">
+    <div class="mb-3">
+      <label for="vcn-id" class="form-label">Name</label>
+      <input type="text" class="form-control" name="vcn-id" id="vcn-id" aria-describedby="nameHelp" required>
+      <div id="nameHelp" class="form-text">Choose a unique name as a label for your VCN</div>
+    </div>
+    <div class="mb-3">
+      <label for="cidr-block" class="form-label">CIDR Block</label>
+      <input type="text" class="form-control" id="cidr-block" name="cidr-block">
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+  </form>
+</section>
+{% endblock %}
