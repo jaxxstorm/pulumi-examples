@@ -7,6 +7,8 @@ import * as azure from "@pulumi/azure";
 // Create an Azure Resource Group
 const resourceGroup = new resources.ResourceGroup("tailscale");
 
+export const resourceGroupName = resourceGroup.name
+
 const config = new pulumi.Config();
 
 const key = config.requireSecret("tailscaleKey");
@@ -29,6 +31,9 @@ const subnet = new network.Subnet(
   },
   { parent: virtualNetwork }
 );
+
+export const subnetName = subnet.name
+export const virtualNetworkName = virtualNetwork.name
 
 const initScript = key.apply((key) =>
   Buffer.from(
