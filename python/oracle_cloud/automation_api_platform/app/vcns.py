@@ -78,7 +78,7 @@ def list_vcns():
             vcns.append(
                 {
                     "name": stack.name,
-                    "vcn_id": f"http://{outs['vcn_id'].value}",
+                    "vcn_id": outs["vcn_id"].value,
                     "console_url": f"https://app.pulumi.com/{org_name}/{project_name}/{stack.name}",
                 }
             )
@@ -109,7 +109,7 @@ def delete_vcn(id: str):
     except Exception as exn:
         flash(str(exn), category="danger")
 
-    return redirect(url_for("vcn.list_vcns"))
+    return redirect(url_for("vcns.list_vcns"))
 
 
 

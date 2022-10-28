@@ -16,4 +16,4 @@ const deployment = new k8s.yaml.ConfigFile("deployment", {
               .value = "changed_by_transformation";
       },
   ],
-});
+}, { del});

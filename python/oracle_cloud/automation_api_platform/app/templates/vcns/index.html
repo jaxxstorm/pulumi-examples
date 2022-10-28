@@ -26,10 +26,13 @@
       {% for vcn in vcns %}
         <tr>
           <td class="align-bottom" colspan="4">
+            <div class="p-1">
+              <a href="https://cloud.oracle.com/networking/vcns/{{ vcn["vcn_id"] }}" class="fs-5 align-bottom" target="_blank">{{ vcn["name"] }}</a>
+            </div>
           </td>
           <td>
             <div class="float-end p-1">
-              <form action="{{ url_for("vcn.delete_vcn", id=vcn["name"]) }}" method="post">
+              <form action="{{ url_for("vcns.delete_vcn", id=vcn["name"]) }}" method="post">
                 <input class="btn btn-sm btn-danger" type="submit" value="Delete">
               </form>
             </div>

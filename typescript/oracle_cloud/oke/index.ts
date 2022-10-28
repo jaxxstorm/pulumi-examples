@@ -103,7 +103,7 @@ const pool = new oci.containerengine.NodePool("example", {
         },
         placementConfigs: [{
             availabilityDomain: availabilityDomains[0].name,
-            subnetId: okeVcn.privateSubnetIds[0],
+            subnetId: okeVcn.publicSubnetIds[0],
         }],
         size: 1,
     },
