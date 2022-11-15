@@ -1,0 +1,6 @@
+name: webserver_component
+description: A minimal Python Pulumi program
+runtime:
+    name: python
+    options:
+        virtualenv: venv
