@@ -1,4 +1,4 @@
-name: lbriggs_webserver_component
+name: python_eks_platform_cluster
 description: A minimal AWS Python Pulumi program
 runtime:
     name: python

@@ -3,7 +3,7 @@ import * as aws from "@pulumi/aws";
 import * as awsx from "@pulumi/awsx";
 
 const vpc = new awsx.ec2.Vpc("example", {
-    cidrBlock: "172.20.0.0/22"
+    cidrBlock: "172.20.0.0/24"
 })
 
 export const vpcId = vpc.vpcId
