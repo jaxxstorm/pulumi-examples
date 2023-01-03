@@ -1,0 +1,6 @@
+name: nushell
+runtime:
+  name: yaml
+  options:
+    compiler: nu pulumi.nu
+description: Pulumi Nushell Example
