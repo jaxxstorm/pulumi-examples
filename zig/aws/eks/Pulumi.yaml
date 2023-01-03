@@ -1,0 +1,6 @@
+name: zig
+runtime:
+  name: yaml
+  options:
+    compiler: zig build run
+description: Zig Example
