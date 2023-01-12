@@ -32,12 +32,20 @@ pulumi.runtime.set_mocks(MyMocks())
 
 import website
 
-site = website.Website(
-    "foo",
+https = website.Website(
+    "https",
     args=website.WebsiteArgs(
         resource_group_name="bar",
         https=True
     ),
+)
+
+http = website.Website(
+    "http",
+    args=website.WebsiteArgs(
+        resource_group_name="bar",
+        https=False,
+    )
 )
 
 
@@ -45,16 +53,22 @@ site = website.Website(
 def test_version():
     def check_tier(tier):
         assert tier == "Hot"
-    return site.storage_account.access_tier.apply(check_tier)
+    return https.storage_account.access_tier.apply(check_tier)
 
 @pulumi.runtime.test
 def test_url():
     def check_url(url):
-        assert url == "https://foo.z22.web.core.windows.net"
-    return site.storage_account.primary_endpoints.web.apply(check_url)
+        assert url == "https://https.z22.web.core.windows.net"
+    return https.storage_account.primary_endpoints.web.apply(check_url)
 
 @pulumi.runtime.test
 def test_endpoint_origin():
     def check_endpoint_origin(url):
-        assert url == "foo.z22.web.core.windows.net"
-    return site.cdn_endpoint.origin_host_header.apply(check_endpoint_origin)
+        assert url == "https.z22.web.core.windows.net"
+    return https.cdn_endpoint.origin_host_header.apply(check_endpoint_origin)
+
+@pulumi.runtime.test
+def test_https():
+    def check_https_endpoint(http_allowed):
+        assert http_allowed == False
+    return https.cdn_endpoint.is_http_allowed.apply(check_https_endpoint)
