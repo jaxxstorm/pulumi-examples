@@ -1,1 +1,0 @@
-arn:aws:elasticloadbalancing:us-west-2:616138583583:loadbalancer/app/lbriggs-lb-4d5a3a4/8351fa9e7afca44farn:aws:elasticloadbalancing:us-west-2:616138583583:loadbalancer/app/lbriggs-lb-4d5a3a4/8351fa9e7afca44f

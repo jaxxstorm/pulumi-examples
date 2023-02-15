@@ -33,13 +33,4 @@ lb = aws.lb.LoadBalancer(
     subnets=default_vpc_subnets.ids,
 )
 
-
-def write_to_file(arn):
-    f = open("arn.txt", "a")
-    f.write(arn)
-    f.close()
-
-
-# anything that is run inside an apply runs only when the resource has finished
-# creating and has returned the value you're applying, in this case, the arn
-json = lb.arn.apply(lambda a: write_to_file(arn=a))
+result = lb.arn.apply(lambda a: wait_for_loadbalancer(arn=a))
