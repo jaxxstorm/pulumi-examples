@@ -18,9 +18,16 @@ headers = {
 
 response = requests.get(url, headers=headers)
 
-
 data = response.json()
 stacks = data['stacks']
+
+continuationToken = data.get('continuationToken')
+
+while continuationToken is not None:
+    response = requests.get(url + '&continuationToken=' + continuationToken, headers=headers)
+    continue_data = response.json()
+    continuationToken = continue_data.get('continuationToken')
+    stacks += continue_data['stacks']
 
 stacks_with_resources = [stack
            for stack in stacks
