@@ -1,0 +1,6 @@
+name: terraform_vm
+runtime:
+  name: go
+  options:
+    binary: terraform_vm
+description: A minimal Azure Native Go Pulumi program

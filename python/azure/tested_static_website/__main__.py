@@ -11,8 +11,9 @@ resource_group = resources.ResourceGroup("testing_static_website")
 site = website.Website(
     "static-website", website.WebsiteArgs(
         resource_group_name=resource_group.name,
-        https=False
-    )
+        https=False,
+    ),
+    opts=pulumi.ResourceOptions(parent=resource_group),
 )
 
 # keep these out of the component so people can add their own
@@ -24,6 +25,7 @@ index_html = storage.Blob(
     container_name=site.static_website.container_name,
     source=pulumi.FileAsset("./wwwroot/index.html"),
     content_type="text/html",
+    opts=pulumi.ResourceOptions(parent=site.storage_account),
 )
 notfound_html = storage.Blob(
     "notfound_html",
@@ -33,6 +35,7 @@ notfound_html = storage.Blob(
     container_name=site.static_website.container_name,
     source=pulumi.FileAsset("./wwwroot/404.html"),
     content_type="text/html",
+    opts=pulumi.ResourceOptions(parent=site.storage_account),
 )
 
 pulumi.export("address", site.cdn_endpoint.host_name)
