@@ -6,12 +6,12 @@ import (
 	"encoding/base64"
 	"fmt"
 
-	"github.com/pulumi/pulumi-azure-native/sdk/go/azure/containerservice"
-	"github.com/pulumi/pulumi-azure-native/sdk/go/azure/resources"
+	"github.com/pulumi/pulumi-azure-native-sdk/containerservice"
+	"github.com/pulumi/pulumi-azure-native-sdk/resources"
 	"github.com/pulumi/pulumi-azuread/sdk/v4/go/azuread"
+	"github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes"
 	corev1 "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/core/v1"
 	metav1 "github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/meta/v1"
-	"github.com/pulumi/pulumi-kubernetes/sdk/v3/go/kubernetes/providers"
 	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
 	"github.com/pulumi/pulumi-tls/sdk/v4/go/tls"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -97,7 +97,7 @@ func main() {
 				ClientId: adApp.ApplicationId,
 				Secret:   adSpPassword.Value,
 			},
-			KubernetesVersion: pulumi.String("1.18.14"),
+			KubernetesVersion: pulumi.String("1.26.0"),
 		})
 		if err != nil {
 			return err
@@ -126,8 +126,8 @@ func main() {
 		// export the kubeconfig for later user
 		ctx.Export("kubeconfig", kubeConfig)
 
-		// Build a provider with the kubeconfig 
-		k8sProvider, err := providers.NewProvider(ctx, "kubernetes", &providers.ProviderArgs{
+		// Build a provider with the kubeconfig
+		k8sProvider, err := kubernetes.NewProvider(ctx, "kubernetes", &kubernetes.ProviderArgs{
 			Kubeconfig: kubeConfig.(pulumi.StringPtrInput),
 		}, pulumi.DependsOn([]pulumi.Resource{cluster}))
 		if err != nil {
