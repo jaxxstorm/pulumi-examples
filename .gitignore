@@ -1,3 +1,5 @@
+.terraform
+
 # Pulumi stack
 Pulumi.*.yaml
 bin/
