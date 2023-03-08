@@ -18,7 +18,6 @@ func main() {
 		organization := conf.Require("organization")
 		workspace := conf.Require("workspaceName")
 		adminPassword := conf.Require("adminPassword")
-		numberOfVms := conf.Require("numberOfVms")
 
 		// grab the remote state reference from terraform cloud
 		state, err := state.NewRemoteStateReference(ctx, "remote-backend-state", &state.RemoteBackendStateArgs{
@@ -47,8 +46,6 @@ func main() {
 		if err != nil {
 			return fmt.Errorf("error creating resource group: %v", err)
 		}
-
-		
 
 		// create a public IP address
 		ip, err := network.NewPublicIPAddress(ctx, "publicIP", &network.PublicIPAddressArgs{
