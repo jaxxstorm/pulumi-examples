@@ -1,0 +1,6 @@
+name: ec2_providers_loop
+runtime:
+  name: python
+  options:
+    virtualenv: venv
+description: A minimal AWS Python Pulumi program
