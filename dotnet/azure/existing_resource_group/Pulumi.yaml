@@ -1,0 +1,3 @@
+name: existing_resource_group
+runtime: dotnet
+description: A minimal Azure Native C# Pulumi program
