@@ -84,7 +84,7 @@ func main() {
 		ctx.Export("kubeconfig", cluster.KubeconfigJson)
 		ctx.Export("releaseName", vela.Name)
 
-		// Deploy the app
+		// // Deploy the app
 		application, err := app.NewApplication(ctx, "example", &app.ApplicationArgs{
 			Metadata: &metav1.ObjectMetaArgs{
 				Name: pulumi.String("example"),
