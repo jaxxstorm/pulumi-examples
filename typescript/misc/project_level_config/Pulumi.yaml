@@ -1,0 +1,6 @@
+name: project_level_config
+runtime: nodejs
+description: A minimal TypeScript Pulumi program
+config:
+  aws:region: us-west-2
+  project_level_config:foo: bar
