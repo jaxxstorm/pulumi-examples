@@ -135,9 +135,42 @@ service = aws.ecs.Service(
             container_port=80,
         )
     ],
-    opts=ResourceOptions(depends_on=[wl]),
     opts=pulumi.ResourceOptions(parent=cluster)
 )
 
-export ("cluster", cluster.name)
+export("cluster", cluster.name)
 export("url", alb.dns_name)
+
+# retrieve the IPs from the fargate task
+
+# private IP
+# we created the security group, so we use that to retrieve the ENI addresses.
+# this like returns one per subnet associated with the fargate task
+eni = aws.ec2.get_network_interfaces_output(
+    filters=[{
+        "name": "group-id",
+        "values": [ group.id ],
+    }],
+)
+
+# define a function that looks up IPs from a list of ENI IDs
+def get_private_ip(ids: str) -> list[str]:
+    
+    private_ips: list[str] = []
+    for count, id in enumerate(ids):
+
+        eni = aws.ec2.get_network_interface(id=id)
+        private_ips.append(eni.private_ip)
+        
+    return private_ips
+    
+
+# we need to wait for the ENI results to return from the API,
+# so inside an apply, we loop through the values and then retrieve the private IP
+private_ips = eni.ids.apply(
+    lambda ids: get_private_ip(ids)
+)
+
+pulumi.export("private_ips", private_ips)
+
+
