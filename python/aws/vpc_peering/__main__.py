@@ -14,6 +14,9 @@ for region, vpc_data in regions.items():
     # the primary VPC is the first one in the list
     # FIXME: we should select the vpc by its key name
     main_vpc = vpc_data[0].items()
+    
+    # Get the account ID for any given provider to use later during peering
+    account_id = aws.get_caller_identity(opts=pulumi.InvokeOptions(provider=provider, parent=provider)).account_id
     for vpc_name, vpc_config in main_vpc:
         regional_vpc_name = f'{stack}-{vpc_config["vpc-name"]}'
         vpc = awsx.ec2.Vpc(
@@ -69,76 +72,45 @@ for region, vpc_data in regions.items():
                 ),
             ],
         )
-        vpcs.append({"vpc_name":regional_vpc_name, "vpc_id": vpc.vpc_id, "region": region, "provider": provider})
+        # Append the information we need to use later for peering
+        vpcs.append({"vpc_name":regional_vpc_name, "vpc_id": vpc.vpc_id, "region": region, "account_id": account_id})
         
 
 pulumi.export("vpcs", vpcs)
 
-for vpc in vpcs:
-    provider = vpc.provider
-    
-    
-    
-
-# for region, vpc_data in regions.items():
-#     provider = aws.Provider(f"aws-{region}", region=region)
-#     for vpc_name, vpc_config in vpc_data[0].items():
-#         # Create VPC First
-#         vname = f'{stack}-{vpc_config["vpc-name"]}'
-
-#         vpcs[f"{vname}-{region}"] = vpc
-
-#         pulumi.export(f'{vname}-vpc_id', vpc.vpc_id)
-#         pulumi.export(f'{vname}-public_subnet_ids', vpc.public_subnet_ids)
-#         pulumi.export(f'{vname}-private_subnet_ids', vpc.private_subnet_ids)
-
-# for region, vpc_data in regions.items():
-#     for vpc_name, vpc_config in vpc_data[0].items():
-#         current_vpc = vpcs[f'{stack}-{vpc_config["vpc-name"]}-{region}']
-#     cprovider = aws.Provider(f"aws-{current_vpc}", region=region)
-#     # Loop through the other regions and peer the VPCs
-#     for other_region, other_vpc_data in regions.items():
-
-#         if other_region != region:
-#             for other_vpc_config in vpc_data[0].items():
-#                 account = aws.get_caller_identity()
-#                 if 'account_id' not in other_vpc_config[0]:
-#                     print('using current account id')
-#                     peer_owner_id = account.account_id
-#                 else:
-#                     print('using configured peer account number')
-#                     peer_owner_id = other_vpc_config[0]['account_id']
-
-#                 # Get the other VPC resource
-#                 print(vpcs['state-network-east-us-east-1'])
-#                 other_vpc = vpcs[f"{stack}-{other_vpc_config['vpc-name']}-{other_region}"]
-#                 oprovider=aws.Provider(f"provider-{other_region}", region=other_region)
-#                 # Create a peering connection between the VPCs
-#                 pcx = aws.ec2.VpcPeeringConnection(f"{current_vpc.id}-{other_vpc.id}",
-#                                         vpc_id=current_vpc.id,
-#                                         peer_vpc_id=other_vpc.id,
-#                                         peer_owner_id=peer_owner_id,
-#                                         opts=pulumi.ResourceOptions(provider=oprovider),
-#                                         accepter=aws.ec2.VpcPeeringConnectionAccepterArgs(
-#                                             allow_remote_vpc_dns_resolution=True,
-#                                             allow_classic_link_to_remote_vpc=True,
-#                                             allow_vpc_to_remote_classic_link=True
-#                                         ),
-#                                         requester=aws.ec2.VpcPeeringConnectionRequesterArgs(
-#                                             allow_remote_vpc_dns_resolution=True,
-#                                             allow_classic_link_to_remote_vpc=True,
-#                                             allow_vpc_to_remote_classic_link=True
-#                                         ))
-
-#                 # Create a route from the current VPC to the other VPC
-#                 route = awsx.ec2.Route(
-#                     f"{current_vpc.id}-{other_vpc.id}",
-#                     name=f"{current_vpc.id}-{other_vpc.id}",
-#                     route_table_id=current_vpc.default_route_table_id,
-#                     destination_cidr_block=other_vpc.cidr_block,
-#                     vpc_peering_connection_id=pcx.id,
-#                     provider=cprovider
-#                 )
-
-#                 pulumi.export(f"{current_vpc.id}-{other_vpc.id}-peer-id", pcx.id)
-#                 pulumi.export(f"{current_vpc.id}-{other_vpc.id}-route-id", route.id)
+# loop through all the VPC
+for i, requesting_vpc in enumerate(vpcs):
+    # Start the second loop from the next index to avoid duplicate pairings and self-pairing
+    for j in range(i + 1, len(vpcs)):
+        accepting_vpc = vpcs[j]
+        pulumi.log.info(f"Creating VPC peering connection between {requesting_vpc['vpc_name']} and {accepting_vpc['vpc_name']}", ephemeral=True)
+        
+        # get the provider from the vpc list
+        request_provider = aws.Provider(f"request-provider-{requesting_vpc['vpc_name']}-{accepting_vpc['vpc_name']}", region=requesting_vpc['region'])
+        accept_provider = aws.Provider(f"accept-provider-{accepting_vpc['vpc_name']}-{requesting_vpc['vpc_name']}", region=accepting_vpc['region'])
+        
+        requestor = aws.ec2.VpcPeeringConnection(
+            f"{requesting_vpc['vpc_name']}-to-{accepting_vpc['vpc_name']}",
+            vpc_id=requesting_vpc['vpc_id'],
+            peer_vpc_id=accepting_vpc['vpc_id'],
+            peer_owner_id=accepting_vpc['account_id'],
+            peer_region=accepting_vpc['region'],
+            auto_accept=False, # can't auto accept from 
+            # NOTE: this doesn't work until successful peering has happened
+            # This is an API limitation, add this after peering is complete
+            # requester=aws.ec2.VpcPeeringConnectionRequesterArgs(
+            #     allow_remote_vpc_dns_resolution=True,
+            # ),
+            opts=pulumi.ResourceOptions(provider=request_provider, parent=request_provider),   
+        )
+        
+        acceptor = aws.ec2.VpcPeeringConnectionAccepter(
+            f"{requesting_vpc['vpc_name']}-to-{accepting_vpc['vpc_name']}",
+            vpc_peering_connection_id=requestor.id,
+            auto_accept=True,
+            accepter=aws.ec2.VpcPeeringConnectionAccepterArgs(
+                allow_remote_vpc_dns_resolution=True,
+            ),
+            
+            opts=pulumi.ResourceOptions(provider=accept_provider, parent=accept_provider),
+        )
