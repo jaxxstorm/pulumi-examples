@@ -1,0 +1,3 @@
+name: lambda_delete_old_versions
+runtime: dotnet
+description: A minimal AWS C# Pulumi program
