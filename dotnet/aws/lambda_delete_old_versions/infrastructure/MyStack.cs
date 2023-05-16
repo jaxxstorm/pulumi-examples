@@ -63,8 +63,8 @@ class MyStack : Stack
 
     private static async Task DeleteOldVersions(string functionName)
     {
+        
         using var client = new AmazonLambdaClient(RegionEndpoint.USWest2);
-
         var versions = await ListVersionsByFunction(client, functionName);
         var sortedVersions = SortVersionsByDate(versions);
         await DeleteOldVersions(client, functionName, sortedVersions);
@@ -72,7 +72,9 @@ class MyStack : Stack
 
     private static async Task<List<FunctionConfiguration>> ListVersionsByFunction(AmazonLambdaClient client, string functionName)
     {
+        
         var request = new ListVersionsByFunctionRequest { FunctionName = functionName };
+        Console.WriteLine($"Listing versions for function {functionName}");
         var response = await client.ListVersionsByFunctionAsync(request);
         return response.Versions;
     }
@@ -88,6 +90,8 @@ class MyStack : Stack
     private static async Task DeleteOldVersions(AmazonLambdaClient client, string functionName, List<FunctionConfiguration> sortedVersions)
     {
         int versionsToKeep = 3;
+
+        Console.WriteLine($"Keeping {versionsToKeep} versions for function {functionName}");
 
         if (sortedVersions.Count <= versionsToKeep) return;
 
