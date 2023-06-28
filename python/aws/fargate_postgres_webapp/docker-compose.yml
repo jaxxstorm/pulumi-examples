@@ -1,0 +1,56 @@
+version: "3.7"
+
+# For local development, only database is running
+#
+# docker-compose up -d
+# uvicorn app.main:app --reload
+#
+
+services:
+  template:
+    privileged: true
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - FIRST_SUPERUSER_EMAIL=mail@lbrlabs.com
+      - FIRST_SUPERUSER_PASSWORD="correct-horse-battery-stable"
+      - SECRET_KEY=super-secret
+      - DEFAULT_DATABASE_HOSTNAME=default_database
+      - DEFAULT_DATABASE_PORT=5432
+      - DEFAULT_DATABASE_DB=${DEFAULT_DATABASE_DB}
+      - DEFAULT_DATABASE_USER=${DEFAULT_DATABASE_USER}
+      - DEFAULT_DATABASE_PASSWORD=${DEFAULT_DATABASE_PASSWORD}
+  default_database:
+    restart: unless-stopped
+    image: postgres:latest
+    volumes:
+      - default_database_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=${DEFAULT_DATABASE_DB}
+      - POSTGRES_USER=${DEFAULT_DATABASE_USER}
+      - POSTGRES_PASSWORD=${DEFAULT_DATABASE_PASSWORD}
+    env_file:
+      - .env
+    ports:
+      - "${DEFAULT_DATABASE_PORT}:5432"
+
+  test_database:
+    restart: unless-stopped
+    image: postgres:latest
+    volumes:
+      - test_database_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=${TEST_DATABASE_DB}
+      - POSTGRES_USER=${TEST_DATABASE_USER}
+      - POSTGRES_PASSWORD=${TEST_DATABASE_PASSWORD}
+    env_file:
+      - .env
+    ports:
+      - "${TEST_DATABASE_PORT}:5432"
+
+volumes:
+  test_database_data:
+  default_database_data:

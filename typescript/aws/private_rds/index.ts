@@ -7,6 +7,7 @@ const vpc = new awsx.ec2.Vpc("example", {
     cidrBlock: "172.20.0.0/22"
 })
 
+export const cidrBlock = "172.20.0.0/22"
 export const vpcId = vpc.vpcId
 export const privateSubnetIds = vpc.privateSubnetIds
 
@@ -40,4 +41,6 @@ const db = new aws.rds.Instance("example", {
 })
 
 export const address = db.address
+export const password = db.password
+export const username = db.username
 

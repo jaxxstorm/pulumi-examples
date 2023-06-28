@@ -3,8 +3,8 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/pulumi/pulumi-aws/sdk/v4/go/aws/iam"
-	"github.com/pulumi/pulumi-aws/sdk/v4/go/aws/s3"
+	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/iam"
+	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/s3"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 )
@@ -49,6 +49,9 @@ func main() {
 		_, err = iam.NewRole(ctx, "s3BucketAccess", &iam.RoleArgs{
 			AssumeRolePolicy: bucketPolicy,
 		})
+		if err != nil {
+			return fmt.Errorf("error creating bucket policy")
+		}
 
 		values := []string{"key", "value"}
 

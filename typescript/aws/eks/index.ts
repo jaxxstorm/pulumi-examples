@@ -117,6 +117,8 @@ vpc.privateSubnetIds.then(id => id.forEach((id, index) => {
     }, { parent: cluster})
 }))
 
+export const vpcCidr = "172.16.0.0/24"
+export const serviceCidr = cluster.eksCluster.kubernetesNetworkConfig.serviceIpv4Cidr
 export const clusterName = cluster.eksCluster.name
 export const oidcProvider = cluster.core.oidcProvider?.arn
 export const oidcIssuer = cluster.core.oidcProvider?.url
