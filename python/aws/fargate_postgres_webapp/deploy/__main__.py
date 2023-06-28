@@ -126,7 +126,7 @@ target_group = aws.lb.TargetGroup(
     health_check=aws.lb.TargetGroupHealthCheckArgs(
         port=8000,
         protocol="HTTP",
-        matcher="200-299",
+        matcher="200-299", # required because of cors origin
     ),
     opts=pulumi.ResourceOptions(parent=alb),
 )
@@ -179,11 +179,9 @@ aws.iam.RolePolicyAttachment(
     opts=pulumi.ResourceOptions(parent=task_execution_role),
 )
 
-# if you're using a DNS name
-# add it to this list
+# we allow all hosts so healthchecks pass
 default_allowed_hosts = [ 
-    "localhost", 
-    alb.dns_name
+    "*",
 ]
 
 
