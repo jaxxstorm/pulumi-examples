@@ -1,0 +1,6 @@
+name: get_vpc_subnets_rt
+runtime:
+  name: python
+  options:
+    virtualenv: venv
+description: A minimal AWS Python Pulumi program
