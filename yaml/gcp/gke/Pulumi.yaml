@@ -1,0 +1,67 @@
+name: gke-yaml-cluster
+runtime: yaml
+description: A GKE cluster
+resources:
+  cluster:
+    type: google-native:container/v1beta1:Cluster
+    properties: 
+      clusterTelemetry:
+        type: ENABLED
+      defaultMaxPodsConstraint:
+        maxPodsPerNode: 100
+      initialNodeCount: 1
+      ipAllocationPolicy:
+        clusterIpv4CidrBlock: /14
+        servicesIpv4CidrBlock: /20
+        useRoutes: false
+      location: us-west2
+      resourceLabels:
+        env: lbriggs
+  provider:
+    type: pulumi:providers:kubernetes
+    properties:
+      kubeconfig: ${kubeconfig}
+  nginx-ingress:
+    type: kubernetes:helm.sh/v3:Release
+    properties: # The arguments to resource properties.
+      chart: "ingress-nginx"
+      repositoryOpts:
+        repo: https://kubernetes.github.io/ingress-nginx
+      cleanupOnFail: true
+      createNamespace: true
+      description: "Main load balancer"
+      lint: true
+      name: "ingress-nginx"
+      namespace: "ingress-nginx"
+      version: "4.7.1"
+      values:
+        ingressClass: "internet"
+    options:
+      provider: ${provider}
+variables:
+  kubeconfig:
+    fn::toJSON:
+      apiVersion: v1
+      clusters:
+        - cluster:
+            certificate-authority-data: ${cluster.masterAuth.clusterCaCertificate}
+            server: https://${cluster.endpoint}
+          name: ${cluster.name}
+      contexts:
+        - context:
+            cluster: ${cluster.name}
+            user: ${cluster.name}
+          name: ${cluster.name}
+      current-context: ${cluster.name}
+      kind: Config
+      users:
+        - name: ${cluster.name}
+          user:
+            exec:
+              apiVersion: client.authentication.k8s.io/v1beta1
+              command: gke-gcloud-auth-plugin
+              installHint: Install gke-gcloud-auth-plugin for use with kubectl by following https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke
+              provideClusterInfo: true
+outputs:
+  kubeconfig: ${kubeconfig}
+  

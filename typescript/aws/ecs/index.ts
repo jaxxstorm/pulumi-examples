@@ -114,9 +114,9 @@ const asg = cluster.createAutoScalingGroup("asg", {
     subnetIds: vpc.publicSubnetIds,
     launchConfigurationArgs: { 
         instanceType: "t2.medium"
-        associatePublicIpAddress: true,
-        iamInstanceProfile: instanceProfile.arn,
-        userData: userData.rendered,
+        //associatePublicIpAddress: true,
+        //iamInstanceProfile: instanceProfile.arn,
+        //userData: userData.rendered,
         keyName: key.keyName,
         imageId: ami.id,
         rootBlockDevice: {
