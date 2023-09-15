@@ -32,31 +32,30 @@ new PolicyPack("resource-values-changes", {
         const resultCount = data.total;
 
         if (resultCount < 0) {
-            reportViolation(`found ${resultCount} resources, perhaps the resource hasn't been created yet`);
-          }
+          reportViolation(
+            `found ${resultCount} resources, perhaps the resource hasn't been created yet`
+          );
+        }
 
         data.resources.forEach((resource: any) => {
-            for (let key in resource.properties) {
-                if (resource.properties.hasOwnProperty(key)) {  // Ensure you're not getting properties from the prototype chain
-                    let currentValue = resource.properties[key];
-                    let oldValue = args.props[key];
-                    if (currentValue != oldValue && oldValue != undefined) {
-                        reportViolation(`property ${key} has changed from ${oldValue} to ${currentValue}`);
-                    }
-                }
+          for (let key in resource.properties) {
+            if (resource.properties.hasOwnProperty(key)) {
+              // Ensure you're not getting properties from the prototype chain
+              let currentValue = resource.properties[key];
+              let oldValue = args.props[key];
+              if (currentValue != oldValue && oldValue != undefined) {
+                reportViolation(
+                  `property ${key} has changed from ${oldValue} to ${currentValue}`
+                );
+              }
             }
+          }
         });
-
-        
 
         // data.resources.forEach((resource: any) => {
 
         // });
-
-
       },
     },
   ],
 });
-
-
