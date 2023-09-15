@@ -31,12 +31,6 @@ new PolicyPack("resource-values-changes", {
         const data = await body.json();
         const resultCount = data.total;
 
-        if (resultCount < 0) {
-          reportViolation(
-            `found ${resultCount} resources, perhaps the resource hasn't been created yet`
-          );
-        }
-
         data.resources.forEach((resource: any) => {
           for (let key in resource.properties) {
             if (resource.properties.hasOwnProperty(key)) {
