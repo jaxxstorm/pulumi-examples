@@ -1,0 +1,3 @@
+name: policy_changed_properties
+runtime: nodejs
+description: A minimal TypeScript Pulumi program
