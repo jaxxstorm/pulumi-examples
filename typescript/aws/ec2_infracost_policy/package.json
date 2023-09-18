@@ -1,0 +1,16 @@
+{
+    "name": "ec2_infracost_policy",
+    "main": "index.ts",
+    "devDependencies": {
+        "@types/node": "^16"
+    },
+    "dependencies": {
+        "@apollo/client": "^3.8.3",
+        "@pulumi/aws": "^5.0.0",
+        "@pulumi/awsx": "^1.0.0",
+        "@pulumi/pulumi": "^3.0.0",
+        "graphql": "^16.8.0",
+        "graphql-request": "^6.1.0",
+        "react": "^18.2.0"
+    }
+}
