@@ -113,8 +113,6 @@ github.com/pkg/term v1.1.0 h1:xIAAdCMh3QIAy+5FrE8Ad8XoDhEU4ufwbaSozViP9kk=
 github.com/pkg/term v1.1.0/go.mod h1:E25nymQcrSllhX42Ok8MRm1+hyBdHY0dCeiKZ9jpNGw=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
-github.com/pulumi/pulumi-azure-native-sdk/authorization/v2 v2.8.0 h1:xbTAISsowIKiWhoQ4qcC6VGdOBwCjUmwUgl24FhI4Wg=
-github.com/pulumi/pulumi-azure-native-sdk/authorization/v2 v2.8.0/go.mod h1:R+oOw7l+XFwvli6yGhNQutwpOD7i97Z+yg2D0SkA4+U=
 github.com/pulumi/pulumi-azure-native-sdk/managedidentity/v2 v2.8.0 h1:JIjc9QJ2/2cXGo4ntztQIvq28IUg/KNi/dBGMDP6y4c=
 github.com/pulumi/pulumi-azure-native-sdk/managedidentity/v2 v2.8.0/go.mod h1:Xzjv1/VOkqhAmlh01T67iZhvecjNlE+MORa/5lzGgDw=
 github.com/pulumi/pulumi-azure-native-sdk/network/v2 v2.8.0 h1:ZYoTXEyI93nSrgad+HPSNAUSReHm/I8uAz1sDaoW+ag=
@@ -123,6 +121,8 @@ github.com/pulumi/pulumi-azure-native-sdk/resources/v2 v2.8.0 h1:+W6yCqaI+fIcZiP
 github.com/pulumi/pulumi-azure-native-sdk/resources/v2 v2.8.0/go.mod h1:X4GBG6E05h3a2gmr+COaaHZOnT+cQupu3VlnT6FeD/w=
 github.com/pulumi/pulumi-azure-native-sdk/v2 v2.8.0 h1:xwSEdRgGqWKzyl9AN98X0nmOb6GrY3gpmjm3IMnTMxo=
 github.com/pulumi/pulumi-azure-native-sdk/v2 v2.8.0/go.mod h1:0M4mUmmpe41qj02HAGJnLYLpf8TBkrtdqD6H8J9XPo4=
+github.com/pulumi/pulumi-azure/sdk/v5 v5.49.0 h1:IZSvXO+Zjx+3xNwIG/uYfiTCfvZT5qzcMCIfy3d+MGM=
+github.com/pulumi/pulumi-azure/sdk/v5 v5.49.0/go.mod h1:h3aPY+lXx+uzveDmgDTCRXjtvwDQCPWaqp8p2x8QEPA=
 github.com/pulumi/pulumi/sdk/v3 v3.78.1 h1:itSfMcILvEq5wOpGEAzeZdpH973yJ4sRn02nx5SCJHM=
 github.com/pulumi/pulumi/sdk/v3 v3.78.1/go.mod h1:FEFictCHoa8CYzKDSc0t9ErrNiaO9n7pChreLQLDH+M=
 github.com/rivo/uniseg v0.2.0/go.mod h1:J6wj4VEh+S6ZtnVlnTBMWIodfgj8LQOQFoIToxlJtxc=

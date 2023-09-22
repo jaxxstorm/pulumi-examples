@@ -4,7 +4,7 @@ import (
 	"github.com/pulumi/pulumi-azure-native-sdk/managedidentity/v2"
 	"github.com/pulumi/pulumi-azure-native-sdk/network/v2"
 	"github.com/pulumi/pulumi-azure-native-sdk/resources/v2"
-	"github.com/pulumi/pulumi-azure-native-sdk/authorization/v2"
+	classicNetwork "github.com/pulumi/pulumi-azure/sdk/v5/go/azure/network"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -43,6 +43,17 @@ func main() {
 		}
 
 		publicIp, err := network.NewPublicIPAddress(ctx, "lbriggs", &network.PublicIPAddressArgs{
+			ResourceGroupName:        resourceGroup.Name,
+			PublicIPAllocationMethod: pulumi.String("Static"),
+			Sku: &network.PublicIPAddressSkuArgs{
+				Name: pulumi.String("Standard"),
+			},
+		}, pulumi.Parent(resourceGroup))
+		if err != nil {
+			return err
+		}
+
+		classicPublicIp, err := network.NewPublicIPAddress(ctx, "classic", &network.PublicIPAddressArgs{
 			ResourceGroupName:        resourceGroup.Name,
 			PublicIPAllocationMethod: pulumi.String("Static"),
 			Sku: &network.PublicIPAddressSkuArgs{
@@ -133,12 +144,93 @@ func main() {
 			return err
 		}
 
+		backendAddressPoolName := pulumi.String("backend")
+		backendHttpSettings := pulumi.String("http")
+		httpListenerName := pulumi.String("http")
+		frontEndIpConfigurationName := pulumi.String("public")
+		httpFrontEndPortName := pulumi.String("http")
+		httpsFrontEndPortName := pulumi.String("https")
 
+		agw, err := classicNetwork.NewApplicationGateway(ctx, "agw", &classicNetwork.ApplicationGatewayArgs{
+			ResourceGroupName: resourceGroup.Name,
+			GatewayIpConfigurations: classicNetwork.ApplicationGatewayGatewayIpConfigurationArray{
+				classicNetwork.ApplicationGatewayGatewayIpConfigurationArgs{
+					Name:     pulumi.String("appGatewayIpConfig"),
+					SubnetId: vnet.Subnets.Index(pulumi.Int(1)).Id().Elem().ToStringOutput(),
+				},
+			},
+			FrontendPorts: classicNetwork.ApplicationGatewayFrontendPortArray{
+				&classicNetwork.ApplicationGatewayFrontendPortArgs{
+					Name: httpFrontEndPortName,
+					Port: pulumi.Int(80),
+				},
+				&classicNetwork.ApplicationGatewayFrontendPortArgs{
+					Name: httpsFrontEndPortName,
+					Port: pulumi.Int(443),
+				},
+			},
+			FrontendIpConfigurations: classicNetwork.ApplicationGatewayFrontendIpConfigurationArray{
+				classicNetwork.ApplicationGatewayFrontendIpConfigurationArgs{
+					Name:              frontEndIpConfigurationName,
+					PublicIpAddressId: classicPublicIp.ID(),
+				},
+			},
+			BackendAddressPools: classicNetwork.ApplicationGatewayBackendAddressPoolArray{
+				&classicNetwork.ApplicationGatewayBackendAddressPoolArgs{
+					Name: backendAddressPoolName,
+				},
+			},
+			BackendHttpSettings: classicNetwork.ApplicationGatewayBackendHttpSettingArray{
+				classicNetwork.ApplicationGatewayBackendHttpSettingArgs{
+					Name:                pulumi.String("http"),
+					CookieBasedAffinity: pulumi.String("Disabled"),
+					Port:                pulumi.Int(80),
+					Protocol:            pulumi.String("Http"),
+					RequestTimeout:      pulumi.IntPtr(30),
+				},
+			},
+			HttpListeners: classicNetwork.ApplicationGatewayHttpListenerArray{
+				&classicNetwork.ApplicationGatewayHttpListenerArgs{
+					Name:                        httpListenerName,
+					FrontendIpConfigurationName: frontEndIpConfigurationName,
+					FrontendPortName:            httpFrontEndPortName,
+					Protocol:                    pulumi.String("Http"),
+				},
+			},
+			RequestRoutingRules: classicNetwork.ApplicationGatewayRequestRoutingRuleArray{
+				&classicNetwork.ApplicationGatewayRequestRoutingRuleArgs{
+					RuleType:                pulumi.String("Basic"),
+					Name:                    pulumi.String("default"),
+					BackendAddressPoolName:  backendAddressPoolName, // use the same name as the above settings
+					BackendHttpSettingsName: backendHttpSettings,
+					HttpListenerName:        httpListenerName,
+					Priority:                pulumi.IntPtr(1),
+				},
+			},
+
+			AutoscaleConfiguration: &classicNetwork.ApplicationGatewayAutoscaleConfigurationArgs{
+				MaxCapacity: pulumi.Int(10),
+				MinCapacity: pulumi.Int(1),
+			},
+			Sku: &classicNetwork.ApplicationGatewaySkuArgs{
+				Name: pulumi.String("WAF_v2"),
+				Tier: pulumi.String("WAF_v2"),
+			},
+			WafConfiguration: &classicNetwork.ApplicationGatewayWafConfigurationArgs{
+				Enabled:        pulumi.Bool(true),
+				FirewallMode:   pulumi.String("Detection"),
+				RuleSetVersion: pulumi.String("3.2"),
+			},
+		})
+		if err != nil {
+			return err
+		}
 
 		ctx.Export("vnetId", vnet.ID())
 		ctx.Export("identityName", identity.Name)
 		ctx.Export("ipAddress", publicIp.IpAddress)
 		ctx.Export("appGwId", appGw.ID())
+		ctx.Export("classicAppGwId", agw.ID())
 
 		return nil
 	})

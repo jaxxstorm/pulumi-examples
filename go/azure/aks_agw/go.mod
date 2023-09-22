@@ -3,10 +3,10 @@ module aks_agw
 go 1.18
 
 require (
-	github.com/pulumi/pulumi-azure-native-sdk/authorization/v2 v2.8.0
 	github.com/pulumi/pulumi-azure-native-sdk/managedidentity/v2 v2.8.0
 	github.com/pulumi/pulumi-azure-native-sdk/network/v2 v2.8.0
 	github.com/pulumi/pulumi-azure-native-sdk/resources/v2 v2.8.0
+	github.com/pulumi/pulumi-azure/sdk/v5 v5.49.0
 	github.com/pulumi/pulumi/sdk/v3 v3.78.1
 )
 
