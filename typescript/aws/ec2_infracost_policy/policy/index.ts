@@ -25,9 +25,11 @@ new PolicyPack("aws-cost-infracost", {
                   service: "AmazonEC2"
                   productFamily: "Compute Instance"
                   region: "us-east-1"
-                  attributeFilters: [{ key: "instanceType", value: "t3.micro" }]
+                  attributeFilters: [
+                    { key: "instanceType", value: "t3.micro" },
+                  ]
                 }
-              ) {
+              ), attributes { key, value } {
                 prices {
                   USD
                 }
