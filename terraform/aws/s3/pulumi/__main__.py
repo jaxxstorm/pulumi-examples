@@ -1,0 +1,143 @@
+import pulumi
+import pulumi_aws as aws
+
+public_access_block = aws.s3.BucketPublicAccessBlock(
+    "public_access_block",
+    block_public_acls=True,
+    block_public_policy=True,
+    bucket="lbriggs-example-website",
+    ignore_public_acls=True,
+    restrict_public_buckets=True,
+    opts=pulumi.ResourceOptions(protect=True),
+)
+root_domain = aws.route53.Record(
+    "root_domain",
+    aliases=[
+        aws.route53.RecordAliasArgs(
+            evaluate_target_health=False,
+            name="d1pi4agpvkn1r5.cloudfront.net",
+            zone_id="Z2FDTNDATAQYW2",
+        )
+    ],
+    name="www.aws.briggs.work",
+    type="A",
+    zone_id="Z08976112HCEEMBICZ9N0",
+    opts=pulumi.ResourceOptions(protect=True),
+)
+bucket = aws.s3.BucketV2(
+    "bucket",
+    bucket="lbriggs-example-website",
+    grants=[
+        aws.s3.BucketV2GrantArgs(
+            id="e07865a5679c7977370948f1f1e51c21b12d8cfdd396a7e3172275d9164e01b8",
+            permissions=["FULL_CONTROL"],
+            type="CanonicalUser",
+        )
+    ],
+    policy='{"Statement":[{"Action":"s3:GetObject","Condition":{"StringEquals":{"AWS:SourceArn":"arn:aws:cloudfront::616138583583:distribution/EH62QWICH5WQQ"}},"Effect":"Allow","Principal":{"Service":"cloudfront.amazonaws.com"},"Resource":"arn:aws:s3:::lbriggs-example-website/*","Sid":"AllowCloudFrontServicePrincipal"}],"Version":"2012-10-17"}',
+    request_payer="BucketOwner",
+    server_side_encryption_configurations=[
+        aws.s3.BucketV2ServerSideEncryptionConfigurationArgs(
+            rules=[
+                aws.s3.BucketV2ServerSideEncryptionConfigurationRuleArgs(
+                    apply_server_side_encryption_by_defaults=[
+                        aws.s3.BucketV2ServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs(
+                            sse_algorithm="AES256",
+                        )
+                    ],
+                )
+            ],
+        )
+    ],
+    versionings=[
+        aws.s3.BucketV2VersioningArgs(
+            enabled=True,
+        )
+    ],
+    websites=[
+        aws.s3.BucketV2WebsiteArgs(
+            error_document="index.html",
+            index_document="index.html",
+            routing_rules='[{"Condition":{"KeyPrefixEquals":"docs/"},"Redirect":{"ReplaceKeyPrefixWith":""}}]',
+        )
+    ],
+    opts=pulumi.ResourceOptions(protect=True),
+)
+versioning = aws.s3.BucketVersioningV2(
+    "versioning",
+    bucket="lbriggs-example-website",
+    versioning_configuration=aws.s3.BucketVersioningV2VersioningConfigurationArgs(
+        status="Enabled",
+    ),
+    opts=pulumi.ResourceOptions(protect=True),
+)
+wc = aws.s3.BucketWebsiteConfigurationV2(
+    "wc",
+    bucket="lbriggs-example-website",
+    error_document=aws.s3.BucketWebsiteConfigurationV2ErrorDocumentArgs(
+        key="index.html",
+    ),
+    index_document=aws.s3.BucketWebsiteConfigurationV2IndexDocumentArgs(
+        suffix="index.html",
+    ),
+    routing_rule_details='[{"Condition":{"KeyPrefixEquals":"docs/"},"Redirect":{"ReplaceKeyPrefixWith":""}}]',
+    routing_rules=[
+        aws.s3.BucketWebsiteConfigurationV2RoutingRuleArgs(
+            condition=aws.s3.BucketWebsiteConfigurationV2RoutingRuleConditionArgs(
+                key_prefix_equals="docs/",
+            ),
+            redirect=aws.s3.BucketWebsiteConfigurationV2RoutingRuleRedirectArgs(),
+        )
+    ],
+    opts=pulumi.ResourceOptions(protect=True),
+)
+cloudfront = aws.cloudfront.Distribution(
+    "cloudfront",
+    default_cache_behavior=aws.cloudfront.DistributionDefaultCacheBehaviorArgs(
+        allowed_methods=[
+            "GET",
+            "HEAD",
+        ],
+        cached_methods=[
+            "GET",
+            "HEAD",
+        ],
+        forwarded_values=aws.cloudfront.DistributionDefaultCacheBehaviorForwardedValuesArgs(
+            cookies=aws.cloudfront.DistributionDefaultCacheBehaviorForwardedValuesCookiesArgs(
+                forward="all",
+            ),
+            query_string=True,
+        ),
+        target_origin_id="lbriggs-example-website-origin",
+        viewer_protocol_policy="redirect-to-https",
+    ),
+    enabled=True,
+    origins=[
+        aws.cloudfront.DistributionOriginArgs(
+            custom_origin_config=aws.cloudfront.DistributionOriginCustomOriginConfigArgs(
+                http_port=80,
+                https_port=443,
+                origin_protocol_policy="http-only",
+                origin_ssl_protocols=["TLSv1"],
+            ),
+            domain_name="lbriggs-example-website.s3.us-west-2.amazonaws.com",
+            origin_id="lbriggs-example-website-origin",
+        )
+    ],
+    price_class="PriceClass_200",
+    restrictions=aws.cloudfront.DistributionRestrictionsArgs(
+        geo_restriction=aws.cloudfront.DistributionRestrictionsGeoRestrictionArgs(
+            restriction_type="none",
+        ),
+    ),
+    viewer_certificate=aws.cloudfront.DistributionViewerCertificateArgs(
+        cloudfront_default_certificate=True,
+    ),
+    opts=pulumi.ResourceOptions(protect=True),
+)
+policy = aws.s3.BucketPolicy(
+    "policy",
+    bucket="lbriggs-example-website",
+    policy='{"Statement":[{"Action":"s3:GetObject","Condition":{"StringEquals":{"AWS:SourceArn":"arn:aws:cloudfront::616138583583:distribution/EH62QWICH5WQQ"}},"Effect":"Allow","Principal":{"Service":"cloudfront.amazonaws.com"},"Resource":"arn:aws:s3:::lbriggs-example-website/*","Sid":"AllowCloudFrontServicePrincipal"}],"Version":"2012-10-17"}',
+    opts=pulumi.ResourceOptions(protect=True),
+)

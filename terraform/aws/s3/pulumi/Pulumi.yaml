@@ -1,0 +1,6 @@
+name: pulumi-tf-s3-import
+runtime:
+  name: python
+  options:
+    virtualenv: venv
+description: A minimal AWS Python Pulumi program

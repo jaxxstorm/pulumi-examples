@@ -1,0 +1,439 @@
+{
+    "version": 3,
+    "deployment": {
+        "manifest": {
+            "time": "2023-09-27T16:45:57.412713-07:00",
+            "magic": "3a052f3e22786252eba80af26bdb515118797824e12bf66c2e1444110c0b7a5c",
+            "version": "v3.85.0"
+        },
+        "secrets_providers": {
+            "type": "service",
+            "state": {
+                "url": "https://api.pulumi.com",
+                "owner": "jaxxstorm",
+                "project": "terraform-local-state",
+                "stack": "dev"
+            }
+        },
+        "resources": [
+            {
+                "urn": "urn:pulumi:dev::terraform-local-state::pulumi:pulumi:Stack::terraform-local-state-dev",
+                "custom": false,
+                "type": "pulumi:pulumi:Stack",
+                "created": "2023-09-27T23:45:49.600921Z",
+                "modified": "2023-09-27T23:45:49.600921Z"
+            },
+            {
+                "urn": "urn:pulumi:dev::terraform-local-state::pulumi:providers:aws::default_5_42_0",
+                "custom": true,
+                "id": "2edd31b6-5ab9-4c69-a267-65c8b144ae4f",
+                "type": "pulumi:providers:aws",
+                "inputs": {
+                    "version": "5.42.0"
+                },
+                "outputs": {
+                    "version": "5.42.0"
+                },
+                "created": "2023-09-27T23:45:51.002569Z",
+                "modified": "2023-09-27T23:45:51.002569Z"
+            },
+            {
+                "urn": "urn:pulumi:dev::terraform-local-state::aws:ec2/subnet:Subnet::private-0",
+                "custom": true,
+                "id": "subnet-0cd9b3ee29a0b8473",
+                "type": "aws:ec2/subnet:Subnet",
+                "inputs": {
+                    "__defaults": [],
+                    "availabilityZone": "us-west-2a",
+                    "availabilityZoneId": "usw2-az2",
+                    "cidrBlock": "10.0.0.0/24",
+                    "privateDnsHostnameTypeOnLaunch": "ip-name",
+                    "tags": {
+                        "Name": "lbriggs-private-us-west-2a",
+                        "__defaults": []
+                    },
+                    "vpcId": "vpc-025fb25487e4d08f1"
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":600000000000,\"delete\":1200000000000},\"schema_version\":\"1\"}",
+                    "arn": "arn:aws:ec2:us-west-2:616138583583:subnet/subnet-0cd9b3ee29a0b8473",
+                    "assignIpv6AddressOnCreation": false,
+                    "availabilityZone": "us-west-2a",
+                    "availabilityZoneId": "usw2-az2",
+                    "cidrBlock": "10.0.0.0/24",
+                    "customerOwnedIpv4Pool": "",
+                    "enableDns64": false,
+                    "enableLniAtDeviceIndex": 0,
+                    "enableResourceNameDnsARecordOnLaunch": false,
+                    "enableResourceNameDnsAaaaRecordOnLaunch": false,
+                    "id": "subnet-0cd9b3ee29a0b8473",
+                    "ipv6CidrBlock": "",
+                    "ipv6CidrBlockAssociationId": "",
+                    "ipv6Native": false,
+                    "mapCustomerOwnedIpOnLaunch": false,
+                    "mapPublicIpOnLaunch": false,
+                    "outpostArn": "",
+                    "ownerId": "616138583583",
+                    "privateDnsHostnameTypeOnLaunch": "ip-name",
+                    "tags": {
+                        "Name": "lbriggs-private-us-west-2a"
+                    },
+                    "tagsAll": {
+                        "Name": "lbriggs-private-us-west-2a"
+                    },
+                    "vpcId": "vpc-025fb25487e4d08f1"
+                },
+                "parent": "urn:pulumi:dev::terraform-local-state::pulumi:pulumi:Stack::terraform-local-state-dev",
+                "protect": true,
+                "provider": "urn:pulumi:dev::terraform-local-state::pulumi:providers:aws::default_5_42_0::2edd31b6-5ab9-4c69-a267-65c8b144ae4f",
+                "created": "2023-09-27T23:45:54.891664Z",
+                "modified": "2023-09-27T23:45:54.891664Z"
+            },
+            {
+                "urn": "urn:pulumi:dev::terraform-local-state::aws:ec2/routeTable:RouteTable::public-0",
+                "custom": true,
+                "id": "rtb-0762f3a27a55d8ab9",
+                "type": "aws:ec2/routeTable:RouteTable",
+                "inputs": {
+                    "__defaults": [],
+                    "tags": {
+                        "Name": "lbriggs-public",
+                        "__defaults": []
+                    },
+                    "vpcId": "vpc-025fb25487e4d08f1"
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":300000000000,\"delete\":300000000000,\"update\":120000000000}}",
+                    "arn": "arn:aws:ec2:us-west-2:616138583583:route-table/rtb-0762f3a27a55d8ab9",
+                    "id": "rtb-0762f3a27a55d8ab9",
+                    "ownerId": "616138583583",
+                    "propagatingVgws": [],
+                    "routes": [],
+                    "tags": {
+                        "Name": "lbriggs-public"
+                    },
+                    "tagsAll": {
+                        "Name": "lbriggs-public"
+                    },
+                    "vpcId": "vpc-025fb25487e4d08f1"
+                },
+                "parent": "urn:pulumi:dev::terraform-local-state::pulumi:pulumi:Stack::terraform-local-state-dev",
+                "protect": true,
+                "provider": "urn:pulumi:dev::terraform-local-state::pulumi:providers:aws::default_5_42_0::2edd31b6-5ab9-4c69-a267-65c8b144ae4f",
+                "created": "2023-09-27T23:45:55.12964Z",
+                "modified": "2023-09-27T23:45:55.12964Z"
+            },
+            {
+                "urn": "urn:pulumi:dev::terraform-local-state::aws:ec2/subnet:Subnet::public-1",
+                "custom": true,
+                "id": "subnet-0a19ec18ac717416c",
+                "type": "aws:ec2/subnet:Subnet",
+                "inputs": {
+                    "__defaults": [],
+                    "availabilityZone": "us-west-2b",
+                    "availabilityZoneId": "usw2-az1",
+                    "cidrBlock": "10.0.5.0/24",
+                    "privateDnsHostnameTypeOnLaunch": "ip-name",
+                    "tags": {
+                        "Name": "lbriggs-public-us-west-2b",
+                        "__defaults": []
+                    },
+                    "vpcId": "vpc-025fb25487e4d08f1"
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":600000000000,\"delete\":1200000000000},\"schema_version\":\"1\"}",
+                    "arn": "arn:aws:ec2:us-west-2:616138583583:subnet/subnet-0a19ec18ac717416c",
+                    "assignIpv6AddressOnCreation": false,
+                    "availabilityZone": "us-west-2b",
+                    "availabilityZoneId": "usw2-az1",
+                    "cidrBlock": "10.0.5.0/24",
+                    "customerOwnedIpv4Pool": "",
+                    "enableDns64": false,
+                    "enableLniAtDeviceIndex": 0,
+                    "enableResourceNameDnsARecordOnLaunch": false,
+                    "enableResourceNameDnsAaaaRecordOnLaunch": false,
+                    "id": "subnet-0a19ec18ac717416c",
+                    "ipv6CidrBlock": "",
+                    "ipv6CidrBlockAssociationId": "",
+                    "ipv6Native": false,
+                    "mapCustomerOwnedIpOnLaunch": false,
+                    "mapPublicIpOnLaunch": false,
+                    "outpostArn": "",
+                    "ownerId": "616138583583",
+                    "privateDnsHostnameTypeOnLaunch": "ip-name",
+                    "tags": {
+                        "Name": "lbriggs-public-us-west-2b"
+                    },
+                    "tagsAll": {
+                        "Name": "lbriggs-public-us-west-2b"
+                    },
+                    "vpcId": "vpc-025fb25487e4d08f1"
+                },
+                "parent": "urn:pulumi:dev::terraform-local-state::pulumi:pulumi:Stack::terraform-local-state-dev",
+                "protect": true,
+                "provider": "urn:pulumi:dev::terraform-local-state::pulumi:providers:aws::default_5_42_0::2edd31b6-5ab9-4c69-a267-65c8b144ae4f",
+                "created": "2023-09-27T23:45:55.581639Z",
+                "modified": "2023-09-27T23:45:55.581639Z"
+            },
+            {
+                "urn": "urn:pulumi:dev::terraform-local-state::aws:ec2/subnet:Subnet::private-1",
+                "custom": true,
+                "id": "subnet-04484d99e45d2bce2",
+                "type": "aws:ec2/subnet:Subnet",
+                "inputs": {
+                    "__defaults": [],
+                    "availabilityZone": "us-west-2b",
+                    "availabilityZoneId": "usw2-az1",
+                    "cidrBlock": "10.0.1.0/24",
+                    "privateDnsHostnameTypeOnLaunch": "ip-name",
+                    "tags": {
+                        "Name": "lbriggs-private-us-west-2b",
+                        "__defaults": []
+                    },
+                    "vpcId": "vpc-025fb25487e4d08f1"
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":600000000000,\"delete\":1200000000000},\"schema_version\":\"1\"}",
+                    "arn": "arn:aws:ec2:us-west-2:616138583583:subnet/subnet-04484d99e45d2bce2",
+                    "assignIpv6AddressOnCreation": false,
+                    "availabilityZone": "us-west-2b",
+                    "availabilityZoneId": "usw2-az1",
+                    "cidrBlock": "10.0.1.0/24",
+                    "customerOwnedIpv4Pool": "",
+                    "enableDns64": false,
+                    "enableLniAtDeviceIndex": 0,
+                    "enableResourceNameDnsARecordOnLaunch": false,
+                    "enableResourceNameDnsAaaaRecordOnLaunch": false,
+                    "id": "subnet-04484d99e45d2bce2",
+                    "ipv6CidrBlock": "",
+                    "ipv6CidrBlockAssociationId": "",
+                    "ipv6Native": false,
+                    "mapCustomerOwnedIpOnLaunch": false,
+                    "mapPublicIpOnLaunch": false,
+                    "outpostArn": "",
+                    "ownerId": "616138583583",
+                    "privateDnsHostnameTypeOnLaunch": "ip-name",
+                    "tags": {
+                        "Name": "lbriggs-private-us-west-2b"
+                    },
+                    "tagsAll": {
+                        "Name": "lbriggs-private-us-west-2b"
+                    },
+                    "vpcId": "vpc-025fb25487e4d08f1"
+                },
+                "parent": "urn:pulumi:dev::terraform-local-state::pulumi:pulumi:Stack::terraform-local-state-dev",
+                "protect": true,
+                "provider": "urn:pulumi:dev::terraform-local-state::pulumi:providers:aws::default_5_42_0::2edd31b6-5ab9-4c69-a267-65c8b144ae4f",
+                "created": "2023-09-27T23:45:55.741005Z",
+                "modified": "2023-09-27T23:45:55.741005Z"
+            },
+            {
+                "urn": "urn:pulumi:dev::terraform-local-state::aws:ec2/subnet:Subnet::public-2",
+                "custom": true,
+                "id": "subnet-0da9ead1d9c0f4764",
+                "type": "aws:ec2/subnet:Subnet",
+                "inputs": {
+                    "__defaults": [],
+                    "availabilityZone": "us-west-2c",
+                    "availabilityZoneId": "usw2-az3",
+                    "cidrBlock": "10.0.6.0/24",
+                    "privateDnsHostnameTypeOnLaunch": "ip-name",
+                    "tags": {
+                        "Name": "lbriggs-public-us-west-2c",
+                        "__defaults": []
+                    },
+                    "vpcId": "vpc-025fb25487e4d08f1"
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":600000000000,\"delete\":1200000000000},\"schema_version\":\"1\"}",
+                    "arn": "arn:aws:ec2:us-west-2:616138583583:subnet/subnet-0da9ead1d9c0f4764",
+                    "assignIpv6AddressOnCreation": false,
+                    "availabilityZone": "us-west-2c",
+                    "availabilityZoneId": "usw2-az3",
+                    "cidrBlock": "10.0.6.0/24",
+                    "customerOwnedIpv4Pool": "",
+                    "enableDns64": false,
+                    "enableLniAtDeviceIndex": 0,
+                    "enableResourceNameDnsARecordOnLaunch": false,
+                    "enableResourceNameDnsAaaaRecordOnLaunch": false,
+                    "id": "subnet-0da9ead1d9c0f4764",
+                    "ipv6CidrBlock": "",
+                    "ipv6CidrBlockAssociationId": "",
+                    "ipv6Native": false,
+                    "mapCustomerOwnedIpOnLaunch": false,
+                    "mapPublicIpOnLaunch": false,
+                    "outpostArn": "",
+                    "ownerId": "616138583583",
+                    "privateDnsHostnameTypeOnLaunch": "ip-name",
+                    "tags": {
+                        "Name": "lbriggs-public-us-west-2c"
+                    },
+                    "tagsAll": {
+                        "Name": "lbriggs-public-us-west-2c"
+                    },
+                    "vpcId": "vpc-025fb25487e4d08f1"
+                },
+                "parent": "urn:pulumi:dev::terraform-local-state::pulumi:pulumi:Stack::terraform-local-state-dev",
+                "protect": true,
+                "provider": "urn:pulumi:dev::terraform-local-state::pulumi:providers:aws::default_5_42_0::2edd31b6-5ab9-4c69-a267-65c8b144ae4f",
+                "created": "2023-09-27T23:45:55.906269Z",
+                "modified": "2023-09-27T23:45:55.906269Z"
+            },
+            {
+                "urn": "urn:pulumi:dev::terraform-local-state::aws:ec2/defaultSecurityGroup:DefaultSecurityGroup::this-0",
+                "custom": true,
+                "id": "sg-0061ffae6f3300363",
+                "type": "aws:ec2/defaultSecurityGroup:DefaultSecurityGroup",
+                "inputs": {
+                    "__defaults": [],
+                    "tags": {
+                        "Name": "lbriggs-default",
+                        "__defaults": []
+                    },
+                    "vpcId": "vpc-025fb25487e4d08f1"
+                },
+                "outputs": {
+                    "__meta": "{\"schema_version\":\"1\"}",
+                    "arn": "arn:aws:ec2:us-west-2:616138583583:security-group/sg-0061ffae6f3300363",
+                    "description": "default VPC security group",
+                    "egress": [],
+                    "id": "sg-0061ffae6f3300363",
+                    "ingress": [],
+                    "name": "default",
+                    "namePrefix": "",
+                    "ownerId": "616138583583",
+                    "tags": {
+                        "Name": "lbriggs-default"
+                    },
+                    "tagsAll": {
+                        "Name": "lbriggs-default"
+                    },
+                    "vpcId": "vpc-025fb25487e4d08f1"
+                },
+                "parent": "urn:pulumi:dev::terraform-local-state::pulumi:pulumi:Stack::terraform-local-state-dev",
+                "protect": true,
+                "provider": "urn:pulumi:dev::terraform-local-state::pulumi:providers:aws::default_5_42_0::2edd31b6-5ab9-4c69-a267-65c8b144ae4f",
+                "created": "2023-09-27T23:45:56.081961Z",
+                "modified": "2023-09-27T23:45:56.081961Z"
+            },
+            {
+                "urn": "urn:pulumi:dev::terraform-local-state::aws:ec2/routeTable:RouteTable::private-0",
+                "custom": true,
+                "id": "rtb-04197d16699d02053",
+                "type": "aws:ec2/routeTable:RouteTable",
+                "inputs": {
+                    "__defaults": [],
+                    "tags": {
+                        "Name": "lbriggs-private-us-west-2a",
+                        "__defaults": []
+                    },
+                    "vpcId": "vpc-025fb25487e4d08f1"
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":300000000000,\"delete\":300000000000,\"update\":120000000000}}",
+                    "arn": "arn:aws:ec2:us-west-2:616138583583:route-table/rtb-04197d16699d02053",
+                    "id": "rtb-04197d16699d02053",
+                    "ownerId": "616138583583",
+                    "propagatingVgws": [],
+                    "routes": [],
+                    "tags": {
+                        "Name": "lbriggs-private-us-west-2a"
+                    },
+                    "tagsAll": {
+                        "Name": "lbriggs-private-us-west-2a"
+                    },
+                    "vpcId": "vpc-025fb25487e4d08f1"
+                },
+                "parent": "urn:pulumi:dev::terraform-local-state::pulumi:pulumi:Stack::terraform-local-state-dev",
+                "protect": true,
+                "provider": "urn:pulumi:dev::terraform-local-state::pulumi:providers:aws::default_5_42_0::2edd31b6-5ab9-4c69-a267-65c8b144ae4f",
+                "created": "2023-09-27T23:45:56.982278Z",
+                "modified": "2023-09-27T23:45:56.982278Z"
+            },
+            {
+                "urn": "urn:pulumi:dev::terraform-local-state::aws:ec2/routeTable:RouteTable::private-1",
+                "custom": true,
+                "id": "rtb-08c618a8a68666b63",
+                "type": "aws:ec2/routeTable:RouteTable",
+                "inputs": {
+                    "__defaults": [],
+                    "tags": {
+                        "Name": "lbriggs-private-us-west-2b",
+                        "__defaults": []
+                    },
+                    "vpcId": "vpc-025fb25487e4d08f1"
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":300000000000,\"delete\":300000000000,\"update\":120000000000}}",
+                    "arn": "arn:aws:ec2:us-west-2:616138583583:route-table/rtb-08c618a8a68666b63",
+                    "id": "rtb-08c618a8a68666b63",
+                    "ownerId": "616138583583",
+                    "propagatingVgws": [],
+                    "routes": [],
+                    "tags": {
+                        "Name": "lbriggs-private-us-west-2b"
+                    },
+                    "tagsAll": {
+                        "Name": "lbriggs-private-us-west-2b"
+                    },
+                    "vpcId": "vpc-025fb25487e4d08f1"
+                },
+                "parent": "urn:pulumi:dev::terraform-local-state::pulumi:pulumi:Stack::terraform-local-state-dev",
+                "protect": true,
+                "provider": "urn:pulumi:dev::terraform-local-state::pulumi:providers:aws::default_5_42_0::2edd31b6-5ab9-4c69-a267-65c8b144ae4f",
+                "created": "2023-09-27T23:45:57.226168Z",
+                "modified": "2023-09-27T23:45:57.226168Z"
+            },
+            {
+                "urn": "urn:pulumi:dev::terraform-local-state::aws:ec2/vpc:Vpc::this-0",
+                "custom": true,
+                "id": "vpc-025fb25487e4d08f1",
+                "type": "aws:ec2/vpc:Vpc",
+                "inputs": {
+                    "__defaults": [],
+                    "cidrBlock": "10.0.0.0/16",
+                    "enableDnsHostnames": true,
+                    "tags": {
+                        "Name": "lbriggs",
+                        "__defaults": []
+                    }
+                },
+                "outputs": {
+                    "__meta": "{\"schema_version\":\"1\"}",
+                    "arn": "arn:aws:ec2:us-west-2:616138583583:vpc/vpc-025fb25487e4d08f1",
+                    "assignGeneratedIpv6CidrBlock": false,
+                    "cidrBlock": "10.0.0.0/16",
+                    "defaultNetworkAclId": "acl-0d6c14f7726e4a86e",
+                    "defaultRouteTableId": "rtb-0062d10b1d4f7f186",
+                    "defaultSecurityGroupId": "sg-0061ffae6f3300363",
+                    "dhcpOptionsId": "dopt-1649d26e",
+                    "enableClassiclink": false,
+                    "enableClassiclinkDnsSupport": false,
+                    "enableDnsHostnames": true,
+                    "enableDnsSupport": true,
+                    "enableNetworkAddressUsageMetrics": false,
+                    "id": "vpc-025fb25487e4d08f1",
+                    "instanceTenancy": "default",
+                    "ipv6AssociationId": "",
+                    "ipv6CidrBlock": "",
+                    "ipv6CidrBlockNetworkBorderGroup": "",
+                    "ipv6IpamPoolId": "",
+                    "ipv6NetmaskLength": 0,
+                    "mainRouteTableId": "rtb-0062d10b1d4f7f186",
+                    "ownerId": "616138583583",
+                    "tags": {
+                        "Name": "lbriggs"
+                    },
+                    "tagsAll": {
+                        "Name": "lbriggs"
+                    }
+                },
+                "parent": "urn:pulumi:dev::terraform-local-state::pulumi:pulumi:Stack::terraform-local-state-dev",
+                "protect": true,
+                "provider": "urn:pulumi:dev::terraform-local-state::pulumi:providers:aws::default_5_42_0::2edd31b6-5ab9-4c69-a267-65c8b144ae4f",
+                "created": "2023-09-27T23:45:57.412607Z",
+                "modified": "2023-09-27T23:45:57.412607Z"
+            }
+        ]
+    }
+}

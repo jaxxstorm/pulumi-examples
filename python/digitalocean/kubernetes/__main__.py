@@ -5,6 +5,8 @@ import pulumi_kubernetes as k8s
 import pulumi_digitalocean as do
 import pulumi_kubernetes.helm.v3 as helm
 import time
+import kubernetes as kube
+import yaml
 
 config = pulumi.Config()
 node_count = config.get_float("nodeCount") or 1
@@ -72,19 +74,47 @@ srv = k8s.core.v1.Service.get(
     pulumi.Output.concat(
         ingress.status.namespace, "/", ingress.status.name, "-ingress-nginx-controller"
     ),
+    opts=pulumi.ResourceOptions(provider=provider),
 )
 
-def wait_for_loadbalancer(status):
-    try:
-        ip = status.loadBalancer.ingress[0].ip
-        if ip:
-            pulumi.log.info(f"Loadbalancer has provisioned: {ip}", ephemeral=False)
-            return ip
-    except:
-        pulumi.log.warn("Waiting for loadbalancer to return IP address", ephemeral=True)
 
-    # If the IP hasn't propagated, sleep for a short duration and then check again
-    time.sleep(10)
-    return wait_for_loadbalancer(status)
+def wait_for_loadbalancer(
+    kubeconfig: str,
+    name: str,
+    namespace: str,
+    status: k8s.core.v1.outputs.ServiceStatus,
+):
+    if not pulumi.runtime.is_dry_run():
+        k = yaml.safe_load(kubeconfig)
+        kube.config.load_kube_config_from_dict(config_dict=k)
+        api_instance = kube.client.CoreV1Api()
+        for i in range(60):
+            service_details = api_instance.read_namespaced_service(
+                name=name, namespace=namespace
+            )
+            print("outside try")
+            try:
+                print("inside try")
+                ip = service_details.status.loadBalancer.ingress[0].ip
+                if ip:
+                    pulumi.log.info(f"Service IP found: {ip}")
+                    return ip
+            except:
+                print("inside except")
+                pass
 
-ip_address = srv.status.apply(wait_for_loadbalancer)
+            pulumi.log.info(f"Waiting for Service IP ({i})", name)
+            time.sleep(10)
+        
+        raise Exception("timed out waiting for Service IP to be available")
+        
+        
+
+
+pulumi.Output.all(
+    kubeconfig=kubeconfig, namespace=srv.metadata['namespace'], name=srv.metadata["name"], status=srv.status
+).apply(
+    lambda args: wait_for_loadbalancer(
+        args["kubeconfig"], args["name"], args["namespace"], args["status"]
+    )
+)

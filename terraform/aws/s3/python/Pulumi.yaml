@@ -1,0 +1,5 @@
+name: tf
+runtime: python
+config:
+  aws:region:
+    value: us-west-2

@@ -1,0 +1,5 @@
+name: tf
+runtime: go
+config:
+  aws:region:
+    value: us-west-2
