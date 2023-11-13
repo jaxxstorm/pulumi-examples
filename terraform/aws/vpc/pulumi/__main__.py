@@ -15,16 +15,6 @@ s = state.RemoteStateReference(
     state.LocalBackendArgs(path=os.path.join(f"{script_dir}/../tf", statefile)),
 )
 
-terraform_owned = aws.ec2.Vpc(
-    "terraform_owned",
-    cidr_block="10.0.0.0/16",
-    enable_dns_hostnames=True,
-    tags={
-        "Name": "lbriggs",
-    },
-    opts=pulumi.ResourceOptions(protect=True),
-)
-
 # return the outputs from the terraform state
 vpc_id = s.get_output("vpc_id")
 private_subnet_ids = s.get_output("private_subnets")
