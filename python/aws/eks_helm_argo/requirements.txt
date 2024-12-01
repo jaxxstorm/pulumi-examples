@@ -7,7 +7,7 @@ dill==0.3.5.1
 grpcio==1.47.0
 idna==2.8
 parver==0.3.1
-protobuf==4.21.2
+protobuf==4.21.6
 pulumi==3.36.0
 pulumi-aws==5.10.0
 -e git+ssh://git@github.com/jaxxstorm/pulumi-examples.git@c220309f7c40faa8deb1f487a5ec8e244adc39cf#egg=pulumi_crds&subdirectory=python/aws/eks_helm_argo/application
